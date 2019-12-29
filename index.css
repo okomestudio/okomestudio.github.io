@@ -1,0 +1,55 @@
+:root {
+  --main-text-color: #767676;
+  --main-text-hover-color: #74c2c5;
+  --main-accent-color: #74c2c5;
+  box-sizing: border-box;
+  /* font-size: max(min(2vw, 2em), 1rem); */
+  font-size: 1rem;
+}
+
+*,
+::before,
+::after {
+  box-sizing: inherit;
+}
+
+@font-face{ 
+  font-family: MyUniverse;
+  src: url('/font/univers-lightultracondensed-webfont.eot');
+  src: url('/font/univers-lightultracondensed-webfont.eot?#iefix') format('embedded-opentype'),
+  url('/font/univers-lightultracondensed-webfont.woff') format('woff'),
+  url('/font/univers-lightultracondensed-webfont.ttf') format('truetype'),
+  url('/font/univers-lightultracondensed-webfont.svg#webfont') format('svg');
+}
+
+body {
+  /* color: #767676;  fallback if the browser does not understand var */
+  color: var(--main-text-color);
+  font-family: 'News Cycle', sans-serif;
+}
+
+.centered {
+  text-align: center;
+}
+
+.flex {
+  display: flex;
+}
+
+.smaller-text {
+  font-size: .85em;
+}
+
+::-webkit-scrollbar {
+  background: #ededed;
+  height: 0.75em;
+  width: 0.75em;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--main-accent-color);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #54a2a5
+}
