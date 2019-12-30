@@ -26,6 +26,9 @@ body {
   /* color: #767676;  fallback if the browser does not understand var */
   color: var(--main-text-color);
   font-family: 'News Cycle', sans-serif;
+
+  /* This is a trick to avoid the page to shift based on the visibility of scroll bar */
+  width: calc(100vw - 34px); 
 }
 
 .centered {
