@@ -2,6 +2,7 @@
   --main-text-color: #767676;
   --main-text-hover-color: #74c2c5;
   --main-accent-color: #74c2c5;
+  --main-accent-color-dark: #54a2a5;
   box-sizing: border-box;
   /* font-size: max(min(2vw, 2em), 1rem); */
   font-size: 1rem;
@@ -13,7 +14,7 @@
   box-sizing: inherit;
 }
 
-@font-face{ 
+@font-face{
   font-family: MyUniverse;
   src: url('/font/univers-lightultracondensed-webfont.eot');
   src: url('/font/univers-lightultracondensed-webfont.eot?#iefix') format('embedded-opentype'),
@@ -26,13 +27,29 @@ body {
   /* color: #767676;  fallback if the browser does not understand var */
   color: var(--main-text-color);
   font-family: 'News Cycle', sans-serif;
+  width: calc(100vw);
+}
 
-  /* This is a trick to avoid the page to shift based on the visibility of scroll bar */
-  width: calc(100vw - 34px); 
+@media (min-width: 35em) {
+  body {
+    /* This is a trick to avoid the page to shift based on the
+       visibility of scroll bar */
+    width: calc(100vw - 34px);
+  }
 }
 
 .centered {
   text-align: center;
+}
+
+.clearfix::before,
+.clearfix::after {
+  content: " ";
+  display: table;
+}
+
+.clearfix::after {
+  clear: both;
 }
 
 .flex {
@@ -54,5 +71,5 @@ body {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #54a2a5
+  background: var(--main-accent-color-dark);
 }
