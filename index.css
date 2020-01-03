@@ -38,6 +38,31 @@ body {
   }
 }
 
+a {
+  color: var(--main-text-color);
+  text-decoration: underline;
+}
+
+a:hover {
+  color: var(--main-text-hover-color);
+}
+
+h1,
+h2,
+h3 {
+  font-family: MyUniverse;
+}
+
+h2 {
+  font-size: 1.8em;
+  padding: 0.5em 0 0.25em;
+}
+
+h3 {
+  font-size: 1.8em;
+  padding: 0.5em 0 0.25em;
+}
+
 .centered {
   text-align: center;
 }
@@ -59,6 +84,20 @@ body {
 .smaller-text {
   font-size: .85em;
 }
+
+.media--center {
+  text-align: center;
+  width: 100%;
+}
+
+.media--center img {
+  height: 6.5em;
+}
+
+.media--center h3 {
+  padding-top: 0.25em;
+}
+
 
 ::-webkit-scrollbar {
   background: #ededed;
