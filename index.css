@@ -1,11 +1,13 @@
 :root {
-  --main-text-color: #767676;
-  --main-text-hover-color: #74c2c5;
-  --main-accent-color: #74c2c5;
-  --main-accent-color-dark: #54a2a5;
+  --main-text-color: hsla(0, 0%, 46%, 1);  /* #767676, as used in logo */
+  --dark-text-color: hsla(0, 0%, 35%, 1);  /* for the contrast ratio of 7 */
+  --main-text-hover-color: hsla(182, 41%, 61%, 1); /* #74c2c5 */
+  --dark-text-hover-color: hsla(182, 41%, 61%, 1);
+  --main-accent-color: hsla(182, 41%, 61%, 1);
+  --main-accent-color-dark: hsla(182, 33%, 49%, 1); /* #54a2a5 */
   box-sizing: border-box;
+  font-size: 1rem;  /* the browser's default is 16px = 1rem */
   /* font-size: max(min(2vw, 2em), 1rem); */
-  font-size: 1rem;
 }
 
 *,
@@ -14,19 +16,16 @@
   box-sizing: inherit;
 }
 
-@font-face{
+@font-face {
   font-family: MyUniverse;
-  src: url('/font/univers-lightultracondensed-webfont.eot');
-  src: url('/font/univers-lightultracondensed-webfont.eot?#iefix') format('embedded-opentype'),
-  url('/font/univers-lightultracondensed-webfont.woff') format('woff'),
-  url('/font/univers-lightultracondensed-webfont.ttf') format('truetype'),
-  url('/font/univers-lightultracondensed-webfont.svg#webfont') format('svg');
+  src: url('/font/univers-lightultracondensed-webfont.woff') format('woff');
+  font-display: swap;
 }
 
 body {
   /* color: #767676;  fallback if the browser does not understand var */
-  color: var(--main-text-color);
-  font-family: 'News Cycle', sans-serif;
+  color: var(--dark-text-color);
+  font-family: 'Open Sans', sans-serif;
   width: calc(100vw);
 }
 
@@ -39,17 +38,18 @@ body {
 }
 
 a {
-  color: var(--main-text-color);
+  color: var(--dark-text-color);
   text-decoration: underline;
 }
 
 a:hover {
-  color: var(--main-text-hover-color);
+  color: var(--dark-text-hover-color);
 }
 
 h1,
 h2,
 h3 {
+  color: var(--main-text-color);
   font-family: MyUniverse;
 }
 
