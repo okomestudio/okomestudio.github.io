@@ -1,808 +1,147 @@
-<!DOCTYPE html>
-<html lang="en-US" xmlns:fb="https://www.facebook.com/2008/fbml" xmlns:addthis="https://www.addthis.com/help/api-spec" >
-<head>
-<meta charset="UTF-8" />
-<title>Installing Squid Proxy Server on Mac OS X Snow Leopard | Biboroku</title>
-<link rel="profile" href="http://gmpg.org/xfn/11" />
-<link rel="stylesheet" type="text/css" media="all" href="./../../../wp-content/themes/twentyten/style.css" />
-<link rel="pingback" href="./../../../xmlrpc.php" />
-<link rel="alternate" type="application/rss+xml" title="Biboroku &raquo; Feed" href="./../../../feed/index.html" />
-<link rel="alternate" type="application/rss+xml" title="Biboroku &raquo; Comments Feed" href="./../../../comments/feed/index.html" />
-<link rel="alternate" type="application/rss+xml" title="Biboroku &raquo; Installing Squid Proxy Server on Mac OS X Snow Leopard Comments Feed" href="./feed/index.html" />
-		<script type="text/javascript">
-			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/72x72\/","ext":".png","source":{"concatemoji":".\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.4.17"}};
-			!function(a,b,c){function d(a){var c,d,e,f=b.createElement("canvas"),g=f.getContext&&f.getContext("2d"),h=String.fromCharCode;return g&&g.fillText?(g.textBaseline="top",g.font="600 32px Arial","flag"===a?(g.fillText(h(55356,56806,55356,56826),0,0),f.toDataURL().length>3e3):"diversity"===a?(g.fillText(h(55356,57221),0,0),c=g.getImageData(16,16,1,1).data,g.fillText(h(55356,57221,55356,57343),0,0),c=g.getImageData(16,16,1,1).data,e=c[0]+","+c[1]+","+c[2]+","+c[3],d!==e):("simple"===a?g.fillText(h(55357,56835),0,0):g.fillText(h(55356,57135),0,0),0!==g.getImageData(16,16,1,1).data[0])):!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g;c.supports={simple:d("simple"),flag:d("flag"),unicode8:d("unicode8"),diversity:d("diversity")},c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.simple&&c.supports.flag&&c.supports.unicode8&&c.supports.diversity||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
-		</script>
-		<style type="text/css">
-img.wp-smiley,
-img.emoji {
-	display: inline !important;
-	border: none !important;
-	box-shadow: none !important;
-	height: 1em !important;
-	width: 1em !important;
-	margin: 0 .07em !important;
-	vertical-align: -0.1em !important;
-	background: none !important;
-	padding: 0 !important;
-}
-</style>
-<link rel='stylesheet' id='wp-quicklatex-format-css'  href='./../../../wp-content/plugins/wp-quicklatex/css/quicklatex-format.css?ver=4.4.17' type='text/css' media='all' />
-<link rel='stylesheet' id='wptt_front-css'  href='./../../../wp-content/plugins/wp-twitter-feeds/controller/../css/admin_style.min.css?ver=4.4.17' type='text/css' media='all' />
-<link rel='stylesheet' id='easy_table_style-css'  href='./../../../wp-content/plugins/easy-table/themes/default/style.css?ver=1.8' type='text/css' media='all' />
-<link rel='stylesheet' id='addthis_all_pages-css'  href='./../../../wp-content/plugins/addthis/frontend/build/addthis_wordpress_public.min.css?ver=4.4.17' type='text/css' media='all' />
-<script type='text/javascript' src='./../../../wp-admin/admin-ajax.php?action=addthis_global_options_settings&#038;ver=4.4.17'></script>
-<script type='text/javascript' src='https://s7.addthis.com/js/300/addthis_widget.js?ver=4.4.17#pubid=wp-329749cc28b3a8facbc3319b8fbacd5b'></script>
-<script type='text/javascript' src='./../../../wp-includes/js/jquery/jquery.js?ver=1.11.3'></script>
-<script type='text/javascript' src='./../../../wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
-<script type='text/javascript' src='./../../../wp-content/plugins/wp-quicklatex/js/wp-quicklatex-frontend.js?ver=1.0'></script>
-<link rel='https://api.w.org/' href='./../../../wp-json/index.html' />
-<link rel="EditURI" type="application/rsd+xml" title="RSD" href="./../../../xmlrpc.php?rsd" />
-<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="./../../../wp-includes/wlwmanifest.xml" /> 
-<link rel='prev' title='Installing DS9 on Debian Squeeze' href='./../installing-ds9-on-debian-squeeze/index.html' />
-<link rel='next' title='Installing ATLAS on Mac OS X Snow Leopard' href='./../installing-atlas-on-mac-os-x-snow-leopard/index.html' />
-<meta name="generator" content="WordPress 4.4.17" />
-<link rel="canonical" href="./index.html" />
-<link rel='shortlink' href='http://wp.me/p1gMVz-da' />
-<link rel="alternate" type="application/json+oembed" href="./../../../wp-json/oembed/1.0/embed/index.html?url=.%2F2010%2F03%2Finstalling-squid-proxy-server-on-mac-os-x-snow-leopard%2F" />
-<link rel="alternate" type="text/xml+oembed" href="./../../../wp-json/oembed/1.0/embed/index.html?url=.%2F2010%2F03%2Finstalling-squid-proxy-server-on-mac-os-x-snow-leopard%2F&#038;format=xml" />
-<style type="text/css" id="custom-background-css">
-body.custom-background { background-color: #000000; }
-</style>
-<style type="text/css" id="syntaxhighlighteranchor"></style>
-</head>
-
-<body class="single single-post postid-816 single-format-standard custom-background">
-<div id="wrapper" class="hfeed">
-	<div id="header">
-		<div id="masthead">
-			<div id="branding" role="banner">
-								<div id="site-title">
-					<span>
-						<a href="./../../../index.html" title="Biboroku" rel="home">Biboroku</a>
-					</span>
-				</div>
-				<div id="site-description">Taro Sato&#039;s Memorandum</div>
-
-										<img src="./../../../wp-content/uploads/2014/05/biboroku_banner.png" width="940" height="198" alt="" />
-								</div><!-- #branding -->
-
-			<div id="access" role="navigation">
-			  				<div class="skip-link screen-reader-text"><a href="#content" title="Skip to content">Skip to content</a></div>
-								<div class="menu-header"><ul id="menu-menu-1" class="menu"><li id="menu-item-2291" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-2291"><a href="http://okomestudio.net/">Okome Studio</a>
-<ul class="sub-menu">
-	<li id="menu-item-2344" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2344"><a href="http://okomestudio.net/index.html">About</a></li>
-	<li id="menu-item-2345" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2345"><a href="http://okomestudio.net/knowledge.html">Knowledge</a></li>
-	<li id="menu-item-2346" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2346"><a href="http://okomestudio.net/portfolio.html">Portfolio</a></li>
-	<li id="menu-item-2347" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2347"><a href="http://okomestudio.net/contact.html">Contact</a></li>
-</ul>
-</li>
-<li id="menu-item-2349" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2349"><a href="http://okomestudio.net/okomelog">Okomelog</a></li>
-<li id="menu-item-2286" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-2286"><a href="./../../../index.html">Biboroku</a></li>
-<li id="menu-item-2348" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2348"><a href="http://okomestudio.net/contact.html">Contact</a></li>
-</ul></div>			</div><!-- #access -->
-		</div><!-- #masthead -->
-	</div><!-- #header -->
-
-	<div id="main">
-
-		<div id="container">
-			<div id="content" role="main">
-
-			
-
-				<div id="nav-above" class="navigation">
-					<div class="nav-previous"><a href="./../installing-ds9-on-debian-squeeze/index.html" rel="prev"><span class="meta-nav">&larr;</span> Installing DS9 on Debian Squeeze</a></div>
-					<div class="nav-next"><a href="./../installing-atlas-on-mac-os-x-snow-leopard/index.html" rel="next">Installing ATLAS on Mac OS X Snow Leopard <span class="meta-nav">&rarr;</span></a></div>
-				</div><!-- #nav-above -->
-
-				<div id="post-816" class="post-816 post type-post status-publish format-standard hentry category-uncategorized tag-admin tag-install-procedure tag-network tag-os-x tag-os-xsnow-leopard tag-software">
-					<h1 class="entry-title">Installing Squid Proxy Server on Mac OS X Snow Leopard</h1>
-
-					<div class="entry-meta">
-						<span class="meta-prep meta-prep-author">Posted on</span> <a href="./index.html" title="3:52 pm" rel="bookmark"><span class="entry-date">March 22, 2010</span></a> <span class="meta-sep">by</span> <span class="author vcard"><a class="url fn n" href="./../../../author/okomestudio/index.html" title="View all posts by Taro">Taro</a></span>					</div><!-- .entry-meta -->
-
-					<div class="entry-content">
-						<div class="at-above-post addthis_tool" data-url="./2010/03/installing-squid-proxy-server-on-mac-os-x-snow-leopard/"></div><p>My goal is to set up a very basic proxy server on my Mac box on  campus, so that I can have full access to subscription-based academic  journals via the proxy on my laptop even when I am off campus.  Some  schools provide such (library) proxies but my school unfortunately does  not.  I want to set it up such that the proxy requires a password  authentication in order not to make it wide open to the public.</p>
-<h3>Getting and Installing Squid</h3>
-<p><a href="http://www.squid-cache.org/Versions/v2/2.7/">Download a  tarball</a> for a stable version from the repository.  The version that I  use here is 2.7.  I assume the file is downloaded to <em>/usr/local/src/squid</em>.</p>
-<pre><code>$ cd /usr/local/src/squid
-$ gunzip -c squid-2.7.STABLE9.tar.gz | tar xvf -
-$ cd squid-2.7.STABLE9
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Okome Studio is a software consultancy">
+    <link rel="icon" href="https://okomestudio.net/favicon.ico">
+    <link rel="stylesheet" href="https://okomestudio.net/reset.css">
+    <link rel="stylesheet" href="https://okomestudio.net/index.css">
+    <link rel="stylesheet" href="../../../static/style.css">
+    <link rel="stylesheet" href="../../../static/pygments.css">
+    <title>Installing Squid Proxy Server on Mac OS X Snow Leopard — biboroku</title>
+    <script type="text/javascript">
+      window.MathJax = {
+        tex: {
+          tags: 'ams'
+        }
+      };
+    </script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "AMS"} } });
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML">
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1><a href="/">biboroku</a></h1>
+        <nav>
+          <ul class="nav navbar-nav">
+            <li><a href="https://okomestudio.net">OkomeStudio.net</a></li>
+            
+            <li><a href="../../../about/">About</a></li>
+            
+          </ul>
+        </nav>
+      </header>
+      <main>
+        
+  
+  <div class="blog-post">
+  
+    <h1>Installing Squid Proxy Server on Mac OS X Snow Leopard</h1>
+  
+  <p class="meta">
+    Written by
+    
+      Taro Sato
+    
+    on 2010-03-22
+  </p>
+  
+  <p>My goal is to set up a very basic proxy server on my Mac box on
+campus, so that I can have full access to subscription-based academic
+journals via the proxy on my laptop even when I am off campus.  Some
+schools provide such (library) proxies but my school unfortunately
+does not.  I want to set it up such that the proxy requires a password
+authentication in order not to make it wide open to the public.</p>
+<h2>Getting and Installing Squid</h2>
+<p><a href="http://www.squid-cache.org/Versions/v2/2.7/">Download a tarball</a> for
+a stable version from the repository. The version that I use here is
+2.7. I assume the file is downloaded to <em>/usr/local/src/squid</em>.</p>
+<div class="hll"><pre><span></span>$ <span class="nb">cd</span> /usr/local/src/squid
+$ gunzip -c squid-2.7.STABLE9.tar.gz <span class="p">|</span> tar xvf -
+$ <span class="nb">cd</span> squid-2.7.STABLE9
 $ ./configure
 $ make
 $ sudo make install
-$ cd helpers/basic_auth/NCSA
+$ <span class="nb">cd</span> helpers/basic_auth/NCSA
 $ make
 $ sudo make install
 $ sudo chown -R nobody /usr/local/squid/var
-$ sudo /usr/local/squid/sbin/squid -z</code></pre>
-<p>Squid will be installed at <em>/usr/local/squid</em>.  (The last  command is necessary to run a daemon as user <em>nobody</em>.)</p>
-<h3>Configure Squid</h3>
-<p>First, prepare a NCSA-compliant encrypted password file for a user  (here with username <em>johndoe</em>):</p>
-<pre><code>$ cd /usr/local/squid/etc
+$ sudo /usr/local/squid/sbin/squid -z
+</pre></div>
+<p>Squid will be installed at <em>/usr/local/squid</em>.  (The last command is
+necessary to run a daemon as user nobody.)</p>
+<h2>Configure Squid</h2>
+<p>First, prepare a NCSA-compliant encrypted password file for a user
+(here with username <em>johndoe</em>):</p>
+<div class="hll"><pre><span></span>$ <span class="nb">cd</span> /usr/local/squid/etc
 $ sudo touch squid_passwd
 $ sudo chmod o+r squid_passwd
 $ sudo htpasswd squid_passwd johndoe
 New password:
 Re-type new passwod:
-Adding passwod for user johndoe</code></pre>
-<p>Now, edit <em>/usr/local/squid/etc/squid.conf</em>.  The following  lines need to be added:</p>
-<pre><code># Add this to the auth_param section
-auth_param basic program /usr/local/squid/libexec/ncsa_auth /usr/local/squid/etc/squid_passwd
+Adding passwod <span class="k">for</span> user johndoe
+</pre></div>
+<p>Now, edit <em>/usr/local/squid/etc/squid.conf</em>. The following lines need
+to be added:</p>
+<div class="hll"><pre><span></span><span class="c"># Add this to the auth_param section</span><span class="w"></span>
+auth_param<span class="w"> </span>basic<span class="w"> </span>program<span class="w"> </span>/usr/local/squid/libexec/ncsa_auth<span class="w"> </span>/usr/local/squid/etc/squid_passwd<span class="w"></span>
 
-# Add this to the bottom of the ACL section
-acl ncsa_users proxy_auth REQUIRED
+<span class="c"># Add this to the bottom of the ACL section</span><span class="w"></span>
+<span class="k">acl</span><span class="w"> </span>ncsa_users<span class="w"> </span><span class="k">proxy_auth</span><span class="w"> </span>REQUIRED<span class="w"></span>
 
-# Add this at the top of the http_access section
-http_access allow ncsa_users</code></pre>
+<span class="c"># Add this at the top of the http_access section</span><span class="w"></span>
+<span class="k">http_access</span><span class="w"> </span><span class="no">allow</span><span class="w"> </span>ncsa_users<span class="w"></span>
+</pre></div>
 <p>Finally, run the server:</p>
-<pre><code>$ sudo /usr/local/squid/sbin/squid -N -d 1 -D</code></pre>
-<p>Firewall will prompt me to see if I allow incoming connections to  squid.  Say &#8220;allow.&#8221;</p>
-<p>The IP address or host name of your Mac box at the port 3128 will be  available as a proxy server now.</p>
-<h3>Launch Squid on Startup with launchd</h3>
-<p>Under the directory <em>/Library/LaunchDaemons</em>, create a file  named <em>squid.plist</em> with the following content:</p>
-<pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;
-&lt;plist version="1.0"&gt;
-  &lt;dict&gt;
-    &lt;key&gt;Label&lt;/key&gt;
-    &lt;string&gt;squid&lt;/string&gt;
-    &lt;key&gt;OnDemand&lt;/key&gt;
-    &lt;false/&gt;
-    &lt;key&gt;ProgramArguments&lt;/key&gt;
-    &lt;array&gt;
-      &lt;string&gt;/usr/local/squid/sbin/squid&lt;/string&gt;
-      &lt;string&gt;-N&lt;/string&gt;
-      &lt;string&gt;-d 1&lt;/string&gt;
-      &lt;string&gt;-D&lt;/string&gt;
-    &lt;/array&gt;
-    &lt;key&gt;ServiceIPC&lt;/key&gt;
-    &lt;false/&gt;
-  &lt;/dict&gt;
-&lt;/plist&gt;</code></pre>
+<div class="hll"><pre><span></span>$ sudo /usr/local/squid/sbin/squid -N -d <span class="m">1</span> -D
+</pre></div>
+<p>Firewall will prompt me to see if I allow incoming connections to
+squid.  Say “allow.”</p>
+<p>The IP address or hostname of your Mac box at the port 3128 will be
+available as a proxy server now.</p>
+<h2>Launch Squid on Startup with launchd</h2>
+<p>Under the directory <em>/Library/LaunchDaemons</em>, create a file named
+<em>squid.plist</em> with the following content:</p>
+<div class="hll"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="cp">&lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot; &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;</span>
+<span class="nt">&lt;plist</span> <span class="na">version=</span><span class="s">&quot;1.0&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;dict&gt;</span>
+    <span class="nt">&lt;key&gt;</span>Label<span class="nt">&lt;/key&gt;</span>
+    <span class="nt">&lt;string&gt;</span>squid<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;key&gt;</span>OnDemand<span class="nt">&lt;/key&gt;</span>
+    <span class="nt">&lt;false/&gt;</span>
+    <span class="nt">&lt;key&gt;</span>ProgramArguments<span class="nt">&lt;/key&gt;</span>
+    <span class="nt">&lt;array&gt;</span>
+      <span class="nt">&lt;string&gt;</span>/usr/local/squid/sbin/squid<span class="nt">&lt;/string&gt;</span>
+      <span class="nt">&lt;string&gt;</span>-N<span class="nt">&lt;/string&gt;</span>
+      <span class="nt">&lt;string&gt;</span>-d 1<span class="nt">&lt;/string&gt;</span>
+      <span class="nt">&lt;string&gt;</span>-D<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/array&gt;</span>
+    <span class="nt">&lt;key&gt;</span>ServiceIPC<span class="nt">&lt;/key&gt;</span>
+    <span class="nt">&lt;false/&gt;</span>
+  <span class="nt">&lt;/dict&gt;</span>
+<span class="nt">&lt;/plist&gt;</span>
+</pre></div>
 <p>Then issuing</p>
-<pre><code>$ sudo launchctl load -w /Library/LaunchDaemons/squid.plist</code></pre>
-<p>will launch squid.  On reboot, the proxy  should also be working  automatically.</p>
-<p></p>
-<!-- AddThis Advanced Settings above via filter on the_content --><!-- AddThis Advanced Settings below via filter on the_content --><!-- AddThis Advanced Settings generic via filter on the_content --><!-- AddThis Share Buttons above via filter on the_content --><!-- AddThis Share Buttons below via filter on the_content --><div class="at-below-post addthis_tool" data-url="./2010/03/installing-squid-proxy-server-on-mac-os-x-snow-leopard/"></div><!-- AddThis Share Buttons generic via filter on the_content -->											</div><!-- .entry-content -->
-
-
-					<div class="entry-utility">
-						This entry was posted in <a href="./../../../category/uncategorized/index.html" rel="category tag">Uncategorized</a> and tagged <a href="./../../../tag/admin/index.html" rel="tag">admin</a>, <a href="./../../../tag/install-procedure/index.html" rel="tag">install procedure</a>, <a href="./../../../tag/network/index.html" rel="tag">network</a>, <a href="./../../../tag/os-x/index.html" rel="tag">OS X</a>, <a href="./../../../tag/os-xsnow-leopard/index.html" rel="tag">OS X/Snow Leopard</a>, <a href="./../../../tag/software/index.html" rel="tag">software</a>. Bookmark the <a href="./index.html" title="Permalink to Installing Squid Proxy Server on Mac OS X Snow Leopard" rel="bookmark">permalink</a>.											</div><!-- .entry-utility -->
-				</div><!-- #post-## -->
-
-				<div id="nav-below" class="navigation">
-					<div class="nav-previous"><a href="./../installing-ds9-on-debian-squeeze/index.html" rel="prev"><span class="meta-nav">&larr;</span> Installing DS9 on Debian Squeeze</a></div>
-					<div class="nav-next"><a href="./../installing-atlas-on-mac-os-x-snow-leopard/index.html" rel="next">Installing ATLAS on Mac OS X Snow Leopard <span class="meta-nav">&rarr;</span></a></div>
-				</div><!-- #nav-below -->
-
-				
-			<div id="comments">
-
-
-			<h3 id="comments-title">23 Responses to <em>Installing Squid Proxy Server on Mac OS X Snow Leopard</em></h3>
-
-
-			<ol class="commentlist">
-					<li class="comment even thread-even depth-1" id="li-comment-52">
-		<div id="comment-52">
-			<div class="comment-author vcard">
-				<img alt='' src='http://0.gravatar.com/avatar/9c33ab395f364d7d0d35ecf5f934a3c5?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/9c33ab395f364d7d0d35ecf5f934a3c5?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">euKarpov</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
-			
-			<div class="comment-meta commentmetadata"><a href="./index.html#comment-52">
-				April 7, 2010 at 5:57 am</a>			</div><!-- .comment-meta .commentmetadata -->
-
-			<div class="comment-body"><p>Good choice, it perfectly substitutes native proxy server and solves many problems of Mac users into not friendly network.</p>
-</div>
-
-			<div class="reply">
-				<a rel='nofollow' class='comment-reply-link' href='./index.html?replytocom=52#respond' onclick='return addComment.moveForm( "comment-52", "52", "respond", "816" )' aria-label='Reply to euKarpov'>Reply</a>			</div><!-- .reply -->
-		</div><!-- #comment-##  -->
-
-	</li><!-- #comment-## -->
-	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-53">
-		<div id="comment-53">
-			<div class="comment-author vcard">
-				<img alt='' src='http://0.gravatar.com/avatar/9c33ab395f364d7d0d35ecf5f934a3c5?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/9c33ab395f364d7d0d35ecf5f934a3c5?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">euKarpov</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
-			
-			<div class="comment-meta commentmetadata"><a href="./index.html#comment-53">
-				April 7, 2010 at 6:02 am</a>			</div><!-- .comment-meta .commentmetadata -->
-
-			<div class="comment-body"><p>Oh, sorry. Native proxy for Mac does not exist. )</p>
-</div>
-
-			<div class="reply">
-				<a rel='nofollow' class='comment-reply-link' href='./index.html?replytocom=53#respond' onclick='return addComment.moveForm( "comment-53", "53", "respond", "816" )' aria-label='Reply to euKarpov'>Reply</a>			</div><!-- .reply -->
-		</div><!-- #comment-##  -->
-
-	</li><!-- #comment-## -->
-	<li class="post pingback">
-		<p>Pingback: <a href='http://topsy.com/trackback?utm_source=pingback&#038;utm_campaign=L1&#038;url=http://nomo17k.wordpress.com/2010/03/22/installing-squid-proxy-server-on-mac-os-x-snow-leopard/' rel='external nofollow' class='url'>Tweets that mention Installing Squid Proxy Server on Mac OS X Snow Leopard « Biboroku -- Topsy.com</a></p>
-	</li><!-- #comment-## -->
-	<li class="comment even thread-even depth-1" id="li-comment-55">
-		<div id="comment-55">
-			<div class="comment-author vcard">
-				<img alt='' src='http://0.gravatar.com/avatar/3861878138305244476e9dc2c894c22d?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/3861878138305244476e9dc2c894c22d?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Tri</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
-			
-			<div class="comment-meta commentmetadata"><a href="./index.html#comment-55">
-				June 16, 2010 at 6:21 am</a>			</div><!-- .comment-meta .commentmetadata -->
-
-			<div class="comment-body"><p>Hello!</p>
-<p>I am working at the upper secondary school which has more than 300 Mac-users</p>
-<p>Security of the network is a big issue at the school and the school needs to setup a proxy server.</p>
-<p>I decided to use Squid 2.7 stable on Mac Server OS 10.5 and I stuck where to run the server</p>
-<p>Could someone help me?</p>
-<p>Thank you very much</p>
-<p>&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8211;</p>
-<p>server:~ admin$ sudo /usr/local/squid/sbin/squid -N -d 1 -D</p>
-<p>Password:</p>
-<p>2010/06/14 14:29:46| Starting Squid Cache version 2.7.STABLE9 for i686-apple-darwin9.8.0&#8230;</p>
-<p>2010/06/14 14:29:46| Process ID 3309</p>
-<p>2010/06/14 14:29:46| With 256 file descriptors available</p>
-<p>2010/06/14 14:29:46| Using kqueue for the IO loop</p>
-<p>2010/06/14 14:29:46| ipcacheAddEntryFromHosts: Bad IP address &#8216;fe80::1%lo0&#8217;</p>
-<p>2010/06/14 14:29:46| DNS Socket created at 0.0.0.0, port 49441, FD 6</p>
-<p>2010/06/14 14:29:46| Adding domain work.local from /etc/resolv.conf</p>
-<p>2010/06/14 14:29:46| Adding nameserver 192.168.1.2 from /etc/resolv.conf</p>
-<p>2010/06/14 14:29:46| helperOpenServers: Starting 5 &#8216;ncsa_auth&#8217; processes</p>
-<p>2010/06/14 14:29:46| logfileOpen: opening log /usr/local/squid/var/logs/access.log</p>
-<p>2010/06/14 14:29:46| Unlinkd pipe opened on FD 16</p>
-<p>2010/06/14 14:29:46| Swap maxSize 102400 + 8192 KB, estimated 8507 objects</p>
-<p>2010/06/14 14:29:46| Target number of buckets: 425</p>
-<p>2010/06/14 14:29:46| Using 8192 Store buckets</p>
-<p>2010/06/14 14:29:46| Max Mem  size: 8192 KB</p>
-<p>2010/06/14 14:29:46| Max Swap size: 102400 KB</p>
-<p>2010/06/14 14:29:46| logfileOpen: opening log /usr/local/squid/var/logs/store.log</p>
-<p>2010/06/14 14:29:46| Rebuilding storage in /usr/local/squid/var/cache (DIRTY)</p>
-<p>2010/06/14 14:29:46| Using Least Load store dir selection</p>
-<p>2010/06/14 14:29:46| Set Current Directory to /usr/local/squid/var/cache</p>
-<p>2010/06/14 14:29:46| Loaded Icons.</p>
-<p>2010/06/14 14:29:46| Accepting proxy HTTP connections at 0.0.0.0, port 3128, FD 17.</p>
-<p>2010/06/14 14:29:46| Accepting ICP messages at 0.0.0.0, port 3130, FD 18.</p>
-<p>2010/06/14 14:29:46| WCCP Disabled.</p>
-<p>2010/06/14 14:29:46| Ready to serve requests.</p>
-<p>2010/06/14 14:29:46| WARNING: basicauthenticator #1 (FD 7) exited</p>
-<p>2010/06/14 14:29:46| WARNING: basicauthenticator #2 (FD 8) exited</p>
-<p>2010/06/14 14:29:46| WARNING: basicauthenticator #3 (FD 9) exited</p>
-<p>2010/06/14 14:29:46| Too few basicauthenticator processes are running</p>
-<p>FATAL: The basicauthenticator helpers are crashing too rapidly, need help!</p>
-<p>&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8211;</p>
-<p>Regards</p>
-<p>Tri Nguyen</p>
-</div>
-
-			<div class="reply">
-				<a rel='nofollow' class='comment-reply-link' href='./index.html?replytocom=55#respond' onclick='return addComment.moveForm( "comment-55", "55", "respond", "816" )' aria-label='Reply to Tri'>Reply</a>			</div><!-- .reply -->
-		</div><!-- #comment-##  -->
-
-	<ul class="children">
-	<li class="comment odd alt depth-2" id="li-comment-56">
-		<div id="comment-56">
-			<div class="comment-author vcard">
-				<img alt='' src='http://0.gravatar.com/avatar/0c402d583c253dc3af165687b9310dac?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/0c402d583c253dc3af165687b9310dac?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://nomo17k.wordpress.com/' rel='external nofollow' class='url'>nomo17k</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
-			
-			<div class="comment-meta commentmetadata"><a href="./index.html#comment-56">
-				June 16, 2010 at 6:43 am</a>			</div><!-- .comment-meta .commentmetadata -->
-
-			<div class="comment-body"><p>Tri &#8212; I&#8217;m afraid I cannot provide effective help here, as I don&#8217;t have the problem and therefore cannot reproduce it.  Your best bet is to search for a solution in the mailing list archive or ask Squid people directly:</p>
-<p><a href="http://www.squid-cache.org/Support/mailing-lists.dyn" rel="nofollow">http://www.squid-cache.org/Support/mailing-lists.dyn</a></p>
-<p>Cheers,<br />
-Taro</p>
-</div>
-
-			<div class="reply">
-				<a rel='nofollow' class='comment-reply-link' href='./index.html?replytocom=56#respond' onclick='return addComment.moveForm( "comment-56", "56", "respond", "816" )' aria-label='Reply to nomo17k'>Reply</a>			</div><!-- .reply -->
-		</div><!-- #comment-##  -->
-
-	</li><!-- #comment-## -->
-</ul><!-- .children -->
-</li><!-- #comment-## -->
-	<li class="comment even thread-odd thread-alt depth-1" id="li-comment-57">
-		<div id="comment-57">
-			<div class="comment-author vcard">
-				<img alt='' src='http://0.gravatar.com/avatar/3e77d40b4490afe13df27a10453f6680?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/3e77d40b4490afe13df27a10453f6680?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Alex</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
-			
-			<div class="comment-meta commentmetadata"><a href="./index.html#comment-57">
-				July 29, 2010 at 2:32 pm</a>			</div><!-- .comment-meta .commentmetadata -->
-
-			<div class="comment-body"><p>Have you gotten it to work authenticating against Open Directory?</p>
-</div>
-
-			<div class="reply">
-				<a rel='nofollow' class='comment-reply-link' href='./index.html?replytocom=57#respond' onclick='return addComment.moveForm( "comment-57", "57", "respond", "816" )' aria-label='Reply to Alex'>Reply</a>			</div><!-- .reply -->
-		</div><!-- #comment-##  -->
-
-	<ul class="children">
-	<li class="comment odd alt depth-2" id="li-comment-58">
-		<div id="comment-58">
-			<div class="comment-author vcard">
-				<img alt='' src='http://0.gravatar.com/avatar/0c402d583c253dc3af165687b9310dac?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/0c402d583c253dc3af165687b9310dac?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://nomo17k.wordpress.com/' rel='external nofollow' class='url'>nomo17k</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
-			
-			<div class="comment-meta commentmetadata"><a href="./index.html#comment-58">
-				July 29, 2010 at 3:43 pm</a>			</div><!-- .comment-meta .commentmetadata -->
-
-			<div class="comment-body"><p>I have never attempted to use Open Directory, since I&#8217;m not very interested in learning a proprietary technology&#8230;</p>
-</div>
-
-			<div class="reply">
-				<a rel='nofollow' class='comment-reply-link' href='./index.html?replytocom=58#respond' onclick='return addComment.moveForm( "comment-58", "58", "respond", "816" )' aria-label='Reply to nomo17k'>Reply</a>			</div><!-- .reply -->
-		</div><!-- #comment-##  -->
-
-	<ul class="children">
-	<li class="comment even depth-3" id="li-comment-59">
-		<div id="comment-59">
-			<div class="comment-author vcard">
-				<img alt='' src='http://0.gravatar.com/avatar/3e77d40b4490afe13df27a10453f6680?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/3e77d40b4490afe13df27a10453f6680?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Alex</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
-			
-			<div class="comment-meta commentmetadata"><a href="./index.html#comment-59">
-				July 29, 2010 at 4:30 pm</a>			</div><!-- .comment-meta .commentmetadata -->
-
-			<div class="comment-body"><p>Ok &#8211; how about LDAP in general?</p>
-</div>
-
-			<div class="reply">
-				<a rel='nofollow' class='comment-reply-link' href='./index.html?replytocom=59#respond' onclick='return addComment.moveForm( "comment-59", "59", "respond", "816" )' aria-label='Reply to Alex'>Reply</a>			</div><!-- .reply -->
-		</div><!-- #comment-##  -->
-
-	</li><!-- #comment-## -->
-	<li class="comment odd alt depth-3" id="li-comment-60">
-		<div id="comment-60">
-			<div class="comment-author vcard">
-				<img alt='' src='http://0.gravatar.com/avatar/0c402d583c253dc3af165687b9310dac?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/0c402d583c253dc3af165687b9310dac?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://nomo17k.wordpress.com/' rel='external nofollow' class='url'>nomo17k</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
-			
-			<div class="comment-meta commentmetadata"><a href="./index.html#comment-60">
-				July 30, 2010 at 12:47 pm</a>			</div><!-- .comment-meta .commentmetadata -->
-
-			<div class="comment-body"><p>No, I haven&#8217;t tried with LDAP.  I&#8217;m only running the proxy on Mac as a sort of last resort, you know.  I haven&#8217;t paid that much attention to security measure, etc.</p>
-</div>
-
-			<div class="reply">
-				<a rel='nofollow' class='comment-reply-link' href='./index.html?replytocom=60#respond' onclick='return addComment.moveForm( "comment-60", "60", "respond", "816" )' aria-label='Reply to nomo17k'>Reply</a>			</div><!-- .reply -->
-		</div><!-- #comment-##  -->
-
-	</li><!-- #comment-## -->
-	<li class="comment even depth-3" id="li-comment-66">
-		<div id="comment-66">
-			<div class="comment-author vcard">
-				<img alt='' src='http://0.gravatar.com/avatar/3cd958f197d11e026dc8c488d2f926e7?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/3cd958f197d11e026dc8c488d2f926e7?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Andrew</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
-			
-			<div class="comment-meta commentmetadata"><a href="./index.html#comment-66">
-				November 2, 2010 at 11:11 am</a>			</div><!-- .comment-meta .commentmetadata -->
-
-			<div class="comment-body"><p>I&#8217;m not sure what you mean by &#8216;proprietary&#8217;.  Open Directory is comprised of three open source technologies:<br />
-&#8211; OpenLDAP<br />
-&#8211; Kerberos<br />
-&#8211; Password Server</p>
-<p>The integration of the three is very clever.</p>
-</div>
-
-			<div class="reply">
-				<a rel='nofollow' class='comment-reply-link' href='./index.html?replytocom=66#respond' onclick='return addComment.moveForm( "comment-66", "66", "respond", "816" )' aria-label='Reply to Andrew'>Reply</a>			</div><!-- .reply -->
-		</div><!-- #comment-##  -->
-
-	<ul class="children">
-	<li class="comment odd alt depth-4" id="li-comment-67">
-		<div id="comment-67">
-			<div class="comment-author vcard">
-				<img alt='' src='http://0.gravatar.com/avatar/0c402d583c253dc3af165687b9310dac?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/0c402d583c253dc3af165687b9310dac?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://nomo17k.wordpress.com/' rel='external nofollow' class='url'>nomo17k</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
-			
-			<div class="comment-meta commentmetadata"><a href="./index.html#comment-67">
-				November 2, 2010 at 2:32 pm</a>			</div><!-- .comment-meta .commentmetadata -->
-
-			<div class="comment-body"><p>What I meant is that the technology is still only relevant for OS X (which is proprietary). I&#8217;m not a sysadmin, so anything that&#8217;s not standardized openly can become a pain in the butt to deal with when I have to switch around different OSes.</p>
-</div>
-
-			<div class="reply">
-				<a rel='nofollow' class='comment-reply-link' href='./index.html?replytocom=67#respond' onclick='return addComment.moveForm( "comment-67", "67", "respond", "816" )' aria-label='Reply to nomo17k'>Reply</a>			</div><!-- .reply -->
-		</div><!-- #comment-##  -->
-
-	</li><!-- #comment-## -->
-</ul><!-- .children -->
-</li><!-- #comment-## -->
-</ul><!-- .children -->
-</li><!-- #comment-## -->
-</ul><!-- .children -->
-</li><!-- #comment-## -->
-	<li class="comment even thread-even depth-1" id="li-comment-61">
-		<div id="comment-61">
-			<div class="comment-author vcard">
-				<img alt='' src='http://1.gravatar.com/avatar/a470c6bb8ce5c3e5b9e1d660476acd60?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/a470c6bb8ce5c3e5b9e1d660476acd60?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://www.proxylist.co/' rel='external nofollow' class='url'>Proxy List</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
-			
-			<div class="comment-meta commentmetadata"><a href="./index.html#comment-61">
-				August 8, 2010 at 8:52 am</a>			</div><!-- .comment-meta .commentmetadata -->
-
-			<div class="comment-body"><p>Nice article,keep up good work.</p>
-</div>
-
-			<div class="reply">
-				<a rel='nofollow' class='comment-reply-link' href='./index.html?replytocom=61#respond' onclick='return addComment.moveForm( "comment-61", "61", "respond", "816" )' aria-label='Reply to Proxy List'>Reply</a>			</div><!-- .reply -->
-		</div><!-- #comment-##  -->
-
-	</li><!-- #comment-## -->
-	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-62">
-		<div id="comment-62">
-			<div class="comment-author vcard">
-				<img alt='' src='http://0.gravatar.com/avatar/0aa9f37504fbd302f1116c4016bc109d?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/0aa9f37504fbd302f1116c4016bc109d?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">benjamin</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
-			
-			<div class="comment-meta commentmetadata"><a href="./index.html#comment-62">
-				October 4, 2010 at 5:24 pm</a>			</div><!-- .comment-meta .commentmetadata -->
-
-			<div class="comment-body"><p>Nice blog&#8230;I am sure this has helped many a lost soul.</p>
-<p>I attempted to use the above with version 3.1.8 and all went well until the last step:</p>
-<p>$ sudo /usr/local/squid/sbin/squid -N -d 1 -D</p>
-<p>and I received the following error message:</p>
-<p>2010/10/04 14:16:56| WARNING: -D command-line option is obsolete.<br />
-2010/10/04 14:16:56| Can&#8217;t use proxy auth because no authentication schemes are fully configured.<br />
-FATAL: ERROR: Invalid ACL: acl ncsa_users proxy_auth REQUIRED</p>
-<p>Squid Cache (Version 3.1.8): Terminated abnormally.<br />
-CPU Usage: 0.033 seconds = 0.013 user + 0.020 sys<br />
-Maximum Resident Size: 1622016 KB<br />
-Page faults with physical i/o: 0</p>
-<p>I wil look through the squid docs to find the fix (I should have done this anyway before trying to install a more current version than the one noted), but if you have a quick fix, let me know.</p>
-<p>Thanks.</p>
-</div>
-
-			<div class="reply">
-				<a rel='nofollow' class='comment-reply-link' href='./index.html?replytocom=62#respond' onclick='return addComment.moveForm( "comment-62", "62", "respond", "816" )' aria-label='Reply to benjamin'>Reply</a>			</div><!-- .reply -->
-		</div><!-- #comment-##  -->
-
-	<ul class="children">
-	<li class="comment even depth-2" id="li-comment-63">
-		<div id="comment-63">
-			<div class="comment-author vcard">
-				<img alt='' src='http://0.gravatar.com/avatar/0c402d583c253dc3af165687b9310dac?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/0c402d583c253dc3af165687b9310dac?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://nomo17k.wordpress.com/' rel='external nofollow' class='url'>nomo17k</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
-			
-			<div class="comment-meta commentmetadata"><a href="./index.html#comment-63">
-				October 4, 2010 at 5:47 pm</a>			</div><!-- .comment-meta .commentmetadata -->
-
-			<div class="comment-body"><p>Yeah, I cannot really comment on this one since I&#8217;m still running the old version on my server.</p>
-</div>
-
-			<div class="reply">
-				<a rel='nofollow' class='comment-reply-link' href='./index.html?replytocom=63#respond' onclick='return addComment.moveForm( "comment-63", "63", "respond", "816" )' aria-label='Reply to nomo17k'>Reply</a>			</div><!-- .reply -->
-		</div><!-- #comment-##  -->
-
-	</li><!-- #comment-## -->
-</ul><!-- .children -->
-</li><!-- #comment-## -->
-	<li class="comment odd alt thread-even depth-1" id="li-comment-64">
-		<div id="comment-64">
-			<div class="comment-author vcard">
-				<img alt='' src='http://0.gravatar.com/avatar/0aa9f37504fbd302f1116c4016bc109d?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/0aa9f37504fbd302f1116c4016bc109d?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">benjamin</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
-			
-			<div class="comment-meta commentmetadata"><a href="./index.html#comment-64">
-				October 4, 2010 at 6:50 pm</a>			</div><!-- .comment-meta .commentmetadata -->
-
-			<div class="comment-body"><p>Found it&#8230;</p>
-<p>For anyone running the 3.1.8 version, this is the new suggested minimum auth_param lines to be added to the top of the squid.conf file:</p>
-<p>auth_param basic program /usr/local/squid/libexec/ncsa_auth /usr/local/squid/etc/squid_passwd<br />
-auth_param basic children 5<br />
-auth_param basic realm Squid proxy-caching web server<br />
-auth_param basic credentialsttl 2 hours</p>
-<p>Also, if you happen to be connected to the internet drop the -D parameter when running.</p>
-</div>
-
-			<div class="reply">
-				<a rel='nofollow' class='comment-reply-link' href='./index.html?replytocom=64#respond' onclick='return addComment.moveForm( "comment-64", "64", "respond", "816" )' aria-label='Reply to benjamin'>Reply</a>			</div><!-- .reply -->
-		</div><!-- #comment-##  -->
-
-	<ul class="children">
-	<li class="comment even depth-2" id="li-comment-65">
-		<div id="comment-65">
-			<div class="comment-author vcard">
-				<img alt='' src='http://0.gravatar.com/avatar/0c402d583c253dc3af165687b9310dac?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/0c402d583c253dc3af165687b9310dac?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://nomo17k.wordpress.com/' rel='external nofollow' class='url'>nomo17k</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
-			
-			<div class="comment-meta commentmetadata"><a href="./index.html#comment-65">
-				October 5, 2010 at 9:51 am</a>			</div><!-- .comment-meta .commentmetadata -->
-
-			<div class="comment-body"><p>Thanks, benjamin.  Will incorporate this when I update my server to a new version.</p>
-</div>
-
-			<div class="reply">
-				<a rel='nofollow' class='comment-reply-link' href='./index.html?replytocom=65#respond' onclick='return addComment.moveForm( "comment-65", "65", "respond", "816" )' aria-label='Reply to nomo17k'>Reply</a>			</div><!-- .reply -->
-		</div><!-- #comment-##  -->
-
-	</li><!-- #comment-## -->
-</ul><!-- .children -->
-</li><!-- #comment-## -->
-	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-68">
-		<div id="comment-68">
-			<div class="comment-author vcard">
-				<img alt='' src='http://1.gravatar.com/avatar/a49e81da28c65d4e8e23557bacdbdbe3?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/a49e81da28c65d4e8e23557bacdbdbe3?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">raymond</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
-			
-			<div class="comment-meta commentmetadata"><a href="./index.html#comment-68">
-				November 16, 2010 at 1:36 pm</a>			</div><!-- .comment-meta .commentmetadata -->
-
-			<div class="comment-body"><p>it work´s <img src="./../../../wp-includes/images/smilies/simple-smile.png" alt=":)" class="wp-smiley" style="height: 1em; max-height: 1em;" /> thank u &#8230;</p>
-</div>
-
-			<div class="reply">
-				<a rel='nofollow' class='comment-reply-link' href='./index.html?replytocom=68#respond' onclick='return addComment.moveForm( "comment-68", "68", "respond", "816" )' aria-label='Reply to raymond'>Reply</a>			</div><!-- .reply -->
-		</div><!-- #comment-##  -->
-
-	</li><!-- #comment-## -->
-	<li class="comment even thread-even depth-1" id="li-comment-154">
-		<div id="comment-154">
-			<div class="comment-author vcard">
-				<img alt='' src='http://1.gravatar.com/avatar/124b739d28251d16ddfee3ff2aa8a1d7?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/124b739d28251d16ddfee3ff2aa8a1d7?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://www.hutsby.net/' rel='external nofollow' class='url'>steve</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
-			
-			<div class="comment-meta commentmetadata"><a href="./index.html#comment-154">
-				January 15, 2011 at 6:53 am</a>			</div><!-- .comment-meta .commentmetadata -->
-
-			<div class="comment-body"><p>Hi</p>
-<p>Found this article while looking for how to get OpenLDAP going on OSX.</p>
-<p>Your article is very similar to mine <a href="http://www.hutsby.net/2011/01/compiling-squid-on-osx.html" rel="nofollow">http://www.hutsby.net/2011/01/compiling-squid-on-osx.html</a>.</p>
-<p>I&#8217;ve not found how to run as nobody (yet).</p>
-<p>The only thing about using the NCSA auth module is that your credentials are going over the Internet in clear text.</p>
-</div>
-
-			<div class="reply">
-				<a rel='nofollow' class='comment-reply-link' href='./index.html?replytocom=154#respond' onclick='return addComment.moveForm( "comment-154", "154", "respond", "816" )' aria-label='Reply to steve'>Reply</a>			</div><!-- .reply -->
-		</div><!-- #comment-##  -->
-
-	<ul class="children">
-	<li class="comment byuser comment-author-okomestudio bypostauthor odd alt depth-2" id="li-comment-156">
-		<div id="comment-156">
-			<div class="comment-author vcard">
-				<img alt='' src='http://0.gravatar.com/avatar/6c5ff5134b0dbeeef4b84fcc002e8ffd?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/6c5ff5134b0dbeeef4b84fcc002e8ffd?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Taro</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
-			
-			<div class="comment-meta commentmetadata"><a href="./index.html#comment-156">
-				January 15, 2011 at 10:06 am</a>			</div><!-- .comment-meta .commentmetadata -->
-
-			<div class="comment-body"><blockquote><p>The only thing about using the NCSA auth module is that your credentials are going over the Internet in clear text.</p></blockquote>
-<p>That sure is an important consideration depending on one&#8217;s security needs.  Thanks for the comment.</p>
-</div>
-
-			<div class="reply">
-				<a rel='nofollow' class='comment-reply-link' href='./index.html?replytocom=156#respond' onclick='return addComment.moveForm( "comment-156", "156", "respond", "816" )' aria-label='Reply to Taro'>Reply</a>			</div><!-- .reply -->
-		</div><!-- #comment-##  -->
-
-	</li><!-- #comment-## -->
-</ul><!-- .children -->
-</li><!-- #comment-## -->
-	<li class="comment even thread-odd thread-alt depth-1" id="li-comment-155">
-		<div id="comment-155">
-			<div class="comment-author vcard">
-				<img alt='' src='http://1.gravatar.com/avatar/124b739d28251d16ddfee3ff2aa8a1d7?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/124b739d28251d16ddfee3ff2aa8a1d7?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://www.hutsby.net/' rel='external nofollow' class='url'>steve</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
-			
-			<div class="comment-meta commentmetadata"><a href="./index.html#comment-155">
-				January 15, 2011 at 7:06 am</a>			</div><!-- .comment-meta .commentmetadata -->
-
-			<div class="comment-body"><p>Actually I just found out that simply running under sudo, you get two processes: one started by root, and a second spawned from the first running as nobody.</p>
-</div>
-
-			<div class="reply">
-				<a rel='nofollow' class='comment-reply-link' href='./index.html?replytocom=155#respond' onclick='return addComment.moveForm( "comment-155", "155", "respond", "816" )' aria-label='Reply to steve'>Reply</a>			</div><!-- .reply -->
-		</div><!-- #comment-##  -->
-
-	</li><!-- #comment-## -->
-	<li class="comment odd alt thread-even depth-1" id="li-comment-657">
-		<div id="comment-657">
-			<div class="comment-author vcard">
-				<img alt='' src='http://0.gravatar.com/avatar/970ffcb87e542badd6114fbb5781a504?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/970ffcb87e542badd6114fbb5781a504?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">metronet</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
-			
-			<div class="comment-meta commentmetadata"><a href="./index.html#comment-657">
-				April 25, 2011 at 7:07 pm</a>			</div><!-- .comment-meta .commentmetadata -->
-
-			<div class="comment-body"><p>This post helped me get squid running because the startup .plist and Squid.Wrapper from macports doesn&#8217;t want to work. I copied the squid.plist above, modified the sbin/squid path and added to startup item using launchctl load. Working great, thank you!</p>
-</div>
-
-			<div class="reply">
-				<a rel='nofollow' class='comment-reply-link' href='./index.html?replytocom=657#respond' onclick='return addComment.moveForm( "comment-657", "657", "respond", "816" )' aria-label='Reply to metronet'>Reply</a>			</div><!-- .reply -->
-		</div><!-- #comment-##  -->
-
-	</li><!-- #comment-## -->
-	<li class="comment even thread-odd thread-alt depth-1" id="li-comment-6976">
-		<div id="comment-6976">
-			<div class="comment-author vcard">
-				<img alt='' src='http://2.gravatar.com/avatar/83bf23f4130eef2deb38d4aa99fc972e?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/83bf23f4130eef2deb38d4aa99fc972e?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://staidbands.com/blog/' rel='external nofollow' class='url'>nauval2007</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
-			
-			<div class="comment-meta commentmetadata"><a href="./index.html#comment-6976">
-				June 23, 2012 at 12:36 am</a>			</div><!-- .comment-meta .commentmetadata -->
-
-			<div class="comment-body"><p>I follow your instruction. My squid is running, but I have no cache. My cache folder size always the same. Any idea? I use squid 2.7 stable 9.</p>
-</div>
-
-			<div class="reply">
-				<a rel='nofollow' class='comment-reply-link' href='./index.html?replytocom=6976#respond' onclick='return addComment.moveForm( "comment-6976", "6976", "respond", "816" )' aria-label='Reply to nauval2007'>Reply</a>			</div><!-- .reply -->
-		</div><!-- #comment-##  -->
-
-	<ul class="children">
-	<li class="comment byuser comment-author-okomestudio bypostauthor odd alt depth-2" id="li-comment-7150">
-		<div id="comment-7150">
-			<div class="comment-author vcard">
-				<img alt='' src='http://0.gravatar.com/avatar/6c5ff5134b0dbeeef4b84fcc002e8ffd?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/6c5ff5134b0dbeeef4b84fcc002e8ffd?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Taro</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
-			
-			<div class="comment-meta commentmetadata"><a href="./index.html#comment-7150">
-				June 27, 2012 at 10:57 pm</a>			</div><!-- .comment-meta .commentmetadata -->
-
-			<div class="comment-body"><p>Unfortunately I have no idea at the moment.  I used Squid as a proxy and not necessarily as a local cache, so it&#8217;s not surprising if this installation note doesn&#8217;t cover how to configure cache properly.</p>
-</div>
-
-			<div class="reply">
-				<a rel='nofollow' class='comment-reply-link' href='./index.html?replytocom=7150#respond' onclick='return addComment.moveForm( "comment-7150", "7150", "respond", "816" )' aria-label='Reply to Taro'>Reply</a>			</div><!-- .reply -->
-		</div><!-- #comment-##  -->
-
-	</li><!-- #comment-## -->
-</ul><!-- .children -->
-</li><!-- #comment-## -->
-			</ol>
-
-
-	
-
-				<div id="respond" class="comment-respond">
-			<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="./index.html#respond" style="display:none;">Cancel reply</a></small></h3>				<form action="./../../../wp-comments-post.php" method="post" id="commentform" class="comment-form">
-					<p class="comment-notes"><span id="email-notes">Your email address will not be published.</span> Required fields are marked <span class="required">*</span></p><p class="comment-form-comment"><label for="comment">Comment</label> <textarea id="comment" name="comment" cols="45" rows="8"  aria-required="true" required="required"></textarea></p><p class="comment-form-author"><label for="author">Name <span class="required">*</span></label> <input id="author" name="author" type="text" value="" size="30" aria-required='true' required='required' /></p>
-<p class="comment-form-email"><label for="email">Email <span class="required">*</span></label> <input id="email" name="email" type="text" value="" size="30" aria-describedby="email-notes" aria-required='true' required='required' /></p>
-<p class="comment-form-url"><label for="url">Website</label> <input id="url" name="url" type="text" value="" size="30" /></p>
-<p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Post Comment" /> <input type='hidden' name='comment_post_ID' value='816' id='comment_post_ID' />
-<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
-</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="6cf24926fe" /></p><p style="display: none;"><input type="hidden" id="ak_js" name="ak_js" value="108"/></p>				</form>
-					</div><!-- #respond -->
-		
-</div><!-- #comments -->
-
-
-			</div><!-- #content -->
-		</div><!-- #container -->
-
-
-		<div id="primary" class="widget-area" role="complementary">
-			<ul class="xoxo">
-
-<li id="tag_cloud-3" class="widget-container widget_tag_cloud"><h3 class="widget-title">Tags</h3><div class="tagcloud"><a href='./../../../tag/admin/index.html' class='tag-link-21' title='69 topics' style='font-size: 22pt;'>admin</a>
-<a href='./../../../tag/astro/index.html' class='tag-link-22' title='18 topics' style='font-size: 16.851612903226pt;'>astro</a>
-<a href='./../../../tag/atlas/index.html' class='tag-link-23' title='2 topics' style='font-size: 9.6258064516129pt;'>ATLAS</a>
-<a href='./../../../tag/bash/index.html' class='tag-link-24' title='2 topics' style='font-size: 9.6258064516129pt;'>Bash</a>
-<a href='./../../../tag/computing/index.html' class='tag-link-92' title='12 topics' style='font-size: 15.316129032258pt;'>computing</a>
-<a href='./../../../tag/debian/index.html' class='tag-link-145' title='38 topics' style='font-size: 19.651612903226pt;'>Debian</a>
-<a href='./../../../tag/debianjessie/index.html' class='tag-link-132' title='10 topics' style='font-size: 14.683870967742pt;'>Debian/Jessie</a>
-<a href='./../../../tag/debianlenny/index.html' class='tag-link-93' title='5 topics' style='font-size: 12.335483870968pt;'>Debian/Lenny</a>
-<a href='./../../../tag/debiansqueeze/index.html' class='tag-link-25' title='38 topics' style='font-size: 19.651612903226pt;'>Debian/Squeeze</a>
-<a href='./../../../tag/debianwheezy/index.html' class='tag-link-103' title='13 topics' style='font-size: 15.677419354839pt;'>Debian/Wheezy</a>
-<a href='./../../../tag/dotcloud/index.html' class='tag-link-100' title='2 topics' style='font-size: 9.6258064516129pt;'>DotCloud</a>
-<a href='./../../../tag/dropbox/index.html' class='tag-link-26' title='2 topics' style='font-size: 9.6258064516129pt;'>Dropbox</a>
-<a href='./../../../tag/ds9/index.html' class='tag-link-27' title='1 topic' style='font-size: 8pt;'>DS9</a>
-<a href='./../../../tag/emacs/index.html' class='tag-link-28' title='1 topic' style='font-size: 8pt;'>Emacs</a>
-<a href='./../../../tag/epson-perfection-v30/index.html' class='tag-link-29' title='1 topic' style='font-size: 8pt;'>Epson Perfection V30</a>
-<a href='./../../../tag/fftw/index.html' class='tag-link-31' title='2 topics' style='font-size: 9.6258064516129pt;'>FFTW</a>
-<a href='./../../../tag/firefox/index.html' class='tag-link-32' title='4 topics' style='font-size: 11.612903225806pt;'>Firefox</a>
-<a href='./../../../tag/hardware/index.html' class='tag-link-33' title='11 topics' style='font-size: 15.045161290323pt;'>hardware</a>
-<a href='./../../../tag/install-procedure/index.html' class='tag-link-35' title='66 topics' style='font-size: 21.81935483871pt;'>install procedure</a>
-<a href='./../../../tag/japanese/index.html' class='tag-link-36' title='4 topics' style='font-size: 11.612903225806pt;'>Japanese</a>
-<a href='./../../../tag/kernel/index.html' class='tag-link-38' title='2 topics' style='font-size: 9.6258064516129pt;'>kernel</a>
-<a href='./../../../tag/latex/index.html' class='tag-link-40' title='2 topics' style='font-size: 9.6258064516129pt;'>LaTeX</a>
-<a href='./../../../tag/linux/index.html' class='tag-link-143' title='67 topics' style='font-size: 21.81935483871pt;'>Linux</a>
-<a href='./../../../tag/math/index.html' class='tag-link-115' title='2 topics' style='font-size: 9.6258064516129pt;'>math</a>
-<a href='./../../../tag/multimedia/index.html' class='tag-link-41' title='2 topics' style='font-size: 9.6258064516129pt;'>multimedia</a>
-<a href='./../../../tag/network/index.html' class='tag-link-43' title='4 topics' style='font-size: 11.612903225806pt;'>network</a>
-<a href='./../../../tag/nevernote/index.html' class='tag-link-44' title='2 topics' style='font-size: 9.6258064516129pt;'>Nevernote</a>
-<a href='./../../../tag/os-x/index.html' class='tag-link-46' title='13 topics' style='font-size: 15.677419354839pt;'>OS X</a>
-<a href='./../../../tag/os-xleopard/index.html' class='tag-link-91' title='4 topics' style='font-size: 11.612903225806pt;'>OS X/Leopard</a>
-<a href='./../../../tag/os-xsnow-leopard/index.html' class='tag-link-47' title='8 topics' style='font-size: 13.870967741935pt;'>OS X/Snow Leopard</a>
-<a href='./../../../tag/power-management/index.html' class='tag-link-108' title='2 topics' style='font-size: 9.6258064516129pt;'>power management</a>
-<a href='./../../../tag/programming/index.html' class='tag-link-49' title='7 topics' style='font-size: 13.41935483871pt;'>programming</a>
-<a href='./../../../tag/python/index.html' class='tag-link-52' title='23 topics' style='font-size: 17.754838709677pt;'>Python</a>
-<a href='./../../../tag/reference/index.html' class='tag-link-54' title='8 topics' style='font-size: 13.870967741935pt;'>reference</a>
-<a href='./../../../tag/research-2/index.html' class='tag-link-55' title='14 topics' style='font-size: 15.948387096774pt;'>research</a>
-<a href='./../../../tag/sextractor/index.html' class='tag-link-58' title='3 topics' style='font-size: 10.709677419355pt;'>SExtractor</a>
-<a href='./../../../tag/shell-tips/index.html' class='tag-link-102' title='2 topics' style='font-size: 9.6258064516129pt;'>shell tips</a>
-<a href='./../../../tag/software/index.html' class='tag-link-60' title='42 topics' style='font-size: 20.012903225806pt;'>software</a>
-<a href='./../../../tag/stellar-population-synthesis/index.html' class='tag-link-61' title='2 topics' style='font-size: 9.6258064516129pt;'>stellar population synthesis</a>
-<a href='./../../../tag/t410s/index.html' class='tag-link-62' title='3 topics' style='font-size: 10.709677419355pt;'>T410s</a>
-<a href='./../../../tag/t420/index.html' class='tag-link-109' title='2 topics' style='font-size: 9.6258064516129pt;'>T420</a>
-<a href='./../../../tag/tor/index.html' class='tag-link-63' title='2 topics' style='font-size: 9.6258064516129pt;'>tor</a>
-<a href='./../../../tag/usb/index.html' class='tag-link-65' title='3 topics' style='font-size: 10.709677419355pt;'>USB</a>
-<a href='./../../../tag/web-browser/index.html' class='tag-link-67' title='4 topics' style='font-size: 11.612903225806pt;'>web browser</a>
-<a href='./../../../tag/xps-630i/index.html' class='tag-link-68' title='2 topics' style='font-size: 9.6258064516129pt;'>XPS 630i</a></div>
-</li><li id="search-2" class="widget-container widget_search"><form role="search" method="get" id="searchform" class="searchform" action="./../../../index.html">
-				<div>
-					<label class="screen-reader-text" for="s">Search for:</label>
-					<input type="text" value="" name="s" id="s" />
-					<input type="submit" id="searchsubmit" value="Search" />
-				</div>
-			</form></li>		<li id="recent-posts-2" class="widget-container widget_recent_entries">		<h3 class="widget-title">Recent Posts</h3>		<ul>
-					<li>
-				<a href="./../../../2018/04/using-japanese-on-debian-stretch/index.html">Using Japanese on Debian Stretch</a>
-						</li>
-					<li>
-				<a href="./../../../2016/05/using-japanese-on-debian-jessie/index.html">Using Japanese on Debian Jessie</a>
-						</li>
-					<li>
-				<a href="./../../../2016/04/installing-debianjessie-on-thinkpad-t460s/index.html">Installing Debian/Jessie on ThinkPad T460s</a>
-						</li>
-					<li>
-				<a href="./../../../2016/01/logitech-wireless-trackball-m570-on-debianjessie/index.html">Logitech Wireless Trackball M570 on Debian/Jessie</a>
-						</li>
-					<li>
-				<a href="./../../../2015/06/netgear-readynas-and-linux/index.html">Netgear ReadyNAS and Linux</a>
-						</li>
-				</ul>
-		</li>		<li id="recent-comments-2" class="widget-container widget_recent_comments"><h3 class="widget-title">Recent Comments</h3><ul id="recentcomments"><li class="recentcomments"><span class="comment-author-link">kde4user</span> on <a href="./../../../2009/03/running-scripts-at-login-or-logout-of-a-kde-session/index.html#comment-150892">Running Scripts at Login or Logout of a KDE Session</a></li><li class="recentcomments"><span class="comment-author-link">Binh Le</span> on <a href="./../../06/testing-if-a-point-is-inside-a-polygon-in-python/index.html#comment-142205">Testing if a Point is Inside a Polygon in Python</a></li><li class="recentcomments"><span class="comment-author-link"><a href='https://lpic.lt/' rel='external nofollow' class='url'>Ruslanas Gžibovskis</a></span> on <a href="./../../../2015/03/creating-a-debian-netinst-bootable-usb-stick-with-non-free-firmware/index.html#comment-142015">Creating a Debian Bootable USB Stick with Non-Free Firmware</a></li><li class="recentcomments"><span class="comment-author-link"><a href='http://minglin2012.vicp.io/wordpress/?p=418' rel='external nofollow' class='url'>debian9 安装freemind &#8211; ttblog</a></span> on <a href="./../../../2009/11/installing-freemind-on-debian-lenny/index.html#comment-141342">Installing Freemind on Debian Lenny</a></li><li class="recentcomments"><span class="comment-author-link">Taro</span> on <a href="./../../../2018/04/using-japanese-on-debian-stretch/index.html#comment-137764">Using Japanese on Debian Stretch</a></li></ul></li><li id="archives-2" class="widget-container widget_archive"><h3 class="widget-title">Archives</h3>		<ul>
-			<li><a href='./../../../2018/04/index.html'>April 2018</a></li>
-	<li><a href='./../../../2016/05/index.html'>May 2016</a></li>
-	<li><a href='./../../../2016/04/index.html'>April 2016</a></li>
-	<li><a href='./../../../2016/01/index.html'>January 2016</a></li>
-	<li><a href='./../../../2015/06/index.html'>June 2015</a></li>
-	<li><a href='./../../../2015/05/index.html'>May 2015</a></li>
-	<li><a href='./../../../2015/03/index.html'>March 2015</a></li>
-	<li><a href='./../../../2014/11/index.html'>November 2014</a></li>
-	<li><a href='./../../../2014/10/index.html'>October 2014</a></li>
-	<li><a href='./../../../2014/09/index.html'>September 2014</a></li>
-	<li><a href='./../../../2014/08/index.html'>August 2014</a></li>
-	<li><a href='./../../../2014/07/index.html'>July 2014</a></li>
-	<li><a href='./../../../2014/05/index.html'>May 2014</a></li>
-	<li><a href='./../../../2014/04/index.html'>April 2014</a></li>
-	<li><a href='./../../../2014/03/index.html'>March 2014</a></li>
-	<li><a href='./../../../2014/02/index.html'>February 2014</a></li>
-	<li><a href='./../../../2012/10/index.html'>October 2012</a></li>
-	<li><a href='./../../../2012/09/index.html'>September 2012</a></li>
-	<li><a href='./../../../2012/07/index.html'>July 2012</a></li>
-	<li><a href='./../../../2012/06/index.html'>June 2012</a></li>
-	<li><a href='./../../../2012/05/index.html'>May 2012</a></li>
-	<li><a href='./../../../2012/01/index.html'>January 2012</a></li>
-	<li><a href='./../../../2011/12/index.html'>December 2011</a></li>
-	<li><a href='./../../../2011/05/index.html'>May 2011</a></li>
-	<li><a href='./../../../2011/02/index.html'>February 2011</a></li>
-	<li><a href='./../../../2011/01/index.html'>January 2011</a></li>
-	<li><a href='./../../12/index.html'>December 2010</a></li>
-	<li><a href='./../../11/index.html'>November 2010</a></li>
-	<li><a href='./../../10/index.html'>October 2010</a></li>
-	<li><a href='./../../08/index.html'>August 2010</a></li>
-	<li><a href='./../../06/index.html'>June 2010</a></li>
-	<li><a href='./../../05/index.html'>May 2010</a></li>
-	<li><a href='./../../04/index.html'>April 2010</a></li>
-	<li><a href='./../index.html'>March 2010</a></li>
-	<li><a href='./../../02/index.html'>February 2010</a></li>
-	<li><a href='./../../01/index.html'>January 2010</a></li>
-	<li><a href='./../../../2009/12/index.html'>December 2009</a></li>
-	<li><a href='./../../../2009/11/index.html'>November 2009</a></li>
-	<li><a href='./../../../2009/08/index.html'>August 2009</a></li>
-	<li><a href='./../../../2009/07/index.html'>July 2009</a></li>
-	<li><a href='./../../../2009/06/index.html'>June 2009</a></li>
-	<li><a href='./../../../2009/04/index.html'>April 2009</a></li>
-	<li><a href='./../../../2009/03/index.html'>March 2009</a></li>
-		</ul>
-		</li><li id="meta-2" class="widget-container widget_meta"><h3 class="widget-title">Meta</h3>			<ul>
-						<li><a href="./../../../wp-login.php">Log in</a></li>
-			<li><a href="./../../../feed/index.html">Entries <abbr title="Really Simple Syndication">RSS</abbr></a></li>
-			<li><a href="./../../../comments/feed/index.html">Comments <abbr title="Really Simple Syndication">RSS</abbr></a></li>
-			<li><a href="https://wordpress.org/" title="Powered by WordPress, state-of-the-art semantic personal publishing platform.">WordPress.org</a></li>			</ul>
-			</li>			</ul>
-		</div><!-- #primary .widget-area -->
-
-	</div><!-- #main -->
-
-	<div id="footer" role="contentinfo">
-		<div id="colophon">
-
-
-
-			<div id="site-info">
-				<a href="./../../../index.html" title="Biboroku" rel="home">
-					Biboroku				</a>
-			</div><!-- #site-info -->
-
-			<div id="site-generator">
-								<a href="https://wordpress.org/" title="Semantic Personal Publishing Platform">Proudly powered by WordPress.</a>
-			</div><!-- #site-generator -->
-
-		</div><!-- #colophon -->
-	</div><!-- #footer -->
-
-</div><!-- #wrapper -->
-
-<script type='text/javascript' src='./../../../wp-includes/js/comment-reply.min.js?ver=4.4.17'></script>
-<script type='text/javascript' src='./../../../wp-includes/js/wp-embed.min.js?ver=4.4.17'></script>
-<script async="async" type='text/javascript' src='./../../../wp-content/plugins/akismet/_inc/form.js?ver=4.1.1'></script>
-<!--stats_footer_test--><script src="http://stats.wordpress.com/e-201905.js" type="text/javascript"></script>
-<script type="text/javascript">
-st_go({blog:'18777665',v:'ext',post:'816'});
-var load_cmc = function(){linktracker_init(18777665,816,2);};
-if ( typeof addLoadEvent != 'undefined' ) addLoadEvent(load_cmc);
-else load_cmc();
-</script>
-</body>
+<div class="hll"><pre><span></span>$ sudo launchctl load -w /Library/LaunchDaemons/squid.plist
+</pre></div>
+<p>will launch squid.  On reboot, the proxy should also be working
+automatically.</p>
+
+  
+  </div>
+
+
+      </main>
+      <footer>
+        Copyright &copy; 2007 - 2020 by Okome Studio / Taro Sato. All Rights Reserved.
+      </footer>
+    </div>
+  </body>
 </html>

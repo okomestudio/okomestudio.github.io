@@ -1,0 +1,152 @@
+body {
+  color: black;
+  font-family: Merriweather, serif;
+  font-size: 1em;
+  line-height: 1.65;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 660px;
+}
+
+.blog-post {
+  margin-bottom: 4em;
+}
+
+.pagination {
+  display: flex;
+  font-family: "source sans pro",
+               AvenirNextCondensed-Medium,
+               HelveticaNeue-CondensedBold , "Droid Sans", Helvetica, Arial, sans-serif;
+  justify-content: center;
+  margin: 2em 0;
+}
+
+header {
+  position: relative;
+  height: 5em;
+}
+
+header h1 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  font-family: MyUniverse;
+  font-size: 2.8em;
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+}
+
+header a {
+  text-decoration: none;
+}
+
+header nav {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+header nav ul {
+  list-style: none;
+  text-align: right;
+  margin: 0;
+  padding: 0;
+}
+
+header nav ul li {
+  display: inline;
+  font-family: MyUniverse;
+  font-size: 1.4em;
+  line-height: 1.4;
+  margin: 0 0 0 0.5em;
+  padding: 0;
+}
+
+main h1,
+main h2,
+main h3 {
+  color: var(--dark-text-color);
+  font-family: "source sans pro",
+               AvenirNextCondensed-Medium,
+               HelveticaNeue-CondensedBold , "Droid Sans", Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  line-height: 1;
+  padding-bottom: 0.5em;
+}
+
+main h1 a,
+main h2 a,
+main h3 a {
+  text-decoration: none;
+}
+
+main h1 {
+  border-bottom: 1px solid var(--main-accent-color);
+  font-size: 2em;
+  margin-top: 1em;
+}
+
+main h2 {
+  color: var(--main-accent-color-dark);
+  font-size: 1.3em;
+  margin-bottom: 0.15em;
+  margin-top: 1em;
+}
+
+main h3 {
+  font-size: 1.1em;
+  margin-bottom: 0.10em;
+  margin-top: 0.8em;
+}
+
+main img {
+  max-width: 100%
+}
+
+main p {
+  padding: 0.4em 0;
+}
+
+main pre {
+  margin: 1em 0 1em 2em;
+  overflow: auto;
+  word-wrap: normal;
+  white-space: pre;
+}
+
+main pre::-webkit-scrollbar {
+  height: 0.5em;
+}
+
+
+main table {
+  margin: 1em auto;
+}
+
+main td {
+  border: 1px solid var(--main-text-color);
+}
+
+main td,
+main th {
+  font-weight: normal;
+  padding: 0.2em 0.6em;
+  text-align: center;
+}
+
+main ol,
+main ul {
+  margin-left: 2em;
+}
+
+footer {
+  color: var(--main-text-color);
+  font-family: MyUniverse;
+  font-size: 1.2em;
+  text-align: center;
+  margin: 4em 0;
+}
