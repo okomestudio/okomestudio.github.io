@@ -23,6 +23,14 @@ body {
   margin: 2em 0;
 }
 
+.footnotes hr {
+  border-color: var(--main-accent-color);
+}
+
+sup {
+  vertical-align: super;
+}
+
 header {
   position: relative;
   height: 5em;

@@ -32,6 +32,7 @@
     <link rel="stylesheet" href="https://okomestudio.net/index.css">
     <link rel="stylesheet" href="../../../static/style.css">
     <link rel="stylesheet" href="../../../static/pygments.css">
+    <link rel="stylesheet" href="../../../static/gist.css">
     <title>Near-Duplicate Detection using MinHash: Background — biboroku</title>
     <script type="text/javascript">
       window.MathJax = {
@@ -45,6 +46,29 @@
     </script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML">
     </script>
+
+    <!-- The following code is to map old param-based WordPress URLs to the current path-based URLs. -->
+    <script type="text/javascript">
+      var urlmap = {
+        2292: "2014/04/pca-and-biplot-using-python",
+        2357: "2014/05/brand-positioning-by-correspondence-analysis",
+        2375: "2014/05/interpreting-ab-test-using-python",
+      };
+      var query = window.location.search.substring(1);
+      var vars = query.split('&');
+      for (var i = 0; i < vars.length; i++) {
+        var pair = vars[i].split('=');
+        if (decodeURIComponent(pair[0]) == "q") {
+          var article_id = decodeURIComponent(pair[1]);
+          if (article_id in urlmap) {
+            window.location.replace(
+              "https://okomestudio.net/biboroku/" + urlmap[article_id] + "/"
+            );
+          }
+        }
+      }
+    </script>
+
   </head>
   <body>
     <!-- Google Tag Manager (noscript) -->

@@ -30,10 +30,10 @@
     <link rel="icon" href="https://okomestudio.net/favicon.ico">
     <link rel="stylesheet" href="https://okomestudio.net/reset.css">
     <link rel="stylesheet" href="https://okomestudio.net/index.css">
-    <link rel="stylesheet" href="./static/style.css">
-    <link rel="stylesheet" href="./static/pygments.css">
-    <link rel="stylesheet" href="./static/gist.css">
-    <title>Welcome to biboroku! — biboroku</title>
+    <link rel="stylesheet" href="../../../static/style.css">
+    <link rel="stylesheet" href="../../../static/pygments.css">
+    <link rel="stylesheet" href="../../../static/gist.css">
+    <title>Brand Positioning by Correspondence Analysis — biboroku</title>
     <script type="text/javascript">
       window.MathJax = {
         tex: {
@@ -84,9 +84,9 @@
         <h1><a href="https://okomestudio.net/biboroku">biboroku</a></h1>
         <nav>
           <ul class="nav navbar-nav">
-            <li class="active"><a href="https://okomestudio.net">OkomeStudio.net</a></li>
+            <li><a href="https://okomestudio.net">OkomeStudio.net</a></li>
             
-            <li><a href="./about/">About</a></li>
+            <li><a href="../../../about/">About</a></li>
             
           </ul>
         </nav>
@@ -94,34 +94,9 @@
       <main>
         
   
-    
   <div class="blog-post">
   
-    <h1><a href="./2014/05/interpreting-ab-test-using-python/">Interpreting A/B Test using Python</a></h1>
-  
-  <p class="meta">
-    Written by
-    
-      Taro Sato
-    
-    on 2014-05-12
-  </p>
-  
-  <p>Suppose we ran an A/B test with two different versions of a web page,
-\( a \) and \( b \), for which we count the number of visitors and
-whether they convert or not. We can summarize this in a contingency
-table showing the frequency distribution of...
-  <a href="./2014/05/interpreting-ab-test-using-python/">Continue reading</a>.
-  
-  </div>
-
-  
-
-  
-    
-  <div class="blog-post">
-  
-    <h1><a href="./2014/05/brand-positioning-by-correspondence-analysis/">Brand Positioning by Correspondence Analysis</a></h1>
+    <h1>Brand Positioning by Correspondence Analysis</h1>
   
   <p class="meta">
     Written by
@@ -134,97 +109,49 @@ table showing the frequency distribution of...
   <p>I was reading an article about visualization techniques using
 <em>multidimensional scaling</em> (MDS), <em>the correspondence analysis</em> in
 particular. The example used R, but as usual I want to find ways to do
-it on Python, so here...
-  <a href="./2014/05/brand-positioning-by-correspondence-analysis/">Continue reading</a>.
+it on Python, so here goes.</p>
+<p>The correspondence analysis is useful when you have a two-way
+contingency table for which relative values of ratio-scaled data are
+of interest. For example, I here use a table where the rows are
+fashion brands (Chanel, Louis Vuitton, etc.) and the columns are the
+number of people who answered that the particular brand has the
+particular attribute expressed by the adjective (luxurious, youthful,
+energetic, etc.). (I borrowed the data from <a href="http://www.cust-communications.com/contents/column/?no=12">this
+article</a>).</p>
+<p>The correspondence analysis (or MDS in general) is a method of
+reducing dimensions to make the data more sensible for
+interpretation. In this case, I get a scatter plot of brands and
+adjectives in two-dimensional space, in which brands/adjectives more
+closely associated with each other are placed near each other.</p>
+<p><a href="../../../2014/05/brand-positioning-by-correspondence-analysis/fashion_brands.png"><img src="../../../2014/05/brand-positioning-by-correspondence-analysis/fashion_brands.png" alt="Brand Positioning"></a></p>
+<p>As you see, brands like GAP, H&amp;M, and Uniqlo are associated with
+youth, friendliness, and energy, while old-school brands like Chanel
+and Tiffany are associated with luxury and brilliance. This way of
+visualization is useful because the high-dimensional information (11
+brands and 9 attributes) are reduced into two-dimensional plane, and
+the distance on that plane is meaningful.</p>
+<p>Here&#8217;s the code and data:</p><script src="https://gist.github.com/okomestudio/c710906f3662138f0417.js"></script>
   
   </div>
 
   
-
+  <div class="comments">
+<div id="disqus_thread"></div>
+<script>
+  var disqus_config = function() { this.page.identifier = "/1405-brand-positioning-by-correspondence-analysis"; };
+  (function() {
+    var d = document, s = d.createElement('script');
+    s.src = '//biboroku.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>
+  Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript"
+    rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+</div>
   
-    
-  <div class="blog-post">
-  
-    <h1><a href="./2014/04/pca-and-biplot-using-python/">PCA and Biplot using Python</a></h1>
-  
-  <p class="meta">
-    Written by
-    
-      Taro Sato
-    
-    on 2014-04-24
-  </p>
-  
-  <p>There are several ways to run <em>principal component analysis</em> (PCA)
-using various packages (<code>scikit-learn</code>, <code>statsmodels</code>, etc.) or even
-just rolling out your own through singular-value decomposition and
-such. Visualizing...
-  <a href="./2014/04/pca-and-biplot-using-python/">Continue reading</a>.
-  
-  </div>
-
-  
-
-  
-    
-  <div class="blog-post">
-  
-    <h1><a href="./2014/04/near-duplicate-detection-using-minhash-background/">Near-Duplicate Detection using MinHash: Background</a></h1>
-  
-  <p class="meta">
-    Written by
-    
-      Taro Sato
-    
-    on 2014-04-12
-  </p>
-  
-  <p>There are numerous pieces of duplicate information served by multiple
-sources on the web. Many news stories that we receive from the media
-tend to originate from the same source, such as the Associated
-Press. When such contents are scraped off the...
-  <a href="./2014/04/near-duplicate-detection-using-minhash-background/">Continue reading</a>.
-  
-  </div>
-
-  
-
-  
-    
-  <div class="blog-post">
-  
-    <h1><a href="./2010/03/installing-squid-proxy-server-on-mac-os-x-snow-leopard/">Installing Squid Proxy Server on Mac OS X Snow Leopard</a></h1>
-  
-  <p class="meta">
-    Written by
-    
-      Taro Sato
-    
-    on 2010-03-22
-  </p>
-  
-  <p>My goal is to set up a very basic proxy server on my Mac box on
-campus, so that I can have full access to subscription-based academic
-journals via the proxy on my laptop even when I am off campus.  Some
-schools provide such (library) proxies but my...
-  <a href="./2010/03/installing-squid-proxy-server-on-mac-os-x-snow-leopard/">Continue reading</a>.
-  
-  </div>
-
-  
-
-  
-
-  
-  <div class="pagination">
-    
-      <span class="disabled">&laquo; Previous</span>
-    
-    &nbsp; | 1 | &nbsp;
-    
-      <a href="./page/2/">Next &raquo;</a>
-    
-  </div>
 
 
       </main>

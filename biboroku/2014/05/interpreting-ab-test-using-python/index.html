@@ -1,0 +1,295 @@
+<!doctype html>
+<html>
+  <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-158896843-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-158896843-1');
+    </script>
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){
+        w[l]=w[l]||[];w[l].push(
+          {'gtm.start':
+           new Date().getTime(),event:'gtm.js'}
+        );var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-NXBHQLG');
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Okome Studio is a software consultancy">
+    <link rel="icon" href="https://okomestudio.net/favicon.ico">
+    <link rel="stylesheet" href="https://okomestudio.net/reset.css">
+    <link rel="stylesheet" href="https://okomestudio.net/index.css">
+    <link rel="stylesheet" href="../../../static/style.css">
+    <link rel="stylesheet" href="../../../static/pygments.css">
+    <link rel="stylesheet" href="../../../static/gist.css">
+    <title>Interpreting A/B Test using Python — biboroku</title>
+    <script type="text/javascript">
+      window.MathJax = {
+        tex: {
+          tags: 'ams'
+        }
+      };
+    </script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "AMS"} } });
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML">
+    </script>
+
+    <!-- The following code is to map old param-based WordPress URLs to the current path-based URLs. -->
+    <script type="text/javascript">
+      var urlmap = {
+        2292: "2014/04/pca-and-biplot-using-python",
+        2357: "2014/05/brand-positioning-by-correspondence-analysis",
+        2375: "2014/05/interpreting-ab-test-using-python",
+      };
+      var query = window.location.search.substring(1);
+      var vars = query.split('&');
+      for (var i = 0; i < vars.length; i++) {
+        var pair = vars[i].split('=');
+        if (decodeURIComponent(pair[0]) == "q") {
+          var article_id = decodeURIComponent(pair[1]);
+          if (article_id in urlmap) {
+            window.location.replace(
+              "https://okomestudio.net/biboroku/" + urlmap[article_id] + "/"
+            );
+          }
+        }
+      }
+    </script>
+
+  </head>
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+      <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NXBHQLG"
+              height="0" width="0" style="display:none;visibility:hidden">
+      </iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <div class="container">
+      <header>
+        <h1><a href="https://okomestudio.net/biboroku">biboroku</a></h1>
+        <nav>
+          <ul class="nav navbar-nav">
+            <li><a href="https://okomestudio.net">OkomeStudio.net</a></li>
+            
+            <li><a href="../../../about/">About</a></li>
+            
+          </ul>
+        </nav>
+      </header>
+      <main>
+        
+  
+  <div class="blog-post">
+  
+    <h1>Interpreting A/B Test using Python</h1>
+  
+  <p class="meta">
+    Written by
+    
+      Taro Sato
+    
+    on 2014-05-12
+  </p>
+  
+  <p>Suppose we ran an A/B test with two different versions of a web page,
+\( a \) and \( b \), for which we count the number of visitors and
+whether they convert or not. We can summarize this in a contingency
+table showing the frequency distribution of the events:</p>
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>not converted (\( f \))</th>
+      <th> converted (\( t \))</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>\( a \)</th>
+      <td>4514</td>
+      <td>486</td>
+    </tr>
+    <tr>
+      <th>\( b \)</th>
+      <td>4473</td>
+      <td>527</td>
+    </tr>
+  </tbody>
+</table><p>It is trivial to compute the conversion rate of each version, \( 486
+/ (486 + 4514 ) = 9.72 \% \) for \( a \) and \( 10.5 \% \) for
+\( b \). With such a relatively small difference, however, can we
+convincingly say that the version \( b \) converts better? To test
+the <em>statistical significance</em> of a result like this, a
+hypothesis testing can be used.</p>
+<h2>Background</h2>
+<p>An appropriate hypothesis test here is <em>Pearson's chi-squared
+test</em>. There are two types of the chi-squared test, the goodness of
+fit and the test of independence, but it is the latter which is useful
+for the case in question. The reason as to why a test of
+“independence” is applicable becomes clear by converting the
+contingency table into a probability matrix by dividing each element
+by the grand total of frequencies:</p>
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>not converted (\( f \))</th>
+      <th> converted (\( t \))</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>\( a \)</th>
+      <td>\( P(V = a, C = f) = 0.4514 \)</td>
+      <td>\( P(V = a, C = t) = 0.0486 \)</td>
+    </tr>
+    <tr>
+      <th>\( b \)</th>
+      <td>\( P(V = b, C = f) = 0.4473 \)</td>
+      <td>\( P(V = b, C = t) = 0.0527 \)</td>
+    </tr>
+  </tbody>
+</table><p>A table like this is sometimes called <em>correspondence matrix</em>. Here,
+the table consists of joint probabilities where \( V \) is the
+version of the web page (\( a \) or \( b \)) and \( C \) is the
+conversion result (\( f \) or \( t \)).</p>
+<p>Now, our interest is whether the conversion \( C \) depends on the
+page version \( V \), and if it does, to learn which version
+converts better. In probability theory, the events \( C \) and \( V
+\) are said to be independent if the joint probability can be
+computed by \( P(V, C) = P(V)P(C) \), where \( P(V) \) and \(
+P(C) \) are marginal probabilities of \( V \) and \( C \),
+respectively. It is straightforward to compute the marginal
+probabilities from row and column marginals:</p>
+<p>\begin{eqnarray}
+P(V=a) &amp;=&amp; \frac{4514 + 486}{10000} \nonumber \\
+P(V=b) &amp;=&amp; \frac{4473 + 527}{10000} \nonumber \\
+P(C=f) &amp;=&amp; \frac{4514 + 4473}{10000} \nonumber \\
+P(C=t) &amp;=&amp; \frac{486 + 527}{10000} \nonumber \\
+\end{eqnarray}</p>
+<p>where \( 10,000 \) is the grand total of all the elements. The null
+hypothesis (i.e., a neutral hypothesis in which the effect we seek is
+absent) is that \( V \) and \( C \) are independent, in which case
+the elements of the matrix are equivalent to</p>
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>not converted (\( f \))</th>
+      <th>converted (\( t \))</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>\( a \)</th>
+      <td>\( P(V=a) P(C=f) \)</td>
+      <td>\( P(V=a) P(C=t) \)</td>
+    </tr>
+    <tr>
+      <th>\( b \)</th>
+      <td>\( P(V=b) P(C=f) \)</td>
+      <td>\( P(V=b) P(C=t) \)</td>
+    </tr>
+  </tbody>
+</table><p>The conversion \( C \) is said to be dependent on the version \( V
+\) of the web site if this null hypothesis is rejected. Hence
+rejecting the null hypothesis means that one version is better at
+converting than the other. This is the reason why the test is on
+independence.</p>
+<p>The <em>chi-squared test</em> compares an observed distribution \( O_{ij}
+\) to an expected distribution \( E_{ij} \)</p>
+<p>\[
+  \chi^2 = \sum_{i, j} \frac{(O_{ij} - E_{ij})^2}{E_{ij}} \ ,
+\]</p>
+<p>where \( i \) and \( j \) are the row and column indices of the
+matrix.<sup class="footnote-ref" id="fnref-1"><a href="#fn-1">1</a></sup> The values of \( E_{ij} \) are computed from \( P(V=i)
+\) and \( P(C=j) \). The \( \chi^2 \) statistic thus obtained is
+now compared to the distribution assumed in the null hypothesis, and
+to do this we need to find the degree of freedom (dof) which is the
+shape parameter of chi-squared distribution. For the test of
+independence using a \( r \times c \) contingency matrix, the dof is
+computed from the total number of matrix entries (\( r \times c \))
+minus the reduction in dof, which is given by \( r + c - 1 \). The
+reductions come from the row and column sum constraints, but decreased
+by one because the last entry in the matrix is determined by either
+the row or column sum on that row/column and therefore
+degenerate. Hence the dof for the test of independence comes out to be \( (r - 1)(c - 1) \).</p>
+<h2>Python Implementation</h2>
+<p>Fortunately it is very straightforward to carry out this hypothesis
+testing using <code>scipy.stats.chi2_contingency</code>. All we need is to supply
+the function with a contingency matrix and it will return the \(
+\chi^2 \) statistic and the corresponding \( p \)-value:</p>
+<script src="https://gist.github.com/okomestudio/878b44714833d7a14768.js"></script><p>The result for the original table (of \( n = 10,000 \)) is \(
+\chi^2 = 1.76 \) and \( p = 0.185 \). Since the \( p \)-value is
+greater than the standard threshold \( 0.05 \), we cannot reject the
+null hypothesis that the page version and the conversion is
+independent. Therefore the difference in the conversion rates cited in
+the beginning of this article is not statistically significant.</p>
+<p>What if we keep running the same A/B test a bit longer, until we
+accumulate \( n = 40,000 \) visitors? Using example data
+(<em>n40000.csv</em>), we have the conversion rates of \( 2002/20000 = 10.0
+\% \) for version \( a \) and \( 2258/20000 = 11.3 \% \) for
+version \( b \). Running the same test on the new data yields \(
+\chi^2 = 17.1 \) and \( p = 3.58 \times 10^{-5} \). Since \( p \ll
+0.05 \), the difference we see in the conversion rates is
+statistically significant this time. This is a demonstration of how a
+bigger sample helps to see a tiny difference. (The example data used
+in this article are generated assuming the true conversion rates of \( 10 \% \)
+for \( a \) and \( 11 \% \) for \( b \).)</p>
+<div class="footnotes">
+<hr>
+<ol><li id="fn-1"><p>For a 2 x 2 contingency table, <em>Yate’s chi-squared test</em> is commonly
+used. This applies a correction of the form</p>
+<p>\[
+  \chi^2_{\rm Yate's} = \sum_{ij} \frac{(|O_{ij} - E_{ij}| - 0.5)^2}{E_{ij}}
+\]</p>
+<p>to account for an error between the observed discrete distribution and
+the continuous chi-squared distribution.<a href="#fnref-1" class="footnote">&#8617;</a></p></li>
+</ol>
+</div>
+
+  
+  </div>
+
+  
+  <div class="comments">
+<div id="disqus_thread"></div>
+<script>
+  var disqus_config = function() { this.page.identifier = "/1405-interpreting-ab-test-using-python"; };
+  (function() {
+    var d = document, s = d.createElement('script');
+    s.src = '//biboroku.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>
+  Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript"
+    rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+</div>
+  
+
+
+      </main>
+      <footer>
+        Copyright &copy; 2007 - 2020 by Okome Studio / Taro Sato. All Rights Reserved.
+      </footer>
+    </div>
+  </body>
+</html>
