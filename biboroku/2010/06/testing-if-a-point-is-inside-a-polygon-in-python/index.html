@@ -1,0 +1,144 @@
+<!doctype html>
+<html>
+  <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-158896843-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-158896843-1');
+    </script>
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){
+        w[l]=w[l]||[];w[l].push(
+          {'gtm.start':
+           new Date().getTime(),event:'gtm.js'}
+        );var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-NXBHQLG');
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Okome Studio is a software consultancy">
+    <link rel="icon" href="https://okomestudio.net/favicon.ico">
+    <link rel="stylesheet" href="https://okomestudio.net/reset.css">
+    <link rel="stylesheet" href="https://okomestudio.net/index.css">
+    <link rel="stylesheet" href="../../../static/style.css">
+    <link rel="stylesheet" href="../../../static/pygments.css">
+    <link rel="stylesheet" href="../../../static/gist.css">
+    <title>Testing if a Point is Inside a Polygon in Python — biboroku</title>
+    <script type="text/javascript">
+      window.MathJax = {
+        tex: {
+          tags: 'ams'
+        }
+      };
+    </script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "AMS"} } });
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML">
+    </script>
+
+    <script type="text/javascript" src="static/pjump.js"></script>
+
+  </head>
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+      <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NXBHQLG"
+              height="0" width="0" style="display:none;visibility:hidden">
+      </iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <div class="container">
+      <header>
+        <h1><a href="https://okomestudio.net/biboroku">biboroku</a></h1>
+        <nav>
+          <ul class="nav navbar-nav">
+            <li><a href="https://okomestudio.net">OkomeStudio.net</a></li>
+            
+            <li><a href="../../../about/">About</a></li>
+            
+          </ul>
+        </nav>
+      </header>
+      <main>
+        
+  
+  <div class="blog-post">
+  
+    <h1>Testing if a Point is Inside a Polygon in Python</h1>
+  
+  <p class="meta">
+    Written by
+    
+      Taro Sato
+    
+    on 2010-06-24
+  </p>
+  
+  <p>Finally got around to find this out by Googling. It’s a useful
+function so I reproduce it here for copy &amp; paste:</p>
+<div class="hll"><pre><span></span><span class="k">def</span> <span class="nf">inside_polygon</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">points</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return True if a coordinate (x, y) is inside a polygon defined by</span>
+<span class="sd">    the list of verticies [(x1, y1), (x2, y2), ... , (xN, yN)].</span>
+
+<span class="sd">    Reference: http://www.ariel.com.au/a/python-point-int-poly.html</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
+    <span class="n">inside</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">p1x</span><span class="p">,</span> <span class="n">p1y</span> <span class="o">=</span> <span class="n">points</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">p2x</span><span class="p">,</span> <span class="n">p2y</span> <span class="o">=</span> <span class="n">points</span><span class="p">[</span><span class="n">i</span> <span class="o">%</span> <span class="n">n</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">y</span> <span class="o">&gt;</span> <span class="nb">min</span><span class="p">(</span><span class="n">p1y</span><span class="p">,</span> <span class="n">p2y</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">y</span> <span class="o">&lt;=</span> <span class="nb">max</span><span class="p">(</span><span class="n">p1y</span><span class="p">,</span> <span class="n">p2y</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="nb">max</span><span class="p">(</span><span class="n">p1x</span><span class="p">,</span> <span class="n">p2x</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="n">p1y</span> <span class="o">!=</span> <span class="n">p2y</span><span class="p">:</span>
+                        <span class="n">xinters</span> <span class="o">=</span> <span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">p1y</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">p2x</span> <span class="o">-</span> <span class="n">p1x</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">p2y</span> <span class="o">-</span> <span class="n">p1y</span><span class="p">)</span> <span class="o">+</span> <span class="n">p1x</span>
+                    <span class="k">if</span> <span class="n">p1x</span> <span class="o">==</span> <span class="n">p2x</span> <span class="ow">or</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="n">xinters</span><span class="p">:</span>
+                        <span class="n">inside</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">inside</span>
+        <span class="n">p1x</span><span class="p">,</span> <span class="n">p1y</span> <span class="o">=</span> <span class="n">p2x</span><span class="p">,</span> <span class="n">p2y</span>
+    <span class="k">return</span> <span class="n">inside</span>
+</pre></div>
+<p>It is a clever algorithm if you think through it.</p>
+
+  
+  </div>
+
+  
+  <div class="comments">
+<div id="disqus_thread"></div>
+<script>
+  var disqus_config = function() { this.page.identifier = "/1006-testing-if-a-point-is-inside-a-polygon-in-python"; };
+  (function() {
+    var d = document, s = d.createElement('script');
+    s.src = '//biboroku.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>
+  Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript"
+    rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+</div>
+  
+
+
+      </main>
+      <footer>
+        Copyright &copy; 2007 - 2020 by Okome Studio / Taro Sato. All Rights Reserved.
+      </footer>
+    </div>
+  </body>
+</html>

@@ -47,27 +47,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML">
     </script>
 
-    <!-- The following code is to map old param-based WordPress URLs to the current path-based URLs. -->
-    <script type="text/javascript">
-      var urlmap = {
-        2292: "2014/04/pca-and-biplot-using-python",
-        2357: "2014/05/brand-positioning-by-correspondence-analysis",
-        2375: "2014/05/interpreting-ab-test-using-python",
-      };
-      var query = window.location.search.substring(1);
-      var vars = query.split('&');
-      for (var i = 0; i < vars.length; i++) {
-        var pair = vars[i].split('=');
-        if (decodeURIComponent(pair[0]) == "p") {
-          var article_id = decodeURIComponent(pair[1]);
-          if (article_id in urlmap) {
-            window.location.replace(
-              "https://okomestudio.net/biboroku/" + urlmap[article_id] + "/"
-            );
-          }
-        }
-      }
-    </script>
+    <script type="text/javascript" src="static/pjump.js"></script>
 
   </head>
   <body>
@@ -97,6 +77,48 @@
     
   <div class="blog-post">
   
+    <h1><a href="./2014/11/install-google-chrome-on-debian-jessie/">Install Google Chrome on Debian Jessie</a></h1>
+  
+  <p class="meta">
+    Written by
+    
+      Taro Sato
+    
+    on 2014-11-27
+  </p>
+  
+  Download a DEB file for the version of Chrome you want from here. Then $ sudo aptitude install gconf-service libgconf-2-4 libnspr4 libnss3 libpango1.0-0 libappindicator1 libcurl3 $ sudo dpkg -i google-chrome-stable_current_amd64.deb
+  <a href="./2014/11/install-google-chrome-on-debian-jessie/">Continue reading</a>.
+  
+  </div>
+
+  
+
+  
+    
+  <div class="blog-post">
+  
+    <h1><a href="./2014/10/installing-adobe-reader-on-debianjessie/">Installing Adobe Reader on Debian/Jessie</a></h1>
+  
+  <p class="meta">
+    Written by
+    
+      Taro Sato
+    
+    on 2014-10-10
+  </p>
+  
+  Once in a while you need to deal with fancier PDF files which may allow you to type in using forms, but Linux applications like Okular might not be fully capable of handling Adobe’s proprietary features. In such an unfortunate event, you might need to...
+  <a href="./2014/10/installing-adobe-reader-on-debianjessie/">Continue reading</a>.
+  
+  </div>
+
+  
+
+  
+    
+  <div class="blog-post">
+  
     <h1><a href="./2014/05/interpreting-ab-test-using-python/">Interpreting A/B Test using Python</a></h1>
   
   <p class="meta">
@@ -107,10 +129,7 @@
     on 2014-05-12
   </p>
   
-  <p>Suppose we ran an A/B test with two different versions of a web page,
-\( a \) and \( b \), for which we count the number of visitors and
-whether they convert or not. We can summarize this in a contingency
-table showing the frequency distribution of...
+  Suppose we ran an A/B test with two different versions of a web page, \( a \) and \( b \), for which we count the number of visitors and whether they convert or not. We can summarize this in a contingency table showing the frequency distribution of the...
   <a href="./2014/05/interpreting-ab-test-using-python/">Continue reading</a>.
   
   </div>
@@ -131,10 +150,7 @@ table showing the frequency distribution of...
     on 2014-05-07
   </p>
   
-  <p>I was reading an article about visualization techniques using
-<em>multidimensional scaling</em> (MDS), <em>the correspondence analysis</em> in
-particular. The example used R, but as usual I want to find ways to do
-it on Python, so here...
+  I was reading an article about visualization techniques using multidimensional scaling (MDS), the correspondence analysis in particular. The example used R, but as usual I want to find ways to do it on Python, so here goes. The correspondence analysis...
   <a href="./2014/05/brand-positioning-by-correspondence-analysis/">Continue reading</a>.
   
   </div>
@@ -155,59 +171,8 @@ it on Python, so here...
     on 2014-04-24
   </p>
   
-  <p>There are several ways to run <em>principal component analysis</em> (PCA)
-using various packages (<code>scikit-learn</code>, <code>statsmodels</code>, etc.) or even
-just rolling out your own through singular-value decomposition and
-such. Visualizing...
+  There are several ways to run principal component analysis (PCA) using various packages (scikit-learn, statsmodels, etc.) or even just rolling out your own through singular-value decomposition and such. Visualizing the PCA result can be done through...
   <a href="./2014/04/pca-and-biplot-using-python/">Continue reading</a>.
-  
-  </div>
-
-  
-
-  
-    
-  <div class="blog-post">
-  
-    <h1><a href="./2014/04/near-duplicate-detection-using-minhash-background/">Near-Duplicate Detection using MinHash: Background</a></h1>
-  
-  <p class="meta">
-    Written by
-    
-      Taro Sato
-    
-    on 2014-04-12
-  </p>
-  
-  <p>There are numerous pieces of duplicate information served by multiple
-sources on the web. Many news stories that we receive from the media
-tend to originate from the same source, such as the Associated
-Press. When such contents are scraped off the...
-  <a href="./2014/04/near-duplicate-detection-using-minhash-background/">Continue reading</a>.
-  
-  </div>
-
-  
-
-  
-    
-  <div class="blog-post">
-  
-    <h1><a href="./2010/03/installing-squid-proxy-server-on-mac-os-x-snow-leopard/">Installing Squid Proxy Server on Mac OS X Snow Leopard</a></h1>
-  
-  <p class="meta">
-    Written by
-    
-      Taro Sato
-    
-    on 2010-03-22
-  </p>
-  
-  <p>My goal is to set up a very basic proxy server on my Mac box on
-campus, so that I can have full access to subscription-based academic
-journals via the proxy on my laptop even when I am off campus.  Some
-schools provide such (library) proxies but my...
-  <a href="./2010/03/installing-squid-proxy-server-on-mac-os-x-snow-leopard/">Continue reading</a>.
   
   </div>
 

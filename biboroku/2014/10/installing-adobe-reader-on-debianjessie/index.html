@@ -33,7 +33,7 @@
     <link rel="stylesheet" href="../../../static/style.css">
     <link rel="stylesheet" href="../../../static/pygments.css">
     <link rel="stylesheet" href="../../../static/gist.css">
-    <title>Brand Positioning by Correspondence Analysis — biboroku</title>
+    <title>Installing Adobe Reader on Debian/Jessie — biboroku</title>
     <script type="text/javascript">
       window.MathJax = {
         tex: {
@@ -76,41 +76,35 @@
   
   <div class="blog-post">
   
-    <h1>Brand Positioning by Correspondence Analysis</h1>
+    <h1>Installing Adobe Reader on Debian/Jessie</h1>
   
   <p class="meta">
     Written by
     
       Taro Sato
     
-    on 2014-05-07
+    on 2014-10-10
   </p>
   
-  <p>I was reading an article about visualization techniques using
-<em>multidimensional scaling</em> (MDS), <em>the correspondence analysis</em> in
-particular. The example used R, but as usual I want to find ways to do
-it on Python, so here goes.</p>
-<p>The correspondence analysis is useful when you have a two-way
-contingency table for which relative values of ratio-scaled data are
-of interest. For example, I here use a table where the rows are
-fashion brands (Chanel, Louis Vuitton, etc.) and the columns are the
-number of people who answered that the particular brand has the
-particular attribute expressed by the adjective (luxurious, youthful,
-energetic, etc.). (I borrowed the data from <a href="http://www.cust-communications.com/contents/column/?no=12">this
-article</a>).</p>
-<p>The correspondence analysis (or MDS in general) is a method of
-reducing dimensions to make the data more sensible for
-interpretation. In this case, I get a scatter plot of brands and
-adjectives in two-dimensional space, in which brands/adjectives more
-closely associated with each other are placed near each other.</p>
-<p><a href="../../../2014/05/brand-positioning-by-correspondence-analysis/fashion_brands.png"><img src="../../../2014/05/brand-positioning-by-correspondence-analysis/fashion_brands.png" alt="Brand Positioning"></a></p>
-<p>As you see, brands like GAP, H&amp;M, and Uniqlo are associated with
-youth, friendliness, and energy, while old-school brands like Chanel
-and Tiffany are associated with luxury and brilliance. This way of
-visualization is useful because the high-dimensional information (11
-brands and 9 attributes) are reduced into two-dimensional plane, and
-the distance on that plane is meaningful.</p>
-<p>Here&#8217;s the code and data:</p><script src="https://gist.github.com/okomestudio/c710906f3662138f0417.js"></script>
+  <p>Once in a while you need to deal with fancier PDF files which may
+allow you to type in using forms, but Linux applications like Okular
+might not be fully capable of handling Adobe’s proprietary
+features. In such an unfortunate event, you might need to use Adobe
+Reader.</p>
+<p>Go to the <a href="ftp://ftp.adobe.com/pub/adobe/reader/unix">FTP download site on
+Adobe</a> and download the
+version you wish to install. Here the version 9.x is assumed:</p>
+<div class="hll"><pre><span></span>$ wget ftp://ftp.adobe.com/pub/adobe/reader/unix/9.x/9.5.5/enu/AdbeRdr9.5.5-1_i386linux_enu.deb
+$ sudo dpkg --add-architecture i386
+$ sudo apt-get update
+$ sudo apt-get install libgtk2.0-0:i386 libxml2:i386 libstdc++6:i386
+$ sudo dpkg -i AdbeRdr9*.deb
+</pre></div>
+<p>If the installation doesn’t fully complete, you might need to do</p>
+<div class="hll"><pre><span></span>$ sudo apt-get -f install
+</pre></div>
+<p>to install the rest of missing packages.</p>
+
   
   </div>
 
@@ -118,7 +112,7 @@ the distance on that plane is meaningful.</p>
   <div class="comments">
 <div id="disqus_thread"></div>
 <script>
-  var disqus_config = function() { this.page.identifier = "/1405-brand-positioning-by-correspondence-analysis"; };
+  var disqus_config = function() { this.page.identifier = "/1410-installing-adobe-reader-on-debianjessie"; };
   (function() {
     var d = document, s = d.createElement('script');
     s.src = '//biboroku.disqus.com/embed.js';

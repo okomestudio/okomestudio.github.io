@@ -33,7 +33,7 @@
     <link rel="stylesheet" href="../../../static/style.css">
     <link rel="stylesheet" href="../../../static/pygments.css">
     <link rel="stylesheet" href="../../../static/gist.css">
-    <title>Brand Positioning by Correspondence Analysis — biboroku</title>
+    <title>Installing F.lux on Debian Squeeze — biboroku</title>
     <script type="text/javascript">
       window.MathJax = {
         tex: {
@@ -76,41 +76,59 @@
   
   <div class="blog-post">
   
-    <h1>Brand Positioning by Correspondence Analysis</h1>
+    <h1>Installing F.lux on Debian Squeeze</h1>
   
   <p class="meta">
     Written by
     
       Taro Sato
     
-    on 2014-05-07
+    on 2010-11-20
   </p>
   
-  <p>I was reading an article about visualization techniques using
-<em>multidimensional scaling</em> (MDS), <em>the correspondence analysis</em> in
-particular. The example used R, but as usual I want to find ways to do
-it on Python, so here goes.</p>
-<p>The correspondence analysis is useful when you have a two-way
-contingency table for which relative values of ratio-scaled data are
-of interest. For example, I here use a table where the rows are
-fashion brands (Chanel, Louis Vuitton, etc.) and the columns are the
-number of people who answered that the particular brand has the
-particular attribute expressed by the adjective (luxurious, youthful,
-energetic, etc.). (I borrowed the data from <a href="http://www.cust-communications.com/contents/column/?no=12">this
-article</a>).</p>
-<p>The correspondence analysis (or MDS in general) is a method of
-reducing dimensions to make the data more sensible for
-interpretation. In this case, I get a scatter plot of brands and
-adjectives in two-dimensional space, in which brands/adjectives more
-closely associated with each other are placed near each other.</p>
-<p><a href="../../../2014/05/brand-positioning-by-correspondence-analysis/fashion_brands.png"><img src="../../../2014/05/brand-positioning-by-correspondence-analysis/fashion_brands.png" alt="Brand Positioning"></a></p>
-<p>As you see, brands like GAP, H&amp;M, and Uniqlo are associated with
-youth, friendliness, and energy, while old-school brands like Chanel
-and Tiffany are associated with luxury and brilliance. This way of
-visualization is useful because the high-dimensional information (11
-brands and 9 attributes) are reduced into two-dimensional plane, and
-the distance on that plane is meaningful.</p>
-<p>Here&#8217;s the code and data:</p><script src="https://gist.github.com/okomestudio/c710906f3662138f0417.js"></script>
+  <p>In another feeble attempt to become a “morning person,” I’ve decided
+to follow the usual advice that I should not be looking at bright LCD
+screen at night to help myself going into the “sleep mode.”</p>
+<p>Hence <a href="http://www.stereopsis.com/flux/">F.lux</a>.</p>
+<p>I want it to launch automatically at the start of a KDE session.</p>
+<p>First of all, check the geographical coordinates of your location,
+perhaps using a search engine like <a href="http://www.travelmath.com/city/">this
+one</a>. In my case (Halifax, Canada),
+the latitude and longitude is 44.65 and -63.6 (in degrees).</p>
+<p>Download the Linux binary (i.e., the command-line version) from
+<a href="http://www.stereopsis.com/flux/linux.html">here</a>. As of now, this is
+just a binary and no source codes. So no compiling is necessary. Do
+as:</p>
+<div class="hll"><pre><span></span>$ wget http://secure.herf.org/flux/xflux.tgz
+$ tar -xvzf xflux.tgz
+$ sudo cp xflux /usr/local/bin
+$ sudo chmod <span class="m">755</span> /usr/local/bin/xflux
+</pre></div>
+<p>Now the command <strong><code>xflux</code></strong> is available system-wide.</p>
+<p>To make it run at the KDE starup, create a shell script (called here
+<em>xflux.sh</em>) like this one:</p>
+<div class="hll"><pre><span></span><span class="ch">#!/bin/sh</span>
+xflux -l <span class="m">44</span>.65 -g -63.6
+</pre></div>
+<p>Either place this script manually under <em>~/.kde/Autostart</em>, or go to
+KDE menu -&gt; Computer -&gt; System Settings -&gt; Advanced -&gt; Autostart, and
+add the <em>xflux.sh</em> script there.</p>
+<p>If for some reason you need to stop this program, do:</p>
+<div class="hll"><pre><span></span>$ <span class="nb">kill</span> -9 <span class="sb">`</span>pgrep xflux<span class="sb">`</span>
+</pre></div>
+<h2>Running F.lux on 64-bit Debian Squeeze</h2>
+<p>I may have problem getting xflux to run at all on a 64-bit machine,
+possibly seeing a <code>xflux: No such file or directory</code> error. The xflux
+binary is built against 32-bit libraries:</p>
+<div class="hll"><pre><span></span>$ file xflux
+xflux: ELF <span class="m">32</span>-bit LSB executable, Intel <span class="m">80386</span>, version <span class="m">1</span> <span class="o">(</span>SYSV<span class="o">)</span>,
+dynamically linked <span class="o">(</span>uses shared libs<span class="o">)</span>, <span class="k">for</span> GNU/Linux <span class="m">2</span>.6.15, not stripped
+</pre></div>
+<p>so if I haven’t done so, I need to install 32-bit environment:</p>
+<div class="hll"><pre><span></span>$ sudo aptitude install ia32-libs
+</pre></div>
+<p>After this, I should be able to run xflux without problems.</p>
+
   
   </div>
 
@@ -118,7 +136,7 @@ the distance on that plane is meaningful.</p>
   <div class="comments">
 <div id="disqus_thread"></div>
 <script>
-  var disqus_config = function() { this.page.identifier = "/1405-brand-positioning-by-correspondence-analysis"; };
+  var disqus_config = function() { this.page.identifier = "/1011-installing-f-lux-on-debian-squeeze"; };
   (function() {
     var d = document, s = d.createElement('script');
     s.src = '//biboroku.disqus.com/embed.js';
