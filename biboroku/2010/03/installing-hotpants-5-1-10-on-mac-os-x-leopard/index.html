@@ -1,0 +1,166 @@
+<!doctype html>
+<html>
+  <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-158896843-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-158896843-1');
+    </script>
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){
+        w[l]=w[l]||[];w[l].push(
+          {'gtm.start':
+           new Date().getTime(),event:'gtm.js'}
+        );var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-NXBHQLG');
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Okome Studio is a software consultancy">
+    <link rel="icon" href="https://okomestudio.net/favicon.ico">
+    <link rel="stylesheet" href="https://okomestudio.net/reset.css">
+    <link rel="stylesheet" href="https://okomestudio.net/index.css">
+    <link rel="stylesheet" href="../../../static/style.css">
+    <link rel="stylesheet" href="../../../static/pygments.css">
+    <link rel="stylesheet" href="../../../static/gist.css">
+    <title>Installing HOTPANTS 5.1.10 on Mac OS X Leopard — biboroku</title>
+    <script type="text/javascript">
+      window.MathJax = {
+        tex: {
+          tags: 'ams'
+        }
+      };
+    </script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "AMS"} } });
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML">
+    </script>
+
+    <script type="text/javascript" src="static/pjump.js"></script>
+
+  </head>
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+      <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NXBHQLG"
+              height="0" width="0" style="display:none;visibility:hidden">
+      </iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <div class="container">
+      <header>
+        <h1><a href="https://okomestudio.net/biboroku">biboroku</a></h1>
+        <nav>
+          <ul class="nav navbar-nav">
+            <li><a href="https://okomestudio.net">OkomeStudio.net</a></li>
+            
+            <li><a href="../../../about/">About</a></li>
+            
+          </ul>
+        </nav>
+      </header>
+      <main>
+        
+  
+  <div class="blog-post">
+  
+    <h1>Installing HOTPANTS 5.1.10 on Mac OS X Leopard</h1>
+  
+  <p class="meta">
+    Written by
+    
+      Taro Sato
+    
+    on 2010-03-10
+  </p>
+  
+  <p>You must love the name, but what the software does is far from sultry;
+it’s a piece of geekware.</p>
+<p>Anyways, I needed to edit files when I install
+<a href="http://www.astro.washington.edu/users/becker/hotpants.html">HOTPANTS</a>,
+photometric alignment utility by Andrew Becker. Here is my
+installation note before I forget.</p>
+<p>HOTPANTS requires
+<a href="http://heasarc.nasa.gov/docs/software/fitsio/fitsio.html">CFITSIO</a> to
+be already installed. On Leopard I use <a href="http://web.mac.com/npirzkal/Scisoft/Scisoft.html">Scisoft OS
+X</a>, so I don’t have
+to install CFITSIO separately. Otherwise you have to install CFITSIO
+first.</p>
+<p>Download the
+<a href="http://www.astro.washington.edu/users/becker/software/hotpants_v5.1.10.tar.gz">tarball</a>
+and expand it into a temporary directory.</p>
+<p>First, you need to delete (or comment out) the line which reads</p>
+<div class="hll"><pre><span></span><span class="cp">#include</span><span class="cpf">&lt;malloc.h&gt;</span><span class="cp"></span>
+</pre></div>
+<p>from all *<em>.c</em> source code files.</p>
+<p>Then modify <em>Makefile</em>. To link CFITSIO properly, modify <code>CFITSIOINCDIR</code> and <code>LIBDIR</code>:</p>
+<div class="hll"><pre><span></span><span class="nv">CFITSIOINCDIR</span><span class="o">=</span>/Applications/scisoft/i386/Packages/cfitsio/include
+<span class="nv">LIBDIR</span><span class="o">=</span>/Applications/scisoft/i386/Packages/cfitsio/lib
+</pre></div>
+<p>This is fine if you have Scisoft OS X. If you installed CFITSIO
+elsewhere, you have to find the paths yourself.</p>
+<p>You should also remove the <code>-pedantic-errors</code> option from <code>COPTS</code> so
+that the line reads like:</p>
+<div class="hll"><pre><span></span><span class="nv">COPTS</span><span class="o">=</span> -funroll-loops -O3 -ansi -Wall -I<span class="k">$(</span>CFITSIOINCDIR<span class="k">)</span>
+</pre></div>
+<p>Then run <strong><code>make</code></strong> within the same directory.</p>
+<p>That’s it. You might wish to copy the binaries <strong><code>hotpants</code></strong>,
+<strong><code>extractkern</code></strong>, and <strong><code>maskim</code></strong> to one of those bin directories in
+your <code>PATH</code>.</p>
+<h2>Building 64-bit HOTPANTS</h2>
+<p>The 64-bit version of HOTPANTS is twice as sultry, I need to try it.
+The change is that you need to first <a href="http://nomo17k.wordpress.com/2010/03/11/installing-64-bit-cfitsio-3-181-on-mac-os-x-leopard/">build 64-bit version of
+CFITSIO</a>.</p>
+<p>The procedure is basically similar to the one above, with a couple of changes:</p>
+<div class="hll"><pre><span></span><span class="nv">CFITSIOINCDIR</span><span class="o">=</span>/usr/local/src/cfitsio/cfitsio/include
+<span class="nv">LIBDIR</span><span class="o">=</span>/usr/local/src/cfitsio/cfitsio/lib
+</pre></div>
+<p>Basically you need to point them to the locations where you installed
+the 64-bit CFITSIO; see the CFITSIO installation note using the link
+above. Another change is in the compiler options:</p>
+<div class="hll"><pre><span></span><span class="nv">COPTS</span><span class="o">=</span> -m64 -funroll-loops -O3 -ansi -Wall -I<span class="k">$(</span>CFITSIOINCDIR<span class="k">)</span>
+</pre></div>
+<p>These should be the only difference.</p>
+
+  
+  </div>
+
+  
+  <div class="comments">
+<div id="disqus_thread"></div>
+<script>
+  var disqus_config = function() { this.page.identifier = "/1003-installing-hotpants-5-1-10-on-mac-os-x-leopard"; };
+  (function() {
+    var d = document, s = d.createElement('script');
+    s.src = '//biboroku.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>
+  Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript"
+    rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+</div>
+  
+
+
+      </main>
+      <footer>
+        Copyright &copy; 2007 - 2020 by Okome Studio / Taro Sato. All Rights Reserved.
+      </footer>
+    </div>
+  </body>
+</html>

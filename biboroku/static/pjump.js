@@ -1,6 +1,7 @@
 /* The following code is to map old param-based WordPress URLs to the current path-based URLs. */
 
 var urlmap = {
+  636: "2010/03/installing-hotpants-5-1-10-on-mac-os-x-leopard",
   824: "2010/03/installing-sextractor-on-mac-os-x-snow-leopard",
   986: "2010/06/testing-if-a-point-is-inside-a-polygon-in-python",
   1131: "2010/11/installing-f-lux-on-debian-squeeze",
