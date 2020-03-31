@@ -1,0 +1,201 @@
+<!doctype html>
+<html>
+  <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-158896843-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-158896843-1');
+    </script>
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){
+        w[l]=w[l]||[];w[l].push(
+          {'gtm.start':
+           new Date().getTime(),event:'gtm.js'}
+        );var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-NXBHQLG');
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Okome Studio is a software consultancy">
+    <link rel="icon" href="https://okomestudio.net/favicon.ico">
+    <link rel="stylesheet" href="https://okomestudio.net/reset.css">
+    <link rel="stylesheet" href="https://okomestudio.net/index.css">
+    <link rel="stylesheet" href="../../../static/style.css">
+    <link rel="stylesheet" href="../../../static/pygments.css">
+    <link rel="stylesheet" href="../../../static/gist.css">
+    <title>Formatting a USB Drive with ext4 for Use with Linux — biboroku</title>
+    <script type="text/javascript">
+      window.MathJax = {
+        tex: {
+          tags: 'ams'
+        }
+      };
+    </script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "AMS"} } });
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML">
+    </script>
+
+    <script type="text/javascript" src="static/pjump.js"></script>
+
+  </head>
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+      <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NXBHQLG"
+              height="0" width="0" style="display:none;visibility:hidden">
+      </iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <div class="container">
+      <header>
+        <h1><a href="https://okomestudio.net/biboroku">biboroku</a></h1>
+        <nav>
+          <ul class="nav navbar-nav">
+            <li><a href="https://okomestudio.net">OkomeStudio.net</a></li>
+            
+            <li><a href="../../../about/">About</a></li>
+            
+          </ul>
+        </nav>
+      </header>
+      <main>
+        
+  
+  <div class="blog-post">
+  
+    <h1>Formatting a USB Drive with ext4 for Use with Linux</h1>
+  
+  <p class="meta">
+    Written by
+    
+      Taro Sato
+    
+    on 2009-03-27
+  </p>
+  
+  <p>I wish to use an external USB drive exclusively on a Linux system (in
+my case, Debian). I want to use the ext4 filesystem. Note that this
+method wipes out the filesystem on the drive.</p>
+<p>Install hotplug-type package such that upon plugging the USB drive in
+the device is attached to somewhere in the system. I use KDE and it
+automatically prepares such an environment. When a USB drive is
+plugged in, I should see a message like this one in the system log:</p>
+<div class="hll"><pre><span></span>$ sudo tail /var/log/messages
+Dec <span class="m">16</span> <span class="m">02</span>:07:51 kernel: <span class="o">[</span> <span class="m">3000</span>.544361<span class="o">]</span> scsi11 : usb-storage <span class="m">3</span>-2:1.0
+...
+Dec <span class="m">16</span> <span class="m">02</span>:07:56 mochi kernel: <span class="o">[</span> <span class="m">3005</span>.882879<span class="o">]</span>  sdb: sdb1
+...
+</pre></div>
+<p>or I may see something like this instead (I’m using USB 3.0 adapter
+now):</p>
+<div class="hll"><pre><span></span>$ sudo tail -n <span class="m">100</span> /var/log/messages <span class="p">|</span> grep sd
+...
+May  <span class="m">3</span> <span class="m">12</span>:38:33 mochi kernel: <span class="o">[</span>   <span class="m">12</span>.773057<span class="o">]</span> sd <span class="m">6</span>:0:0:0: <span class="o">[</span>sdb<span class="o">]</span> Spinning up disk...
+May  <span class="m">3</span> <span class="m">12</span>:38:39 mochi kernel: <span class="o">[</span>   <span class="m">18</span>.782284<span class="o">]</span> sd <span class="m">6</span>:0:0:0: <span class="o">[</span>sdb<span class="o">]</span> <span class="m">3906963456</span> <span class="m">512</span>-byte logical blocks: <span class="o">(</span><span class="m">2</span>.00 TB/1.81 TiB<span class="o">)</span>
+May  <span class="m">3</span> <span class="m">12</span>:38:39 mochi kernel: <span class="o">[</span>   <span class="m">18</span>.783052<span class="o">]</span> sd <span class="m">6</span>:0:0:0: <span class="o">[</span>sdb<span class="o">]</span> Write Protect is off
+May  <span class="m">3</span> <span class="m">12</span>:38:39 mochi kernel: <span class="o">[</span>   <span class="m">18</span>.794337<span class="o">]</span>  sdb: sdb1
+May  <span class="m">3</span> <span class="m">12</span>:38:39 mochi kernel: <span class="o">[</span>   <span class="m">18</span>.795569<span class="o">]</span> sd <span class="m">6</span>:0:0:0: <span class="o">[</span>sdb<span class="o">]</span> Attached SCSI disk
+</pre></div>
+<p>Here, I find the device is at <em>/dev/sdb</em> and there is only one
+partition, <em>/dev/sdb1</em>, for example. I can also see all the disk
+devices as follows:</p>
+<div class="hll"><pre><span></span>$ sudo fdisk -l
+
+Disk /dev/sda: <span class="m">80</span>.0 GB, <span class="m">80026361856</span> bytes
+<span class="m">240</span> heads, <span class="m">63</span> sectors/track, <span class="m">10337</span> cylinders
+<span class="nv">Units</span> <span class="o">=</span> cylinders of <span class="m">15120</span> * <span class="nv">512</span> <span class="o">=</span> <span class="m">7741440</span> bytes
+Sector size <span class="o">(</span>logical/physical<span class="o">)</span>: <span class="m">512</span> bytes / <span class="m">512</span> bytes
+I/O size <span class="o">(</span>minimum/optimal<span class="o">)</span>: <span class="m">512</span> bytes / <span class="m">512</span> bytes
+Disk identifier: 0xbd3cc0bb
+
+   Device Boot      Start         End      Blocks   Id  System
+/dev/sda1               <span class="m">1</span>       <span class="m">10338</span>    <span class="m">78149633</span>    <span class="m">5</span>  Extended
+/dev/sda5               <span class="m">1</span>          <span class="m">46</span>      <span class="m">340992</span>   <span class="m">83</span>  Linux
+/dev/sda6              <span class="m">46</span>          <span class="m">52</span>       <span class="m">48128</span>   <span class="m">83</span>  Linux
+/dev/sda7              <span class="m">52</span>         <span class="m">698</span>     <span class="m">4881408</span>   <span class="m">83</span>  Linux
+/dev/sda8             <span class="m">698</span>        <span class="m">1086</span>     <span class="m">2928640</span>   <span class="m">83</span>  Linux
+/dev/sda9            <span class="m">1086</span>        <span class="m">1861</span>     <span class="m">5858304</span>   <span class="m">83</span>  Linux
+/dev/sda10           <span class="m">1861</span>        <span class="m">2830</span>     <span class="m">7323648</span>   <span class="m">83</span>  Linux
+/dev/sda11           <span class="m">9305</span>       <span class="m">10338</span>     <span class="m">7812096</span>   <span class="m">82</span>  Linux swap / Solaris
+/dev/sda12           <span class="m">2830</span>        <span class="m">9304</span>    <span class="m">48949248</span>   <span class="m">83</span>  Linux
+
+Partition table entries are not in disk order
+
+Disk /dev/sdb: <span class="m">2000</span>.4 GB, <span class="m">2000365289472</span> bytes
+<span class="m">255</span> heads, <span class="m">63</span> sectors/track, <span class="m">243197</span> cylinders
+<span class="nv">Units</span> <span class="o">=</span> cylinders of <span class="m">16065</span> * <span class="nv">512</span> <span class="o">=</span> <span class="m">8225280</span> bytes
+Sector size <span class="o">(</span>logical/physical<span class="o">)</span>: <span class="m">512</span> bytes / <span class="m">512</span> bytes
+I/O size <span class="o">(</span>minimum/optimal<span class="o">)</span>: <span class="m">512</span> bytes / <span class="m">512</span> bytes
+Disk identifier: 0x0005f107
+
+   Device Boot      Start         End      Blocks   Id  System
+/dev/sdb1               <span class="m">1</span>      <span class="m">243198</span>  <span class="m">1953480704</span>    <span class="m">7</span>  HPFS/NTFS
+</pre></div>
+<p>When the USB drive is new, the partition is most likely formatted in
+FAT or NTFS unless the drive is pre-formatted specifically for OS
+X. Now, prepare the partition for Linux:</p>
+<div class="hll"><pre><span></span>$ sudo fdisk /dev/sdb
+</pre></div>
+<p>See help for detail by pressing <code>m</code> on the <strong><code>fdisk</code></strong> command
+shell. For example, press <code>p</code> to see the list of partitions in the
+disk. To create a new one press <code>n</code> (probably after deleting one or
+more partitions by pressing <code>d</code>). Finally press <code>w</code> to actually make
+changes to the drive. To use ext4 filesystem, do:</p>
+<div class="hll"><pre><span></span>$ sudo mkfs.ext4 /dev/sdb1
+</pre></div>
+<p>after exiting <strong><code>fdisk</code></strong>.</p>
+<p>If I always mount this drive on boot, add a line like this to
+<em>/etc/fstab</em>:</p>
+<div class="hll"><pre><span></span>/dev/sdc1 /media/usbdrive ext4 defaults <span class="m">0</span> <span class="m">0</span>
+</pre></div>
+<p>assuming <em>/media/usbdrive</em> is the mount point. If I use KDE, adding an
+entry to <em>/etc/fstab</em> is no longer necessary; I can easily manage
+external drives with Device Notifier.</p>
+<h2>Update History</h2>
+<p>Feb 20, 2014 &#8212; Updated following a comment by Ugly Mug.</p>
+<p>May 3, 2012 &#8212; Updated for my current system.</p>
+<p>December 17, 2010 &#8212; Modified to use ext4 filesystem.</p>
+
+  
+  </div>
+
+  
+  <div class="comments">
+<div id="disqus_thread"></div>
+<script>
+  var disqus_config = function() { this.page.identifier = "/0903-formatting-a-usb-drive-for-use-with-debian"; };
+  (function() {
+    var d = document, s = d.createElement('script');
+    s.src = '//biboroku.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>
+  Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript"
+    rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+</div>
+  
+
+
+      </main>
+      <footer>
+        Copyright &copy; 2007 - 2020 by Okome Studio / Taro Sato. All Rights Reserved.
+      </footer>
+    </div>
+  </body>
+</html>

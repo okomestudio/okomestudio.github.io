@@ -1,0 +1,153 @@
+<!doctype html>
+<html>
+  <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-158896843-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-158896843-1');
+    </script>
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){
+        w[l]=w[l]||[];w[l].push(
+          {'gtm.start':
+           new Date().getTime(),event:'gtm.js'}
+        );var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-NXBHQLG');
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Okome Studio is a software consultancy">
+    <link rel="icon" href="https://okomestudio.net/favicon.ico">
+    <link rel="stylesheet" href="https://okomestudio.net/reset.css">
+    <link rel="stylesheet" href="https://okomestudio.net/index.css">
+    <link rel="stylesheet" href="../../../static/style.css">
+    <link rel="stylesheet" href="../../../static/pygments.css">
+    <link rel="stylesheet" href="../../../static/gist.css">
+    <title>Creating Debian Wheezy Installation USB Stick — biboroku</title>
+    <script type="text/javascript">
+      window.MathJax = {
+        tex: {
+          tags: 'ams'
+        }
+      };
+    </script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "AMS"} } });
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML">
+    </script>
+
+    <script type="text/javascript" src="static/pjump.js"></script>
+
+  </head>
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+      <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NXBHQLG"
+              height="0" width="0" style="display:none;visibility:hidden">
+      </iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <div class="container">
+      <header>
+        <h1><a href="https://okomestudio.net/biboroku">biboroku</a></h1>
+        <nav>
+          <ul class="nav navbar-nav">
+            <li><a href="https://okomestudio.net">OkomeStudio.net</a></li>
+            
+            <li><a href="../../../about/">About</a></li>
+            
+          </ul>
+        </nav>
+      </header>
+      <main>
+        
+  
+  <div class="blog-post">
+  
+    <h1>Creating Debian Wheezy Installation USB Stick</h1>
+  
+  <p class="meta">
+    Written by
+    
+      Taro Sato
+    
+    on 2014-02-20
+  </p>
+  
+  <p>The simplest way to create a bootable USB stick for Debian
+installation is to use command <strong><code>dd</code></strong> to copy an ISO image to an
+empty USB stick.</p>
+<p>First, connect an empty USB stick to a working Linux box, and see
+which device represents the stick:</p>
+<div class="hll"><pre><span></span>$ sudo fdisk -l
+...
+Disk /dev/sdb: <span class="m">16</span>.0 GB, <span class="m">16008609792</span> bytes
+<span class="m">255</span> heads, <span class="m">63</span> sectors/track, <span class="m">1946</span> cylinders, total <span class="m">31266816</span> sectors
+<span class="nv">Units</span> <span class="o">=</span> sectors of <span class="m">1</span> * <span class="nv">512</span> <span class="o">=</span> <span class="m">512</span> bytes
+Sector size <span class="o">(</span>logical/physical<span class="o">)</span>: <span class="m">512</span> bytes / <span class="m">512</span> bytes
+I/O size <span class="o">(</span>minimum/optimal<span class="o">)</span>: <span class="m">512</span> bytes / <span class="m">512</span> bytes
+Disk identifier: 0xb745c02d
+
+   Device Boot      Start         End      Blocks   Id  System
+/dev/sdb1              <span class="m">32</span>    <span class="m">31266815</span>    <span class="m">15633392</span>    c  W95 FAT32 <span class="o">(</span>LBA<span class="o">)</span>
+</pre></div>
+<p>So, on my computer, <em>/dev/sdb</em> is the USB stick. Whatever is on it will
+be deleted and overwritten in this procedure, so make sure that I use
+a stick with large enough disk capacity specifically for this purpose.</p>
+<p>When I use netinst installer, about 300 MB would be enough.  When the
+access to the network is not guaranteed during the installation (e.g.,
+the network adapter is not properly recognized by the Debian
+Installer), it is desired to at least use the full CD/DVD media, which
+would take about 4 GB (just the first medium should be enough for bare
+minimal installation, after which more full configuration can be
+resumed).</p>
+<p>Download an ISO image for the Debian installer:</p>
+<div class="hll"><pre><span></span>$ wget http://cdimage.debian.org/debian-cd/7.4.0/amd64/iso-cd/debian-7.4.0-amd64-netinst.iso
+</pre></div>
+<p>Then copy the ISO image to the USB stick:</p>
+<div class="hll"><pre><span></span>$ sudo dd <span class="k">if</span><span class="o">=</span>debian-7.4.0-amd64-netinst.iso <span class="nv">of</span><span class="o">=</span>/dev/sdb <span class="nv">bs</span><span class="o">=</span>4M
+$ sudo sync
+</pre></div>
+
+  
+  </div>
+
+  
+  <div class="comments">
+<div id="disqus_thread"></div>
+<script>
+  var disqus_config = function() { this.page.identifier = "/1402-installing-debian-wheezy-from-a-usb-stick"; };
+  (function() {
+    var d = document, s = d.createElement('script');
+    s.src = '//biboroku.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>
+  Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript"
+    rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+</div>
+  
+
+
+      </main>
+      <footer>
+        Copyright &copy; 2007 - 2020 by Okome Studio / Taro Sato. All Rights Reserved.
+      </footer>
+    </div>
+  </body>
+</html>

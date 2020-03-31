@@ -1,0 +1,181 @@
+<!doctype html>
+<html>
+  <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-158896843-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-158896843-1');
+    </script>
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){
+        w[l]=w[l]||[];w[l].push(
+          {'gtm.start':
+           new Date().getTime(),event:'gtm.js'}
+        );var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-NXBHQLG');
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Okome Studio is a software consultancy">
+    <link rel="icon" href="https://okomestudio.net/favicon.ico">
+    <link rel="stylesheet" href="https://okomestudio.net/reset.css">
+    <link rel="stylesheet" href="https://okomestudio.net/index.css">
+    <link rel="stylesheet" href="../../../static/style.css">
+    <link rel="stylesheet" href="../../../static/pygments.css">
+    <link rel="stylesheet" href="../../../static/gist.css">
+    <title>Installing Debian Squeeze from Hard Disk — biboroku</title>
+    <script type="text/javascript">
+      window.MathJax = {
+        tex: {
+          tags: 'ams'
+        }
+      };
+    </script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "AMS"} } });
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML">
+    </script>
+
+    <script type="text/javascript" src="static/pjump.js"></script>
+
+  </head>
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+      <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NXBHQLG"
+              height="0" width="0" style="display:none;visibility:hidden">
+      </iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <div class="container">
+      <header>
+        <h1><a href="https://okomestudio.net/biboroku">biboroku</a></h1>
+        <nav>
+          <ul class="nav navbar-nav">
+            <li><a href="https://okomestudio.net">OkomeStudio.net</a></li>
+            
+            <li><a href="../../../about/">About</a></li>
+            
+          </ul>
+        </nav>
+      </header>
+      <main>
+        
+  
+  <div class="blog-post">
+  
+    <h1>Installing Debian Squeeze from Hard Disk</h1>
+  
+  <p class="meta">
+    Written by
+    
+      Taro Sato
+    
+    on 2010-12-14
+  </p>
+  
+  <p>Unfortunately the Debian installer does not work on my Dell desktop
+box. I still wanted to do a fresh install of Squeeze, and the only
+sensible option for me was to install off hard disk. I have been
+having the same issue for several months and I have not been able to
+solve it myself, and nobody responds to my bug report; however, this
+hard drive method may work well even if I have a working install USB
+stick/CD media.</p>
+<p>I assume that a working Linux installation exists on the system
+already; it will only be used to launch the installer. (In practice, I
+used an existing Lenny installation to go through this procedure, only
+to wipe it over with Squeeze.) For this note I use the Debian
+installer beta 2 for Squeeze (AMD64).</p>
+<p>Create a partition large enough to hold a netinst .iso image (~ 170
+MB) plus maybe 20 MB for kernel image and whatnot. For illustration, I
+assume it is at <em>/dev/sda11</em>.  Move to a temporary working directory,
+download some files, mount the partition, and copy files to the
+install partition:</p>
+<div class="hll"><pre><span></span>$ wget http://ftp.nl.debian.org/debian/dists/testing/main/installer-amd64/current/images/hd-media/initrd.gz
+$ wget http://ftp.nl.debian.org/debian/dists/testing/main/installer-amd64/current/images/hd-media/vmlinuz
+$ wget http://cdimage.debian.org/cdimage/squeeze_di_beta2/amd64/iso-cd/debian-squeeze-di-beta2-amd64-netinst.iso
+$ mkdir mnt
+$ sudo mount /dev/sda11 mnt
+$ sudo cp initrd.gz mnt
+$ sudo cp vmlinuz mnt
+$ sudo cp debian-squeeze-di-beta2-amd64-netinst.iso mnt/netinst.iso
+$ sudo umount /dev/sda11
+</pre></div>
+<p>Now I need to modify the GRUB menu to add an entry for the installer
+that I just made.</p>
+<p>For the new GRUB version 2, an entry in <em>/boot/grub/grub.cfg</em> looks a
+bit complicated:</p>
+<div class="hll"><pre><span></span>menuentry <span class="s1">&#39;Squeeze Installer Beta 2&#39;</span> --class debian --class gnu-linux --class os <span class="o">{</span>
+  insmod part_msdos
+  insmod ext2
+  <span class="nb">set</span> <span class="nv">root</span><span class="o">=</span><span class="s1">&#39;&lt;em&gt;(hd0,msdos11)&lt;/em&gt;&#39;</span>
+  search --no-floppy --fs-uuid --set &lt;em&gt;SOMELENGTHYHASH&lt;/em&gt;
+  <span class="nb">echo</span> <span class="s1">&#39;Loading Squeeze installer&#39;</span>
+  linux /vmlinuz <span class="nv">root</span><span class="o">=</span><span class="nv">UUID</span><span class="o">=</span>&lt;em&gt;SOMELENGTHYHASH&lt;/em&gt;
+  <span class="nb">echo</span> <span class="s1">&#39;Loading init ramdisk&#39;</span>
+  initrd /initrd.gz
+<span class="o">}</span>
+</pre></div>
+<p>Here, the root in which the install partition is the eleventh
+partition of the first hard drive (hence <code>hd0, msdos11</code>). With the
+lengthy UUID hash for the hard drive, I’d just copy one of the GRUB
+entries for working installations.</p>
+<p>For an old version of GRUB, an entry in <em>/boot/grub/menu.lst</em> would
+look like this:</p>
+<div class="hll"><pre><span></span>title  Squeeze Installer Beta <span class="m">2</span>
+root   <span class="o">(</span>hd0,10<span class="o">)</span>
+kernel /vmlinuz
+initrd /initrd.gz
+</pre></div>
+<p>This means the install partition is located at the 11th partition of
+the first hard drive, and the paths to the kernel and initrd images
+are located at the topmost level of the partition. This is the sort of
+entry I copy and paste from other entries in <em>/boot/grub/menu.lst</em>.</p>
+<p>After reboot, select the menu entry just added and I will be starting
+the installer right away!</p>
+<p>IMPORTANT: When I partition the drive during the installation process,
+do not mount the install partition. If I do, the partitioning and the
+subsequent installation will fail.</p>
+
+  
+  </div>
+
+  
+  <div class="comments">
+<div id="disqus_thread"></div>
+<script>
+  var disqus_config = function() { this.page.identifier = "/1012-installing-debian-squeeze-from-hard-disk"; };
+  (function() {
+    var d = document, s = d.createElement('script');
+    s.src = '//biboroku.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>
+  Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript"
+    rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+</div>
+  
+
+
+      </main>
+      <footer>
+        Copyright &copy; 2007 - 2020 by Okome Studio / Taro Sato. All Rights Reserved.
+      </footer>
+    </div>
+  </body>
+</html>

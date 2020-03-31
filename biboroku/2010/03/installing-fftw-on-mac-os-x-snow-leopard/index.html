@@ -1,0 +1,152 @@
+<!doctype html>
+<html>
+  <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-158896843-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-158896843-1');
+    </script>
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){
+        w[l]=w[l]||[];w[l].push(
+          {'gtm.start':
+           new Date().getTime(),event:'gtm.js'}
+        );var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-NXBHQLG');
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Okome Studio is a software consultancy">
+    <link rel="icon" href="https://okomestudio.net/favicon.ico">
+    <link rel="stylesheet" href="https://okomestudio.net/reset.css">
+    <link rel="stylesheet" href="https://okomestudio.net/index.css">
+    <link rel="stylesheet" href="../../../static/style.css">
+    <link rel="stylesheet" href="../../../static/pygments.css">
+    <link rel="stylesheet" href="../../../static/gist.css">
+    <title>Installing FFTW on Mac OS X Snow Leopard — biboroku</title>
+    <script type="text/javascript">
+      window.MathJax = {
+        tex: {
+          tags: 'ams'
+        }
+      };
+    </script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "AMS"} } });
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML">
+    </script>
+
+    <script type="text/javascript" src="static/pjump.js"></script>
+
+  </head>
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+      <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NXBHQLG"
+              height="0" width="0" style="display:none;visibility:hidden">
+      </iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <div class="container">
+      <header>
+        <h1><a href="https://okomestudio.net/biboroku">biboroku</a></h1>
+        <nav>
+          <ul class="nav navbar-nav">
+            <li><a href="https://okomestudio.net">OkomeStudio.net</a></li>
+            
+            <li><a href="../../../about/">About</a></li>
+            
+          </ul>
+        </nav>
+      </header>
+      <main>
+        
+  
+  <div class="blog-post">
+  
+    <h1>Installing FFTW on Mac OS X Snow Leopard</h1>
+  
+  <p class="meta">
+    Written by
+    
+      Taro Sato
+    
+    on 2010-03-18
+  </p>
+  
+  <p>No FORTRAN compiler appears to be included in Xcode, so I need to
+install it if I haven’t done so. I <a href="https://okomestudio.net/biboroku/?p=827">installed
+GFortran</a>. In the configure
+statement below, set <code>F77</code> to <code>gfortran</code>.</p>
+<h3>Installing from Fink</h3>
+<p>For FFTW version 3.x, do:</p>
+<div class="hll"><pre><span></span>$ fink install fftw3 fftw3-shlibs
+</pre></div>
+<p>The library will be available under <em>/sw/lib</em>.</p>
+<h3>Installing from Source</h3>
+<p>The version of <a href="http://www.fftw.org/">FFTW</a> we use here is
+<a href="http://www.fftw.org/fftw-3.2.2.tar.gz">3.2.2</a>. Follow this:</p>
+<div class="hll"><pre><span></span>$ mkdir tmp
+$ <span class="nb">cd</span> tmp
+$ wget http://www.fftw.org/fftw-3.2.2.tar.gz
+$ tar -xvzf fftw-3.2.2.tar.gz
+$ <span class="nb">cd</span> fftw-3.2.2
+$ ./configure --prefix<span class="o">=</span>/usr/local/fftw-3.2.2 --enable-threads <span class="se">\</span>
+    <span class="nv">CC</span><span class="o">=</span><span class="s2">&quot;gcc -arch i386 -arch x86_64&quot;</span> <span class="nv">CXX</span><span class="o">=</span><span class="s2">&quot;g++ -arch i386 -arch x86_64&quot;</span> <span class="se">\</span>
+    <span class="nv">CPP</span><span class="o">=</span><span class="s2">&quot;gcc -E&quot;</span> <span class="nv">CXXCPP</span><span class="o">=</span><span class="s2">&quot;g++ -E&quot;</span> <span class="nv">F77</span><span class="o">=</span>gfortran
+$ make
+$ sudo make install
+$ sudo ln -s /usr/local/fftw-3.2.2 /usr/local/fftw
+</pre></div>
+<p>This will install FFTW under <em>/usr/local/fftw-3.2.2</em>. If a single
+precision version also needs to be installed, add <code>--enable-single</code> to
+the configure statement above and do the configure/make/make install
+sequence again (it’s a good idea to run <strong><code>make clean</code></strong> before the
+second time around though).</p>
+<h2>Update History</h2>
+<p>November 24, 2010 &#8211; Added the Fink version. Changed the
+installation directory to <em>/usr/local/fftw</em> to avoid potential
+conflict later.</p>
+
+  
+  </div>
+
+  
+  <div class="comments">
+<div id="disqus_thread"></div>
+<script>
+  var disqus_config = function() { this.page.identifier = "/1003-installing-fftw-on-mac-os-x-snow-leopard"; };
+  (function() {
+    var d = document, s = d.createElement('script');
+    s.src = '//biboroku.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>
+  Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript"
+    rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+</div>
+  
+
+
+      </main>
+      <footer>
+        Copyright &copy; 2007 - 2020 by Okome Studio / Taro Sato. All Rights Reserved.
+      </footer>
+    </div>
+  </body>
+</html>
