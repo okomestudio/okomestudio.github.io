@@ -1,0 +1,165 @@
+<!doctype html>
+<html>
+  <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-158896843-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-158896843-1');
+    </script>
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){
+        w[l]=w[l]||[];w[l].push(
+          {'gtm.start':
+           new Date().getTime(),event:'gtm.js'}
+        );var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-NXBHQLG');
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Okome Studio is a software consultancy">
+    <link rel="icon" href="https://okomestudio.net/favicon.ico">
+    <link rel="stylesheet" href="https://okomestudio.net/reset.css">
+    <link rel="stylesheet" href="https://okomestudio.net/index.css">
+    <link rel="stylesheet" href="../../../static/style.css">
+    <link rel="stylesheet" href="../../../static/pygments.css">
+    <link rel="stylesheet" href="../../../static/gist.css">
+    <title>Installing ATLAS on Mac OS X Snow Leopard — biboroku</title>
+    <script type="text/javascript">
+      window.MathJax = {
+        tex: {
+          tags: 'ams'
+        }
+      };
+    </script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "AMS"} } });
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML">
+    </script>
+
+    <script type="text/javascript" src="static/pjump.js"></script>
+
+  </head>
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+      <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NXBHQLG"
+              height="0" width="0" style="display:none;visibility:hidden">
+      </iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <div class="container">
+      <header>
+        <h1><a href="https://okomestudio.net/biboroku">biboroku</a></h1>
+        <nav>
+          <ul class="nav navbar-nav">
+            <li><a href="https://okomestudio.net">OkomeStudio.net</a></li>
+            
+            <li><a href="../../../about/">About</a></li>
+            
+          </ul>
+        </nav>
+      </header>
+      <main>
+        
+  
+  <div class="blog-post">
+  
+    <h1>Installing ATLAS on Mac OS X Snow Leopard</h1>
+  
+  <p class="meta">
+    Written by
+    
+      Taro Sato
+    
+    on 2010-03-22
+  </p>
+  
+  <h2>Installing from Fink</h2>
+<p>Do:</p>
+<div class="hll"><pre><span></span>$ fink install atlas atlas-shlibs
+</pre></div>
+<p>That’s it. They will be installed under <em>/sw/lib</em>.</p>
+<h2>Installing from Source (Recommended if Building Other Software That Depends on ATLAS)</h2>
+<p>First of all, I need a FORTRAN compiler, so <a href="https://okomestudio.net/biboroku?p=827">install
+it</a>. I recommend using the Mac
+installer from the GCC Wiki site, so that GFortran won’t end up having
+hard-to-track-down dependencies.</p>
+<p>I download tarballs for <a href="http://math-atlas.sourceforge.net/">ATLAS</a>
+and <a href="http://www.netlib.org/lapack/">LAPACK</a> from the official
+repositories. Here I use ATLAS 3.9.32 and LAPACK 3.3.0. I assume the
+compiled library and header files will be installed at
+<em>/usr/local/atlas</em>.</p>
+<p>Here is the procedure:</p>
+<div class="hll"><pre><span></span>$ mkdir tmp
+$ <span class="nb">cd</span> tmp
+$ wget http://www.netlib.org/lapack/lapack.tgz
+... download the tarball <span class="k">for</span> ATLAS from sourceforge ...
+$ tar -xvjf atlas3.9.32.tar.bz2
+$ mv ATLAS atlas-3.9.32
+$ ln -s atlas-3.9.32 atlas
+$ <span class="nb">cd</span> atlas
+$ mkdir bld
+$ <span class="nb">cd</span> bld
+$ ../configure -b <span class="m">64</span> --shared --prefix<span class="o">=</span>/usr/local/atlas-3.9.32 <span class="se">\</span>
+    --with-netlib-lapack-tarfile<span class="o">=</span>../../lapack.tgz
+$ make build
+</pre></div>
+<p>If I wish to do some checking, do:</p>
+<div class="hll"><pre><span></span>$ make check
+...
+$ make <span class="nb">time</span>
+...
+</pre></div>
+<p>(I may wish to compare the output with <em>doc/atlas_install.pdf</em>.)</p>
+<p>If I don’t find any problem, do:</p>
+<div class="hll"><pre><span></span>$ sudo make install
+$ sudo ln -s /usr/local/atlas-3.9.32 /usr/local/atlas
+</pre></div>
+<p>That’s it.</p>
+<h2>Update History</h2>
+<p>November 24, 2010 &#8211; Added the Fink section. Using the most
+recent versions of ATLAS and LAPACK. Made the install directory more
+explicit to the version installed.</p>
+
+  
+  </div>
+
+  
+  <div class="comments">
+<div id="disqus_thread"></div>
+<script>
+  var disqus_config = function() { this.page.identifier = "/1003-installing-atlas-on-mac-os-x-snow-leopard"; };
+  (function() {
+    var d = document, s = d.createElement('script');
+    s.src = '//biboroku.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>
+  Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript"
+    rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+</div>
+  
+
+
+      </main>
+      <footer>
+        Copyright &copy; 2007 - 2020 by Okome Studio / Taro Sato. All Rights Reserved.
+      </footer>
+    </div>
+  </body>
+</html>
