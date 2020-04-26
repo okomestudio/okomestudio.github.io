@@ -1,306 +1,368 @@
-<!doctype html>
-<html>
-  <head>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-158896843-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'UA-158896843-1');
-    </script>
-
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){
-        w[l]=w[l]||[];w[l].push(
-          {'gtm.start':
-           new Date().getTime(),event:'gtm.js'}
-        );var f=d.getElementsByTagName(s)[0],
-              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-      })(window,document,'script','dataLayer','GTM-NXBHQLG');
-    </script>
-    <!-- End Google Tag Manager -->
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="theme-color" content="#000000">
-    <meta name="description" content="Okome Studio is a software consultancy">
-    <link rel="icon" href="https://okomestudio.net/favicon.ico">
-    <link rel="stylesheet" href="https://okomestudio.net/reset.css">
-    <link rel="stylesheet" href="https://okomestudio.net/index.css">
-    <link rel="stylesheet" href="./static/style.css">
-    <link rel="stylesheet" href="./static/pygments.css">
-    <link rel="stylesheet" href="./static/gist.css">
-    <title>Welcome to biboroku! — biboroku</title>
-    <script type="text/javascript">
-      window.MathJax = {
-        tex: {
-          tags: 'ams'
-        }
-      };
-    </script>
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "AMS"} } });
-    </script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML">
-    </script>
-
-    <script type="text/javascript" src="static/pjump.js"></script>
-
-  </head>
-  <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript>
-      <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NXBHQLG"
-              height="0" width="0" style="display:none;visibility:hidden">
-      </iframe>
-    </noscript>
-    <!-- End Google Tag Manager (noscript) -->
-
-    <div class="container">
-      <header>
-        <h1><a href="https://okomestudio.net/biboroku">biboroku</a></h1>
-        <nav>
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="https://okomestudio.net">OkomeStudio.net</a></li>
-            
-            <li><a href="./about/">About</a></li>
-            
-          </ul>
-        </nav>
-      </header>
-      <main>
-        
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta name="generator" content="Hugo 0.54.0" />
   
-    
-  <div class="blog-post">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-158896843-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-158896843-1');
+  </script>
+
   
-    <h1><a href="./2020/04/on-lazy-logging-evaluation/">On Lazy Logging Evaluation</a></h1>
+  <script>(function(w,d,s,l,i){
+      w[l]=w[l]||[];w[l].push(
+        {'gtm.start':
+         new Date().getTime(),event:'gtm.js'}
+      );var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NXBHQLG');
+  </script>
+  
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="Okome Studio is a software consultancy">
+	
+	
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="icon" href="https://okomestudio.net/favicon.ico">
+  <link rel="stylesheet" href="https://okomestudio.net/reset.css">
+  <link rel="stylesheet" href="https://okomestudio.net/index.css">
+  <link rel="stylesheet" href="/biboroku/css/style.css">
+  <link rel="stylesheet" href="/biboroku/css/codesyntax.css">
+  <link rel="stylesheet" href="/biboroku/css/gist.css">
+  <title>Welcome — Biboroku</title>
+
+  <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        tags: 'ams'
+      }
+    };
+  </script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "AMS"} } });
+  </script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML">
+  </script>
+
+  <script type="text/javascript" src="/biboroku/css/pjump.js"></script>
+
+  <link rel="alternate" type="application/rss+xml" href="/biboroku/index.xml" title="Biboroku">
+</head>
+<body>
+  
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NXBHQLG"
+            height="0" width="0" style="display:none;visibility:hidden">
+    </iframe>
+  </noscript>
+  
+
+  <div class="container">
+	<header>
+  <h1><a href="https://okomestudio.net/biboroku">Biboroku</a></h1>
+  <nav>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="https://okomestudio.net">OkomeStudio.net</a></li>
+      <li class="active"><a href="https://okomestudio.net/biborokuabout">About</a></li>
+    </ul>
+  </nav>
+</header>
+
+	
+  <main>
+		
+		
+		  <article class="blog-post">
+	<h1><a href="https://okomestudio.net/biboroku/2020/04/on-lazy-logging-evaluation/">On Lazy Logging Evaluation</a></h1>
   
   <p class="meta">
-    Written by
-    
-      Taro Sato
-    
-    on 2020-04-14
+    Written by Taro Sato
+    on <time>April 14, 2020</time>.
+    Tagged:
+	  
+	  <a href="/biboroku/tags/python">Python</a>
+	  
   </p>
   
-  The stdlib logging package in Python encourages the C-style message format string and passing variables as arguments to its log method. For example, logging.debug(&#34;Result x = %d, y = %d&#34; % (x, y)) # Bad logging.debug(&#34;Result x = %d, y = %d&#34;, x, y) #...
-  <a href="./2020/04/on-lazy-logging-evaluation/">Continue reading</a>.
-  
-  </div>
+	<div>
+		The stdlib logging package in Python encourages the C-style message format string and passing variables as arguments to its log method. For example,
+logging.debug(&#34;Result x = %d, y = %d&#34; % (x, y)) # Bad logging.debug(&#34;Result x = %d, y = %d&#34;, x, y) # Good or
+		
+		...	<a href="https://okomestudio.net/biboroku/2020/04/on-lazy-logging-evaluation/">Continue reading</a>.
+		
+	</div>
+</article>
 
-  
-
-  
-    
-  <div class="blog-post">
-  
-    <h1><a href="./2014/05/interpreting-ab-test-using-python/">Interpreting A/B Test using Python</a></h1>
+		
+		  <article class="blog-post">
+	<h1><a href="https://okomestudio.net/biboroku/2014/05/interpreting-ab-test-using-python/">Interpreting A/B Test using Python</a></h1>
   
   <p class="meta">
-    Written by
-    
-      Taro Sato
-    
-    on 2014-05-12
+    Written by Taro Sato
+    on <time>May 12, 2014</time>.
+    Tagged:
+	  
+	  <a href="/biboroku/tags/python">Python</a>
+	  
+	  <a href="/biboroku/tags/stats">stats</a>
+	  
+	  <a href="/biboroku/tags/visualization">visualization</a>
+	  
   </p>
   
-  Suppose we ran an A/B test with two different versions of a web page, \( a \) and \( b \), for which we count the number of visitors and whether they convert or not. We can summarize this in a contingency table showing the frequency distribution of the...
-  <a href="./2014/05/interpreting-ab-test-using-python/">Continue reading</a>.
-  
-  </div>
+	<div>
+		Suppose we ran an A/B test with two different versions of a web page, \( a \) and \( b \), for which we count the number of visitors and whether they convert or not. We can summarize this in a contingency table showing the frequency distribution of the events:
+		
+		...	<a href="https://okomestudio.net/biboroku/2014/05/interpreting-ab-test-using-python/">Continue reading</a>.
+		
+	</div>
+</article>
 
-  
-
-  
-    
-  <div class="blog-post">
-  
-    <h1><a href="./2014/05/brand-positioning-by-correspondence-analysis/">Brand Positioning by Correspondence Analysis</a></h1>
+		
+		  <article class="blog-post">
+	<h1><a href="https://okomestudio.net/biboroku/2014/05/brand-positioning-by-correspondence-analysis/">Brand Positioning by Correspondence Analysis</a></h1>
   
   <p class="meta">
-    Written by
-    
-      Taro Sato
-    
-    on 2014-05-07
+    Written by Taro Sato
+    on <time>May 7, 2014</time>.
+    Tagged:
+	  
+	  <a href="/biboroku/tags/python">Python</a>
+	  
+	  <a href="/biboroku/tags/stats">stats</a>
+	  
+	  <a href="/biboroku/tags/visualization">visualization</a>
+	  
   </p>
   
-  I was reading an article about visualization techniques using multidimensional scaling (MDS), the correspondence analysis in particular. The example used R, but as usual I want to find ways to do it on Python, so here goes. The correspondence analysis...
-  <a href="./2014/05/brand-positioning-by-correspondence-analysis/">Continue reading</a>.
-  
-  </div>
+	<div>
+		I was reading an article about visualization techniques using multidimensional scaling (MDS), the correspondence analysis in particular. The example used R, but as usual I want to find ways to do it on Python, so here goes.
+The correspondence analysis is useful when you have a two-way contingency table for which relative values of ratio-scaled data are of interest.
+		
+		...	<a href="https://okomestudio.net/biboroku/2014/05/brand-positioning-by-correspondence-analysis/">Continue reading</a>.
+		
+	</div>
+</article>
 
-  
-
-  
-    
-  <div class="blog-post">
-  
-    <h1><a href="./2014/04/pca-and-biplot-using-python/">PCA and Biplot using Python</a></h1>
+		
+		  <article class="blog-post">
+	<h1><a href="https://okomestudio.net/biboroku/2014/04/pca-and-biplot-using-python/">PCA and Biplot using Python</a></h1>
   
   <p class="meta">
-    Written by
-    
-      Taro Sato
-    
-    on 2014-04-24
+    Written by Taro Sato
+    on <time>April 24, 2014</time>.
+    Tagged:
+	  
+	  <a href="/biboroku/tags/python">Python</a>
+	  
+	  <a href="/biboroku/tags/stats">stats</a>
+	  
+	  <a href="/biboroku/tags/visualization">visualization</a>
+	  
   </p>
   
-  There are several ways to run principal component analysis (PCA) using various packages (scikit-learn, statsmodels, etc.) or even just rolling out your own through singular-value decomposition and such. Visualizing the PCA result can be done through...
-  <a href="./2014/04/pca-and-biplot-using-python/">Continue reading</a>.
-  
-  </div>
+	<div>
+		There are several ways to run principal component analysis (PCA) using various packages (scikit-learn, statsmodels, etc.) or even just rolling out your own through singular-value decomposition and such. Visualizing the PCA result can be done through biplot. I was looking at an example of using prcomp and biplot in R, but it does not seem like there is a comparable plug-and-play way of generating a biplot on Python.
+		
+		...	<a href="https://okomestudio.net/biboroku/2014/04/pca-and-biplot-using-python/">Continue reading</a>.
+		
+	</div>
+</article>
 
-  
-
-  
-    
-  <div class="blog-post">
-  
-    <h1><a href="./2014/04/near-duplicate-detection-using-minhash-background/">Near-Duplicate Detection using MinHash: Background</a></h1>
+		
+		  <article class="blog-post">
+	<h1><a href="https://okomestudio.net/biboroku/2014/04/near-duplicate-detection-using-minhash-background/">Near-Duplicate Detection using MinHash: Background</a></h1>
   
   <p class="meta">
-    Written by
-    
-      Taro Sato
-    
-    on 2014-04-12
+    Written by Taro Sato
+    on <time>April 12, 2014</time>.
+    Tagged:
+	  
+	  <a href="/biboroku/tags/math">math</a>
+	  
+	  <a href="/biboroku/tags/python">Python</a>
+	  
+	  <a href="/biboroku/tags/stats">stats</a>
+	  
   </p>
   
-  There are numerous pieces of duplicate information served by multiple sources on the web. Many news stories that we receive from the media tend to originate from the same source, such as the Associated Press. When such contents are scraped off the web...
-  <a href="./2014/04/near-duplicate-detection-using-minhash-background/">Continue reading</a>.
-  
-  </div>
+	<div>
+		There are numerous pieces of duplicate information served by multiple sources on the web. Many news stories that we receive from the media tend to originate from the same source, such as the Associated Press. When such contents are scraped off the web for archiving, a need may arise to categorize documents by their similarity (not in the sense of meaning of the text but the character-level or lexical matching).
+		
+		...	<a href="https://okomestudio.net/biboroku/2014/04/near-duplicate-detection-using-minhash-background/">Continue reading</a>.
+		
+	</div>
+</article>
 
-  
-
-  
-    
-  <div class="blog-post">
-  
-    <h1><a href="./2012/09/using-japanese-on-debian-wheezy/">Using Japanese on Debian Wheezy</a></h1>
+		
+		  <article class="blog-post">
+	<h1><a href="https://okomestudio.net/biboroku/2012/09/using-japanese-on-debian-wheezy/">Using Japanese on Debian Wheezy</a></h1>
   
   <p class="meta">
-    Written by
-    
-      Taro Sato
-    
-    on 2012-09-21
+    Written by Taro Sato
+    on <time>September 21, 2012</time>.
+    Tagged:
+	  
+	  <a href="/biboroku/tags/sysadmin">sysadmin</a>
+	  
+	  <a href="/biboroku/tags/linux">Linux</a>
+	  
   </p>
   
-  The goal is to make the system capable for Japanese input, while letting the base system remain English. For the Japanese input method, I had been using Anthy, but I will be using mozc, which is now better supported and presumably much better (it is)....
-  <a href="./2012/09/using-japanese-on-debian-wheezy/">Continue reading</a>.
-  
-  </div>
+	<div>
+		The goal is to make the system capable for Japanese input, while letting the base system remain English. For the Japanese input method, I had been using Anthy, but I will be using mozc, which is now better supported and presumably much better (it is).
+		
+		...	<a href="https://okomestudio.net/biboroku/2012/09/using-japanese-on-debian-wheezy/">Continue reading</a>.
+		
+	</div>
+</article>
 
-  
-
-  
-    
-  <div class="blog-post">
-  
-    <h1><a href="./2010/11/installing-f-lux-on-debian-squeeze/">Installing F.lux on Debian Squeeze</a></h1>
+		
+		  <article class="blog-post">
+	<h1><a href="https://okomestudio.net/biboroku/2010/11/installing-f-lux-on-debian-squeeze/">Installing F.lux on Debian Squeeze</a></h1>
   
   <p class="meta">
-    Written by
-    
-      Taro Sato
-    
-    on 2010-11-20
+    Written by Taro Sato
+    on <time>November 20, 2010</time>.
+    Tagged:
+	  
+	  <a href="/biboroku/tags/sysadmin">sysadmin</a>
+	  
+	  <a href="/biboroku/tags/linux">Linux</a>
+	  
   </p>
   
-  In another feeble attempt to become a “morning person,” I’ve decided to follow the usual advice that I should not be looking at bright LCD screen at night to help myself going into the “sleep mode.” Hence F.lux. I want it to launch automatically at the...
-  <a href="./2010/11/installing-f-lux-on-debian-squeeze/">Continue reading</a>.
-  
-  </div>
+	<div>
+		In another feeble attempt to become a “morning person,” I’ve decided to follow the usual advice that I should not be looking at bright LCD screen at night to help myself going into the “sleep mode.”
+Hence F.lux.
+I want it to launch automatically at the start of a KDE session.
+		
+		...	<a href="https://okomestudio.net/biboroku/2010/11/installing-f-lux-on-debian-squeeze/">Continue reading</a>.
+		
+	</div>
+</article>
 
-  
-
-  
-    
-  <div class="blog-post">
-  
-    <h1><a href="./2010/06/testing-if-a-point-is-inside-a-polygon-in-python/">Testing if a Point is Inside a Polygon in Python</a></h1>
+		
+		  <article class="blog-post">
+	<h1><a href="https://okomestudio.net/biboroku/2010/06/testing-if-a-point-is-inside-a-polygon-in-python/">Testing if a Point is Inside a Polygon in Python</a></h1>
   
   <p class="meta">
-    Written by
-    
-      Taro Sato
-    
-    on 2010-06-24
+    Written by Taro Sato
+    on <time>June 24, 2010</time>.
+    Tagged:
+	  
+	  <a href="/biboroku/tags/algorithm">algorithm</a>
+	  
+	  <a href="/biboroku/tags/python">Python</a>
+	  
   </p>
   
-  Finally got around to find this out by Googling. It’s a useful function so I reproduce it here for copy &amp; paste: def inside_polygon(x, y, points): &#34;&#34;&#34; Return True if a coordinate (x, y) is inside a polygon defined by the list of verticies [(x1, y1),...
-  <a href="./2010/06/testing-if-a-point-is-inside-a-polygon-in-python/">Continue reading</a>.
-  
-  </div>
+	<div>
+		Finally got around to find this out by Googling. It’s a useful function so I reproduce it here for copy &amp; paste:
+def inside_polygon(x, y, points): &#34;&#34;&#34; Return True if a coordinate (x, y) is inside a polygon defined by the list of verticies [(x1, y1), (x2, y2), .
+		
+		...	<a href="https://okomestudio.net/biboroku/2010/06/testing-if-a-point-is-inside-a-polygon-in-python/">Continue reading</a>.
+		
+	</div>
+</article>
 
-  
-
-  
-    
-  <div class="blog-post">
-  
-    <h1><a href="./2010/03/installing-sextractor-on-mac-os-x-snow-leopard/">Installing SExtractor on Mac OS X Snow Leopard</a></h1>
+		
+		  <article class="blog-post">
+	<h1><a href="https://okomestudio.net/biboroku/2010/03/installing-sextractor-on-mac-os-x-snow-leopard/">Installing SExtractor on Mac OS X Snow Leopard</a></h1>
   
   <p class="meta">
-    Written by
-    
-      Taro Sato
-    
-    on 2010-03-22
+    Written by Taro Sato
+    on <time>March 22, 2010</time>.
+    Tagged:
+	  
+	  <a href="/biboroku/tags/sysadmin">sysadmin</a>
+	  
+	  <a href="/biboroku/tags/os-x">OS X</a>
+	  
   </p>
   
-  (November 25, 2010) I screwed up SExtractor installation for no reason and in an attempt to fix it, I’ve found a few things. After wasting a few hours again, I think this installation note can work for most people who can actually build software from...
-  <a href="./2010/03/installing-sextractor-on-mac-os-x-snow-leopard/">Continue reading</a>.
-  
-  </div>
+	<div>
+		(November 25, 2010) I screwed up SExtractor installation for no reason and in an attempt to fix it, I’ve found a few things. After wasting a few hours again, I think this installation note can work for most people who can actually build software from source&hellip; I think the usefulness of this note will be limited though, as a new release of SExtractor appears imminent.
+		
+		...	<a href="https://okomestudio.net/biboroku/2010/03/installing-sextractor-on-mac-os-x-snow-leopard/">Continue reading</a>.
+		
+	</div>
+</article>
 
-  
-
-  
-    
-  <div class="blog-post">
-  
-    <h1><a href="./2010/03/installing-squid-proxy-server-on-mac-os-x-snow-leopard/">Installing Squid Proxy Server on Mac OS X Snow Leopard</a></h1>
+		
+		  <article class="blog-post">
+	<h1><a href="https://okomestudio.net/biboroku/2010/03/installing-squid-proxy-server-on-mac-os-x-snow-leopard/">Installing Squid Proxy Server on Mac OS X Snow Leopard</a></h1>
   
   <p class="meta">
-    Written by
-    
-      Taro Sato
-    
-    on 2010-03-22
+    Written by Taro Sato
+    on <time>March 22, 2010</time>.
+    Tagged:
+	  
+	  <a href="/biboroku/tags/sysadmin">sysadmin</a>
+	  
+	  <a href="/biboroku/tags/os-x">OS X</a>
+	  
   </p>
   
-  My goal is to set up a very basic proxy server on my Mac box on campus, so that I can have full access to subscription-based academic journals via the proxy on my laptop even when I am off campus. Some schools provide such (library) proxies but my...
-  <a href="./2010/03/installing-squid-proxy-server-on-mac-os-x-snow-leopard/">Continue reading</a>.
-  
+	<div>
+		My goal is to set up a very basic proxy server on my Mac box on campus, so that I can have full access to subscription-based academic journals via the proxy on my laptop even when I am off campus.
+		
+		...	<a href="https://okomestudio.net/biboroku/2010/03/installing-squid-proxy-server-on-mac-os-x-snow-leopard/">Continue reading</a>.
+		
+	</div>
+</article>
+
+		
+		<div class="pagination">
+
+  <span class="disabled">&laquo; Previous</span>
+
+&nbsp; | 1 of 2 | &nbsp;
+
+	<a href="/biboroku/page/2/">Next &raquo;</a>
+
+</div>
+
+	</main>
+<aside>
+	<div>
+		<div>
+			<h3>LATEST POSTS</h3>
+		</div>
+		<div>
+			<ul>
+				
+				<li><a href="/biboroku/2020/04/on-lazy-logging-evaluation/">On Lazy Logging Evaluation</a></li>
+				
+				<li><a href="/biboroku/2014/11/install-google-chrome-on-debian-jessie/">Install Google Chrome on Debian Jessie</a></li>
+				
+				<li><a href="/biboroku/2014/10/installing-adobe-reader-on-debianjessie/">Installing Adobe Reader on Debian/Jessie</a></li>
+				
+				<li><a href="/biboroku/2014/05/interpreting-ab-test-using-python/">Interpreting A/B Test using Python</a></li>
+				
+				<li><a href="/biboroku/2014/05/brand-positioning-by-correspondence-analysis/">Brand Positioning by Correspondence Analysis</a></li>
+				
+			</ul>
+		</div>
+	</div>
+</aside>
+
+
+	<footer>
+	Copyright &copy; 2007 - 2020
+  <a href="https://okomestudio.net/biboroku">Biboroku</a>
+  by <a href="https://okomestudio.net">Okome Studio</a> / Taro Sato.
+  All Rights Reserved.
+</footer>
+
   </div>
-
-  
-
-  
-
-  
-  <div class="pagination">
-    
-      <span class="disabled">&laquo; Previous</span>
-    
-    &nbsp; | 1 | &nbsp;
-    
-      <a href="./page/2/">Next &raquo;</a>
-    
-  </div>
-
-
-      </main>
-      <footer>
-        Copyright &copy; 2007 - 2020 by Okome Studio / Taro Sato. All Rights Reserved.
-      </footer>
-    </div>
-  </body>
+</body>
 </html>

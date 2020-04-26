@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>2012s on Biboroku</title>
+    <link>https://okomestudio.net/biboroku/2012/</link>
+    <description>Recent content in 2012s on Biboroku</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 21 Sep 2012 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://okomestudio.net/biboroku/2012/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Using Japanese on Debian Wheezy</title>
+      <link>https://okomestudio.net/biboroku/2012/09/using-japanese-on-debian-wheezy/</link>
+      <pubDate>Fri, 21 Sep 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://okomestudio.net/biboroku/2012/09/using-japanese-on-debian-wheezy/</guid>
+      <description>The goal is to make the system capable for Japanese input, while letting the base system remain English. For the Japanese input method, I had been using Anthy, but I will be using mozc, which is now better supported and presumably much better (it is).</description>
+    </item>
+    
+  </channel>
+</rss>

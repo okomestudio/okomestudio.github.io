@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linux on Biboroku</title>
+    <link>https://okomestudio.net/biboroku/tags/linux/</link>
+    <description>Recent content in Linux on Biboroku</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 27 Nov 2014 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://okomestudio.net/biboroku/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Install Google Chrome on Debian Jessie</title>
+      <link>https://okomestudio.net/biboroku/2014/11/install-google-chrome-on-debian-jessie/</link>
+      <pubDate>Thu, 27 Nov 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://okomestudio.net/biboroku/2014/11/install-google-chrome-on-debian-jessie/</guid>
+      <description>Download a DEB file for the version of Chrome you want from here.
+Then
+$ sudo aptitude install gconf-service libgconf-2-4 libnspr4 libnss3 libpango1.0-0 libappindicator1 libcurl3 $ sudo dpkg -i google-chrome-stable_current_amd64.</description>
+    </item>
+    
+    <item>
+      <title>Installing Adobe Reader on Debian/Jessie</title>
+      <link>https://okomestudio.net/biboroku/2014/10/installing-adobe-reader-on-debianjessie/</link>
+      <pubDate>Fri, 10 Oct 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://okomestudio.net/biboroku/2014/10/installing-adobe-reader-on-debianjessie/</guid>
+      <description>Once in a while you need to deal with fancier PDF files which may allow you to type in using forms, but Linux applications like Okular might not be fully capable of handling Adobe’s proprietary features. In such an unfortunate event, you might need to use Adobe Reader.</description>
+    </item>
+    
+    <item>
+      <title>Creating Debian Wheezy Installation USB Stick</title>
+      <link>https://okomestudio.net/biboroku/2014/02/installing-debian-wheezy-from-a-usb-stick/</link>
+      <pubDate>Thu, 20 Feb 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://okomestudio.net/biboroku/2014/02/installing-debian-wheezy-from-a-usb-stick/</guid>
+      <description>The simplest way to create a bootable USB stick for Debian installation is to use command dd to copy an ISO image to an empty USB stick.
+First, connect an empty USB stick to a working Linux box, and see which device represents the stick:</description>
+    </item>
+    
+    <item>
+      <title>Using Japanese on Debian Wheezy</title>
+      <link>https://okomestudio.net/biboroku/2012/09/using-japanese-on-debian-wheezy/</link>
+      <pubDate>Fri, 21 Sep 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://okomestudio.net/biboroku/2012/09/using-japanese-on-debian-wheezy/</guid>
+      <description>The goal is to make the system capable for Japanese input, while letting the base system remain English. For the Japanese input method, I had been using Anthy, but I will be using mozc, which is now better supported and presumably much better (it is).</description>
+    </item>
+    
+    <item>
+      <title>Installing Debian Squeeze from Hard Disk</title>
+      <link>https://okomestudio.net/biboroku/2010/12/installing-debian-squeeze-from-hard-disk/</link>
+      <pubDate>Tue, 14 Dec 2010 00:00:00 +0000</pubDate>
+      
+      <guid>https://okomestudio.net/biboroku/2010/12/installing-debian-squeeze-from-hard-disk/</guid>
+      <description>Unfortunately the Debian installer does not work on my Dell desktop box. I still wanted to do a fresh install of Squeeze, and the only sensible option for me was to install off hard disk. I have been having the same issue for several months and I have not been able to solve it myself, and nobody responds to my bug report; however, this hard drive method may work well even if I have a working install USB stick/CD media.</description>
+    </item>
+    
+    <item>
+      <title>Installing F.lux on Debian Squeeze</title>
+      <link>https://okomestudio.net/biboroku/2010/11/installing-f-lux-on-debian-squeeze/</link>
+      <pubDate>Sat, 20 Nov 2010 00:00:00 +0000</pubDate>
+      
+      <guid>https://okomestudio.net/biboroku/2010/11/installing-f-lux-on-debian-squeeze/</guid>
+      <description>In another feeble attempt to become a “morning person,” I’ve decided to follow the usual advice that I should not be looking at bright LCD screen at night to help myself going into the “sleep mode.”
+Hence F.lux.
+I want it to launch automatically at the start of a KDE session.</description>
+    </item>
+    
+    <item>
+      <title>Installing Bruzual &amp; Charlot 2003 (GALAXEV) on Debian Squeeze</title>
+      <link>https://okomestudio.net/biboroku/2010/10/installing-bruzual-charlot-2003-galaxev-on-debian-squeeze/</link>
+      <pubDate>Tue, 19 Oct 2010 00:00:00 +0000</pubDate>
+      
+      <guid>https://okomestudio.net/biboroku/2010/10/installing-bruzual-charlot-2003-galaxev-on-debian-squeeze/</guid>
+      <description>The installation procedure is confusing only if you are not using csh (I use Bash) and if g77 is not available. Otherwise you can simply follow the installation procedure outlined in the official documentation file (i.e., bc03/doc/bc03.ps.gz).
+First, you definitely need csh and a FORTRAN compiler:</description>
+    </item>
+    
+    <item>
+      <title>Formatting a USB Drive with ext4 for Use with Linux</title>
+      <link>https://okomestudio.net/biboroku/2009/03/formatting-a-usb-drive-for-use-with-debian/</link>
+      <pubDate>Fri, 27 Mar 2009 00:00:00 +0000</pubDate>
+      
+      <guid>https://okomestudio.net/biboroku/2009/03/formatting-a-usb-drive-for-use-with-debian/</guid>
+      <description>I wish to use an external USB drive exclusively on a Linux system (in my case, Debian). I want to use the ext4 filesystem. Note that this method wipes out the filesystem on the drive.
+Install hotplug-type package such that upon plugging the USB drive in the device is attached to somewhere in the system.</description>
+    </item>
+    
+  </channel>
+</rss>

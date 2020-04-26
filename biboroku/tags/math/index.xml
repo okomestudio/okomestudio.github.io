@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Math on Biboroku</title>
+    <link>https://okomestudio.net/biboroku/tags/math/</link>
+    <description>Recent content in Math on Biboroku</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 12 Apr 2014 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://okomestudio.net/biboroku/tags/math/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Near-Duplicate Detection using MinHash: Background</title>
+      <link>https://okomestudio.net/biboroku/2014/04/near-duplicate-detection-using-minhash-background/</link>
+      <pubDate>Sat, 12 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://okomestudio.net/biboroku/2014/04/near-duplicate-detection-using-minhash-background/</guid>
+      <description>There are numerous pieces of duplicate information served by multiple sources on the web. Many news stories that we receive from the media tend to originate from the same source, such as the Associated Press. When such contents are scraped off the web for archiving, a need may arise to categorize documents by their similarity (not in the sense of meaning of the text but the character-level or lexical matching).</description>
+    </item>
+    
+    <item>
+      <title>A Trick for Computing the Sum of Geometric Series</title>
+      <link>https://okomestudio.net/biboroku/2014/04/a-trick-for-computing-the-sum-of-geometric-series/</link>
+      <pubDate>Fri, 04 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://okomestudio.net/biboroku/2014/04/a-trick-for-computing-the-sum-of-geometric-series/</guid>
+      <description>Say if I need to compute the sum of a series like this one:
+\begin{equation} y = 1 + 2 x + 3 x^2 + 4 x^3 + \dots \, \label{eq:a} \end{equation}
+where \( |x| &amp;lt; 1 \). This series looks like a geometric series in which case the sum can be computed from</description>
+    </item>
+    
+  </channel>
+</rss>

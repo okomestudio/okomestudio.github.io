@@ -48,6 +48,10 @@ header h1 {
   line-height: 1;
 }
 
+header h1 a {
+  text-transform: lowercase;
+}
+
 header a {
   text-decoration: none;
 }

@@ -1,102 +1,110 @@
-<!doctype html>
-<html>
-  <head>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-158896843-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-158896843-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-      gtag('config', 'UA-158896843-1');
-    </script>
+    gtag('config', 'UA-158896843-1');
+  </script>
 
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){
-        w[l]=w[l]||[];w[l].push(
-          {'gtm.start':
-           new Date().getTime(),event:'gtm.js'}
-        );var f=d.getElementsByTagName(s)[0],
-              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-      })(window,document,'script','dataLayer','GTM-NXBHQLG');
-    </script>
-    <!-- End Google Tag Manager -->
+  
+  <script>(function(w,d,s,l,i){
+      w[l]=w[l]||[];w[l].push(
+        {'gtm.start':
+         new Date().getTime(),event:'gtm.js'}
+      );var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NXBHQLG');
+  </script>
+  
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="theme-color" content="#000000">
-    <meta name="description" content="Okome Studio is a software consultancy">
-    <link rel="icon" href="https://okomestudio.net/favicon.ico">
-    <link rel="stylesheet" href="https://okomestudio.net/reset.css">
-    <link rel="stylesheet" href="https://okomestudio.net/index.css">
-    <link rel="stylesheet" href="../../../static/style.css">
-    <link rel="stylesheet" href="../../../static/pygments.css">
-    <link rel="stylesheet" href="../../../static/gist.css">
-    <title>Installing Squid Proxy Server on Mac OS X Snow Leopard — biboroku</title>
-    <script type="text/javascript">
-      window.MathJax = {
-        tex: {
-          tags: 'ams'
-        }
-      };
-    </script>
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "AMS"} } });
-    </script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML">
-    </script>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="Okome Studio is a software consultancy">
+	
+	
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="icon" href="https://okomestudio.net/favicon.ico">
+  <link rel="stylesheet" href="https://okomestudio.net/reset.css">
+  <link rel="stylesheet" href="https://okomestudio.net/index.css">
+  <link rel="stylesheet" href="/biboroku/css/style.css">
+  <link rel="stylesheet" href="/biboroku/css/codesyntax.css">
+  <link rel="stylesheet" href="/biboroku/css/gist.css">
+  <title>Welcome — Installing Squid Proxy Server on Mac OS X Snow Leopard</title>
 
-    <script type="text/javascript" src="static/pjump.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        tags: 'ams'
+      }
+    };
+  </script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "AMS"} } });
+  </script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML">
+  </script>
 
-  </head>
-  <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript>
-      <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NXBHQLG"
-              height="0" width="0" style="display:none;visibility:hidden">
-      </iframe>
-    </noscript>
-    <!-- End Google Tag Manager (noscript) -->
+  <script type="text/javascript" src="/biboroku/css/pjump.js"></script>
 
-    <div class="container">
-      <header>
-        <h1><a href="https://okomestudio.net/biboroku">biboroku</a></h1>
-        <nav>
-          <ul class="nav navbar-nav">
-            <li><a href="https://okomestudio.net">OkomeStudio.net</a></li>
-            
-            <li><a href="../../../about/">About</a></li>
-            
-          </ul>
-        </nav>
-      </header>
-      <main>
+  
+</head>
+<body>
+  
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NXBHQLG"
+            height="0" width="0" style="display:none;visibility:hidden">
+    </iframe>
+  </noscript>
+  
+
+  <div class="container">
+	<header>
+  <h1><a href="https://okomestudio.net/biboroku">Biboroku</a></h1>
+  <nav>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="https://okomestudio.net">OkomeStudio.net</a></li>
+      <li class="active"><a href="https://okomestudio.net/biborokuabout">About</a></li>
+    </ul>
+  </nav>
+</header>
+
+	
+	<main>
+		<article class="blog-post">
+			<h1>Installing Squid Proxy Server on Mac OS X Snow Leopard</h1>
+      <p class="meta">
+        Written by Taro Sato
+        on <time>March 22, 2010</time>.
+	      Tagged:
         
-  
-  <div class="blog-post">
-  
-    <h1>Installing Squid Proxy Server on Mac OS X Snow Leopard</h1>
-  
-  <p class="meta">
-    Written by
-    
-      Taro Sato
-    
-    on 2010-03-22
-  </p>
-  
-  <p>My goal is to set up a very basic proxy server on my Mac box on
+	      <a href="/biboroku/tags/sysadmin">sysadmin</a>
+	      
+	      <a href="/biboroku/tags/os-x">OS X</a>
+	      
+      </p>
+			<div>
+				
+
+<p>My goal is to set up a very basic proxy server on my Mac box on
 campus, so that I can have full access to subscription-based academic
 journals via the proxy on my laptop even when I am off campus.  Some
 schools provide such (library) proxies but my school unfortunately
 does not.  I want to set it up such that the proxy requires a password
 authentication in order not to make it wide open to the public.</p>
-<h2>Getting and Installing Squid</h2>
+
+<h2 id="getting-and-installing-squid">Getting and Installing Squid</h2>
+
 <p><a href="http://www.squid-cache.org/Versions/v2/2.7/">Download a tarball</a> for
 a stable version from the repository. The version that I use here is
 2.7. I assume the file is downloaded to <em>/usr/local/src/squid</em>.</p>
-<div class="hll"><pre><span></span>$ <span class="nb">cd</span> /usr/local/src/squid
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">cd</span> /usr/local/src/squid
 $ gunzip -c squid-2.7.STABLE9.tar.gz <span class="p">|</span> tar xvf -
 $ <span class="nb">cd</span> squid-2.7.STABLE9
 $ ./configure
@@ -106,45 +114,46 @@ $ <span class="nb">cd</span> helpers/basic_auth/NCSA
 $ make
 $ sudo make install
 $ sudo chown -R nobody /usr/local/squid/var
-$ sudo /usr/local/squid/sbin/squid -z
-</pre></div>
+$ sudo /usr/local/squid/sbin/squid -z</code></pre></div>
 <p>Squid will be installed at <em>/usr/local/squid</em>.  (The last command is
 necessary to run a daemon as user nobody.)</p>
-<h2>Configure Squid</h2>
+
+<h2 id="configure-squid">Configure Squid</h2>
+
 <p>First, prepare a NCSA-compliant encrypted password file for a user
 (here with username <em>johndoe</em>):</p>
-<div class="hll"><pre><span></span>$ <span class="nb">cd</span> /usr/local/squid/etc
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">cd</span> /usr/local/squid/etc
 $ sudo touch squid_passwd
 $ sudo chmod o+r squid_passwd
 $ sudo htpasswd squid_passwd johndoe
 New password:
 Re-type new passwod:
-Adding passwod <span class="k">for</span> user johndoe
-</pre></div>
+Adding passwod <span class="k">for</span> user johndoe</code></pre></div>
 <p>Now, edit <em>/usr/local/squid/etc/squid.conf</em>. The following lines need
 to be added:</p>
-<div class="hll"><pre><span></span><span class="c"># Add this to the auth_param section</span><span class="w"></span>
-auth_param<span class="w"> </span>basic<span class="w"> </span>program<span class="w"> </span>/usr/local/squid/libexec/ncsa_auth<span class="w"> </span>/usr/local/squid/etc/squid_passwd<span class="w"></span>
-
-<span class="c"># Add this to the bottom of the ACL section</span><span class="w"></span>
-<span class="k">acl</span><span class="w"> </span>ncsa_users<span class="w"> </span><span class="k">proxy_auth</span><span class="w"> </span>REQUIRED<span class="w"></span>
-
-<span class="c"># Add this at the top of the http_access section</span><span class="w"></span>
-<span class="k">http_access</span><span class="w"> </span><span class="no">allow</span><span class="w"> </span>ncsa_users<span class="w"></span>
-</pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-squid.conf" data-lang="squid.conf"><span class="c"># Add this to the auth_param section</span><span class="w">
+</span><span class="w"></span>auth_param<span class="w"> </span>basic<span class="w"> </span>program<span class="w"> </span>/usr/local/squid/libexec/ncsa_auth<span class="w"> </span>/usr/local/squid/etc/squid_passwd<span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="c"># Add this to the bottom of the ACL section</span><span class="w">
+</span><span class="w"></span><span class="k">acl</span><span class="w"> </span>ncsa_users<span class="w"> </span><span class="k">proxy_auth</span><span class="w"> </span>REQUIRED<span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="c"># Add this at the top of the http_access section</span><span class="w">
+</span><span class="w"></span><span class="k">http_access</span><span class="w"> </span><span class="no">allow</span><span class="w"> </span>ncsa_users</code></pre></div>
 <p>Finally, run the server:</p>
-<div class="hll"><pre><span></span>$ sudo /usr/local/squid/sbin/squid -N -d <span class="m">1</span> -D
-</pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo /usr/local/squid/sbin/squid -N -d <span class="m">1</span> -D</code></pre></div>
 <p>Firewall will prompt me to see if I allow incoming connections to
 squid.  Say “allow.”</p>
+
 <p>The IP address or hostname of your Mac box at the port 3128 will be
 available as a proxy server now.</p>
-<h2>Launch Squid on Startup with launchd</h2>
+
+<h2 id="launch-squid-on-startup-with-launchd">Launch Squid on Startup with launchd</h2>
+
 <p>Under the directory <em>/Library/LaunchDaemons</em>, create a file named
 <em>squid.plist</em> with the following content:</p>
-<div class="hll"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
-<span class="cp">&lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot; &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;</span>
-<span class="nt">&lt;plist</span> <span class="na">version=</span><span class="s">&quot;1.0&quot;</span><span class="nt">&gt;</span>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+<span class="cp">&lt;!DOCTYPE plist PUBLIC &#34;-//Apple//DTD PLIST 1.0//EN&#34; &#34;http://www.apple.com/DTDs/PropertyList-1.0.dtd&#34;&gt;</span>
+<span class="nt">&lt;plist</span> <span class="na">version=</span><span class="s">&#34;1.0&#34;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;dict&gt;</span>
     <span class="nt">&lt;key&gt;</span>Label<span class="nt">&lt;/key&gt;</span>
     <span class="nt">&lt;string&gt;</span>squid<span class="nt">&lt;/string&gt;</span>
@@ -160,41 +169,72 @@ available as a proxy server now.</p>
     <span class="nt">&lt;key&gt;</span>ServiceIPC<span class="nt">&lt;/key&gt;</span>
     <span class="nt">&lt;false/&gt;</span>
   <span class="nt">&lt;/dict&gt;</span>
-<span class="nt">&lt;/plist&gt;</span>
-</pre></div>
+<span class="nt">&lt;/plist&gt;</span></code></pre></div>
 <p>Then issuing</p>
-<div class="hll"><pre><span></span>$ sudo launchctl load -w /Library/LaunchDaemons/squid.plist
-</pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo launchctl load -w /Library/LaunchDaemons/squid.plist</code></pre></div>
 <p>will launch squid.  On reboot, the proxy should also be working
 automatically.</p>
 
-  
-  </div>
+			</div>
 
-  
-  <div class="comments">
-<div id="disqus_thread"></div>
-<script>
-  var disqus_config = function() { this.page.identifier = "/1003-installing-squid-proxy-server-on-mac-os-x-snow-leopard"; };
-  (function() {
-    var d = document, s = d.createElement('script');
-    s.src = '//biboroku.disqus.com/embed.js';
-    s.setAttribute('data-timestamp', +new Date());
-    (d.head || d.body).appendChild(s);
-  })();
+			
+			<div class="comments">
+				<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "biboroku" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
 </script>
-<noscript>
-  Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript"
-    rel="nofollow">comments powered by Disqus.</a>
-</noscript>
-</div>
-  
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+			</div>
+			
+
+	  </article>
+	</main>
+<aside>
+	<div>
+		<div>
+			<h3>LATEST POSTS</h3>
+		</div>
+		<div>
+			<ul>
+				
+				<li><a href="/biboroku/2020/04/on-lazy-logging-evaluation/">On Lazy Logging Evaluation</a></li>
+				
+				<li><a href="/biboroku/2014/11/install-google-chrome-on-debian-jessie/">Install Google Chrome on Debian Jessie</a></li>
+				
+				<li><a href="/biboroku/2014/10/installing-adobe-reader-on-debianjessie/">Installing Adobe Reader on Debian/Jessie</a></li>
+				
+				<li><a href="/biboroku/2014/05/interpreting-ab-test-using-python/">Interpreting A/B Test using Python</a></li>
+				
+				<li><a href="/biboroku/2014/05/brand-positioning-by-correspondence-analysis/">Brand Positioning by Correspondence Analysis</a></li>
+				
+			</ul>
+		</div>
+	</div>
+</aside>
 
 
-      </main>
-      <footer>
-        Copyright &copy; 2007 - 2020 by Okome Studio / Taro Sato. All Rights Reserved.
-      </footer>
-    </div>
-  </body>
+	<footer>
+	Copyright &copy; 2007 - 2020
+  <a href="https://okomestudio.net/biboroku">Biboroku</a>
+  by <a href="https://okomestudio.net">Okome Studio</a> / Taro Sato.
+  All Rights Reserved.
+</footer>
+
+  </div>
+</body>
 </html>

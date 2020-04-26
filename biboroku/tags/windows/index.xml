@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Windows on Biboroku</title>
+    <link>https://okomestudio.net/biboroku/tags/windows/</link>
+    <description>Recent content in Windows on Biboroku</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 11 Jun 2010 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://okomestudio.net/biboroku/tags/windows/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Installing Kindle for PC on Debian Squeeze</title>
+      <link>https://okomestudio.net/biboroku/2010/06/installing-kindle-for-pc-on-debian-squeeze/</link>
+      <pubDate>Fri, 11 Jun 2010 00:00:00 +0000</pubDate>
+      
+      <guid>https://okomestudio.net/biboroku/2010/06/installing-kindle-for-pc-on-debian-squeeze/</guid>
+      <description>I sometimes want to run Kindle for PC on Wine. Amazon is so lame that they don’t even bother making a native Linux version of this software!
+Here is the procedure. Move to a temporary directory and do:
+$ sudo aptitude install wine lib32nss-mdns cabextract bzip2 $ wget http://www.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,106 +1,115 @@
-<!doctype html>
-<html>
-  <head>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-158896843-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-158896843-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-      gtag('config', 'UA-158896843-1');
-    </script>
+    gtag('config', 'UA-158896843-1');
+  </script>
 
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){
-        w[l]=w[l]||[];w[l].push(
-          {'gtm.start':
-           new Date().getTime(),event:'gtm.js'}
-        );var f=d.getElementsByTagName(s)[0],
-              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-      })(window,document,'script','dataLayer','GTM-NXBHQLG');
-    </script>
-    <!-- End Google Tag Manager -->
+  
+  <script>(function(w,d,s,l,i){
+      w[l]=w[l]||[];w[l].push(
+        {'gtm.start':
+         new Date().getTime(),event:'gtm.js'}
+      );var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NXBHQLG');
+  </script>
+  
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="theme-color" content="#000000">
-    <meta name="description" content="Okome Studio is a software consultancy">
-    <link rel="icon" href="https://okomestudio.net/favicon.ico">
-    <link rel="stylesheet" href="https://okomestudio.net/reset.css">
-    <link rel="stylesheet" href="https://okomestudio.net/index.css">
-    <link rel="stylesheet" href="../../../static/style.css">
-    <link rel="stylesheet" href="../../../static/pygments.css">
-    <link rel="stylesheet" href="../../../static/gist.css">
-    <title>Installing SExtractor on Mac OS X Snow Leopard — biboroku</title>
-    <script type="text/javascript">
-      window.MathJax = {
-        tex: {
-          tags: 'ams'
-        }
-      };
-    </script>
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "AMS"} } });
-    </script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML">
-    </script>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="Okome Studio is a software consultancy">
+	
+	
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="icon" href="https://okomestudio.net/favicon.ico">
+  <link rel="stylesheet" href="https://okomestudio.net/reset.css">
+  <link rel="stylesheet" href="https://okomestudio.net/index.css">
+  <link rel="stylesheet" href="/biboroku/css/style.css">
+  <link rel="stylesheet" href="/biboroku/css/codesyntax.css">
+  <link rel="stylesheet" href="/biboroku/css/gist.css">
+  <title>Welcome — Installing SExtractor on Mac OS X Snow Leopard</title>
 
-    <script type="text/javascript" src="static/pjump.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        tags: 'ams'
+      }
+    };
+  </script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "AMS"} } });
+  </script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML">
+  </script>
 
-  </head>
-  <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript>
-      <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NXBHQLG"
-              height="0" width="0" style="display:none;visibility:hidden">
-      </iframe>
-    </noscript>
-    <!-- End Google Tag Manager (noscript) -->
+  <script type="text/javascript" src="/biboroku/css/pjump.js"></script>
 
-    <div class="container">
-      <header>
-        <h1><a href="https://okomestudio.net/biboroku">biboroku</a></h1>
-        <nav>
-          <ul class="nav navbar-nav">
-            <li><a href="https://okomestudio.net">OkomeStudio.net</a></li>
-            
-            <li><a href="../../../about/">About</a></li>
-            
-          </ul>
-        </nav>
-      </header>
-      <main>
+  
+</head>
+<body>
+  
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NXBHQLG"
+            height="0" width="0" style="display:none;visibility:hidden">
+    </iframe>
+  </noscript>
+  
+
+  <div class="container">
+	<header>
+  <h1><a href="https://okomestudio.net/biboroku">Biboroku</a></h1>
+  <nav>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="https://okomestudio.net">OkomeStudio.net</a></li>
+      <li class="active"><a href="https://okomestudio.net/biborokuabout">About</a></li>
+    </ul>
+  </nav>
+</header>
+
+	
+	<main>
+		<article class="blog-post">
+			<h1>Installing SExtractor on Mac OS X Snow Leopard</h1>
+      <p class="meta">
+        Written by Taro Sato
+        on <time>March 22, 2010</time>.
+	      Tagged:
         
-  
-  <div class="blog-post">
-  
-    <h1>Installing SExtractor on Mac OS X Snow Leopard</h1>
-  
-  <p class="meta">
-    Written by
-    
-      Taro Sato
-    
-    on 2010-03-22
-  </p>
-  
-  <p>(November 25, 2010) I screwed up SExtractor installation for no reason
+	      <a href="/biboroku/tags/sysadmin">sysadmin</a>
+	      
+	      <a href="/biboroku/tags/os-x">OS X</a>
+	      
+      </p>
+			<div>
+				
+
+<p>(November 25, 2010) I screwed up SExtractor installation for no reason
 and in an attempt to fix it, I’ve found a few things.  After wasting a
 few hours again, I think this installation note can work for most
-people who can actually build software from source... I think the
+people who can actually build software from source&hellip; I think the
 usefulness of this note will be limited though, as a new release of
 SExtractor appears imminent.</p>
-<h2>Installing from Fink</h2>
+
+<h2 id="installing-from-fink">Installing from Fink</h2>
+
 <p>Fink has a <a href="http://pdb.finkproject.org/pdb/package.php/sextractor">version of
 SExtractor</a>. I
 can install this via the command <strong><code>fink install</code></strong>.</p>
-<div class="hll"><pre><span></span>$ fink install sextractor
-</pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ fink install sextractor</code></pre></div>
 <p>If Fink is already installed, this may be the most trouble free way of
 installing SExtractor.</p>
-<h2>Installing from Source</h2>
+
+<h2 id="installing-from-source">Installing from Source</h2>
+
 <p>IMPORTANT: I need <a href="https://okomestudio.net/biboroku/?p=719">FFTW</a> and
 <a href="https://okomestudio.net/biboroku/?p=722">ATLAS</a> installed already, and
 assume that FFTW was installed at <em>/usr/local/fftw</em>, and ATLAS at
@@ -117,23 +126,23 @@ installation to avoid path problems. For example, temporarily rename
 Fink and Scisoft, so that environment variables won’t include paths to
 these things.) Then restart the computer, and start the whole
 installation process (that is, including FFTW and ATLAS).</p>
+
 <p>Download the <a href="http://www.astromatic.net/software/sextractor">SExtractor
 source</a> into a
 temporary directory:</p>
-<div class="hll"><pre><span></span>$ mkdir tmp
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ mkdir tmp
 $ <span class="nb">cd</span> tmp
 ... download sextractor-2.8.6.tar.gz
 $ tar -xvzf sex*.tar.gz
 $ <span class="nb">cd</span> sextractor-2.8.6
-$ ./configure --prefix<span class="o">=</span>/usr/local/sextractor-2.8.6 <span class="se">\</span>
-    --with-atlas<span class="o">=</span>/usr/local/atlas/lib --with-atlas-incdir<span class="o">=</span>/usr/local/atlas/include <span class="se">\</span>
-    --with-fftw<span class="o">=</span>/usr/local/fftw/lib --with-fftw-incdir<span class="o">=</span>/usr/local/fftw/include <span class="se">\</span>
-    --enable-threads
+$ ./configure --prefix<span class="o">=</span>/usr/local/sextractor-2.8.6 <span class="se">\
+</span><span class="se"></span>    --with-atlas<span class="o">=</span>/usr/local/atlas/lib --with-atlas-incdir<span class="o">=</span>/usr/local/atlas/include <span class="se">\
+</span><span class="se"></span>    --with-fftw<span class="o">=</span>/usr/local/fftw/lib --with-fftw-incdir<span class="o">=</span>/usr/local/fftw/include <span class="se">\
+</span><span class="se"></span>    --enable-threads
 $ make
 $ sudo make install
 $ ln -s /usr/local/sextractor-2.8.6 /usr/local/sextractor
-$ sudo cp -rp config /usr/local/sextractor
-</pre></div>
+$ sudo cp -rp config /usr/local/sextractor</code></pre></div>
 <p>This will install SExtractor at <em>/usr/local/sextractor-2.8.6</em> (which
 is aliased by <em>/usr/local/sextractor</em>) and an executable command sex
 will be located at <em>/usr/local/sextractor/bin/sex</em>. Make a simlink to
@@ -145,45 +154,83 @@ configuration files and convolution masks to
 <em>/usr/local/sextractor/config</em>. The default convolution masks are
 often used so it may be a good idea to keep them under the same
 installation directory.</p>
+
 <p>Hope this is it!</p>
-<h2>What if Make Stops with an Error?</h2>
+
+<h2 id="what-if-make-stops-with-an-error">What if Make Stops with an Error?</h2>
+
 <p>There may be a bug in <strong><code>./configure</code></strong> script that makes the
 <strong><code>--with-fftw-incdir</code></strong> option to be not honored. If the <strong><code>make</code></strong>
 stops with errors complaining as in <code>error: fftw3.h: No such file or
 directory</code> despite that I have installed FFTW properly, copy
 <em>/usr/local/fftw/include/fftw3.h</em> to the <em>sextractor-2.8.6/src</em>
 directory before doing <strong><code>make</code></strong>. It will compile fine then.</p>
-<h2>Update History</h2>
+
+<h2 id="update-history">Update History</h2>
+
 <p>November 25, 2010 &#8212; Made the procedure description a bit more
 elaborate where things may fail.</p>
 
-  
-  </div>
+			</div>
 
-  
-  <div class="comments">
-<div id="disqus_thread"></div>
-<script>
-  var disqus_config = function() { this.page.identifier = "/1003-installing-sextractor-on-mac-os-x-snow-leopard"; };
-  (function() {
-    var d = document, s = d.createElement('script');
-    s.src = '//biboroku.disqus.com/embed.js';
-    s.setAttribute('data-timestamp', +new Date());
-    (d.head || d.body).appendChild(s);
-  })();
+			
+			<div class="comments">
+				<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "biboroku" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
 </script>
-<noscript>
-  Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript"
-    rel="nofollow">comments powered by Disqus.</a>
-</noscript>
-</div>
-  
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+			</div>
+			
+
+	  </article>
+	</main>
+<aside>
+	<div>
+		<div>
+			<h3>LATEST POSTS</h3>
+		</div>
+		<div>
+			<ul>
+				
+				<li><a href="/biboroku/2020/04/on-lazy-logging-evaluation/">On Lazy Logging Evaluation</a></li>
+				
+				<li><a href="/biboroku/2014/11/install-google-chrome-on-debian-jessie/">Install Google Chrome on Debian Jessie</a></li>
+				
+				<li><a href="/biboroku/2014/10/installing-adobe-reader-on-debianjessie/">Installing Adobe Reader on Debian/Jessie</a></li>
+				
+				<li><a href="/biboroku/2014/05/interpreting-ab-test-using-python/">Interpreting A/B Test using Python</a></li>
+				
+				<li><a href="/biboroku/2014/05/brand-positioning-by-correspondence-analysis/">Brand Positioning by Correspondence Analysis</a></li>
+				
+			</ul>
+		</div>
+	</div>
+</aside>
 
 
-      </main>
-      <footer>
-        Copyright &copy; 2007 - 2020 by Okome Studio / Taro Sato. All Rights Reserved.
-      </footer>
-    </div>
-  </body>
+	<footer>
+	Copyright &copy; 2007 - 2020
+  <a href="https://okomestudio.net/biboroku">Biboroku</a>
+  by <a href="https://okomestudio.net">Okome Studio</a> / Taro Sato.
+  All Rights Reserved.
+</footer>
+
+  </div>
+</body>
 </html>

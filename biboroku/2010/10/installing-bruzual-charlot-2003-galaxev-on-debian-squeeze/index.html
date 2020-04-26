@@ -1,120 +1,123 @@
-<!doctype html>
-<html>
-  <head>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-158896843-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-158896843-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-      gtag('config', 'UA-158896843-1');
-    </script>
+    gtag('config', 'UA-158896843-1');
+  </script>
 
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){
-        w[l]=w[l]||[];w[l].push(
-          {'gtm.start':
-           new Date().getTime(),event:'gtm.js'}
-        );var f=d.getElementsByTagName(s)[0],
-              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-      })(window,document,'script','dataLayer','GTM-NXBHQLG');
-    </script>
-    <!-- End Google Tag Manager -->
+  
+  <script>(function(w,d,s,l,i){
+      w[l]=w[l]||[];w[l].push(
+        {'gtm.start':
+         new Date().getTime(),event:'gtm.js'}
+      );var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NXBHQLG');
+  </script>
+  
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="theme-color" content="#000000">
-    <meta name="description" content="Okome Studio is a software consultancy">
-    <link rel="icon" href="https://okomestudio.net/favicon.ico">
-    <link rel="stylesheet" href="https://okomestudio.net/reset.css">
-    <link rel="stylesheet" href="https://okomestudio.net/index.css">
-    <link rel="stylesheet" href="../../../static/style.css">
-    <link rel="stylesheet" href="../../../static/pygments.css">
-    <link rel="stylesheet" href="../../../static/gist.css">
-    <title>Installing Bruzual &amp; Charlot 2003 (GALAXEV) on Debian Squeeze — biboroku</title>
-    <script type="text/javascript">
-      window.MathJax = {
-        tex: {
-          tags: 'ams'
-        }
-      };
-    </script>
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "AMS"} } });
-    </script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML">
-    </script>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="Okome Studio is a software consultancy">
+	
+	
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="icon" href="https://okomestudio.net/favicon.ico">
+  <link rel="stylesheet" href="https://okomestudio.net/reset.css">
+  <link rel="stylesheet" href="https://okomestudio.net/index.css">
+  <link rel="stylesheet" href="/biboroku/css/style.css">
+  <link rel="stylesheet" href="/biboroku/css/codesyntax.css">
+  <link rel="stylesheet" href="/biboroku/css/gist.css">
+  <title>Welcome — Installing Bruzual &amp; Charlot 2003 (GALAXEV) on Debian Squeeze</title>
 
-    <script type="text/javascript" src="static/pjump.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        tags: 'ams'
+      }
+    };
+  </script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "AMS"} } });
+  </script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML">
+  </script>
 
-  </head>
-  <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript>
-      <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NXBHQLG"
-              height="0" width="0" style="display:none;visibility:hidden">
-      </iframe>
-    </noscript>
-    <!-- End Google Tag Manager (noscript) -->
+  <script type="text/javascript" src="/biboroku/css/pjump.js"></script>
 
-    <div class="container">
-      <header>
-        <h1><a href="https://okomestudio.net/biboroku">biboroku</a></h1>
-        <nav>
-          <ul class="nav navbar-nav">
-            <li><a href="https://okomestudio.net">OkomeStudio.net</a></li>
-            
-            <li><a href="../../../about/">About</a></li>
-            
-          </ul>
-        </nav>
-      </header>
-      <main>
+  
+</head>
+<body>
+  
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NXBHQLG"
+            height="0" width="0" style="display:none;visibility:hidden">
+    </iframe>
+  </noscript>
+  
+
+  <div class="container">
+	<header>
+  <h1><a href="https://okomestudio.net/biboroku">Biboroku</a></h1>
+  <nav>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="https://okomestudio.net">OkomeStudio.net</a></li>
+      <li class="active"><a href="https://okomestudio.net/biborokuabout">About</a></li>
+    </ul>
+  </nav>
+</header>
+
+	
+	<main>
+		<article class="blog-post">
+			<h1>Installing Bruzual &amp; Charlot 2003 (GALAXEV) on Debian Squeeze</h1>
+      <p class="meta">
+        Written by Taro Sato
+        on <time>October 19, 2010</time>.
+	      Tagged:
         
-  
-  <div class="blog-post">
-  
-    <h1>Installing Bruzual &amp; Charlot 2003 (GALAXEV) on Debian Squeeze</h1>
-  
-  <p class="meta">
-    Written by
-    
-      Taro Sato
-    
-    on 
-  </p>
-  
-  <p>The installation procedure is confusing only if you are not using
+	      <a href="/biboroku/tags/sysadmin">sysadmin</a>
+	      
+	      <a href="/biboroku/tags/linux">Linux</a>
+	      
+      </p>
+			<div>
+				<p>The installation procedure is confusing only if you are not using
 <code>csh</code> (I use Bash) and if <strong><code>g77</code></strong> is not available. Otherwise you
 can simply follow the installation procedure outlined in the official
 documentation file (i.e., <em>bc03/doc/bc03.ps.gz</em>).</p>
+
 <p>First, you definitely need csh and a FORTRAN compiler:</p>
-<div class="hll"><pre><span></span>$ sudo apt-get install csh gfortran
-</pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo apt-get install csh gfortran</code></pre></div>
 <p>Download from the <a href="http://www2.iap.fr/users/charlot/bc2003/galaxev_download.html">B&amp;C 2003
 website</a>
 the following tarballs (assuming here they are saved under
 <em>/usr/local/SED</em>):</p>
-<pre><code>bc03.doc.tar.gz
+<div class="highlight"><pre class="chroma">bc03.doc.tar.gz
 bc03.models.padova_1994_chabrier_imf.tar.gz
 bc03.models.padova_1994_salpeter_imf.tar.gz
 bc03.src.tar.gz
-bc03.templates.tar.gz
-</code></pre>
+bc03.templates.tar.gz</pre></div>
 <p>Uncompress and untar all these at once by</p>
-<div class="hll"><pre><span></span><span class="k">for</span> i in *.tar.gz<span class="p">;</span> <span class="k">do</span> tar -xvzf <span class="nv">$i</span><span class="p">;</span> <span class="k">done</span>
-</pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="k">for</span> i in *.tar.gz<span class="p">;</span> <span class="k">do</span> tar -xvzf <span class="nv">$i</span><span class="p">;</span> <span class="k">done</span></code></pre></div>
 <p>This will create the directory <em>bc03</em> under <em>/usr/local/SED</em> and all
 the subdirectories (<em>bc03/doc</em>, <em>bc03/models</em>, <em>bc03/src</em>,
 <em>bc03/templates</em>) should be filled with files.</p>
+
 <p>Unfortunately the setup file only exists for <code>csh</code>
 (<em>bc03/src/.bc_cshrc</em>), so you need to create one for yourself. Save
 the following to a file at <em>bc03/src/.bc_bash</em>:</p>
-<div class="hll"><pre><span></span><span class="nb">export</span> <span class="nv">FILTERS</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$bc03</span><span class="s2">/FILTERBIN.RES&quot;</span>
-<span class="nb">export</span> <span class="nv">A0VSED</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$bc03</span><span class="s2">/A0V_KURUCZ_92.SED&quot;</span>
-<span class="nb">export</span> <span class="nv">RF_COLORS_ARRAYS</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$bc03</span><span class="s2">/RF_COLORS.filters&quot;</span>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">export</span> <span class="nv">FILTERS</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$bc03</span><span class="s2">/FILTERBIN.RES&#34;</span>
+<span class="nb">export</span> <span class="nv">A0VSED</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$bc03</span><span class="s2">/A0V_KURUCZ_92.SED&#34;</span>
+<span class="nb">export</span> <span class="nv">RF_COLORS_ARRAYS</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$bc03</span><span class="s2">/RF_COLORS.filters&#34;</span>
 <span class="c1">####################################################</span>
 <span class="nb">alias</span>  <span class="nv">add</span><span class="o">=</span><span class="s1">&#39;csh $bc03/add_bursts.sh&#39;</span>
 <span class="nb">alias</span>  <span class="nv">csp</span><span class="o">=</span><span class="s1">&#39;csh $bc03/csp_galaxev.sh&#39;</span>
@@ -122,55 +125,84 @@ the following to a file at <em>bc03/src/.bc_bash</em>:</p>
 <span class="nb">alias</span>  <span class="nv">cmev</span><span class="o">=</span><span class="s1">&#39;csh $bc03/cm_evolution.sh&#39;</span>
 <span class="nb">alias</span>  <span class="nv">dgr</span><span class="o">=</span><span class="s1">&#39;csh $bc03/downgrade_resolution.sh&#39;</span>
 <span class="nb">alias</span>  <span class="nv">gpl</span><span class="o">=</span><span class="s1">&#39;$bc03/galaxevpl&#39;</span>
-<span class="nb">alias</span>  <span class="nv">zmag</span><span class="o">=</span><span class="s1">&#39;$bc03/zmag&#39;</span>
-</pre></div>
+<span class="nb">alias</span>  <span class="nv">zmag</span><span class="o">=</span><span class="s1">&#39;$bc03/zmag&#39;</span></code></pre></div>
 <p>(This file is actually provided by default in C&amp;B 2007, which you
 should be using instead of the 2003 version.) Furthermore, you need to
 modify a line in <em>bc03/src/Makefile</em> to use gfortran instead of
 <strong><code>g77</code></strong>:</p>
-<div class="hll"><pre><span></span><span class="c1">#FC = g77 -ffixed-line-length-132  # comment out this line and add:</span>
-<span class="nv">FC</span> <span class="o">=</span> gfortran -ffixed-line-length-none
-</pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1">#FC = g77 -ffixed-line-length-132  # comment out this line and add:</span>
+<span class="nv">FC</span> <span class="o">=</span> gfortran -ffixed-line-length-none</code></pre></div>
 <p>Then compile the programs:</p>
-<div class="hll"><pre><span></span>$ <span class="nv">bc03</span><span class="o">=</span>/usr/local/SED/bc03/src
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nv">bc03</span><span class="o">=</span>/usr/local/SED/bc03/src
 $ <span class="nb">cd</span> <span class="nv">$bc03</span>
 $ . .bc_bash
-$ make all
-</pre></div>
+$ make all</code></pre></div>
 <p>Add the following lines to <em>~/.bashrc</em> and all the commands for
 GALAXEV will be available (as aliases):</p>
-<div class="hll"><pre><span></span><span class="nb">export</span> <span class="nv">bc03</span><span class="o">=</span>/usr/local/SED/bc03/src
-. <span class="nv">$bc03</span>/.bc_bash
-</pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">export</span> <span class="nv">bc03</span><span class="o">=</span>/usr/local/SED/bc03/src
+. <span class="nv">$bc03</span>/.bc_bash</code></pre></div>
 <p>That’s it.</p>
 
-  
-  </div>
+			</div>
 
-  
-  <div class="comments">
-<div id="disqus_thread"></div>
-<script>
-  var disqus_config = function() { this.page.identifier = "/1010-installing-bruzual-charlot-2003-galaxev-on-debian-squeeze"; };
-  (function() {
-    var d = document, s = d.createElement('script');
-    s.src = '//biboroku.disqus.com/embed.js';
-    s.setAttribute('data-timestamp', +new Date());
-    (d.head || d.body).appendChild(s);
-  })();
+			
+			<div class="comments">
+				<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "biboroku" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
 </script>
-<noscript>
-  Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript"
-    rel="nofollow">comments powered by Disqus.</a>
-</noscript>
-</div>
-  
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+			</div>
+			
+
+	  </article>
+	</main>
+<aside>
+	<div>
+		<div>
+			<h3>LATEST POSTS</h3>
+		</div>
+		<div>
+			<ul>
+				
+				<li><a href="/biboroku/2020/04/on-lazy-logging-evaluation/">On Lazy Logging Evaluation</a></li>
+				
+				<li><a href="/biboroku/2014/11/install-google-chrome-on-debian-jessie/">Install Google Chrome on Debian Jessie</a></li>
+				
+				<li><a href="/biboroku/2014/10/installing-adobe-reader-on-debianjessie/">Installing Adobe Reader on Debian/Jessie</a></li>
+				
+				<li><a href="/biboroku/2014/05/interpreting-ab-test-using-python/">Interpreting A/B Test using Python</a></li>
+				
+				<li><a href="/biboroku/2014/05/brand-positioning-by-correspondence-analysis/">Brand Positioning by Correspondence Analysis</a></li>
+				
+			</ul>
+		</div>
+	</div>
+</aside>
 
 
-      </main>
-      <footer>
-        Copyright &copy; 2007 - 2020 by Okome Studio / Taro Sato. All Rights Reserved.
-      </footer>
-    </div>
-  </body>
+	<footer>
+	Copyright &copy; 2007 - 2020
+  <a href="https://okomestudio.net/biboroku">Biboroku</a>
+  by <a href="https://okomestudio.net">Okome Studio</a> / Taro Sato.
+  All Rights Reserved.
+</footer>
+
+  </div>
+</body>
 </html>
