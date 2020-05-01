@@ -10,7 +10,6 @@
 
     gtag('config', 'UA-158896843-1');
   </script>
-
   
   <script>(function(w,d,s,l,i){
       w[l]=w[l]||[];w[l].push(
@@ -23,20 +22,19 @@
   </script>
   
 
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#000000">
-  <meta name="description" content="Okome Studio is a software consultancy">
-	
-	
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="Biboroku is a blog by Okome Studio">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="icon" href="https://okomestudio.net/favicon.ico">
-  <link rel="stylesheet" href="https://okomestudio.net/reset.css">
-  <link rel="stylesheet" href="https://okomestudio.net/index.css">
+  <link rel="stylesheet" href="/biboroku/css/normalize.css">
+  <link rel="stylesheet" href="/biboroku/css/base.css">
   <link rel="stylesheet" href="/biboroku/css/style.css">
   <link rel="stylesheet" href="/biboroku/css/codesyntax.css">
   <link rel="stylesheet" href="/biboroku/css/gist.css">
-  <title>Welcome — Sysadmin</title>
+  <title>Sysadmin</title>
 
   <script type="text/javascript">
     window.MathJax = {
@@ -51,11 +49,12 @@
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML">
   </script>
 
-  <script type="text/javascript" src="/biboroku/css/pjump.js"></script>
+  <script type="text/javascript" src="/biboroku/static/js/pjump.js"></script>
 
   <link rel="alternate" type="application/rss+xml" href="/biboroku/tags/sysadmin/index.xml" title="Biboroku">
 </head>
 <body>
+
   
   <noscript>
     <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NXBHQLG"
@@ -65,24 +64,72 @@
   
 
   <div class="container">
-	<header>
-  <h1><a href="https://okomestudio.net/biboroku">Biboroku</a></h1>
+  <header>
+  <h1 class="font-uni"><a href="https://okomestudio.net/biboroku">Biboroku</a></h1>
   <nav>
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="https://okomestudio.net">OkomeStudio.net</a></li>
-      <li class="active"><a href="https://okomestudio.net/biborokuabout">About</a></li>
+    <ul class="nav navbar-nav font-uni">
+      <li><a href="https://okomestudio.net">OkomeStudio.net</a></li>
+      <li><a href="https://okomestudio.net/biboroku/about">About</a></li>
     </ul>
   </nav>
 </header>
 
-	
+  
 	<main>
 		
-		<div>
-			<h1>Sysadmin</h1>
+		<div class="list">
+			<h1>Tagged: Sysadmin</h1>
 			
 		</div>
 		
+
+		
+			<article class="blog-post">
+	<h1><a href="https://okomestudio.net/biboroku/2010/03/installing-atlas-on-mac-os-x-snow-leopard/">Installing ATLAS on Mac OS X Snow Leopard</a></h1>
+  
+  <p class="meta">
+    Written by Taro Sato
+    on <time>March 22, 2010</time>.
+    Tagged:
+	  
+	  <a href="/biboroku/tags/sysadmin">sysadmin</a>
+	  
+	  <a href="/biboroku/tags/os-x">OS X</a>
+	  
+  </p>
+  
+	<div>
+		Installing from Fink Do:
+$ fink install atlas atlas-shlibs That’s it. They will be installed under /sw/lib.
+Installing from Source (Recommended if Building Other Software That Depends on ATLAS) First of all, I need a FORTRAN compiler, so install it.
+		
+		...	<a href="https://okomestudio.net/biboroku/2010/03/installing-atlas-on-mac-os-x-snow-leopard/">Continue reading</a>.
+		
+	</div>
+</article>
+
+		
+			<article class="blog-post">
+	<h1><a href="https://okomestudio.net/biboroku/2010/03/installing-sextractor-on-mac-os-x-snow-leopard/">Installing SExtractor on Mac OS X Snow Leopard</a></h1>
+  
+  <p class="meta">
+    Written by Taro Sato
+    on <time>March 22, 2010</time>.
+    Tagged:
+	  
+	  <a href="/biboroku/tags/sysadmin">sysadmin</a>
+	  
+	  <a href="/biboroku/tags/os-x">OS X</a>
+	  
+  </p>
+  
+	<div>
+		(November 25, 2010) I screwed up SExtractor installation for no reason and in an attempt to fix it, I’ve found a few things. After wasting a few hours again, I think this installation note can work for most people who can actually build software from source&hellip; I think the usefulness of this note will be limited though, as a new release of SExtractor appears imminent.
+		
+		...	<a href="https://okomestudio.net/biboroku/2010/03/installing-sextractor-on-mac-os-x-snow-leopard/">Continue reading</a>.
+		
+	</div>
+</article>
 
 		
 			<article class="blog-post">
@@ -217,7 +264,7 @@ Install hotplug-type package such that upon plugging the USB drive in the device
 <aside>
 	<div>
 		<div>
-			<h3>LATEST POSTS</h3>
+			<h2 class="font-uni">LATEST POSTS</h2>
 		</div>
 		<div>
 			<ul>
@@ -238,11 +285,13 @@ Install hotplug-type package such that upon plugging the USB drive in the device
 </aside>
 
 
-	<footer>
-	Copyright &copy; 2007 - 2020
-  <a href="https://okomestudio.net/biboroku">Biboroku</a>
-  by <a href="https://okomestudio.net">Okome Studio</a> / Taro Sato.
-  All Rights Reserved.
+  <footer class="centered">
+  <span class="font-uni larger-text">
+	  Copyright &copy; 2007 - 2020
+    <a href="https://okomestudio.net/biboroku">Biboroku</a>
+    by <a href="https://okomestudio.net">Okome Studio</a> / Taro Sato.
+    All Rights Reserved.
+  </span>
 </footer>
 
   </div>

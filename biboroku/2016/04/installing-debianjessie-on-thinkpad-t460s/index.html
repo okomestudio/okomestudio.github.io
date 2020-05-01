@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-158896843-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-158896843-1');
+  </script>
+  
+  <script>(function(w,d,s,l,i){
+      w[l]=w[l]||[];w[l].push(
+        {'gtm.start':
+         new Date().getTime(),event:'gtm.js'}
+      );var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NXBHQLG');
+  </script>
+  
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="Biboroku is a blog by Okome Studio">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="icon" href="https://okomestudio.net/favicon.ico">
+  <link rel="stylesheet" href="/biboroku/css/normalize.css">
+  <link rel="stylesheet" href="/biboroku/css/base.css">
+  <link rel="stylesheet" href="/biboroku/css/style.css">
+  <link rel="stylesheet" href="/biboroku/css/codesyntax.css">
+  <link rel="stylesheet" href="/biboroku/css/gist.css">
+  <title>Installing Debian/Jessie on ThinkPad T460s</title>
+
+  <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        tags: 'ams'
+      }
+    };
+  </script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "AMS"} } });
+  </script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML">
+  </script>
+
+  <script type="text/javascript" src="/biboroku/static/js/pjump.js"></script>
+
+  
+</head>
+<body>
+
+  
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NXBHQLG"
+            height="0" width="0" style="display:none;visibility:hidden">
+    </iframe>
+  </noscript>
+  
+
+  <div class="container">
+  <header>
+  <h1 class="font-uni"><a href="https://okomestudio.net/biboroku">Biboroku</a></h1>
+  <nav>
+    <ul class="nav navbar-nav font-uni">
+      <li><a href="https://okomestudio.net">OkomeStudio.net</a></li>
+      <li><a href="https://okomestudio.net/biboroku/about">About</a></li>
+    </ul>
+  </nav>
+</header>
+
+  
+	<main>
+		<article class="blog-post">
+			<h1>Installing Debian/Jessie on ThinkPad T460s</h1>
+      <p class="meta">
+        Written by Taro Sato
+        on <time>April 30, 2016</time>.
+	      Tagged:
+        
+	      <a href="/biboroku/tags/linux">Linux</a>
+	      
+	      <a href="/biboroku/tags/sysadmin">sysadmin</a>
+	      
+      </p>
+			<div>
+				
+
+<p>This is a Debian/Jessie installation instruction on ThinkPad T460s
+(product ID: 20F9CTO1WW).</p>
+
+<p>First, update BIOS on Windows if necessary, since that kind of task is
+unfortunately typically much easier on it. Also make sure to create a
+recovery media for Windows 10.</p>
+
+<p>Disable Secure Boot in BIOS.</p>
+
+<p>Boot from the netinst (with firmware) install media. Use wired network
+while installing. Wireless does not work out of the box.</p>
+
+<p>Boot from the install USB media. Follow the standard Debian installer
+instruction:</p>
+
+<ul>
+<li>Language: English</li>
+<li>Country: United States</li>
+<li>Keymap to use: American English</li>
+<li>Primary network interface: wlan0</li>
+<li>Wireless network: (your choice)</li>
+<li>Hostname: (your choice)</li>
+<li>Domain name: (your choice)</li>
+<li>Root password: (your choice)</li>
+<li>Full name for the new user: (your choice)</li>
+<li>Username for your account: (your choice)</li>
+<li>Choose a password for the new user:</li>
+<li>Re-enter password to verify: (your choice)</li>
+<li>Select your time zone: (your choice)</li>
+<li>Partitioning method: Manual</li>
+</ul>
+
+<p>Here is my partitioning scheme:</p>
+<div class="highlight"><pre class="chroma">1 /boot/efi  300 MB EFI System Partition (bootable, EFI System partition)
+2 /boot      250 MB ext4
+3 /          100 GB ext4
+4 /usr/local  50 GB ext4
+6 /home      338 GB ext4
+5 SWAP        24 GB</pre></div>
+<ul>
+<li>Write changes to disks: yes</li>
+<li>Debian archive mirror country: (your choice)</li>
+<li>Debian archive mirror: (your choice)</li>
+<li>HTTP proxy information: (your choice)</li>
+<li>Participate in the package usage survey: (your choice)</li>
+<li>Choose software to install: (your choice; recommended to install
+Windows manager with Wifi support)</li>
+</ul>
+
+<p>If asked during installation, force UEFI installation: Yes (on the
+SSD, not USB device from which the installer is running).</p>
+
+<p>After the first reboot, log in as root and do the following:</p>
+
+<p>It would be convenient to add your regular user account to <code>sudo</code>
+group:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># apt-get install sudo</span>
+<span class="c1"># adduser &lt;username&gt; sudo</span></code></pre></div>
+<h2 id="intel-wireless-8260">Intel Wireless 8260</h2>
+
+<p>Wireless does not work out of box. Upgrade kernel and install
+firmware. Add contrib and non-free, as well as backports to
+<em>/etc/apt/sources.list</em>, which should have lines similar to this:</p>
+<div class="highlight"><pre class="chroma">deb http://ftp.us.debian.org/debian/ jessie main contrib non-free
+deb-src http://ftp.us.debian.org/debian/ jessie main contrib non-free
+
+deb http://security.debian.org/ jessie/updates main contrib non-free
+deb-src http://security.debian.org/ jessie/updates main contrib non-free
+
+deb http://ftp.debian.org/debian jessie-backports main contrib non-free</pre></div>
+<p>Then upgrade the kernel and video driver and install updated firmware:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># apt-get update</span>
+<span class="c1"># apt-get install -t jessie-backports linux-image-4.5.0-0.bpo.1-amd64</span>
+<span class="c1"># apt-get install -t jessie-backports firmware-linux-nonfree</span>
+<span class="c1"># apt-get install -t jessie-backports firmware-iwlwifi</span>
+<span class="c1"># apt-get install -t jessie-backports xserver-xorg-video-intel</span></code></pre></div>
+<p>Reboot and wireless should be working.</p>
+
+<h3 id="trackpoint-scrolling-and-disabling-trackpad">TrackPoint scrolling and disabling TrackPad</h3>
+
+<p>Install <code>xinput</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo apt-get install xinput</code></pre></div>
+<p>Create <em>~/.xsessionrc</em> file with the following content:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/bin/bash
+</span><span class="cp"></span>#
+<span class="c1"># ThinkPad T460s TrackPad/TrackPoint configuration</span>
+#
+<span class="c1"># Required package: xinput</span>
+#
+
+
+<span class="c1"># extract device id from xinput output</span>
+<span class="nv">dev_id</span><span class="o">=</span><span class="s2">&#34;&#34;</span>
+<span class="k">function</span> get_dev_id<span class="o">()</span> <span class="o">{</span>
+    <span class="nv">device_name</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$1</span><span class="s2">&#34;</span>
+    <span class="nv">s</span><span class="o">=</span><span class="k">$(</span>xinput <span class="p">|</span> grep <span class="s2">&#34;</span><span class="nv">$device_name</span><span class="s2">&#34;</span><span class="k">)</span>
+    <span class="nv">s</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">s</span><span class="p">#*id=</span><span class="si">}</span><span class="s2">&#34;</span>
+    <span class="nv">dev_id</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">s</span><span class="p">%%[!0-9]*</span><span class="si">}</span><span class="s2">&#34;</span>
+<span class="o">}</span>
+
+
+<span class="c1"># TrackPoint</span>
+get_dev_id <span class="s2">&#34;TPPS/2 IBM TrackPoint&#34;</span>
+
+xinput --set-prop --type<span class="o">=</span>int --format<span class="o">=</span><span class="m">8</span> <span class="s2">&#34;</span><span class="nv">$dev_id</span><span class="s2">&#34;</span> <span class="s2">&#34;Evdev Wheel Emulation&#34;</span> <span class="m">1</span>
+xinput --set-prop --type<span class="o">=</span>int --format<span class="o">=</span><span class="m">8</span> <span class="s2">&#34;</span><span class="nv">$dev_id</span><span class="s2">&#34;</span> <span class="s2">&#34;Evdev Wheel Emulation Button&#34;</span> <span class="m">2</span>
+xinput --set-prop --type<span class="o">=</span>int --format<span class="o">=</span><span class="m">8</span> <span class="s2">&#34;</span><span class="nv">$dev_id</span><span class="s2">&#34;</span> <span class="s2">&#34;Evdev Wheel Emulation Axes&#34;</span> <span class="m">6</span> <span class="m">7</span> <span class="m">4</span> <span class="m">5</span>
+xinput --set-prop --type<span class="o">=</span>float <span class="s2">&#34;</span><span class="nv">$dev_id</span><span class="s2">&#34;</span> <span class="s2">&#34;Device Accel Constant Deceleration&#34;</span> <span class="m">0</span>.25
+xinput --set-prop --type<span class="o">=</span>float <span class="s2">&#34;</span><span class="nv">$dev_id</span><span class="s2">&#34;</span> <span class="s2">&#34;Device Accel Adaptive Deceleration&#34;</span> <span class="m">1</span>.0
+xinput --set-prop --type<span class="o">=</span>float <span class="s2">&#34;</span><span class="nv">$dev_id</span><span class="s2">&#34;</span> <span class="s2">&#34;Device Accel Velocity Scaling&#34;</span> <span class="m">12</span>.5
+
+
+<span class="c1"># TrackPad</span>
+get_dev_id <span class="s2">&#34;PS/2 Synaptics TouchPad&#34;</span>
+
+<span class="c1"># disable TrackPad if desired</span>
+xinput --set-prop --type<span class="o">=</span>int <span class="s2">&#34;</span><span class="nv">$dev_id</span><span class="s2">&#34;</span> <span class="s2">&#34;Device Enabled&#34;</span> <span class="m">0</span></code></pre></div>
+<p>Source this file explicitly</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ . ~/.xsessionrc</code></pre></div>
+<p>or upon the next boot, TrackPoint should be fully working.</p>
+
+			</div>
+
+			
+			<div class="comments">
+				<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "biboroku" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+			</div>
+			
+
+	  </article>
+	</main>
+<aside>
+	<div>
+		<div>
+			<h2 class="font-uni">LATEST POSTS</h2>
+		</div>
+		<div>
+			<ul>
+				
+				<li><a href="/biboroku/2020/04/on-lazy-logging-evaluation/">On Lazy Logging Evaluation</a></li>
+				
+				<li><a href="/biboroku/2014/11/install-google-chrome-on-debian-jessie/">Install Google Chrome on Debian Jessie</a></li>
+				
+				<li><a href="/biboroku/2014/10/installing-adobe-reader-on-debianjessie/">Installing Adobe Reader on Debian/Jessie</a></li>
+				
+				<li><a href="/biboroku/2014/05/interpreting-ab-test-using-python/">Interpreting A/B Test using Python</a></li>
+				
+				<li><a href="/biboroku/2014/05/brand-positioning-by-correspondence-analysis/">Brand Positioning by Correspondence Analysis</a></li>
+				
+			</ul>
+		</div>
+	</div>
+</aside>
+
+
+  <footer class="centered">
+  <span class="font-uni larger-text">
+	  Copyright &copy; 2007 - 2020
+    <a href="https://okomestudio.net/biboroku">Biboroku</a>
+    by <a href="https://okomestudio.net">Okome Studio</a> / Taro Sato.
+    All Rights Reserved.
+  </span>
+</footer>
+
+  </div>
+</body>
+</html>

@@ -6,10 +6,20 @@
     <description>Recent content in 2012s on Biboroku</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 21 Sep 2012 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 22 Sep 2012 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://okomestudio.net/biboroku/2012/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Installing Firefox on Debian Wheezy</title>
+      <link>https://okomestudio.net/biboroku/2012/09/installing-firefox-on-debian-wheezy/</link>
+      <pubDate>Sat, 22 Sep 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://okomestudio.net/biboroku/2012/09/installing-firefox-on-debian-wheezy/</guid>
+      <description>I don’t like to get stuck with a very old version of browser, so I install a Firefox binary provided by Mozilla, not the one by Debian.
+Make sure to download a 64-bit version (as I use amd64) from here. The tarball expands to a directory named firefox.</description>
+    </item>
     
     <item>
       <title>Using Japanese on Debian Wheezy</title>

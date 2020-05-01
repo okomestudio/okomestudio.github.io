@@ -13,6 +13,11 @@
   </url>
   
   <url>
+    <loc>https://okomestudio.net/biboroku/2016/04/installing-debianjessie-on-thinkpad-t460s/</loc>
+    <lastmod>2016-04-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://okomestudio.net/biboroku/2014/11/install-google-chrome-on-debian-jessie/</loc>
     <lastmod>2014-11-27T00:00:00+00:00</lastmod>
   </url>
@@ -50,6 +55,11 @@
   <url>
     <loc>https://okomestudio.net/biboroku/2014/02/installing-debian-wheezy-from-a-usb-stick/</loc>
     <lastmod>2014-02-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://okomestudio.net/biboroku/2012/09/installing-firefox-on-debian-wheezy/</loc>
+    <lastmod>2012-09-22T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -131,13 +141,19 @@
   
   <url>
     <loc>https://okomestudio.net/biboroku/2012/</loc>
-    <lastmod>2012-09-21T00:00:00+00:00</lastmod>
+    <lastmod>2012-09-22T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://okomestudio.net/biboroku/2014/</loc>
     <lastmod>2014-11-27T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://okomestudio.net/biboroku/2016/</loc>
+    <lastmod>2016-04-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -166,7 +182,7 @@
   
   <url>
     <loc>https://okomestudio.net/biboroku/tags/linux/</loc>
-    <lastmod>2014-11-27T00:00:00+00:00</lastmod>
+    <lastmod>2016-04-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -196,7 +212,7 @@
   
   <url>
     <loc>https://okomestudio.net/biboroku/tags/sysadmin/</loc>
-    <lastmod>2014-11-27T00:00:00+00:00</lastmod>
+    <lastmod>2016-04-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

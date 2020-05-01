@@ -34,7 +34,7 @@
   <link rel="stylesheet" href="/biboroku/css/style.css">
   <link rel="stylesheet" href="/biboroku/css/codesyntax.css">
   <link rel="stylesheet" href="/biboroku/css/gist.css">
-  <title>2012s</title>
+  <title>Installing Firefox on Debian Wheezy</title>
 
   <script type="text/javascript">
     window.MathJax = {
@@ -51,7 +51,7 @@
 
   <script type="text/javascript" src="/biboroku/static/js/pjump.js"></script>
 
-  <link rel="alternate" type="application/rss+xml" href="/biboroku/2012/index.xml" title="Biboroku">
+  
 </head>
 <body>
 
@@ -76,71 +76,65 @@
 
   
 	<main>
-		
-		<div class="list">
-			<h1>Tagged: 2012s</h1>
+		<article class="blog-post">
+			<h1>Installing Firefox on Debian Wheezy</h1>
+      <p class="meta">
+        Written by Taro Sato
+        on <time>September 22, 2012</time>.
+	      Tagged:
+        
+	      <a href="/biboroku/tags/linux">Linux</a>
+	      
+	      <a href="/biboroku/tags/sysadmin">sysadmin</a>
+	      
+      </p>
+			<div>
+				<p>I don’t like to get stuck with a very old version of browser, so I
+install a Firefox binary provided by Mozilla, not the one by Debian.</p>
+
+<p>Make sure to download a 64-bit version (as I use amd64) from
+<a href="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/latest/linux-x86_64/">here</a>. The
+tarball expands to a directory named <em>firefox</em>. For example:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">cd</span> /usr/local/src
+$ sudo wget http://releases.mozilla.org/pub/mozilla.org/firefox/releases/latest/linux-x86_64/en-US/firefox-15.0.1.tar.bz2
+$ sudo tar -xvjf firefox-15.0.1.tar.bz2
+$ sudo mv firefox ..
+$ <span class="nb">cd</span> /usr/local/bin
+$ sudo ln -s ../firefox/firefox .</code></pre></div>
+<p>This makes <em>firefox</em> command available system-wide.</p>
+
+<p>To install flash, do:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo aptitude install flashplugin-nonfree</code></pre></div>
+<p>To install Java plugin, do:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo aptitude install icedtea-7-plugin</code></pre></div>
+			</div>
+
 			
-		</div>
-		
+			<div class="comments">
+				<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "biboroku" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+			</div>
+			
 
-		
-			<article class="blog-post">
-	<h1><a href="https://okomestudio.net/biboroku/2012/09/installing-firefox-on-debian-wheezy/">Installing Firefox on Debian Wheezy</a></h1>
-  
-  <p class="meta">
-    Written by Taro Sato
-    on <time>September 22, 2012</time>.
-    Tagged:
-	  
-	  <a href="/biboroku/tags/linux">Linux</a>
-	  
-	  <a href="/biboroku/tags/sysadmin">sysadmin</a>
-	  
-  </p>
-  
-	<div>
-		I don’t like to get stuck with a very old version of browser, so I install a Firefox binary provided by Mozilla, not the one by Debian.
-Make sure to download a 64-bit version (as I use amd64) from here. The tarball expands to a directory named firefox.
-		
-		...	<a href="https://okomestudio.net/biboroku/2012/09/installing-firefox-on-debian-wheezy/">Continue reading</a>.
-		
-	</div>
-</article>
-
-		
-			<article class="blog-post">
-	<h1><a href="https://okomestudio.net/biboroku/2012/09/using-japanese-on-debian-wheezy/">Using Japanese on Debian Wheezy</a></h1>
-  
-  <p class="meta">
-    Written by Taro Sato
-    on <time>September 21, 2012</time>.
-    Tagged:
-	  
-	  <a href="/biboroku/tags/sysadmin">sysadmin</a>
-	  
-	  <a href="/biboroku/tags/linux">Linux</a>
-	  
-  </p>
-  
-	<div>
-		The goal is to make the system capable for Japanese input, while letting the base system remain English. For the Japanese input method, I had been using Anthy, but I will be using mozc, which is now better supported and presumably much better (it is).
-		
-		...	<a href="https://okomestudio.net/biboroku/2012/09/using-japanese-on-debian-wheezy/">Continue reading</a>.
-		
-	</div>
-</article>
-
-		
-		<div class="pagination">
-
-  <span class="disabled">&laquo; Previous</span>
-
-&nbsp; | 1 of 1 | &nbsp;
-
-  <span class="disabled">Next &raquo;</span>
-
-</div>
-
+	  </article>
 	</main>
 <aside>
 	<div>

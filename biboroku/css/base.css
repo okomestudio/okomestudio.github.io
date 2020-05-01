@@ -1,0 +1,164 @@
+:root {
+  --main-text-color: hsla(0, 0%, 46%, 1);  /* #767676, as used in logo */
+  --dark-text-color: hsla(0, 0%, 35%, 1);  /* #595959 for the contrast ratio of 7 */
+  --main-text-hover-color: hsla(182, 41%, 61%, 1);  /* #74c2c5 */
+  --dark-text-hover-color: hsla(182, 41%, 61%, 1);
+  --main-accent-color: hsla(182, 41%, 61%, 1);
+  --main-accent-color-dark: hsla(182, 33%, 49%, 1);  /* #54a2a5 */
+  --main-bg-color: hsla(0, 0%, 93%, 1);  /* #ededed */
+  box-sizing: border-box;
+  font-size: 1rem;  /* the browser's default is 16px = 1rem */
+  /* font-size: max(min(2vw, 2em), 1rem); */
+  line-height: 1.65;
+}
+
+*,
+::before,
+::after {
+  box-sizing: inherit;
+}
+
+@font-face {
+  font-display: swap;
+  font-family: MyUniverse;
+  src: url('https://okomestudio.net/font/univers-lightultracondensed-webfont.woff') format('woff');
+}
+
+body {
+  color: #595959;  /* fallback if the browser does not understand var */
+  color: var(--dark-text-color);
+  font-family: 'Open Sans', sans-serif;
+  width: calc(100vw);
+}
+
+@media (min-width: 35em) {
+  body {
+    /* This is a trick to avoid the page shift when scrollbar is present */
+    width: calc(100vw - 34px);
+  }
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 660px;
+  padding: 0 1em;
+}
+
+a {
+  color: #595959;
+  color: var(--dark-text-color);
+  text-decoration: underline;
+}
+
+a:hover {
+  color: #74c2c5;
+  color: var(--dark-text-hover-color);
+}
+
+h1,
+h2,
+h3 {
+  color: #595959;
+  color: var(--dark-text-color);
+  font-weight: bold;
+  line-height: 1;
+  margin: 1.2em 0 .2em 0;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+h2 {
+  font-size: 1.3em;
+}
+
+h3 {
+  font-size: 1.1em;
+}
+
+h1 a,
+h2 a,
+h3 a {
+  text-decoration: none;
+}
+
+p {
+  font-size: 1em;
+}
+
+p code {
+  font-size: .85em;
+}
+
+p em {
+  font-size: 1.05em;
+}
+
+pre {
+  font-size: .85em;
+  margin: 1.5em 0 1.5em 1.25em;
+  overflow: auto;
+  white-space: pre;
+  word-wrap: normal;
+}
+
+pre::-webkit-scrollbar {
+  height: 0.4em;
+}
+
+sub,
+sup {
+  font-size: 83%;
+}
+
+sub {
+  vertical-align: sub;
+}
+
+sup {
+  vertical-align: super;
+}
+
+.centered {
+  text-align: center;
+}
+
+.clearfix::before,
+.clearfix::after {
+  content: " ";
+  display: table;
+}
+
+.clearfix::after {
+  clear: both;
+}
+
+.font-uni {
+  font-family: MyUniverse;
+}
+
+.larger-text {
+  font-size: 1.15em;
+}
+
+.smaller-text {
+  font-size: .85em;
+}
+
+::-webkit-scrollbar {
+  background: #ededed;
+  background: var(--main-bg-color);
+  height: 0.75em;
+  width: 0.75em;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #74c2c5;
+  background: var(--main-accent-color);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #54a2a5;
+  background: var(--main-accent-color-dark);
+}
