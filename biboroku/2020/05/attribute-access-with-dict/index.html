@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-158896843-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-158896843-1');
+  </script>
+  
+  <script>(function(w,d,s,l,i){
+      w[l]=w[l]||[];w[l].push(
+        {'gtm.start':
+         new Date().getTime(),event:'gtm.js'}
+      );var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NXBHQLG');
+  </script>
+  
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="Biboroku is a blog by Okome Studio">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="icon" href="https://okomestudio.net/favicon.ico">
+  <link rel="stylesheet" href="/biboroku/css/normalize.css">
+  <link rel="stylesheet" href="/biboroku/css/base.css">
+  <link rel="stylesheet" href="/biboroku/css/style.css">
+  <link rel="stylesheet" href="/biboroku/css/codesyntax.css">
+  <link rel="stylesheet" href="/biboroku/css/gist.css">
+  <title>Attribute Access with Dict</title>
+
+  <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        tags: 'ams'
+      }
+    };
+  </script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "AMS"} } });
+  </script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML">
+  </script>
+
+  <script type="text/javascript" src="/biboroku/static/js/pjump.js"></script>
+
+  
+</head>
+<body>
+
+  
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NXBHQLG"
+            height="0" width="0" style="display:none;visibility:hidden">
+    </iframe>
+  </noscript>
+  
+
+  <div class="container">
+  <header>
+  <h1 class="font-uni"><a href="https://okomestudio.net/biboroku">Biboroku</a></h1>
+  <nav>
+    <ul class="nav navbar-nav font-uni">
+      <li><a href="https://okomestudio.net">OkomeStudio.net</a></li>
+      <li><a href="https://okomestudio.net/biboroku/about">About</a></li>
+    </ul>
+  </nav>
+</header>
+
+  
+	<main>
+		<article class="blog-post">
+			<h1>Attribute Access with Dict</h1>
+      <p class="meta">
+        Written by Taro Sato
+        on <time>May 9, 2020</time>.
+	      Tagged:
+        
+	      <a href="/biboroku/tags/python">Python</a>
+	      
+      </p>
+			<div>
+				<p>Python <code>dict</code> is useful. The access to a nested item can be tedious,
+however. For example,</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s2">&#34;hosts&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;localhost&#34;</span><span class="p">,</span>
+    <span class="s2">&#34;cidr&#34;</span><span class="p">:</span> <span class="s2">&#34;127.0.0.1/8&#34;</span><span class="p">,</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre></div>
+<p>Here, <code>data[&quot;hosts&quot;][&quot;cidir&quot;]</code> would get you <code>&quot;127.0.0.1/8&quot;</code>, but
+all those quotes and brackets can be annoying to type and read. A
+singly nested <code>dict</code> like the case above is not bad, but this can
+quickly become tedium as the nesting deepens. It would be so much more
+succinct to be able to access an item at a key through attributes, as
+in <code>data.hosts.cidir</code>.</p>
+
+<p>Such attribute access is actually fairly simple to implement using the
+<code>__dict__</code> magic attribute Python uses to define object attributes:</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">UserDict</span>
+
+<span class="k">class</span> <span class="nc">AttrDict</span><span class="p">(</span><span class="n">UserDict</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="k">def</span> <span class="nf">attrdict</span><span class="p">(</span><span class="n">d</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AttrDict</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">addattrs</span><span class="p">(</span><span class="n">d</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">d</span>
+        <span class="n">obj</span> <span class="o">=</span> <span class="n">AttrDict</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">d</span><span class="p">:</span>
+            <span class="n">obj</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">addattrs</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">obj</span>
+
+    <span class="n">obj</span> <span class="o">=</span> <span class="n">AttrDict</span><span class="p">()</span>
+    <span class="n">obj</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+    <span class="n">obj</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">addattrs</span><span class="p">(</span><span class="n">d</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">obj</span></code></pre></div>
+<p>There are caveats. If a key in the input <code>dict</code> contains invalid
+characters for attribute name (e.g., space), the item for the key will
+not be accessible as an attribute (though it remains accessible
+through index). Keys also need to be <code>str</code>, whereas <code>dict</code> keys in
+general can be any hashable Python object. More importantly, if any
+key in the input <code>dict</code> conflicts with the method or attribute names
+of the <code>dict</code> interface, the object may not function properly as
+<code>dict</code> any more.</p>
+
+<p>So long as the limitations are understood, a solution like this can be
+good enough in some cases, simple JSON objects with well-defined
+structure, for example.</p>
+
+			</div>
+
+			
+			<div class="comments">
+				<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "biboroku" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+			</div>
+			
+
+	  </article>
+	</main>
+<aside>
+	<div>
+		<div>
+			<h2 class="font-uni">LATEST POSTS</h2>
+		</div>
+		<div>
+			<ul>
+				
+				<li><a href="/biboroku/2020/05/attribute-access-with-dict/">Attribute Access with Dict</a></li>
+				
+				<li><a href="/biboroku/2020/04/on-lazy-logging-evaluation/">On Lazy Logging Evaluation</a></li>
+				
+				<li><a href="/biboroku/2014/11/install-google-chrome-on-debian-jessie/">Install Google Chrome on Debian Jessie</a></li>
+				
+				<li><a href="/biboroku/2014/10/installing-adobe-reader-on-debianjessie/">Installing Adobe Reader on Debian/Jessie</a></li>
+				
+				<li><a href="/biboroku/2014/05/interpreting-ab-test-using-python/">Interpreting A/B Test using Python</a></li>
+				
+			</ul>
+		</div>
+	</div>
+</aside>
+
+
+  <footer class="centered">
+  <span class="font-uni larger-text">
+	  Copyright &copy; 2007 - 2020
+    <a href="https://okomestudio.net/biboroku">Biboroku</a>
+    by <a href="https://okomestudio.net">Okome Studio</a> / Taro Sato.
+    All Rights Reserved.
+  </span>
+</footer>
+
+  </div>
+</body>
+</html>

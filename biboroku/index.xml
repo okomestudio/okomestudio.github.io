@@ -6,10 +6,20 @@
     <description>Recent content on Biboroku</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 20 Apr 2020 10:55:26 -0700</lastBuildDate>
+    <lastBuildDate>Sat, 09 May 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://okomestudio.net/biboroku/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Attribute Access with Dict</title>
+      <link>https://okomestudio.net/biboroku/2020/05/attribute-access-with-dict/</link>
+      <pubDate>Sat, 09 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://okomestudio.net/biboroku/2020/05/attribute-access-with-dict/</guid>
+      <description>Python dict is useful. The access to a nested item can be tedious, however. For example,
+data = { &amp;#34;hosts&amp;#34;: { &amp;#34;name&amp;#34;: &amp;#34;localhost&amp;#34;, &amp;#34;cidr&amp;#34;: &amp;#34;127.0.0.1/8&amp;#34;, } } Here, data[&amp;quot;hosts&amp;quot;][&amp;quot;cidir&amp;quot;] would get you &amp;quot;127.0.0.1/8&amp;quot;, but all those quotes and brackets can be annoying to type and read.</description>
+    </item>
     
     <item>
       <title>About Biboroku</title>
