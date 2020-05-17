@@ -63,6 +63,11 @@
   </url>
   
   <url>
+    <loc>https://okomestudio.net/biboroku/2012/09/customizing-installing-linux-kernel-on-debian-wheezy/</loc>
+    <lastmod>2012-09-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://okomestudio.net/biboroku/2012/09/installing-firefox-on-debian-wheezy/</loc>
     <lastmod>2012-09-22T00:00:00+00:00</lastmod>
   </url>
@@ -146,7 +151,7 @@
   
   <url>
     <loc>https://okomestudio.net/biboroku/2012/</loc>
-    <lastmod>2012-09-22T00:00:00+00:00</lastmod>
+    <lastmod>2012-09-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
