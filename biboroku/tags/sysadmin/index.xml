@@ -134,6 +134,15 @@ Installing from Source (Recommended if Building Other Software That Depends on A
     </item>
     
     <item>
+      <title>Installing GFortran on Mac OS X Snow Leopard</title>
+      <link>https://okomestudio.net/biboroku/2010/03/installing-gfortran-on-mac-os-x-snow-leopard/</link>
+      <pubDate>Mon, 22 Mar 2010 00:00:00 +0000</pubDate>
+      
+      <guid>https://okomestudio.net/biboroku/2010/03/installing-gfortran-on-mac-os-x-snow-leopard/</guid>
+      <description>Installing from GFortran Wiki (My Current Preferred Way) GCC Wiki has a link to Mac OS X installer. As the command gfortran will be installed at /usr/local/gfortran and causes less interference with other libraries and software, this is my preferred way.</description>
+    </item>
+    
+    <item>
       <title>Installing SExtractor on Mac OS X Snow Leopard</title>
       <link>https://okomestudio.net/biboroku/2010/03/installing-sextractor-on-mac-os-x-snow-leopard/</link>
       <pubDate>Mon, 22 Mar 2010 00:00:00 +0000</pubDate>
