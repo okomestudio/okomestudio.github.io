@@ -5,6 +5,7 @@ var urlmap = {
   636: '2010/03/installing-hotpants-5-1-10-on-mac-os-x-leopard',
   719: '2010/03/installing-fftw-on-mac-os-x-snow-leopard',
   722: '2010/03/installing-atlas-on-mac-os-x-snow-leopard',
+  754: '2010/03/customizing-installing-linux-kernel-on-debian-squeeze',
   816: '2010/03/installing-squid-proxy-server-on-mac-os-x-snow-leopard',
   824: '2010/03/installing-sextractor-on-mac-os-x-snow-leopard',
   827: '2010/03/installing-gfortran-on-mac-os-x-snow-leopard',

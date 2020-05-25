@@ -101,6 +101,17 @@ Installing from Source (Recommended if Building Other Software That Depends on A
     </item>
     
     <item>
+      <title>Customizing &amp; Installing Linux Kernel on Debian Squeeze</title>
+      <link>https://okomestudio.net/biboroku/2010/03/customizing-installing-linux-kernel-on-debian-squeeze/</link>
+      <pubDate>Sun, 21 Mar 2010 00:00:00 +0000</pubDate>
+      
+      <guid>https://okomestudio.net/biboroku/2010/03/customizing-installing-linux-kernel-on-debian-squeeze/</guid>
+      <description>Here is a quickie for customizing and install Linux kernel 2.6.x on Squeeze.
+Install some packages and kernel source:
+$ sudo aptitude update $ sudo aptitude install kernel-package bzip2 g++ libqt3-mt-dev libncurses5-dev sudo fakeroot If you do not belong to group &amp;#8220;src&amp;#8221;, add yourself to the group as we work under /usr/src:</description>
+    </item>
+    
+    <item>
       <title>Installing FFTW on Mac OS X Snow Leopard</title>
       <link>https://okomestudio.net/biboroku/2010/03/installing-fftw-on-mac-os-x-snow-leopard/</link>
       <pubDate>Thu, 18 Mar 2010 00:00:00 +0000</pubDate>

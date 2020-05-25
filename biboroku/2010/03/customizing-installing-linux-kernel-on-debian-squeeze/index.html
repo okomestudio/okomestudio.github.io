@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-158896843-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-158896843-1');
+  </script>
+  
+  <script>(function(w,d,s,l,i){
+      w[l]=w[l]||[];w[l].push(
+        {'gtm.start':
+         new Date().getTime(),event:'gtm.js'}
+      );var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NXBHQLG');
+  </script>
+  
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="Biboroku is a blog by Okome Studio">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="icon" href="https://okomestudio.net/favicon.ico">
+  <link rel="stylesheet" href="/biboroku/css/normalize.css">
+  <link rel="stylesheet" href="/biboroku/css/base.css">
+  <link rel="stylesheet" href="/biboroku/css/style.css">
+  <link rel="stylesheet" href="/biboroku/css/codesyntax.css">
+  <link rel="stylesheet" href="/biboroku/css/gist.css">
+  <title>Customizing &amp; Installing Linux Kernel on Debian Squeeze</title>
+
+  <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        tags: 'ams'
+      }
+    };
+  </script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "AMS"} } });
+  </script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML">
+  </script>
+
+  <script type="text/javascript" src="/biboroku/static/js/pjump.js"></script>
+
+  
+</head>
+<body>
+
+  
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NXBHQLG"
+            height="0" width="0" style="display:none;visibility:hidden">
+    </iframe>
+  </noscript>
+  
+
+  <div class="container">
+  <header>
+  <h1 class="font-uni"><a href="https://okomestudio.net/biboroku">Biboroku</a></h1>
+  <nav>
+    <ul class="nav navbar-nav font-uni">
+      <li><a href="https://okomestudio.net">OkomeStudio.net</a></li>
+      <li><a href="https://okomestudio.net/biboroku/about">About</a></li>
+    </ul>
+  </nav>
+</header>
+
+  
+	<main>
+		<article class="blog-post">
+			<h1>Customizing &amp; Installing Linux Kernel on Debian Squeeze</h1>
+      <p class="meta">
+        Written by Taro Sato
+        on <time>March 21, 2010</time>.
+	      Tagged:
+        
+	      <a href="/biboroku/tags/linux">Linux</a>
+	      
+	      <a href="/biboroku/tags/sysadmin">sysadmin</a>
+	      
+      </p>
+			<div>
+				
+
+<p>Here is a quickie for customizing and install Linux kernel 2.6.x on Squeeze.</p>
+
+<p>Install some packages and kernel source:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo aptitude update
+$ sudo aptitude install kernel-package bzip2 g++ libqt3-mt-dev libncurses5-dev sudo fakeroot</code></pre></div>
+<p>If you do not belong to group &#8220;src&#8221;, add yourself to the
+group as we work under <em>/usr/src</em>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo adduser username src</code></pre></div>
+<p>You need to logout and login for this change to take effect. You also
+need to be able to use <code>sudo</code> or <code>su</code> to install the new kernel in
+the end.</p>
+
+<p>The kernel packaged for Squeeze is at version 2.6.32. Alternatively a
+newer kernel could be obtained from
+<a href="http://www.kernel.org/">kernel.org</a> and saved to <em>/usr/src</em>.  The
+customization procedure should be similar. Here I just follow the
+Debian way:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo aptitude install linux-source-2.6.32</code></pre></div>
+<p>Extract the source tree:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo chgrp -R src /usr/src
+$ sudo chmod -R g+w /usr/src
+$ <span class="nb">cd</span> /usr/src
+$ rm linux
+$ tar -jxf linux-source-2.6.32.tar.bz2
+$ ln -s linux-source-2.6.32 linux
+$ <span class="nb">cd</span> linux</code></pre></div>
+<p>Edit the EXTRAVERSION entry in <em>Makefile</em>, as in:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">EXTRAVERSION</span> <span class="o">=</span> .20100321.1</code></pre></div>
+<p>for example to add <code>.20100321.1</code> to the kernel version number. This
+is convenient for keeping the existing, working kernels around when
+you need to recompile with different options.</p>
+
+<p>Use <code>xconfig</code> or <code>menuconfig</code> to customize the kernel options.
+Before the <code>make-kpkg</code> lines, setting concurrency (most likely to
+the number of cores of my processor) is optinal but having a higher
+number typically reduces the compilation time.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ make mrproper
+$ make xconfig    <span class="c1"># or make menuconfig</span>
+$ <span class="nb">export</span> <span class="nv">CONCURRENCY_LEVEL</span><span class="o">=</span><span class="m">4</span>    <span class="c1"># this is optional</span>
+$ fakeroot make-kpkg clean
+$ fakeroot make-kpkg --initrd kernel_image
+$ <span class="nb">cd</span> ..
+$ sudo dpkg -i linux-image-2.6.32.20100321.1_2.6.32.20100321.1-10.00.Custom_amd64.deb</code></pre></div>
+<p>Upon reboot in the GRUB menu you will find the newly installed kernel:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo reboot</code></pre></div>
+<h2 id="purging-old-kernel-image-from-system">Purging Old Kernel Image from System</h2>
+
+<p>For example, if the kernel to be uninstalled is of version 2.6.26 and
+the extra version that I used was <code>20091112.1</code>, do:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo dpkg -P linux-image-2.6.26.20091112.1</code></pre></div>
+<p>That’s it. However it is often a good idea to keep at least one kernel
+image that I know for sure to work so that when a custom kernel fails,
+I have something to fall back on. On the other hand, it is also a good
+idea to purge very old kernel images to save space in <em>/boot</em>.</p>
+
+<h2 id="giving-kernel-boot-options-with-grub-version-2">Giving Kernel Boot Options with Grub (Version 2)</h2>
+
+<p>The new Grub has a slightly different way of specifying boot options
+(<em>/boot/grub/menu.lst</em> no longer exists for version 2!).</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo chmod +w /boot/grub/grub.cfg
+... open and edit /boot/grub/grub.cfg ...
+$ sudo chmod -w /boot/grub/grub.cfg</code></pre></div>
+<p>If I need to provide a kernel with boot options, find the
+<code>menuentry</code> for the kernel, and change from</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">linux /vmlinuz-2.6.36.1.3 <span class="nv">root</span><span class="o">=</span><span class="nv">UUID</span><span class="o">=</span>somehash ro quiet</code></pre></div>
+<p>to</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">linux /vmlinuz-2.6.36.1.3 <span class="nv">root</span><span class="o">=</span><span class="nv">UUID</span><span class="o">=</span>somehash ro quiet usbcore.autosuspend<span class="o">=</span><span class="m">1</span></code></pre></div>
+<p>in order to set the usbcore.autosuspend option, for example.</p>
+
+<h2 id="playing-with-concurrency-level">Playing with CONCURRENCY_LEVEL</h2>
+
+<p>With Core i5 (2 cores but virtually 4 cores with hyperthreading), I
+get:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ fakeroot make-kpkg clean
+$ <span class="nb">export</span> <span class="nv">CONCURRENCY_LEVEL</span><span class="o">=</span><span class="m">4</span>
+$ <span class="nb">time</span> fakeroot make-kpkg --initrd kernel_image
+...
+real    6m50.028s
+user    21m45.186s
+sys     2m42.246s
+
+$ fakeroot make-kpkg clean
+$ <span class="nb">export</span> <span class="nv">CONCURRENCY_LEVEL</span><span class="o">=</span><span class="m">1</span>
+$ <span class="nb">time</span> fakeroot make-kpkg --initrd kernel_image
+...
+real    13m55.216s
+user    13m23.638s
+sys     1m50.359s</code></pre></div>
+<p>I say significant speed up!</p>
+
+<h2 id="what-if-kernel-panics-after-reboot">What if Kernel Panics after Reboot?</h2>
+
+<p>(NOTE: This was true back when I was playing around when Squeeze was
+still far from stable.  I don’t think this section is relevant as of
+November 2010, since Squeeze is very close to stable now. Just leaving
+the note in case for its archival value.)</p>
+
+<p>Well, it turns out <code>make-kpkg --initrd</code> does not automatically
+create a <em>/boot/inird.img-*</em> file for my current configuration. I
+wondered for a while why my new custom kernel keeps panicking upon
+reboot but finally realized that was the cause.</p>
+
+<p>Fortunately, I can create the image myself easily:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo update-initramfs -c -k <span class="m">2</span>.6.32.20100321.1
+$ sudo update-grub</code></pre></div>
+<p>This should work.</p>
+
+			</div>
+
+			
+			<div class="comments">
+				<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "biboroku" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+			</div>
+			
+
+	  </article>
+	</main>
+<aside>
+	<div>
+		<div>
+			<h2 class="font-uni">LATEST POSTS</h2>
+		</div>
+		<div>
+			<ul>
+				
+				<li><a href="/biboroku/2020/05/attribute-access-with-dict/">Attribute Access with Dict</a></li>
+				
+				<li><a href="/biboroku/2020/04/on-lazy-logging-evaluation/">On Lazy Logging Evaluation</a></li>
+				
+				<li><a href="/biboroku/2014/11/install-google-chrome-on-debian-jessie/">Install Google Chrome on Debian Jessie</a></li>
+				
+				<li><a href="/biboroku/2014/10/installing-adobe-reader-on-debianjessie/">Installing Adobe Reader on Debian/Jessie</a></li>
+				
+				<li><a href="/biboroku/2014/05/interpreting-ab-test-using-python/">Interpreting A/B Test using Python</a></li>
+				
+			</ul>
+		</div>
+	</div>
+</aside>
+
+
+  <footer class="centered">
+  <span class="font-uni larger-text">
+	  Copyright &copy; 2007 - 2020
+    <a href="https://okomestudio.net/biboroku">Biboroku</a>
+    by <a href="https://okomestudio.net">Okome Studio</a> / Taro Sato.
+    All Rights Reserved.
+  </span>
+</footer>
+
+  </div>
+</body>
+</html>
