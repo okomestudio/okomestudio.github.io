@@ -163,6 +163,15 @@ Make sure to download a 64-bit version (as I use amd64) from here. The tarball e
     </item>
     
     <item>
+      <title>Installing Ubuntu (12.04 LTS 64-bit) from an ISO Image on Hard Drive</title>
+      <link>https://okomestudio.net/biboroku/2012/05/installing-ubuntu-12-04-lts-64-bit-from-an-iso-image-on-hard-drive/</link>
+      <pubDate>Mon, 14 May 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://okomestudio.net/biboroku/2012/05/installing-ubuntu-12-04-lts-64-bit-from-an-iso-image-on-hard-drive/</guid>
+      <description>Sometimes it’s useful to be able to install Linux off an ISO image on hard drive for whatever reason. My Dell XPS 630i has had some issues when I was installing Debian off an install CD/USB, likely related to how GRUB 2 does not gracefully deals with SATA configuration particular to this machine (the install process doesn’t appear to recognize /dev/sdaX properly at some point, ending up in IO errors or kernel panic).</description>
+    </item>
+    
+    <item>
       <title>Installing Debian Squeeze from Hard Disk</title>
       <link>https://okomestudio.net/biboroku/2010/12/installing-debian-squeeze-from-hard-disk/</link>
       <pubDate>Tue, 14 Dec 2010 00:00:00 +0000</pubDate>

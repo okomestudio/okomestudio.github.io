@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-158896843-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-158896843-1');
+  </script>
+  
+  <script>(function(w,d,s,l,i){
+      w[l]=w[l]||[];w[l].push(
+        {'gtm.start':
+         new Date().getTime(),event:'gtm.js'}
+      );var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NXBHQLG');
+  </script>
+  
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="Biboroku is a blog by Okome Studio">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="icon" href="https://okomestudio.net/favicon.ico">
+  <link rel="stylesheet" href="/biboroku/css/normalize.css">
+  <link rel="stylesheet" href="/biboroku/css/base.css">
+  <link rel="stylesheet" href="/biboroku/css/style.css">
+  <link rel="stylesheet" href="/biboroku/css/codesyntax.css">
+  <link rel="stylesheet" href="/biboroku/css/gist.css">
+  <title>Installing Ubuntu (12.04 LTS 64-bit) from an ISO Image on Hard Drive</title>
+
+  <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        tags: 'ams'
+      }
+    };
+  </script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "AMS"} } });
+  </script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML">
+  </script>
+
+  <script type="text/javascript" src="/biboroku/static/js/pjump.js"></script>
+
+  
+</head>
+<body>
+
+  
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NXBHQLG"
+            height="0" width="0" style="display:none;visibility:hidden">
+    </iframe>
+  </noscript>
+  
+
+  <div class="container">
+  <header>
+  <h1 class="font-uni"><a href="https://okomestudio.net/biboroku">Biboroku</a></h1>
+  <nav>
+    <ul class="nav navbar-nav font-uni">
+      <li><a href="https://okomestudio.net">OkomeStudio.net</a></li>
+      <li><a href="https://okomestudio.net/biboroku/about">About</a></li>
+    </ul>
+  </nav>
+</header>
+
+  
+	<main>
+		<article class="blog-post">
+			<h1>Installing Ubuntu (12.04 LTS 64-bit) from an ISO Image on Hard Drive</h1>
+      <p class="meta">
+        Written by Taro Sato
+        on <time>May 14, 2012</time>.
+	      Tagged:
+        
+	      <a href="/biboroku/tags/linux">Linux</a>
+	      
+	      <a href="/biboroku/tags/sysadmin">sysadmin</a>
+	      
+      </p>
+			<div>
+				<p>Sometimes it’s useful to be able to install Linux off an ISO image on
+hard drive for whatever reason. My Dell XPS 630i has had some issues
+when I was installing Debian off an install CD/USB, likely related to
+how GRUB 2 does not gracefully deals with SATA configuration
+particular to this machine (the install process doesn’t appear to
+recognize <em>/dev/sdaX</em> properly at some point, ending up in IO errors
+or kernel panic). In any case, I could solve this by installing Linux
+off a pre-partitioned hard drive.  This time, I install Ubuntu. (I’m
+giving my XPS 630i away before moving back to the States!)</p>
+
+<p>Here goes the procedure. I assume that I am installing Ubuntu from
+scratch and hard drive has been formatted.</p>
+
+<p>First, I need a Linux Live media, whatever from which I can boot the
+computer. I burn a CD for this particular post. Go to the <a href="http://www.ubuntu.com/download/desktop">Ubuntu
+website</a>, download an ISO
+image (here <em>ubuntu-12.04-desktop-amd64.iso</em>), and burn a Live CD.</p>
+
+<p>Boot up the computer off Ubuntu Live (do not install at this point!)
+and prepare the disk partitions, using
+<a href="http://gparted.sourceforge.net/"><em>GParted</em></a>. It would be best to
+create full partition scheme at this point, so during the installation
+I can simply format them without repartitioning. For Ubuntu, the root
+partition (<em>/</em>) must be at least 2.5 GB, otherwise the installer may
+complain. Typically, a <em>/boot</em> partition needs to be about 300 MB or
+so, but I store all my ISO files under <em>/boot/iso</em>, so I will use 3 GB
+for the partition just in case.  (For an Ubuntu ISO image, 700 MB may
+be enough but for Linux Mint, I may need 2 GB, for example; I can also
+store multiple ISO images if I wish.)  Here’s the partition scheme:</p>
+<div class="highlight"><pre class="chroma">Filesystem            Size   Mounted on
+/dev/sda5               3G   /
+/dev/sda6               3G   /boot
+/dev/sda7              10G   /tmp
+/dev/sda8               6G   /var
+/dev/sda9              10G   /usr
+/dev/sda10             20G   /usr/local
+/dev/sda11              8G   Linux Swap
+/dev/sda12            690G   /home</pre></div>
+<p>Then on Terminal I install GRUB 2 on <em>/dev/sda</em>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo mount /dev/sda5 /mnt
+$ sudo mkdir /mnt/boot
+$ sudo mount /dev/sda6 /mnt/boot
+$ sudo grub-install --root-directory<span class="o">=</span>/mnt /dev/sda
+$ sudo mkdir /mnt/boot/boot-isos
+$ sudo cp ~/Downloads/ubuntu-12.04-desktop-amd64.iso /mnt/boot/boot-isos
+$ sudo umount /mnt/boot
+$ sudo umount /mnt</code></pre></div>
+<p>I assumed that the ISO image was already downloaded to <em>~/Downloads</em>
+directory. Now, reboot and on the GRUB prompt, follow this to boot off
+the ISO image:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">set</span> <span class="nv">prefix</span><span class="o">=(</span>hd0,6<span class="o">)</span>/grub
+$ insmod linux
+$ insmod loopback
+$ insmod iso9660
+$ loopback loop <span class="o">(</span>hd0,6<span class="o">)</span>/boot-isos/ubuntu-12.04-desktop-amd64.iso
+$ <span class="nb">set</span> <span class="nv">root</span><span class="o">=(</span>loop<span class="o">)</span>
+$ linux /casper/vmlinuz <span class="nv">boot</span><span class="o">=</span>casper iso-scan/filename<span class="o">=</span>/boot-isos/ubuntu-12.04-desktop-amd64.iso noprompt noeject toram
+$ initrd /casper/initrd.lz
+$ boot</code></pre></div>
+<p>The machine should boot into Ubuntu Live. Once in Ubuntu, I should
+unmount <em>/isodevice</em>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo umount -l -r -f /isodevice</code></pre></div>
+<p>Then I can simply run the installer on Ubuntu.  In order to prevent
+the installer from stalling (see <a href="https://bugs.launchpad.net/ubuntu/+source/ubiquity/+bug/875343">this bug
+report</a>,
+I had to <code>format</code> all partitions except <em>/boot</em>. But otherwise
+everything should go fine.</p>
+
+<p>** Reference</p>
+
+<p><a href="http://ubuntuforums.org/showthread.php?t=1549847">HOWTO: ISO Booting with Grub
+2</a></p>
+
+<p><a href="http://ubuntuforums.org/showthread.php?t=1599293">HOWTO: Boot &amp; Install Ubuntu from the Grub Rescue
+Prompt</a></p>
+
+			</div>
+
+			
+			<div class="comments">
+				<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "biboroku" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+			</div>
+			
+
+	  </article>
+	</main>
+<aside>
+	<div>
+		<div>
+			<h2 class="font-uni">LATEST POSTS</h2>
+		</div>
+		<div>
+			<ul>
+				
+				<li><a href="/biboroku/2020/05/attribute-access-with-dict/">Attribute Access with Dict</a></li>
+				
+				<li><a href="/biboroku/2020/04/on-lazy-logging-evaluation/">On Lazy Logging Evaluation</a></li>
+				
+				<li><a href="/biboroku/2014/11/install-google-chrome-on-debian-jessie/">Install Google Chrome on Debian Jessie</a></li>
+				
+				<li><a href="/biboroku/2014/10/installing-adobe-reader-on-debianjessie/">Installing Adobe Reader on Debian/Jessie</a></li>
+				
+				<li><a href="/biboroku/2014/05/interpreting-ab-test-using-python/">Interpreting A/B Test using Python</a></li>
+				
+			</ul>
+		</div>
+	</div>
+</aside>
+
+
+  <footer class="centered">
+  <span class="font-uni larger-text">
+	  Copyright &copy; 2007 - 2020
+    <a href="https://okomestudio.net/biboroku">Biboroku</a>
+    by <a href="https://okomestudio.net">Okome Studio</a> / Taro Sato.
+    All Rights Reserved.
+  </span>
+</footer>
+
+  </div>
+</body>
+</html>

@@ -14,6 +14,7 @@ var urlmap = {
   1009: '2010/10/installing-bruzual-charlot-2003-galaxev-on-debian-squeeze',
   1131: '2010/11/installing-f-lux-on-debian-squeeze',
   1386: '2010/12/installing-debian-squeeze-from-hard-disk',
+  1748: '2012/05/installing-ubuntu-12-04-lts-64-bit-from-an-iso-image-on-hard-drive',
   1834: '2012/09/using-japanese-on-debian-wheezy',
   1868: '2012/09/installing-firefox-on-debian-wheezy',
   1903: '2012/09/customizing-installing-linux-kernel-on-debian-wheezy',
