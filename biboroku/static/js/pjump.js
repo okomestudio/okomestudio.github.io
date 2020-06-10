@@ -9,6 +9,7 @@ var urlmap = {
   816: '2010/03/installing-squid-proxy-server-on-mac-os-x-snow-leopard',
   824: '2010/03/installing-sextractor-on-mac-os-x-snow-leopard',
   827: '2010/03/installing-gfortran-on-mac-os-x-snow-leopard',
+  856: '2010/06/installing-debian-squeeze-amd64-on-lenovo-t410s',
   931: '2010/06/installing-kindle-for-pc-on-debian-squeeze',
   986: '2010/06/testing-if-a-point-is-inside-a-polygon-in-python',
   1009: '2010/10/installing-bruzual-charlot-2003-galaxev-on-debian-squeeze',

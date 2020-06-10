@@ -63,6 +63,16 @@ $ sudo aptitude install wine lib32nss-mdns cabextract bzip2 $ wget http://www.</
     </item>
     
     <item>
+      <title>Installing Debian Squeeze (AMD64) on Lenovo T410s</title>
+      <link>https://okomestudio.net/biboroku/2010/06/installing-debian-squeeze-amd64-on-lenovo-t410s/</link>
+      <pubDate>Tue, 01 Jun 2010 00:00:00 +0000</pubDate>
+      
+      <guid>https://okomestudio.net/biboroku/2010/06/installing-debian-squeeze-amd64-on-lenovo-t410s/</guid>
+      <description>So far the only thing that I do not like about T410s is its short battery life. I can only get 2 to 3 hours out of “standard” usage. Hopefully this will improve as I tweak things more.
+To Begin With: A Problem Unfortunately I had a major issue with my T410s recently (November 17, 2010).</description>
+    </item>
+    
+    <item>
       <title>Installing ATLAS on Mac OS X Snow Leopard</title>
       <link>https://okomestudio.net/biboroku/2010/03/installing-atlas-on-mac-os-x-snow-leopard/</link>
       <pubDate>Mon, 22 Mar 2010 00:00:00 +0000</pubDate>
