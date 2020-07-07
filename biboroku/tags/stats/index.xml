@@ -17,7 +17,7 @@
       <pubDate>Mon, 12 May 2014 00:00:00 +0000</pubDate>
       
       <guid>https://okomestudio.net/biboroku/2014/05/interpreting-ab-test-using-python/</guid>
-      <description>Suppose we ran an A/B test with two different versions of a web page, \( a \) and \( b \), for which we count the number of visitors and whether they convert or not. We can summarize this in a contingency table showing the frequency distribution of the events:</description>
+      <description>Suppose we ran an A/B test with two different versions of a web page, $a$ and $b$, for which we count the number of visitors and whether they convert or not. We can summarize this in a contingency table showing the frequency distribution of the events:</description>
     </item>
     
     <item>

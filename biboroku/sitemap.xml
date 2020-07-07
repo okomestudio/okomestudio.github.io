@@ -83,6 +83,11 @@
   </url>
   
   <url>
+    <loc>https://okomestudio.net/biboroku/2011/02/half-light-radius-and-disk-scale-length-in-exponential-profile/</loc>
+    <lastmod>2011-02-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://okomestudio.net/biboroku/2010/12/installing-debian-squeeze-from-hard-disk/</loc>
     <lastmod>2010-12-14T00:00:00+00:00</lastmod>
   </url>
@@ -170,6 +175,12 @@
   </url>
   
   <url>
+    <loc>https://okomestudio.net/biboroku/2011/</loc>
+    <lastmod>2011-02-14T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://okomestudio.net/biboroku/2012/</loc>
     <lastmod>2012-09-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -196,6 +207,12 @@
   <url>
     <loc>https://okomestudio.net/biboroku/tags/algorithm/</loc>
     <lastmod>2010-06-24T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://okomestudio.net/biboroku/tags/astro/</loc>
+    <lastmod>2011-02-14T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

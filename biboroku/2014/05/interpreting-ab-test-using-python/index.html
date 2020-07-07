@@ -37,17 +37,35 @@
   <title>Interpreting A/B Test using Python</title>
 
   <script type="text/javascript">
-    window.MathJax = {
+    MathJax = {
+      chtml: {
+        scale: 0.8,
+      },
       tex: {
-        tags: 'ams'
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$','$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true,
+        tags: 'ams',
+      },
+      svg: {
+        fontCache: 'global',
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
       }
     };
+
+    window.addEventListener('load', (event) => {
+      document.querySelectorAll("mjx-container").forEach(
+        function(x){
+          x.parentElement.classList += 'has-jax'
+      })
+    });
   </script>
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "AMS"} } });
-  </script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML">
-  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script type="text/javascript" id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
   <script type="text/javascript" src="/biboroku/static/js/pjump.js"></script>
 
@@ -94,7 +112,7 @@
 				
 
 <p>Suppose we ran an A/B test with two different versions of a web page,
-\( a \) and \( b \), for which we count the number of visitors and
+<code>$a$</code> and <code>$b$</code>, for which we count the number of visitors and
 whether they convert or not. We can summarize this in a contingency
 table showing the frequency distribution of the events:</p>
 
@@ -120,10 +138,10 @@ table showing the frequency distribution of the events:</p>
   </tbody>
 </table>
 
-<p>It is trivial to compute the conversion rate of each version, \( 486
-/ (486 + 4514 ) = 9.72 \% \) for \( a \) and \( 10.5 \% \) for
-\( b \). With such a relatively small difference, however, can we
-convincingly say that the version \( b \) converts better? To test
+<p>It is trivial to compute the conversion rate of each version, <code>$486
+/ (486 + 4514 ) = 9.72 \%$</code> for <code>$a$</code> and <code>$10.5 \%$</code> for
+<code>$b$</code>. With such a relatively small difference, however, can we
+convincingly say that the version <code>$b$</code> converts better? To test
 the <em>statistical significance</em> of a result like this, a
 hypothesis testing can be used.</p>
 
@@ -160,29 +178,29 @@ by the grand total of frequencies:</p>
 </table>
 
 <p>A table like this is sometimes called <em>correspondence matrix</em>. Here,
-the table consists of joint probabilities where \( V \) is the
-version of the web page (\( a \) or \( b \)) and \( C \) is the
-conversion result (\( f \) or \( t \)).</p>
+the table consists of joint probabilities where <code>$V$</code> is the
+version of the web page (<code>$a$</code> or <code>$b$</code>) and <code>$C$</code> is the
+conversion result (<code>$f$</code> or <code>$t$</code>).</p>
 
-<p>Now, our interest is whether the conversion \( C \) depends on the
-page version \( V \), and if it does, to learn which version
-converts better. In probability theory, the events \( C \) and \( V
-\) are said to be independent if the joint probability can be
-computed by \( P(V, C) = P(V)P( C) \), where \( P(V) \) and \(
-P( C) \) are marginal probabilities of \( V \) and \( C \),
+<p>Now, our interest is whether the conversion <code>$C$</code> depends on the
+page version <code>$V$</code>, and if it does, to learn which version
+converts better. In probability theory, the events <code>$C$</code> and
+<code>$V$</code> are said to be independent if the joint probability can be
+computed by <code>$P(V, C) = P(V)P(C)$</code>, where <code>$P(V)$</code> and
+<code>$P(C)$</code> are marginal probabilities of <code>$V$</code> and <code>$C$</code>,
 respectively. It is straightforward to compute the marginal
 probabilities from row and column marginals:</p>
 
-<p>\begin{eqnarray}
-P(V=a) &amp;=&amp; \frac{4514 + 486}{10000} \nonumber \\<br />
-P(V=b) &amp;=&amp; \frac{4473 + 527}{10000} \nonumber \\<br />
-P(C=f) &amp;=&amp; \frac{4514 + 4473}{10000} \nonumber \\<br />
-P(C=t) &amp;=&amp; \frac{486 + 527}{10000} \nonumber \\<br />
-\end{eqnarray}</p>
+<p><code>\begin{eqnarray}
+P(V=a) &amp;=&amp; \frac{4514 + 486}{10000} \nonumber \\
+P(V=b) &amp;=&amp; \frac{4473 + 527}{10000} \nonumber \\
+P(C=f) &amp;=&amp; \frac{4514 + 4473}{10000} \nonumber \\
+P(C=t) &amp;=&amp; \frac{486 + 527}{10000} \nonumber
+\end{eqnarray}</code></p>
 
-<p>where \( 10,000 \) is the grand total of all the elements. The null
+<p>where <code>$10,000$</code> is the grand total of all the elements. The null
 hypothesis (i.e., a neutral hypothesis in which the effect we seek is
-absent) is that \( V \) and \( C \) are independent, in which case
+absent) is that <code>$V$</code> and <code>$C$</code> are independent, in which case
 the elements of the matrix are equivalent to</p>
 
 <table>
@@ -207,60 +225,61 @@ the elements of the matrix are equivalent to</p>
   </tbody>
 </table>
 
-<p>The conversion \( C \) is said to be dependent on the version \( V
-\) of the web site if this null hypothesis is rejected. Hence
+<p>The conversion <code>$C$</code> is said to be dependent on the version <code>$V$</code>
+of the web site if this null hypothesis is rejected. Hence
 rejecting the null hypothesis means that one version is better at
 converting than the other. This is the reason why the test is on
 independence.</p>
 
-<p>The <em>chi-squared test</em> compares an observed distribution \( O_{ij}
-\) to an expected distribution \( E_{ij} \)</p>
+<p>The <em>chi-squared test</em> compares an observed distribution <code>$O_{ij}$</code>
+to an expected distribution <code>$E_{ij}$</code></p>
 
-<p>\[
+<p><code>\[
   \chi^2 = \sum_{i, j} \frac{(O_{ij} - E_{ij})^2}{E_{ij}} \ ,
-\]</p>
+\]</code></p>
 
-<p>where \( i \) and \( j \) are the row and column indices of the
-matrix.<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup> The values of \( E_{ij} \) are computed from \( P(V=i)
-\) and \( P(C=j) \). The \( \chi^2 \) statistic thus obtained is
+<p>where <code>$i$</code> and <code>$j$</code> are the row and column indices of the
+matrix.<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup> The values of <code>$E\_{ij}$</code> are computed from <code>$P(V=i)$</code>
+and <code>$P(C=j)$</code>. The <code>$\chi^2$</code> statistic thus obtained is
 now compared to the distribution assumed in the null hypothesis, and
 to do this we need to find the degree of freedom (dof) which is the
 shape parameter of chi-squared distribution. For the test of
-independence using a \( r \times c \) contingency matrix, the dof is
-computed from the total number of matrix entries (\( r \times c \))
-minus the reduction in dof, which is given by \( r + c - 1 \). The
+independence using a <code>$r \times c$</code> contingency matrix, the dof is
+computed from the total number of matrix entries (<code>$r \times c$</code>)
+minus the reduction in dof, which is given by <code>$r + c - 1$</code>. The
 reductions come from the row and column sum constraints, but decreased
 by one because the last entry in the matrix is determined by either
 the row or column sum on that row/column and therefore
-degenerate. Hence the dof for the test of independence comes out to be \( (r - 1)(c - 1) \).</p>
+degenerate. Hence the dof for the test of independence comes out to be
+<code>$(r - 1)(c - 1)$</code>.</p>
 
 <h2 id="python-implementation">Python Implementation</h2>
 
 <p>Fortunately it is very straightforward to carry out this hypothesis
 testing using <code>scipy.stats.chi2_contingency</code>. All we need is to supply
-the function with a contingency matrix and it will return the \(
-\chi^2 \) statistic and the corresponding \( p \)-value:</p>
+the function with a contingency matrix and it will return the
+<code>$\chi^2$</code> statistic and the corresponding <code>$p$</code>-value:</p>
 
 <script src="https://gist.github.com/okomestudio/878b44714833d7a14768.js"></script>
 
-<p>The result for the original table (of \( n = 10,000 \)) is \(
-\chi^2 = 1.76 \) and \( p = 0.185 \). Since the \( p \)-value is
-greater than the standard threshold \( 0.05 \), we cannot reject the
+<p>The result for the original table (of <code>$n = 10,000$</code>) is
+<code>$\chi^2 = 1.76$</code> and <code>$p = 0.185$</code>. Since the <code>$p$</code>-value is
+greater than the standard threshold <code>$0.05$</code>, we cannot reject the
 null hypothesis that the page version and the conversion is
 independent. Therefore the difference in the conversion rates cited in
 the beginning of this article is not statistically significant.</p>
 
 <p>What if we keep running the same A/B test a bit longer, until we
-accumulate \( n = 40,000 \) visitors? Using example data
-(<em>n40000.csv</em>), we have the conversion rates of \( 2002 / 20000 = 10.0
-\% \) for version \( a \) and \( 2258 / 20000 = 11.3 \% \) for
-version \( b \). Running the same test on the new data yields \(
-\chi^2 = 17.1 \) and \( p = 3.58 \times 10^{-5} \). Since \( p \ll
-0.05 \), the difference we see in the conversion rates is
+accumulate <code>$n = 40,000$</code> visitors? Using example data
+(<em>n40000.csv</em>), we have the conversion rates of <code>$2002 / 20000 = 10.0
+\%$</code> for version <code>$a$</code> and <code>$2258 / 20000 = 11.3 \%$</code> for
+version <code>$b$</code>. Running the same test on the new data yields
+<code>$\chi^2 = 17.1$</code> and <code>$p = 3.58 \times 10^{-5}$</code>. Since <code>$p \ll
+0.05$</code>, the difference we see in the conversion rates is
 statistically significant this time. This is a demonstration of how a
 bigger sample helps to see a tiny difference. (The example data used
-in this article are generated assuming the true conversion rates of \( 10 \% \)
-for \( a \) and \( 11 \% \) for \( b \).)</p>
+in this article are generated assuming the true conversion rates of <code>$10 \%$</code>
+for <code>$a$</code> and <code>$11 \%$</code> for <code>$b$</code>.)</p>
 <div class="footnotes">
 
 <hr />
@@ -269,9 +288,9 @@ for \( a \) and \( 11 \% \) for \( b \).)</p>
 <li id="fn:1"><p>For a 2 x 2 contingency table, <em>Yate’s chi-squared test</em> is commonly
 used. This applies a correction of the form</p>
 
-<p>\[
-  \chi^2_{\rm Yate&rsquo;s} = \sum_{ij} \frac{(|O_{ij} - E_{ij}| - 0.5)^2}{E_{ij}}
-\]</p>
+<p><code>\[
+  \chi^2_{\rm Yate's} = \sum_{ij} \frac{(|O_{ij} - E_{ij}| - 0.5)^2}{E_{ij}}
+\]</code></p>
 
 <p>to account for an error between the observed discrete distribution and
 the continuous chi-squared distribution.</p>

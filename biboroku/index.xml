@@ -80,7 +80,7 @@ $ sudo aptitude install gconf-service libgconf-2-4 libnspr4 libnss3 libpango1.0-
       <pubDate>Mon, 12 May 2014 00:00:00 +0000</pubDate>
       
       <guid>https://okomestudio.net/biboroku/2014/05/interpreting-ab-test-using-python/</guid>
-      <description>Suppose we ran an A/B test with two different versions of a web page, \( a \) and \( b \), for which we count the number of visitors and whether they convert or not. We can summarize this in a contingency table showing the frequency distribution of the events:</description>
+      <description>Suppose we ran an A/B test with two different versions of a web page, $a$ and $b$, for which we count the number of visitors and whether they convert or not. We can summarize this in a contingency table showing the frequency distribution of the events:</description>
     </item>
     
     <item>
@@ -118,8 +118,8 @@ The correspondence analysis is useful when you have a two-way contingency table 
       
       <guid>https://okomestudio.net/biboroku/2014/04/a-trick-for-computing-the-sum-of-geometric-series/</guid>
       <description>Say if I need to compute the sum of a series like this one:
-\begin{equation} y = 1 + 2 x + 3 x^2 + 4 x^3 + \dots \, \label{eq:a} \end{equation}
-where \( |x| &amp;lt; 1 \). This series looks like a geometric series in which case the sum can be computed from</description>
+\begin{equation} y = 1 + 2 x + 3 x^2 + 4 x^3 + \dots \ , \label{eq:a} \end{equation}
+where $|x| &amp;lt; 1$. This series looks like a geometric series in which case the sum can be computed from</description>
     </item>
     
     <item>
@@ -169,6 +169,17 @@ Make sure to download a 64-bit version (as I use amd64) from here. The tarball e
       
       <guid>https://okomestudio.net/biboroku/2012/05/installing-ubuntu-12-04-lts-64-bit-from-an-iso-image-on-hard-drive/</guid>
       <description>Sometimes it’s useful to be able to install Linux off an ISO image on hard drive for whatever reason. My Dell XPS 630i has had some issues when I was installing Debian off an install CD/USB, likely related to how GRUB 2 does not gracefully deals with SATA configuration particular to this machine (the install process doesn’t appear to recognize /dev/sdaX properly at some point, ending up in IO errors or kernel panic).</description>
+    </item>
+    
+    <item>
+      <title>Half-Light Radii for Various Profiles</title>
+      <link>https://okomestudio.net/biboroku/2011/02/half-light-radius-and-disk-scale-length-in-exponential-profile/</link>
+      <pubDate>Mon, 14 Feb 2011 00:00:00 +0000</pubDate>
+      
+      <guid>https://okomestudio.net/biboroku/2011/02/half-light-radius-and-disk-scale-length-in-exponential-profile/</guid>
+      <description>For a radial profile of $I(r)$, the enclosed flux within the radius $r$ is given by
+\[ F(r) = \int_{0}^{2 \pi} d\phi \int_{0}^{r} dr r I(r, \phi) \ . \]
+I’m only concerned about azimuthal symmetric cases, so $F(r) = 2\pi \int_{0}^{r} dr r I(r)$ .</description>
     </item>
     
     <item>

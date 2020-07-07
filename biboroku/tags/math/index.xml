@@ -27,8 +27,8 @@
       
       <guid>https://okomestudio.net/biboroku/2014/04/a-trick-for-computing-the-sum-of-geometric-series/</guid>
       <description>Say if I need to compute the sum of a series like this one:
-\begin{equation} y = 1 + 2 x + 3 x^2 + 4 x^3 + \dots \, \label{eq:a} \end{equation}
-where \( |x| &amp;lt; 1 \). This series looks like a geometric series in which case the sum can be computed from</description>
+\begin{equation} y = 1 + 2 x + 3 x^2 + 4 x^3 + \dots \ , \label{eq:a} \end{equation}
+where $|x| &amp;lt; 1$. This series looks like a geometric series in which case the sum can be computed from</description>
     </item>
     
   </channel>

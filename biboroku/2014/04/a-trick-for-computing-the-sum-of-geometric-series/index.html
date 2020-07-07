@@ -37,17 +37,35 @@
   <title>A Trick for Computing the Sum of Geometric Series</title>
 
   <script type="text/javascript">
-    window.MathJax = {
+    MathJax = {
+      chtml: {
+        scale: 0.8,
+      },
       tex: {
-        tags: 'ams'
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$','$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true,
+        tags: 'ams',
+      },
+      svg: {
+        fontCache: 'global',
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
       }
     };
+
+    window.addEventListener('load', (event) => {
+      document.querySelectorAll("mjx-container").forEach(
+        function(x){
+          x.parentElement.classList += 'has-jax'
+      })
+    });
   </script>
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "AMS"} } });
-  </script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML">
-  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script type="text/javascript" id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
   <script type="text/javascript" src="/biboroku/static/js/pjump.js"></script>
 
@@ -89,34 +107,34 @@
 			<div>
 				<p>Say if I need to compute the sum of a series like this one:</p>
 
-<p>\begin{equation}
-  y = 1 + 2 x + 3 x^2 + 4 x^3 + \dots \,
+<p><code>\begin{equation}
+  y = 1 + 2 x + 3 x^2 + 4 x^3 + \dots \ ,
   \label{eq:a}
-\end{equation}</p>
+\end{equation}</code></p>
 
-<p>where \( |x| &lt; 1 \). This series looks like a geometric series in
-which case the sum can be computed from</p>
+<p>where <code>$|x| &lt; 1$</code>. This series looks like a geometric series in which case the
+sum can be computed from</p>
 
-<p>\[ \sum_{k = 0}^{\infty} a x^k = \frac{a}{1 - x} . \]</p>
+<p><code>\[ \sum_{k = 0}^{\infty} a x^k = \frac{a}{1 - x} \ . \]</code></p>
 
-<p>The coefficients vary in Eq. \eqref{eq:a}, so the relation cannot be
+<p>The coefficients vary in Eq. <code>$\eqref{eq:a}$</code>, so the relation cannot be
 directly used.</p>
 
 <p>There is a trick to transform a series like above into a geometric
-series. Multiplying Eq. \eqref{eq:a} by \( x \),</p>
+series. Multiplying Eq. <code>$\eqref{eq:a}$</code> by <code>$x$</code>,</p>
 
-<p>\begin{equation}
+<p><code>\begin{equation}
   xy = x + 2x^2 + 3x^3 + \dots \,
   \label{eq:b}
-\end{equation}</p>
+\end{equation}</code></p>
 
-<p>Subtracting Eq. \eqref{eq:b} from Eq. \eqref{eq:a},</p>
+<p>Subtracting Eq. <code>$\eqref{eq:b}$</code> from Eq. <code>$\eqref{eq:a}$</code>,</p>
 
-<p>\[ y(1-x) = 1+x+x^2+x^3+\dots \]</p>
+<p><code>\[ y(1-x) = 1+x+x^2+x^3+\dots \]</code></p>
 
-<p>where the right-hand side is a geometric series with \( a = 1 \). Hence</p>
+<p>where the right-hand side is a geometric series with <code>$a = 1$</code>. Hence</p>
 
-<p>\[ y = \frac{1}{(1-x)^2} . \]</p>
+<p><code>\[ y = \frac{1}{(1-x)^2} \ . \]</code></p>
 
 			</div>
 

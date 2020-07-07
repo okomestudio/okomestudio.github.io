@@ -162,3 +162,11 @@ sup {
   background: #54a2a5;
   background: var(--main-accent-color-dark);
 }
+
+code.has-jax {
+  -webkit-font-smoothing: antialiased;
+  background: inherit;
+  border: inherit;
+  font-size: 1em;
+  font: inherit;
+}

@@ -37,17 +37,35 @@
   <title>Math</title>
 
   <script type="text/javascript">
-    window.MathJax = {
+    MathJax = {
+      chtml: {
+        scale: 0.8,
+      },
       tex: {
-        tags: 'ams'
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$','$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true,
+        tags: 'ams',
+      },
+      svg: {
+        fontCache: 'global',
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
       }
     };
+
+    window.addEventListener('load', (event) => {
+      document.querySelectorAll("mjx-container").forEach(
+        function(x){
+          x.parentElement.classList += 'has-jax'
+      })
+    });
   </script>
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "AMS"} } });
-  </script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML">
-  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script type="text/javascript" id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
   <script type="text/javascript" src="/biboroku/static/js/pjump.js"></script>
 
@@ -123,8 +141,8 @@
   
 	<div>
 		Say if I need to compute the sum of a series like this one:
-\begin{equation} y = 1 + 2 x + 3 x^2 + 4 x^3 + \dots \, \label{eq:a} \end{equation}
-where \( |x| &lt; 1 \). This series looks like a geometric series in which case the sum can be computed from
+\begin{equation} y = 1 + 2 x + 3 x^2 + 4 x^3 + \dots \ , \label{eq:a} \end{equation}
+where $|x| &lt; 1$. This series looks like a geometric series in which case the sum can be computed from
 		
 		...	<a href="https://okomestudio.net/biboroku/2014/04/a-trick-for-computing-the-sum-of-geometric-series/">Continue reading</a>.
 		

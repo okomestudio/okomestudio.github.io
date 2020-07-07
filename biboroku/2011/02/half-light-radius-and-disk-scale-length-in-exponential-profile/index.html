@@ -34,7 +34,7 @@
   <link rel="stylesheet" href="/biboroku/css/style.css">
   <link rel="stylesheet" href="/biboroku/css/codesyntax.css">
   <link rel="stylesheet" href="/biboroku/css/gist.css">
-  <title>Visualization</title>
+  <title>Half-Light Radii for Various Profiles</title>
 
   <script type="text/javascript">
     MathJax = {
@@ -69,7 +69,7 @@
 
   <script type="text/javascript" src="/biboroku/static/js/pjump.js"></script>
 
-  <link rel="alternate" type="application/rss+xml" href="/biboroku/tags/visualization/index.xml" title="Biboroku">
+  
 </head>
 <body>
 
@@ -94,100 +94,109 @@
 
   
 	<main>
-		
-		<div class="list">
-			<h1>Tagged: Visualization</h1>
+		<article class="blog-post">
+			<h1>Half-Light Radii for Various Profiles</h1>
+      <p class="meta">
+        Written by Taro Sato
+        on <time>February 14, 2011</time>.
+	      Tagged:
+        
+	      <a href="/biboroku/tags/astro">astro</a>
+	      
+      </p>
+			<div>
+				
+
+<p>For a radial profile of <code>$I(r)$</code>, the enclosed flux within the radius <code>$r$</code> is
+given by</p>
+
+<p><code>\[ F(r) = \int_{0}^{2 \pi} d\phi \int_{0}^{r} dr r I(r, \phi) \ . \]</code></p>
+
+<p>I’m only concerned about azimuthal symmetric cases, so <code>$F(r) = 2\pi
+\int_{0}^{r} dr r I(r)$</code> . The idea is to solve</p>
+
+<p><code>\[ \frac{ F( r_{ 1 / 2 } ) }{ F( \infty ) } = \frac{1}{2} \]</code></p>
+
+<p>for <code>$r_{1/2}$</code>.</p>
+
+<h2 id="gaussian-profile">Gaussian Profile</h2>
+
+<p>Say the Gaussian intensity profile is given by</p>
+
+<p><code>\[ I(r) = I_0 \exp{\left(-\frac{r^2}{2\sigma^2}\right)} \ . \]</code></p>
+
+<p>The enclosed flux within <code>$r$</code> is given by</p>
+
+<p><code>\[
+  F(r) = 2\pi I_0 \int_0^r dr r \exp{\left(-\frac{r^2}{2\sigma^2}\right)} = 2\pi I_0 \sigma^2 \left[1 - \exp{\left(-\frac{r^2}{2\sigma^2}\right)}\right]\ .
+\]</code></p>
+
+<p>Hence</p>
+
+<p><code>\[ \boxed{ r_{1/2} = \sqrt{-2 \ln{0.5}} \sigma \ . } \]</code></p>
+
+<h2 id="exponential-profile">Exponential Profile</h2>
+
+<p>The radial surface-brightness profile <code>$I(r)$</code> of a disk galaxy is often fitted
+by the exponential profile:</p>
+
+<p><code>\[ I(r) = I_d \exp{\left(-\frac{r}{r_d}\right)} \ , \]</code></p>
+
+<p>where <code>$r_d$</code> is the disk scale length. The flux enclosed within the radius
+<code>$r$</code> is given by</p>
+
+<p><code>\[ F(r) = 2\pi I_d \int_0^r dr r \exp{\left(-\frac{r}{r_d}\right)} \ . \]</code></p>
+
+<p>Solving for the half-light radius <code>$r_{1/2}$</code> leads to the following:</p>
+
+<p><code>\[
+  \left(1 + \frac{r_{1/2}}{r_d}\right) \exp{\left(-\frac{r_{1/2}}{r_d}\right)} = \frac{1}{2} \ .
+\]</code></p>
+
+<p>A relevant numerical solution is</p>
+
+<p><code>\[ \boxed{r_{1/2} = 1.67835 r_d \ .} \]</code></p>
+
+<h2 id="sersic-de-vaucouleurs-profile">Sersic/de Vaucouleurs Profile</h2>
+
+<p>The radial surface-brightness profile <code>$I(r)$</code> of a spheroidal galaxy is
+often fitted by the Sersic (de Vaucouleurs when <code>$n = 4$</code> profile:</p>
+
+<p><code>\[
+  I(r) = I_{1/2} \exp{\left( -k \left( \left(\frac{r}{r_{1/2}}\right)^{1/n} - 1 \right) \right)} \ .
+\]</code></p>
+
+<p>where <code>$k = 1.992 n - 0.3271$</code> (Capaccioli 1989). This expression explicitly
+parametrizes the profile in terms of half-light radius.</p>
+
+			</div>
+
 			
-		</div>
-		
+			<div class="comments">
+				<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "biboroku" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+			</div>
+			
 
-		
-			<article class="blog-post">
-	<h1><a href="https://okomestudio.net/biboroku/2014/05/interpreting-ab-test-using-python/">Interpreting A/B Test using Python</a></h1>
-  
-  <p class="meta">
-    Written by Taro Sato
-    on <time>May 12, 2014</time>.
-    Tagged:
-	  
-	  <a href="/biboroku/tags/python">Python</a>
-	  
-	  <a href="/biboroku/tags/stats">stats</a>
-	  
-	  <a href="/biboroku/tags/visualization">visualization</a>
-	  
-  </p>
-  
-	<div>
-		Suppose we ran an A/B test with two different versions of a web page, $a$ and $b$, for which we count the number of visitors and whether they convert or not. We can summarize this in a contingency table showing the frequency distribution of the events:
-		
-		...	<a href="https://okomestudio.net/biboroku/2014/05/interpreting-ab-test-using-python/">Continue reading</a>.
-		
-	</div>
-</article>
-
-		
-			<article class="blog-post">
-	<h1><a href="https://okomestudio.net/biboroku/2014/05/brand-positioning-by-correspondence-analysis/">Brand Positioning by Correspondence Analysis</a></h1>
-  
-  <p class="meta">
-    Written by Taro Sato
-    on <time>May 7, 2014</time>.
-    Tagged:
-	  
-	  <a href="/biboroku/tags/python">Python</a>
-	  
-	  <a href="/biboroku/tags/stats">stats</a>
-	  
-	  <a href="/biboroku/tags/visualization">visualization</a>
-	  
-  </p>
-  
-	<div>
-		I was reading an article about visualization techniques using multidimensional scaling (MDS), the correspondence analysis in particular. The example used R, but as usual I want to find ways to do it on Python, so here goes.
-The correspondence analysis is useful when you have a two-way contingency table for which relative values of ratio-scaled data are of interest.
-		
-		...	<a href="https://okomestudio.net/biboroku/2014/05/brand-positioning-by-correspondence-analysis/">Continue reading</a>.
-		
-	</div>
-</article>
-
-		
-			<article class="blog-post">
-	<h1><a href="https://okomestudio.net/biboroku/2014/04/pca-and-biplot-using-python/">PCA and Biplot using Python</a></h1>
-  
-  <p class="meta">
-    Written by Taro Sato
-    on <time>April 24, 2014</time>.
-    Tagged:
-	  
-	  <a href="/biboroku/tags/python">Python</a>
-	  
-	  <a href="/biboroku/tags/stats">stats</a>
-	  
-	  <a href="/biboroku/tags/visualization">visualization</a>
-	  
-  </p>
-  
-	<div>
-		There are several ways to run principal component analysis (PCA) using various packages (scikit-learn, statsmodels, etc.) or even just rolling out your own through singular-value decomposition and such. Visualizing the PCA result can be done through biplot. I was looking at an example of using prcomp and biplot in R, but it does not seem like there is a comparable plug-and-play way of generating a biplot on Python.
-		
-		...	<a href="https://okomestudio.net/biboroku/2014/04/pca-and-biplot-using-python/">Continue reading</a>.
-		
-	</div>
-</article>
-
-		
-		<div class="pagination">
-
-  <span class="disabled">&laquo; Previous</span>
-
-&nbsp; | 1 of 1 | &nbsp;
-
-  <span class="disabled">Next &raquo;</span>
-
-</div>
-
+	  </article>
 	</main>
 <aside>
 	<div>
