@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-158896843-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-158896843-1');
+  </script>
+  
+  <script>(function(w,d,s,l,i){
+      w[l]=w[l]||[];w[l].push(
+        {'gtm.start':
+         new Date().getTime(),event:'gtm.js'}
+      );var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NXBHQLG');
+  </script>
+  
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="Biboroku is a blog by Okome Studio">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="icon" href="https://okomestudio.net/favicon.ico">
+  <link rel="stylesheet" href="/biboroku/css/normalize.css">
+  <link rel="stylesheet" href="/biboroku/css/base.css">
+  <link rel="stylesheet" href="/biboroku/css/style.css">
+  <link rel="stylesheet" href="/biboroku/css/codesyntax.css">
+  <link rel="stylesheet" href="/biboroku/css/gist.css">
+  <title>Searching for Nearest-Neighbors between Two Coordinate Catalogs</title>
+
+  <script type="text/javascript">
+    MathJax = {
+      chtml: {
+        scale: 0.8,
+      },
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$','$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true,
+        tags: 'ams',
+      },
+      svg: {
+        fontCache: 'global',
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+
+    window.addEventListener('load', (event) => {
+      document.querySelectorAll("mjx-container").forEach(
+        function(x){
+          x.parentElement.classList += 'has-jax'
+      })
+    });
+  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script type="text/javascript" id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <script type="text/javascript" src="/biboroku/static/js/pjump.js"></script>
+
+  
+</head>
+<body>
+
+  
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NXBHQLG"
+            height="0" width="0" style="display:none;visibility:hidden">
+    </iframe>
+  </noscript>
+  
+
+  <div class="container">
+  <header>
+  <h1 class="font-uni"><a href="https://okomestudio.net/biboroku">Biboroku</a></h1>
+  <nav>
+    <ul class="nav navbar-nav font-uni">
+      <li><a href="https://okomestudio.net">OkomeStudio.net</a></li>
+      <li><a href="https://okomestudio.net/biboroku/about">About</a></li>
+    </ul>
+  </nav>
+</header>
+
+  
+	<main>
+		<article class="blog-post">
+			<h1>Searching for Nearest-Neighbors between Two Coordinate Catalogs</h1>
+      <p class="meta">
+        Written by Taro Sato
+        on <time>June 28, 2012</time>.
+	      Tagged:
+        
+	      <a href="/biboroku/tags/astro">astro</a>
+	      
+      </p>
+			<div>
+				<p>Say I have two catalogs of points, each in two-dimensional space. For each
+object in a catalog, I want to find the nearest object(s) in the other catalog.
+I can do this by computing the distances between every single unique pairs of
+objects and find the ones within a search radius and possibly doing an
+additional sort. However, there is a much more efficient way using <a href="http://en.wikipedia.org/wiki/K-d_tree">k-d
+tree</a>, and Scipy has the class for doing
+this sort of thing fairly easily.</p>
+
+<p>Here is an example Python code:</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="ch">#!/usr/bin/env python2.6</span>
+<span class="kn">from</span> <span class="nn">cProfile</span> <span class="kn">import</span> <span class="n">Profile</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">numpy.random</span> <span class="kn">import</span> <span class="n">random</span>
+<span class="kn">from</span> <span class="nn">scipy.spatial</span> <span class="kn">import</span> <span class="n">KDTree</span><span class="p">,</span> <span class="n">cKDTree</span>
+
+
+<span class="k">def</span> <span class="nf">getnnidx</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
+    <span class="n">t1</span> <span class="o">=</span> <span class="n">KDTree</span><span class="p">(</span><span class="n">d1</span><span class="p">)</span>
+    <span class="n">t2</span> <span class="o">=</span> <span class="n">KDTree</span><span class="p">(</span><span class="n">d2</span><span class="p">)</span>
+    <span class="n">idx</span> <span class="o">=</span> <span class="n">t1</span><span class="o">.</span><span class="n">query_ball_tree</span><span class="p">(</span><span class="n">t2</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">idx</span>
+
+
+<span class="k">def</span> <span class="nf">cgetnnidx</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">cKDTree</span><span class="p">(</span><span class="n">d2</span><span class="p">)</span>
+    <span class="n">d</span><span class="p">,</span> <span class="n">idx</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">distance_upper_bound</span><span class="o">=</span><span class="n">r</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">idx</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="c1"># number of points</span>
+    <span class="n">np1</span> <span class="o">=</span> <span class="mi">4000</span>
+    <span class="n">np2</span> <span class="o">=</span> <span class="mi">2000</span>
+
+    <span class="c1"># search radius</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="mf">0.01</span>
+
+    <span class="c1"># prepare coordinates; the input data for the constructor of</span>
+    <span class="c1"># KCTree needs to be in the form:</span>
+    <span class="c1">#</span>
+    <span class="c1">#   data = [[x0, y0], [x1, y1], ... , [xN, yN]]</span>
+    <span class="c1">#</span>
+    <span class="n">d1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">np1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="n">d2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">np2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="n">d1</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">random</span><span class="p">(</span><span class="n">np1</span><span class="p">)</span>
+    <span class="n">d1</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">random</span><span class="p">(</span><span class="n">np1</span><span class="p">)</span>
+    <span class="n">d2</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">random</span><span class="p">(</span><span class="n">np2</span><span class="p">)</span>
+    <span class="n">d2</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">random</span><span class="p">(</span><span class="n">np2</span><span class="p">)</span>
+
+    <span class="c1"># profile two versions of KDTree implementations</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">Profile</span><span class="p">()</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">runcall</span><span class="p">(</span><span class="n">getnnidx</span><span class="p">,</span> <span class="n">d1</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span> <span class="n">d2</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span> <span class="n">r</span><span class="p">)</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">print_stats</span><span class="p">()</span>
+
+    <span class="n">p</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">runcall</span><span class="p">(</span><span class="n">cgetnnidx</span><span class="p">,</span> <span class="n">d1</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span> <span class="n">d2</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span> <span class="n">r</span><span class="p">)</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">print_stats</span><span class="p">()</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span></code></pre></div>
+<p>When I run this script, I get the following output:</p>
+<div class="highlight"><pre class="chroma">         706932 function calls (692470 primitive calls) in 1.663 CPU seconds
+
+   Ordered by: standard name
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+     1720    0.001    0.000    0.004    0.000 fromnumeric.py:1067(nonzero)
+        2    0.000    0.000    0.000    0.000 fromnumeric.py:1147(shape)
+    42293    0.046    0.000    0.224    0.000 fromnumeric.py:1314(sum)
+        2    0.000    0.000    0.000    0.000 fromnumeric.py:1708(amax)
+        2    0.000    0.000    0.000    0.000 fromnumeric.py:1769(amin)
+      860    0.001    0.000    0.002    0.000 fromnumeric.py:664(argmax)
+    14462    0.008    0.000    0.025    0.000 function_base.py:776(copy)
+        2    0.000    0.000    0.045    0.022 kdtree.py:113(__init__)
+      862    0.001    0.000    0.001    0.000 kdtree.py:139(__init__)
+      860    0.001    0.000    0.001    0.000 kdtree.py:143(__init__)
+   1722/2    0.033    0.000    0.045    0.022 kdtree.py:150(__build)
+    42293    0.183    0.000    0.992    0.000 kdtree.py:22(minkowski_distance)
+    12744    0.085    0.000    0.104    0.000 kdtree.py:36(__init__)
+        1    0.002    0.002    1.618    1.618 kdtree.py:437(query_ball_tree)
+  12743/1    0.270    0.000    1.616    1.616 kdtree.py:462(traverse_checking)
+     6371    0.031    0.000    0.157    0.000 kdtree.py:49(split)
+    42293    0.372    0.000    0.682    0.000 kdtree.py:7(minkowski_distance_p)
+    12743    0.133    0.000    0.430    0.000 kdtree.py:72(min_distance_rectangle)
+     7385    0.052    0.000    0.219    0.000 kdtree.py:76(max_distance_rectangle)
+   169174    0.095    0.000    0.213    0.000 numeric.py:201(asarray)
+        1    0.000    0.000    1.663    1.663 xmatch.py:8(getnnidx)
+    57063    0.036    0.000    0.036    0.000 {isinstance}
+     5164    0.001    0.000    0.001    0.000 {len}
+      860    0.001    0.000    0.001    0.000 {method &#39;argmax&#39; of &#39;numpy.ndarray&#39; objects}
+    25488    0.019    0.000    0.019    0.000 {method &#39;astype&#39; of &#39;numpy.ndarray&#39; objects}
+        1    0.000    0.000    0.000    0.000 {method &#39;disable&#39; of &#39;_lsprof.Profiler&#39; objects}
+        2    0.000    0.000    0.000    0.000 {method &#39;max&#39; of &#39;numpy.ndarray&#39; objects}
+        2    0.000    0.000    0.000    0.000 {method &#39;min&#39; of &#39;numpy.ndarray&#39; objects}
+     1720    0.003    0.000    0.003    0.000 {method &#39;nonzero&#39; of &#39;numpy.ndarray&#39; objects}
+    42293    0.146    0.000    0.146    0.000 {method &#39;sum&#39; of &#39;numpy.ndarray&#39; objects}
+    22165    0.008    0.000    0.008    0.000 {method &#39;tolist&#39; of &#39;numpy.ndarray&#39; objects}
+        2    0.000    0.000    0.000    0.000 {numpy.core.multiarray.arange}
+   183636    0.135    0.000    0.135    0.000 {numpy.core.multiarray.array}
+        1    0.000    0.000    0.000    0.000 {range}
+
+
+         32 function calls in 0.008 CPU seconds
+
+   Ordered by: standard name
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        3    0.000    0.000    0.000    0.000 fromnumeric.py:107(reshape)
+        3    0.000    0.000    0.000    0.000 fromnumeric.py:1147(shape)
+        1    0.000    0.000    0.000    0.000 fromnumeric.py:1708(amax)
+        1    0.000    0.000    0.000    0.000 fromnumeric.py:1769(amin)
+        1    0.000    0.000    0.000    0.000 fromnumeric.py:1865(prod)
+        1    0.000    0.000    0.000    0.000 fromnumeric.py:32(_wrapit)
+        2    0.000    0.000    0.000    0.000 numeric.py:201(asarray)
+        4    0.000    0.000    0.000    0.000 numeric.py:314(ascontiguousarray)
+        1    0.000    0.000    0.008    0.008 xmatch.py:15(cgetnnidx)
+        1    0.000    0.000    0.000    0.000 {getattr}
+        1    0.000    0.000    0.000    0.000 {method &#39;disable&#39; of &#39;_lsprof.Profiler&#39; objects}
+        1    0.000    0.000    0.000    0.000 {method &#39;max&#39; of &#39;numpy.ndarray&#39; objects}
+        1    0.000    0.000    0.000    0.000 {method &#39;min&#39; of &#39;numpy.ndarray&#39; objects}
+        1    0.000    0.000    0.000    0.000 {method &#39;prod&#39; of &#39;numpy.ndarray&#39; objects}
+        1    0.007    0.007    0.007    0.007 {method &#39;query&#39; of &#39;scipy.spatial.ckdtree.cKDTree&#39; objects}
+        3    0.000    0.000    0.000    0.000 {method &#39;reshape&#39; of &#39;numpy.ndarray&#39; objects}
+        6    0.000    0.000    0.000    0.000 {numpy.core.multiarray.array}</pre></div>
+<p>from which it is clear that <code>cKDTree</code> is much faster (1.663 vs. 0.008 seconds!).
+Not surprising given <code>cKDTree</code> is a C implementation of basically the same thing.</p>
+
+<p>These classes are not exactly equivalent and therefore the outputs are
+different. <code>KDTree.query_ball_tree</code> returns:</p>
+<div class="highlight"><pre class="chroma">[[],
+ [216, 1767],
+ [317],
+ ...,
+ [],
+ [367],
+ [1465, 1899]]</pre></div>
+<p>which is an array of indices of nearest neighbors. If an object is not found
+within the search radius, it simply returns an array of zero element.</p>
+
+<p><code>cKDTree.query</code>, on the other hand, returns something like</p>
+<div class="highlight"><pre class="chroma">[[2000 2000 2000 2000 2000]
+ [ 216 1767 2000 2000 2000]
+ [ 317 2000 2000 2000 2000]
+ ...,
+ [2000 2000 2000 2000 2000]
+ [ 367 2000 2000 2000 2000]
+ [1465 1899 2000 2000 2000]]</pre></div>
+<p>which is an array of indices of five nearest neighbors.  When not found within a
+search radius, it uses the number of elements as a place holder.  The number of
+nearest neighbors to retain can be specified by the input argument (<code>k</code>).</p>
+
+			</div>
+
+			
+			<div class="comments">
+				<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "biboroku" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+			</div>
+			
+
+	  </article>
+	</main>
+<aside>
+	<div>
+		<div>
+			<h2 class="font-uni">LATEST POSTS</h2>
+		</div>
+		<div>
+			<ul>
+				
+				<li><a href="/biboroku/2020/05/attribute-access-with-dict/">Attribute Access with Dict</a></li>
+				
+				<li><a href="/biboroku/2020/04/on-lazy-logging-evaluation/">On Lazy Logging Evaluation</a></li>
+				
+				<li><a href="/biboroku/2016/04/installing-debianjessie-on-thinkpad-t460s/">Installing Debian/Jessie on ThinkPad T460s</a></li>
+				
+				<li><a href="/biboroku/2014/11/install-google-chrome-on-debian-jessie/">Install Google Chrome on Debian Jessie</a></li>
+				
+				<li><a href="/biboroku/2014/10/installing-adobe-reader-on-debianjessie/">Installing Adobe Reader on Debian/Jessie</a></li>
+				
+			</ul>
+		</div>
+	</div>
+</aside>
+
+
+  <footer class="centered">
+  <span class="font-uni larger-text">
+	  Copyright &copy; 2007 - 2020
+    <a href="https://okomestudio.net/biboroku">Biboroku</a>
+    by <a href="https://okomestudio.net">Okome Studio</a> / Taro Sato.
+    All Rights Reserved.
+  </span>
+</footer>
+
+  </div>
+</body>
+</html>
