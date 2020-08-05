@@ -23,6 +23,11 @@
   </url>
   
   <url>
+    <loc>https://okomestudio.net/biboroku/2015/03/creating-a-debian-netinst-bootable-usb-stick-with-non-free-firmware/</loc>
+    <lastmod>2015-03-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://okomestudio.net/biboroku/2014/11/install-google-chrome-on-debian-jessie/</loc>
     <lastmod>2014-11-27T00:00:00+00:00</lastmod>
   </url>
@@ -194,6 +199,12 @@
   <url>
     <loc>https://okomestudio.net/biboroku/2014/</loc>
     <lastmod>2014-11-27T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://okomestudio.net/biboroku/2015/</loc>
+    <lastmod>2015-03-14T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

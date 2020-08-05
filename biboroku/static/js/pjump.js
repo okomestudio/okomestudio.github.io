@@ -29,6 +29,7 @@ var urlmap = {
   2375: '2014/05/interpreting-ab-test-using-python',
   2536: '2014/10/installing-adobe-reader-on-debianjessie',
   2583: '2014/11/install-google-chrome-on-debian-jessie',
+  2657: '2015/03/creating-a-debian-netinst-bootable-usb-stick-with-non-free-firmware',
   2728: '2016/04/installing-debianjessie-on-thinkpad-t460s',
 };
 
