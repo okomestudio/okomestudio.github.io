@@ -130,6 +130,17 @@ First, you definitely need csh and a FORTRAN compiler:</description>
     </item>
     
     <item>
+      <title>Installing Kindle for PC on Debian Squeeze</title>
+      <link>https://okomestudio.net/biboroku/2010/06/installing-kindle-for-pc-on-debian-squeeze/</link>
+      <pubDate>Fri, 11 Jun 2010 00:00:00 +0000</pubDate>
+      
+      <guid>https://okomestudio.net/biboroku/2010/06/installing-kindle-for-pc-on-debian-squeeze/</guid>
+      <description>I sometimes want to run Kindle for PC on Wine. Amazon is so lame that they don’t even bother making a native Linux version of this software!
+Here is the procedure. Move to a temporary directory and do:
+$ sudo aptitude install wine lib32nss-mdns cabextract bzip2 $ wget http://www.</description>
+    </item>
+    
+    <item>
       <title>Installing Debian Squeeze (AMD64) on Lenovo T410s</title>
       <link>https://okomestudio.net/biboroku/2010/06/installing-debian-squeeze-amd64-on-lenovo-t410s/</link>
       <pubDate>Tue, 01 Jun 2010 00:00:00 +0000</pubDate>

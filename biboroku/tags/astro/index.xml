@@ -31,5 +31,34 @@
 I’m only concerned about azimuthal symmetric cases, so $F(r) = 2\pi \int_{0}^{r} dr r I(r)$ .</description>
     </item>
     
+    <item>
+      <title>Installing Bruzual &amp; Charlot 2003 (GALAXEV) on Debian Squeeze</title>
+      <link>https://okomestudio.net/biboroku/2010/10/installing-bruzual-charlot-2003-galaxev-on-debian-squeeze/</link>
+      <pubDate>Tue, 19 Oct 2010 00:00:00 +0000</pubDate>
+      
+      <guid>https://okomestudio.net/biboroku/2010/10/installing-bruzual-charlot-2003-galaxev-on-debian-squeeze/</guid>
+      <description>The installation procedure is confusing only if you are not using csh (I use Bash) and if g77 is not available. Otherwise you can simply follow the installation procedure outlined in the official documentation file (i.e., bc03/doc/bc03.ps.gz).
+First, you definitely need csh and a FORTRAN compiler:</description>
+    </item>
+    
+    <item>
+      <title>Installing SExtractor on Mac OS X Snow Leopard</title>
+      <link>https://okomestudio.net/biboroku/2010/03/installing-sextractor-on-mac-os-x-snow-leopard/</link>
+      <pubDate>Mon, 22 Mar 2010 00:00:00 +0000</pubDate>
+      
+      <guid>https://okomestudio.net/biboroku/2010/03/installing-sextractor-on-mac-os-x-snow-leopard/</guid>
+      <description>(November 25, 2010) I screwed up SExtractor installation for no reason and in an attempt to fix it, I’ve found a few things. After wasting a few hours again, I think this installation note can work for most people who can actually build software from source&amp;hellip; I think the usefulness of this note will be limited though, as a new release of SExtractor appears imminent.</description>
+    </item>
+    
+    <item>
+      <title>Installing HOTPANTS 5.1.10 on Mac OS X Leopard</title>
+      <link>https://okomestudio.net/biboroku/2010/03/installing-hotpants-5-1-10-on-mac-os-x-leopard/</link>
+      <pubDate>Wed, 10 Mar 2010 00:00:00 +0000</pubDate>
+      
+      <guid>https://okomestudio.net/biboroku/2010/03/installing-hotpants-5-1-10-on-mac-os-x-leopard/</guid>
+      <description>You must love the name, but what the software does is far from sultry; it’s a piece of geekware.
+Anyways, I needed to edit files when I install HOTPANTS, photometric alignment utility by Andrew Becker. Here is my installation note before I forget.</description>
+    </item>
+    
   </channel>
 </rss>

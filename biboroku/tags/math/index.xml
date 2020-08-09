@@ -31,5 +31,16 @@
 where $|x| &amp;lt; 1$. This series looks like a geometric series in which case the sum can be computed from</description>
     </item>
     
+    <item>
+      <title>Half-Light Radii for Various Profiles</title>
+      <link>https://okomestudio.net/biboroku/2011/02/half-light-radius-and-disk-scale-length-in-exponential-profile/</link>
+      <pubDate>Mon, 14 Feb 2011 00:00:00 +0000</pubDate>
+      
+      <guid>https://okomestudio.net/biboroku/2011/02/half-light-radius-and-disk-scale-length-in-exponential-profile/</guid>
+      <description>For a radial profile of $I(r)$, the enclosed flux within the radius $r$ is given by
+\[ F(r) = \int_{0}^{2 \pi} d\phi \int_{0}^{r} dr r I(r, \phi) \ . \]
+I’m only concerned about azimuthal symmetric cases, so $F(r) = 2\pi \int_{0}^{r} dr r I(r)$ .</description>
+    </item>
+    
   </channel>
 </rss>
