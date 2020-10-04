@@ -21,6 +21,7 @@ var urlmap = {
   1834: '2012/09/using-japanese-on-debian-wheezy',
   1868: '2012/09/installing-firefox-on-debian-wheezy',
   1903: '2012/09/customizing-installing-linux-kernel-on-debian-wheezy',
+  1915: '2012/09/power-management-on-lenovo-t430s-with-debian-wheezy',
   1986: '2014/02/installing-debian-wheezy-from-a-usb-stick',
   2041: '2014/04/a-trick-for-computing-the-sum-of-geometric-series',
   2065: '2014/04/near-duplicate-detection-using-minhash-background',

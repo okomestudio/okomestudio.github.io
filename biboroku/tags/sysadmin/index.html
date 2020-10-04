@@ -247,6 +247,33 @@ Add yourself (with account username) to sudoer group:
 
 		
 			<article class="blog-post">
+	<h1><a href="https://okomestudio.net/biboroku/2012/09/power-management-on-lenovo-t430s-with-debian-wheezy/">Power Management on Lenovo T430s with Debian Wheezy</a></h1>
+  
+  <p class="meta">
+    Written by Taro Sato
+    on <time>September 30, 2012</time>.
+    Tagged:
+	  
+	  <a href="/biboroku/tags/linux">Linux</a>
+	  
+	  <a href="/biboroku/tags/sysadmin">sysadmin</a>
+	  
+	  <a href="/biboroku/tags/thinkpad">ThinkPad</a>
+	  
+  </p>
+  
+	<div>
+		Since tp_smapi does not work properly on T430s, I am using TLP this time. I still want some traditional tools
+$ sudo aptitude install powertop but not others:
+$ sudo aptitude remove --purge laptop-mode-tools To install, follow the instruction. In short, first update the APT source list by adding the following line to /etc/apt/sources.
+		
+		...	<a href="https://okomestudio.net/biboroku/2012/09/power-management-on-lenovo-t430s-with-debian-wheezy/">Continue reading</a>.
+		
+	</div>
+</article>
+
+		
+			<article class="blog-post">
 	<h1><a href="https://okomestudio.net/biboroku/2012/09/installing-firefox-on-debian-wheezy/">Installing Firefox on Debian Wheezy</a></h1>
   
   <p class="meta">
@@ -311,29 +338,6 @@ Make sure to download a 64-bit version (as I use amd64) from here. The tarball e
 		Sometimes it’s useful to be able to install Linux off an ISO image on hard drive for whatever reason. My Dell XPS 630i has had some issues when I was installing Debian off an install CD/USB, likely related to how GRUB 2 does not gracefully deals with SATA configuration particular to this machine (the install process doesn’t appear to recognize /dev/sdaX properly at some point, ending up in IO errors or kernel panic).
 		
 		...	<a href="https://okomestudio.net/biboroku/2012/05/installing-ubuntu-12-04-lts-64-bit-from-an-iso-image-on-hard-drive/">Continue reading</a>.
-		
-	</div>
-</article>
-
-		
-			<article class="blog-post">
-	<h1><a href="https://okomestudio.net/biboroku/2010/12/installing-debian-squeeze-from-hard-disk/">Installing Debian Squeeze from Hard Disk</a></h1>
-  
-  <p class="meta">
-    Written by Taro Sato
-    on <time>December 14, 2010</time>.
-    Tagged:
-	  
-	  <a href="/biboroku/tags/sysadmin">sysadmin</a>
-	  
-	  <a href="/biboroku/tags/linux">Linux</a>
-	  
-  </p>
-  
-	<div>
-		Unfortunately the Debian installer does not work on my Dell desktop box. I still wanted to do a fresh install of Squeeze, and the only sensible option for me was to install off hard disk. I have been having the same issue for several months and I have not been able to solve it myself, and nobody responds to my bug report; however, this hard drive method may work well even if I have a working install USB stick/CD media.
-		
-		...	<a href="https://okomestudio.net/biboroku/2010/12/installing-debian-squeeze-from-hard-disk/">Continue reading</a>.
 		
 	</div>
 </article>

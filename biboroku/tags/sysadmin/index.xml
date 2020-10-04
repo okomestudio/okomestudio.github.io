@@ -72,6 +72,17 @@ Add yourself (with account username) to sudoer group:
     </item>
     
     <item>
+      <title>Power Management on Lenovo T430s with Debian Wheezy</title>
+      <link>https://okomestudio.net/biboroku/2012/09/power-management-on-lenovo-t430s-with-debian-wheezy/</link>
+      <pubDate>Sun, 30 Sep 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://okomestudio.net/biboroku/2012/09/power-management-on-lenovo-t430s-with-debian-wheezy/</guid>
+      <description>Since tp_smapi does not work properly on T430s, I am using TLP this time. I still want some traditional tools
+$ sudo aptitude install powertop but not others:
+$ sudo aptitude remove --purge laptop-mode-tools To install, follow the instruction. In short, first update the APT source list by adding the following line to /etc/apt/sources.</description>
+    </item>
+    
+    <item>
       <title>Installing Firefox on Debian Wheezy</title>
       <link>https://okomestudio.net/biboroku/2012/09/installing-firefox-on-debian-wheezy/</link>
       <pubDate>Sat, 22 Sep 2012 00:00:00 +0000</pubDate>
