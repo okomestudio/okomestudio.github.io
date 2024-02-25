@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Biboroku</title>
@@ -6,109 +6,105 @@
     <description>Recent content in Tags on Biboroku</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 24 Jun 2010 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://okomestudio.net/biboroku/tags/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sun, 25 Feb 2024 01:24:55 -0800</lastBuildDate>
+    <atom:link href="https://okomestudio.net/biboroku/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Algorithm</title>
-      <link>https://okomestudio.net/biboroku/tags/algorithm/</link>
-      <pubDate>Thu, 24 Jun 2010 00:00:00 +0000</pubDate>
-      
-      <guid>https://okomestudio.net/biboroku/tags/algorithm/</guid>
+      <title>Pkm</title>
+      <link>https://okomestudio.net/biboroku/tags/pkm/</link>
+      <pubDate>Sat, 24 Feb 2024 00:00:00 +0000</pubDate>
+      <guid>https://okomestudio.net/biboroku/tags/pkm/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>Astro</title>
-      <link>https://okomestudio.net/biboroku/tags/astro/</link>
-      <pubDate>Thu, 28 Jun 2012 00:00:00 +0000</pubDate>
-      
-      <guid>https://okomestudio.net/biboroku/tags/astro/</guid>
+      <title>Podcast</title>
+      <link>https://okomestudio.net/biboroku/tags/podcast/</link>
+      <pubDate>Sat, 24 Feb 2024 00:00:00 +0000</pubDate>
+      <guid>https://okomestudio.net/biboroku/tags/podcast/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>Linux</title>
-      <link>https://okomestudio.net/biboroku/tags/linux/</link>
-      <pubDate>Sat, 30 Apr 2016 00:00:00 +0000</pubDate>
-      
-      <guid>https://okomestudio.net/biboroku/tags/linux/</guid>
+      <title>Snipd</title>
+      <link>https://okomestudio.net/biboroku/tags/snipd/</link>
+      <pubDate>Sat, 24 Feb 2024 00:00:00 +0000</pubDate>
+      <guid>https://okomestudio.net/biboroku/tags/snipd/</guid>
       <description></description>
     </item>
-    
-    <item>
-      <title>Math</title>
-      <link>https://okomestudio.net/biboroku/tags/math/</link>
-      <pubDate>Sat, 12 Apr 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://okomestudio.net/biboroku/tags/math/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Os X</title>
-      <link>https://okomestudio.net/biboroku/tags/os-x/</link>
-      <pubDate>Mon, 22 Mar 2010 00:00:00 +0000</pubDate>
-      
-      <guid>https://okomestudio.net/biboroku/tags/os-x/</guid>
-      <description></description>
-    </item>
-    
     <item>
       <title>Python</title>
       <link>https://okomestudio.net/biboroku/tags/python/</link>
       <pubDate>Sat, 09 May 2020 00:00:00 +0000</pubDate>
-      
       <guid>https://okomestudio.net/biboroku/tags/python/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>Stats</title>
-      <link>https://okomestudio.net/biboroku/tags/stats/</link>
-      <pubDate>Mon, 12 May 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://okomestudio.net/biboroku/tags/stats/</guid>
+      <title>Linux</title>
+      <link>https://okomestudio.net/biboroku/tags/linux/</link>
+      <pubDate>Sat, 30 Apr 2016 00:00:00 +0000</pubDate>
+      <guid>https://okomestudio.net/biboroku/tags/linux/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Sysadmin</title>
       <link>https://okomestudio.net/biboroku/tags/sysadmin/</link>
       <pubDate>Sat, 30 Apr 2016 00:00:00 +0000</pubDate>
-      
       <guid>https://okomestudio.net/biboroku/tags/sysadmin/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>Thinkpad</title>
-      <link>https://okomestudio.net/biboroku/tags/thinkpad/</link>
-      <pubDate>Sun, 30 Sep 2012 00:00:00 +0000</pubDate>
-      
-      <guid>https://okomestudio.net/biboroku/tags/thinkpad/</guid>
+      <title>Stats</title>
+      <link>https://okomestudio.net/biboroku/tags/stats/</link>
+      <pubDate>Mon, 12 May 2014 00:00:00 +0000</pubDate>
+      <guid>https://okomestudio.net/biboroku/tags/stats/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Visualization</title>
       <link>https://okomestudio.net/biboroku/tags/visualization/</link>
       <pubDate>Mon, 12 May 2014 00:00:00 +0000</pubDate>
-      
       <guid>https://okomestudio.net/biboroku/tags/visualization/</guid>
       <description></description>
     </item>
-    
+    <item>
+      <title>Math</title>
+      <link>https://okomestudio.net/biboroku/tags/math/</link>
+      <pubDate>Sat, 12 Apr 2014 00:00:00 +0000</pubDate>
+      <guid>https://okomestudio.net/biboroku/tags/math/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>ThinkPad</title>
+      <link>https://okomestudio.net/biboroku/tags/thinkpad/</link>
+      <pubDate>Sun, 30 Sep 2012 00:00:00 +0000</pubDate>
+      <guid>https://okomestudio.net/biboroku/tags/thinkpad/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Astro</title>
+      <link>https://okomestudio.net/biboroku/tags/astro/</link>
+      <pubDate>Thu, 28 Jun 2012 00:00:00 +0000</pubDate>
+      <guid>https://okomestudio.net/biboroku/tags/astro/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Algorithm</title>
+      <link>https://okomestudio.net/biboroku/tags/algorithm/</link>
+      <pubDate>Thu, 24 Jun 2010 00:00:00 +0000</pubDate>
+      <guid>https://okomestudio.net/biboroku/tags/algorithm/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Windows</title>
       <link>https://okomestudio.net/biboroku/tags/windows/</link>
       <pubDate>Fri, 11 Jun 2010 00:00:00 +0000</pubDate>
-      
       <guid>https://okomestudio.net/biboroku/tags/windows/</guid>
       <description></description>
     </item>
-    
+    <item>
+      <title>OS X</title>
+      <link>https://okomestudio.net/biboroku/tags/os-x/</link>
+      <pubDate>Mon, 22 Mar 2010 00:00:00 +0000</pubDate>
+      <guid>https://okomestudio.net/biboroku/tags/os-x/</guid>
+      <description></description>
+    </item>
   </channel>
 </rss>

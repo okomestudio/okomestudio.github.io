@@ -28,6 +28,13 @@
   <meta name="description" content="Biboroku is a blog by Okome Studio">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
   <link rel="icon" href="https://okomestudio.net/favicon.ico">
   <link rel="stylesheet" href="/biboroku/css/normalize.css">
   <link rel="stylesheet" href="/biboroku/css/base.css">
@@ -83,11 +90,11 @@
 
   <div class="container">
   <header>
-  <h1 class="font-uni"><a href="https://okomestudio.net/biboroku">Biboroku</a></h1>
+  <h1 class="font-uni"><a href="https://okomestudio.net/biboroku/">Biboroku</a></h1>
   <nav>
     <ul class="nav navbar-nav font-uni">
       <li><a href="https://okomestudio.net">OkomeStudio.net</a></li>
-      <li><a href="https://okomestudio.net/biboroku/about">About</a></li>
+      <li><a href="https://okomestudio.net/biboroku//about">About</a></li>
     </ul>
   </nav>
 </header>
@@ -95,9 +102,15 @@
   
 	<main>
 		<article class="blog-post">
-			<h1>Power Management on Lenovo T430s with Debian Wheezy</h1>
+      <h1>Power Management on Lenovo T430s with Debian Wheezy</h1>
+      
+
       <p class="meta">
-        Written by Taro Sato
+        Written by
+        
+          Taro Sato
+        
+
         on <time>September 30, 2012</time>.
 	      Tagged:
         
@@ -109,155 +122,141 @@
 	      
       </p>
 			<div>
-				
-
-<p>Since <code>tp_smapi</code> <a href="https://github.com/evgeni/tp_smapi/issues/14">does not work
+				<p>Since <code>tp_smapi</code> <a href="https://github.com/evgeni/tp_smapi/issues/14">does not work
 properly</a> on T430s, I am using
 <a href="http://linrunner.de/en/tlp/tlp.html">TLP</a> this time. I still want some
 traditional tools</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo aptitude install powertop</code></pre></div>
-<p>but not others:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo aptitude remove --purge laptop-mode-tools</code></pre></div>
-<p>To install, <a href="http://linrunner.de/en/tlp/docs/tlp-linux-advanced-power-management.html#installation">follow the
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo aptitude install powertop
+</span></span></code></pre></div><p>but not others:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo aptitude remove --purge laptop-mode-tools
+</span></span></code></pre></div><p>To install, <a href="http://linrunner.de/en/tlp/docs/tlp-linux-advanced-power-management.html#installation">follow the
 instruction</a>.
 In short, first update the APT source list by adding the following line to
 <em>/etc/apt/sources.list</em>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">deb http://ppa.launchpad.net/linrunner/tlp/ubuntu lucid main</code></pre></div>
-<p>and run</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 02D65EFF
-$ sudo aptitude update
-$ sudo aptitude install tlp tlp-rdw tp-smapi-dkms smartmontools ethtool acpi-call-tools&lt;/pre&gt;</code></pre></div>
-<p>Upon reboot, TLP starts running.</p>
-
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">deb http://ppa.launchpad.net/linrunner/tlp/ubuntu lucid main
+</span></span></code></pre></div><p>and run</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 02D65EFF
+</span></span><span class="line"><span class="cl">$ sudo aptitude update
+</span></span><span class="line"><span class="cl">$ sudo aptitude install tlp tlp-rdw tp-smapi-dkms smartmontools ethtool acpi-call-tools&lt;/pre&gt;
+</span></span></code></pre></div><p>Upon reboot, TLP starts running.</p>
 <p>I am impressed by the ease of installation and how effective TLP is on
 configuring T430s to star saving from the get go. According to <code>powertop</code>,
 T430s is already using just 7 - 8 W on battery. That&rsquo;s several watts below I had
 been using on other ThankPads!!</p>
-
 <p>Controlling the behavior of TPL is done by modifying <em>/etc/default/tlp</em>. I
 mostly use the default except the following changes:</p>
-<div class="highlight"><pre class="chroma">...
-
-# Main battery (values in %)
-START_CHARGE_THRESH_BAT0=75
-STOP_CHARGE_THRESH_BAT0=90
-# Ultrabay battery (values in %)
-START_CHARGE_THRESH_BAT1=75
-STOP_CHARGE_THRESH_BAT1=90
-
-...
-
-# Radio devices to disable on connect
-DEVICES_TO_DISABLE_ON_LAN_CONNECT=&amp;quot;wifi wwan&amp;quot;
-DEVICES_TO_DISABLE_ON_WIFI_CONNECT=&amp;quot;wwan&amp;quot;
-DEVICES_TO_DISABLE_ON_WWAN_CONNECT=&amp;quot;wifi&amp;quot;
-
-# Radio devices to enable on disconnect
-DEVICES_TO_ENABLE_ON_LAN_DISCONNECT=&amp;quot;wifi&amp;quot;
-DEVICES_TO_ENABLE_ON_WIFI_DISCONNECT=&amp;quot;&amp;quot;
-DEVICES_TO_ENABLE_ON_WWAN_DISCONNECT=&amp;quot;&amp;quot;</pre></div>
-<p>Note that in this configuration the battery charge thresholds are intentionally
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># Main battery (values in %)
+</span></span><span class="line"><span class="cl">START_CHARGE_THRESH_BAT0=75
+</span></span><span class="line"><span class="cl">STOP_CHARGE_THRESH_BAT0=90
+</span></span><span class="line"><span class="cl"># Ultrabay battery (values in %)
+</span></span><span class="line"><span class="cl">START_CHARGE_THRESH_BAT1=75
+</span></span><span class="line"><span class="cl">STOP_CHARGE_THRESH_BAT1=90
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># Radio devices to disable on connect
+</span></span><span class="line"><span class="cl">DEVICES_TO_DISABLE_ON_LAN_CONNECT=&amp;quot;wifi wwan&amp;quot;
+</span></span><span class="line"><span class="cl">DEVICES_TO_DISABLE_ON_WIFI_CONNECT=&amp;quot;wwan&amp;quot;
+</span></span><span class="line"><span class="cl">DEVICES_TO_DISABLE_ON_WWAN_CONNECT=&amp;quot;wifi&amp;quot;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># Radio devices to enable on disconnect
+</span></span><span class="line"><span class="cl">DEVICES_TO_ENABLE_ON_LAN_DISCONNECT=&amp;quot;wifi&amp;quot;
+</span></span><span class="line"><span class="cl">DEVICES_TO_ENABLE_ON_WIFI_DISCONNECT=&amp;quot;&amp;quot;
+</span></span><span class="line"><span class="cl">DEVICES_TO_ENABLE_ON_WWAN_DISCONNECT=&amp;quot;&amp;quot;
+</span></span></code></pre></div><p>Note that in this configuration the battery charge thresholds are intentionally
 set lower than the factory default to prolong the health of batteries. When I
 wish to fully charge them, do:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo tlp fullcharge <span class="o">[</span> BAT0 <span class="p">|</span> BAT1 <span class="o">]</span></code></pre></div>
-<p>and the thresholds will be set back to the factory default. The setting reverts
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo tlp fullcharge <span class="o">[</span> BAT0 <span class="p">|</span> BAT1 <span class="o">]</span>
+</span></span></code></pre></div><p>and the thresholds will be set back to the factory default. The setting reverts
 to the custom configuration upon next reboot.</p>
-
 <h3 id="enables-rc6-power-saving">Enables RC6 Power Saving</h3>
-
 <p>Edit <em>/etc/default/grub</em> and add the option <em>i915.i915_enable_rc6=1</em> to GRUB:</p>
-<div class="highlight"><pre class="chroma">GRUB_CMDLINE_LINUX_DEFAULT=&amp;quot;quiet i915.i915_enable_rc6=1&amp;quot;</pre></div>
-<p>After editing, update Grub:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo update-grub</code></pre></div>
-<p>This can save about 0.5 W of power!</p>
-
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">GRUB_CMDLINE_LINUX_DEFAULT=&amp;quot;quiet i915.i915_enable_rc6=1&amp;quot;
+</span></span></code></pre></div><p>After editing, update Grub:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo update-grub
+</span></span></code></pre></div><p>This can save about 0.5 W of power!</p>
 <h3 id="fan-control">Fan Control</h3>
-
 <p>I have not fine tuned this, but the fan can be controlled manually via
 <a href="http://thinkfan.sourceforge.net/"><code>thinkfan</code></a>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo aptitude install thinkfan</code></pre></div>
-<p>Create (or edit) <em>/etc/modprobe.d/thinkpad_acpi.conf</em> and add the line:</p>
-<div class="highlight"><pre class="chroma">options thinkpad_acpi fan_control=1</pre></div>
-<p>Reboot. The fan can be controlled manually following <a href="http://www.thinkwiki.org/wiki/How_to_control_fan_speed">this Wiki
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo aptitude install thinkfan
+</span></span></code></pre></div><p>Create (or edit) <em>/etc/modprobe.d/thinkpad_acpi.conf</em> and add the line:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">options thinkpad_acpi fan_control=1
+</span></span></code></pre></div><p>Reboot. The fan can be controlled manually following <a href="http://www.thinkwiki.org/wiki/How_to_control_fan_speed">this Wiki
 article</a>.</p>
-
-<h3 id="configuring-system-on-switch-between-ac-038-battery">Configuring System on Switch between AC &#038; Battery</h3>
-
+<h3 id="configuring-system-on-switch-between-ac-038-battery">Configuring System on Switch between AC &amp; Battery</h3>
 <p>For regular daemons (like <code>ssh</code>), TLP provides a way to start/stop based on AC
 status.</p>
-
 <p>For other personal processes, KDE power management can also do some work by
 running a script upon dis/connecting with AC. In particular, the sound for the
 KDE system notifications should be disabled entirely, because they cause quite a
 number of unwanted interruptions according to <code>powertop</code>. Also, I wish to
 start/stop programs like flux and Dropbox when on battery just to squeeze more
 juice. I create a script like this:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/usr/bin/env bash
-</span><span class="cp"></span><span class="c1">##############################################################################</span>
-<span class="c1"># This is a script to run when AC/battery switches.  Ideally used</span>
-<span class="c1"># within the power management configuration setting on KDE.  Requires</span>
-<span class="c1"># tp_smapi to be loaded for the detection of AC/battery.</span>
-
-<span class="nv">USERNAME</span><span class="o">=</span>johndoe
-<span class="nv">LATITUDE</span><span class="o">=</span><span class="m">37</span>.78
-<span class="nv">LONGITUDE</span><span class="o">=</span>-122.42
-
-
-<span class="c1">##############################################################################</span>
-<span class="c1"># DO NOT MODIFY BELOW</span>
-
-<span class="nv">statuspath</span><span class="o">=</span><span class="p">&amp;</span>quot<span class="p">;</span>/sys/class/power_supply/AC/online<span class="p">&amp;</span>quot<span class="p">;</span>
-
-<span class="k">if</span> <span class="o">[</span> ! -f <span class="p">&amp;</span>quot<span class="p">;</span><span class="nv">$statuspath</span><span class="p">&amp;</span>quot<span class="p">;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
-    <span class="nb">exit</span> <span class="m">0</span>
-<span class="k">fi</span>
-
-<span class="nv">tag</span><span class="o">=</span>pmpersonal
-<span class="nv">status</span><span class="o">=</span><span class="sb">`</span>cat <span class="p">&amp;</span>quot<span class="p">;</span><span class="nv">$statuspath</span><span class="p">&amp;</span>quot<span class="p">;</span><span class="sb">`</span>
-
-<span class="k">if</span> <span class="o">[</span> <span class="p">&amp;</span>quot<span class="p">;</span><span class="nv">$status</span><span class="p">&amp;</span>quot<span class="p">;</span> <span class="o">=</span> <span class="p">&amp;</span>quot<span class="p">;</span><span class="m">1</span><span class="p">&amp;</span>quot<span class="p">;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
-    logger -t <span class="nv">$tag</span> <span class="p">&amp;</span>quot<span class="p">;</span>on ac<span class="p">&amp;</span>quot<span class="p">;</span>
-
-    logger -t <span class="nv">$tag</span> <span class="p">&amp;</span>quot<span class="p">;</span>start xflux<span class="p">&amp;</span>quot<span class="p">;</span>
-    <span class="k">for</span> i in <span class="sb">`</span>pgrep ^xflux$<span class="sb">`</span> <span class="p">;</span> <span class="k">do</span> <span class="nb">kill</span> -9 <span class="nv">$i</span> <span class="p">;</span> <span class="k">done</span>
-    xflux -l <span class="nv">$LATITUDE</span> -g <span class="nv">$LONGITUDE</span>
-
-    logger -t <span class="nv">$tag</span> <span class="p">&amp;</span>quot<span class="p">;</span>start dropbox<span class="p">&amp;</span>quot<span class="p">;</span>
-    dropbox start
-
-    logger -t <span class="nv">$tag</span> <span class="p">&amp;</span>quot<span class="p">;</span><span class="nb">enable</span> system notification<span class="p">&amp;</span>quot<span class="p">;</span>
-    kwriteconfig --file<span class="o">=</span><span class="p">&amp;</span>quot<span class="p">;</span>/home/<span class="nv">$USERNAME</span>/.kde/share/config/knotifyrc<span class="p">&amp;</span>quot<span class="p">;</span> --group<span class="o">=</span>Sounds --key<span class="o">=</span><span class="p">&amp;</span>quot<span class="p">;</span>No sound<span class="p">&amp;</span>quot<span class="p">;</span> <span class="nb">false</span>
-<span class="k">else</span>
-    logger -t <span class="nv">$tag</span> <span class="p">&amp;</span>quot<span class="p">;</span>on battery<span class="p">&amp;</span>quot<span class="p">;</span>
-
-    logger -t <span class="nv">$tag</span> <span class="p">&amp;</span>quot<span class="p">;</span>stop xflux<span class="p">&amp;</span>quot<span class="p">;</span>
-    <span class="k">for</span> i in <span class="sb">`</span>pgrep ^xflux$<span class="sb">`</span> <span class="p">;</span> <span class="k">do</span> <span class="nb">kill</span> -9 <span class="nv">$i</span> <span class="p">;</span> <span class="k">done</span>
-
-    logger -t <span class="nv">$tag</span> <span class="p">&amp;</span>quot<span class="p">;</span>stop dropbox<span class="p">&amp;</span>quot<span class="p">;</span>
-    dropbox stop
-
-    logger -t <span class="nv">$tag</span> <span class="p">&amp;</span>quot<span class="p">;</span>disable system notification<span class="p">&amp;</span>quot<span class="p">;</span>
-    kwriteconfig --file<span class="o">=</span><span class="p">&amp;</span>quot<span class="p">;</span>/home/<span class="nv">$USERNAME</span>/.kde/share/config/knotifyrc<span class="p">&amp;</span>quot<span class="p">;</span> --group<span class="o">=</span>Sounds --key<span class="o">=</span><span class="p">&amp;</span>quot<span class="p">;</span>No sound<span class="p">&amp;</span>quot<span class="p">;</span> <span class="nb">true</span>
-<span class="k">fi</span></code></pre></div>
-<p>Save this to <em>~/bin/pmpersonal.sh</em>. Go to System Settings -&gt; Power Management -&gt;
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/usr/bin/env bash
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="c1">##############################################################################</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># This is a script to run when AC/battery switches.  Ideally used</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># within the power management configuration setting on KDE.  Requires</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># tp_smapi to be loaded for the detection of AC/battery.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">USERNAME</span><span class="o">=</span>johndoe
+</span></span><span class="line"><span class="cl"><span class="nv">LATITUDE</span><span class="o">=</span>37.78
+</span></span><span class="line"><span class="cl"><span class="nv">LONGITUDE</span><span class="o">=</span>-122.42
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">##############################################################################</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># DO NOT MODIFY BELOW</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">statuspath</span><span class="o">=</span><span class="p">&amp;</span>quot<span class="p">;</span>/sys/class/power_supply/AC/online<span class="p">&amp;</span>quot<span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[</span> ! -f <span class="p">&amp;</span>quot<span class="p">;</span><span class="nv">$statuspath</span><span class="p">&amp;</span>quot<span class="p">;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">exit</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">tag</span><span class="o">=</span>pmpersonal
+</span></span><span class="line"><span class="cl"><span class="nv">status</span><span class="o">=</span><span class="sb">`</span>cat <span class="p">&amp;</span>quot<span class="p">;</span><span class="nv">$statuspath</span><span class="p">&amp;</span>quot<span class="p">;</span><span class="sb">`</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[</span> <span class="p">&amp;</span>quot<span class="p">;</span><span class="nv">$status</span><span class="p">&amp;</span>quot<span class="p">;</span> <span class="o">=</span> <span class="p">&amp;</span>quot<span class="p">;</span>1<span class="p">&amp;</span>quot<span class="p">;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">    logger -t <span class="nv">$tag</span> <span class="p">&amp;</span>quot<span class="p">;</span>on ac<span class="p">&amp;</span>quot<span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    logger -t <span class="nv">$tag</span> <span class="p">&amp;</span>quot<span class="p">;</span>start xflux<span class="p">&amp;</span>quot<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> i in <span class="sb">`</span>pgrep ^xflux$<span class="sb">`</span> <span class="p">;</span> <span class="k">do</span> <span class="nb">kill</span> -9 <span class="nv">$i</span> <span class="p">;</span> <span class="k">done</span>
+</span></span><span class="line"><span class="cl">    xflux -l <span class="nv">$LATITUDE</span> -g <span class="nv">$LONGITUDE</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    logger -t <span class="nv">$tag</span> <span class="p">&amp;</span>quot<span class="p">;</span>start dropbox<span class="p">&amp;</span>quot<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    dropbox start
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    logger -t <span class="nv">$tag</span> <span class="p">&amp;</span>quot<span class="p">;</span><span class="nb">enable</span> system notification<span class="p">&amp;</span>quot<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    kwriteconfig --file<span class="o">=</span><span class="p">&amp;</span>quot<span class="p">;</span>/home/<span class="nv">$USERNAME</span>/.kde/share/config/knotifyrc<span class="p">&amp;</span>quot<span class="p">;</span> --group<span class="o">=</span>Sounds --key<span class="o">=</span><span class="p">&amp;</span>quot<span class="p">;</span>No sound<span class="p">&amp;</span>quot<span class="p">;</span> <span class="nb">false</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span>
+</span></span><span class="line"><span class="cl">    logger -t <span class="nv">$tag</span> <span class="p">&amp;</span>quot<span class="p">;</span>on battery<span class="p">&amp;</span>quot<span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    logger -t <span class="nv">$tag</span> <span class="p">&amp;</span>quot<span class="p">;</span>stop xflux<span class="p">&amp;</span>quot<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> i in <span class="sb">`</span>pgrep ^xflux$<span class="sb">`</span> <span class="p">;</span> <span class="k">do</span> <span class="nb">kill</span> -9 <span class="nv">$i</span> <span class="p">;</span> <span class="k">done</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    logger -t <span class="nv">$tag</span> <span class="p">&amp;</span>quot<span class="p">;</span>stop dropbox<span class="p">&amp;</span>quot<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    dropbox stop
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    logger -t <span class="nv">$tag</span> <span class="p">&amp;</span>quot<span class="p">;</span>disable system notification<span class="p">&amp;</span>quot<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    kwriteconfig --file<span class="o">=</span><span class="p">&amp;</span>quot<span class="p">;</span>/home/<span class="nv">$USERNAME</span>/.kde/share/config/knotifyrc<span class="p">&amp;</span>quot<span class="p">;</span> --group<span class="o">=</span>Sounds --key<span class="o">=</span><span class="p">&amp;</span>quot<span class="p">;</span>No sound<span class="p">&amp;</span>quot<span class="p">;</span> <span class="nb">true</span>
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span></code></pre></div><p>Save this to <em>~/bin/pmpersonal.sh</em>. Go to System Settings -&gt; Power Management -&gt;
 Energy Saving Settings. There, for each of “On AC,” “On Battery,” and “On Low
 Battery,” I can set different configurations. I can also specify “Run Script”
 option for each profile to enable/disable a few desktop related applications and
 settings. The script should be run on profile load.</p>
-
 <h3 id="preload-daemon">Preload Daemon</h3>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo aptitude install preload</code></pre></div>
-<p>In <em>/etc/default/preload</em>, uncomment the line reading</p>
-<div class="highlight"><pre class="chroma">OPTIONS=&amp;quot;-l /dev/null&amp;quot;</pre></div>
-<p>This should reduce disk activity.</p>
-
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo aptitude install preload
+</span></span></code></pre></div><p>In <em>/etc/default/preload</em>, uncomment the line reading</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">OPTIONS=&amp;quot;-l /dev/null&amp;quot;
+</span></span></code></pre></div><p>This should reduce disk activity.</p>
 <h3 id="disabling-nepomuk-strigi-and-akonadi-on-kde">Disabling Nepomuk, Strigi and Akonadi on KDE</h3>
-
 <p>I am not fond of these daemon. Disable them by going to System Settings -&gt;
 Desktop Search and unchecking “Enable Nepomuk Semantic Desktop.” In
 <em>~/.config/akonadi/akonadiserverrc</em>, set:</p>
-<div class="highlight"><pre class="chroma">StartServer=false</pre></div>
-<p>so that it doesn’t start at all. On <code>powertop</code>, this shows up as a service
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">StartServer=false
+</span></span></code></pre></div><p>so that it doesn’t start at all. On <code>powertop</code>, this shows up as a service
 running <code>mysqld</code> constantly.</p>
 
 			</div>
@@ -265,8 +264,8 @@ running <code>mysqld</code> constantly.</p>
 			
 			<div class="comments">
 				<div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
+<script>
+    window.disqus_config = function () {
     
     
     
@@ -297,6 +296,8 @@ running <code>mysqld</code> constantly.</p>
 		<div>
 			<ul>
 				
+				<li><a href="/biboroku/2024/02/snipping-transcripts-with-snipd/">Snipping Transcripts with Snipd</a></li>
+				
 				<li><a href="/biboroku/2020/05/attribute-access-with-dict/">Attribute Access with Dict</a></li>
 				
 				<li><a href="/biboroku/2020/04/on-lazy-logging-evaluation/">On Lazy Logging Evaluation</a></li>
@@ -304,8 +305,6 @@ running <code>mysqld</code> constantly.</p>
 				<li><a href="/biboroku/2016/04/installing-debianjessie-on-thinkpad-t460s/">Installing Debian/Jessie on ThinkPad T460s</a></li>
 				
 				<li><a href="/biboroku/2015/03/creating-a-debian-netinst-bootable-usb-stick-with-non-free-firmware/">Creating a Debian Bootable USB Stick with Non-Free Firmware</a></li>
-				
-				<li><a href="/biboroku/2014/11/install-google-chrome-on-debian-jessie/">Install Google Chrome on Debian Jessie</a></li>
 				
 			</ul>
 		</div>
@@ -315,8 +314,8 @@ running <code>mysqld</code> constantly.</p>
 
   <footer class="centered">
   <span class="font-uni larger-text">
-	  Copyright &copy; 2007 - 2020
-    <a href="https://okomestudio.net/biboroku">Biboroku</a>
+	  Copyright &copy; 2007 - 2024
+    <a href="https://okomestudio.net/biboroku/">Biboroku</a>
     by <a href="https://okomestudio.net">Okome Studio</a> / Taro Sato.
     All Rights Reserved.
   </span>

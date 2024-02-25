@@ -1,26 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Thinkpad on Biboroku</title>
+    <title>ThinkPad on Biboroku</title>
     <link>https://okomestudio.net/biboroku/tags/thinkpad/</link>
-    <description>Recent content in Thinkpad on Biboroku</description>
+    <description>Recent content in ThinkPad on Biboroku</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 30 Sep 2012 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://okomestudio.net/biboroku/tags/thinkpad/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <atom:link href="https://okomestudio.net/biboroku/tags/thinkpad/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Power Management on Lenovo T430s with Debian Wheezy</title>
       <link>https://okomestudio.net/biboroku/2012/09/power-management-on-lenovo-t430s-with-debian-wheezy/</link>
       <pubDate>Sun, 30 Sep 2012 00:00:00 +0000</pubDate>
-      
       <guid>https://okomestudio.net/biboroku/2012/09/power-management-on-lenovo-t430s-with-debian-wheezy/</guid>
-      <description>Since tp_smapi does not work properly on T430s, I am using TLP this time. I still want some traditional tools
-$ sudo aptitude install powertop but not others:
-$ sudo aptitude remove --purge laptop-mode-tools To install, follow the instruction. In short, first update the APT source list by adding the following line to /etc/apt/sources.</description>
+      <description>Since tp_smapi does not work properly on T430s, I am using TLP this time. I still want some traditional tools&#xA;$ sudo aptitude install powertop but not others:&#xA;$ sudo aptitude remove --purge laptop-mode-tools To install, follow the instruction. In short, first update the APT source list by adding the following line to /etc/apt/sources.</description>
     </item>
-    
   </channel>
 </rss>

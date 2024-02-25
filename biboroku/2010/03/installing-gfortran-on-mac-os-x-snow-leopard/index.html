@@ -28,6 +28,13 @@
   <meta name="description" content="Biboroku is a blog by Okome Studio">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
   <link rel="icon" href="https://okomestudio.net/favicon.ico">
   <link rel="stylesheet" href="/biboroku/css/normalize.css">
   <link rel="stylesheet" href="/biboroku/css/base.css">
@@ -83,11 +90,11 @@
 
   <div class="container">
   <header>
-  <h1 class="font-uni"><a href="https://okomestudio.net/biboroku">Biboroku</a></h1>
+  <h1 class="font-uni"><a href="https://okomestudio.net/biboroku/">Biboroku</a></h1>
   <nav>
     <ul class="nav navbar-nav font-uni">
       <li><a href="https://okomestudio.net">OkomeStudio.net</a></li>
-      <li><a href="https://okomestudio.net/biboroku/about">About</a></li>
+      <li><a href="https://okomestudio.net/biboroku//about">About</a></li>
     </ul>
   </nav>
 </header>
@@ -95,9 +102,15 @@
   
 	<main>
 		<article class="blog-post">
-			<h1>Installing GFortran on Mac OS X Snow Leopard</h1>
+      <h1>Installing GFortran on Mac OS X Snow Leopard</h1>
+      
+
       <p class="meta">
-        Written by Taro Sato
+        Written by
+        
+          Taro Sato
+        
+
         on <time>March 22, 2010</time>.
 	      Tagged:
         
@@ -107,46 +120,35 @@
 	      
       </p>
 			<div>
-				
-
-<h3 id="installing-from-gfortran-wiki-my-current-preferred-way">Installing from GFortran Wiki (My Current Preferred Way)</h3>
-
+				<h3 id="installing-from-gfortran-wiki-my-current-preferred-way">Installing from GFortran Wiki (My Current Preferred Way)</h3>
 <p>GCC Wiki has a link to <a href="http://gcc.gnu.org/wiki/GFortranBinariesMacOS">Mac OS X
 installer</a>. As the
 command <code>gfortran</code> will be installed at <em>/usr/local/gfortran</em> and
 causes less interference with other libraries and software, this is
 my preferred way.</p>
-
 <h3 id="installing-from-fink">Installing from Fink</h3>
-
 <p>I use <a href="http://www.finkproject.org/">Fink</a> (as opposed to MacPorts) to
 manage most Linux-like tools.</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ fink install netcdf-gfortran</code></pre></div>
-<p>This will make <code>gfortran</code> available at <em>/sw/bin/gfortran</em>. It may
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ fink install netcdf-gfortran
+</span></span></code></pre></div><p>This will make <code>gfortran</code> available at <em>/sw/bin/gfortran</em>. It may
 take a bit of time to compile binaries though.</p>
-
 <h3 id="installing-binary-from-high-performance-computing-for-mac-os-x">Installing Binary from High Performance Computing for Mac OS X</h3>
-
 <p><a href="http://hpc.sourceforge.net/">This site</a> has a bunch of pre-compiled
 binaries useful for scientific computing, and GFortran is one of them.</p>
-
 <h3 id="installing-binary-from-the-r-project">Installing Binary from the R Project</h3>
-
 <p>You may simply use a binary made available by the R people. Download a
 .dmg file from <a href="http://r.research.att.com/tools/">here</a>. This version
 will install at <em>/usr/local/bin</em>.</p>
-
 <h2 id="update-history">Update History</h2>
-
-<p>November 24, 2010 &#8211; Added different install options.</p>
+<p>November 24, 2010 – Added different install options.</p>
 
 			</div>
 
 			
 			<div class="comments">
 				<div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
+<script>
+    window.disqus_config = function () {
     
     
     
@@ -177,6 +179,8 @@ will install at <em>/usr/local/bin</em>.</p>
 		<div>
 			<ul>
 				
+				<li><a href="/biboroku/2024/02/snipping-transcripts-with-snipd/">Snipping Transcripts with Snipd</a></li>
+				
 				<li><a href="/biboroku/2020/05/attribute-access-with-dict/">Attribute Access with Dict</a></li>
 				
 				<li><a href="/biboroku/2020/04/on-lazy-logging-evaluation/">On Lazy Logging Evaluation</a></li>
@@ -184,8 +188,6 @@ will install at <em>/usr/local/bin</em>.</p>
 				<li><a href="/biboroku/2016/04/installing-debianjessie-on-thinkpad-t460s/">Installing Debian/Jessie on ThinkPad T460s</a></li>
 				
 				<li><a href="/biboroku/2015/03/creating-a-debian-netinst-bootable-usb-stick-with-non-free-firmware/">Creating a Debian Bootable USB Stick with Non-Free Firmware</a></li>
-				
-				<li><a href="/biboroku/2014/11/install-google-chrome-on-debian-jessie/">Install Google Chrome on Debian Jessie</a></li>
 				
 			</ul>
 		</div>
@@ -195,8 +197,8 @@ will install at <em>/usr/local/bin</em>.</p>
 
   <footer class="centered">
   <span class="font-uni larger-text">
-	  Copyright &copy; 2007 - 2020
-    <a href="https://okomestudio.net/biboroku">Biboroku</a>
+	  Copyright &copy; 2007 - 2024
+    <a href="https://okomestudio.net/biboroku/">Biboroku</a>
     by <a href="https://okomestudio.net">Okome Studio</a> / Taro Sato.
     All Rights Reserved.
   </span>

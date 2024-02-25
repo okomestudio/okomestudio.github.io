@@ -28,6 +28,13 @@
   <meta name="description" content="Biboroku is a blog by Okome Studio">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
   <link rel="icon" href="https://okomestudio.net/favicon.ico">
   <link rel="stylesheet" href="/biboroku/css/normalize.css">
   <link rel="stylesheet" href="/biboroku/css/base.css">
@@ -83,11 +90,11 @@
 
   <div class="container">
   <header>
-  <h1 class="font-uni"><a href="https://okomestudio.net/biboroku">Biboroku</a></h1>
+  <h1 class="font-uni"><a href="https://okomestudio.net/biboroku/">Biboroku</a></h1>
   <nav>
     <ul class="nav navbar-nav font-uni">
       <li><a href="https://okomestudio.net">OkomeStudio.net</a></li>
-      <li><a href="https://okomestudio.net/biboroku/about">About</a></li>
+      <li><a href="https://okomestudio.net/biboroku//about">About</a></li>
     </ul>
   </nav>
 </header>
@@ -95,9 +102,15 @@
   
 	<main>
 		<article class="blog-post">
-			<h1>Installing Debian Squeeze (AMD64) on Lenovo T410s</h1>
+      <h1>Installing Debian Squeeze (AMD64) on Lenovo T410s</h1>
+      
+
       <p class="meta">
-        Written by Taro Sato
+        Written by
+        
+          Taro Sato
+        
+
         on <time>June 1, 2010</time>.
 	      Tagged:
         
@@ -107,14 +120,10 @@
 	      
       </p>
 			<div>
-				
-
-<p>So far the only thing that I do not like about T410s is its short
+				<p>So far the only thing that I do not like about T410s is its short
 battery life. I can only get 2 to 3 hours out of “standard” usage.
 Hopefully this will improve as I tweak things more.</p>
-
 <h2 id="to-begin-with-a-problem">To Begin With: A Problem</h2>
-
 <p>Unfortunately I had a major issue with my T410s recently (November 17,
 2010). A few months ago, the LCD started showing a vertical band in
 which graphics was lost. <a href="http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-76367">the issue seems to be fairly prevalent with
@@ -124,138 +133,114 @@ done, which involved replacing the LCD and motherboard. It took
 exactly two weeks for the whole process using the local Lenovo
 contractor (in Canada), but now the laptop is fixed. Anyone who got
 T410s around June 2010 or before should be aware of this LCD issue.</p>
-
 <p>As of November 26, 2010, I decided to reinstall Debian Squeeze from
 scratch. So this installation note now reflects the nearly stable
 version of Squeeze installation procedure. Things that did not work
 before now works from the beginning!</p>
-
 <h2 id="general-hardware-specifications">General Hardware Specifications</h2>
-
-<p>My <a href="http://www-307.ibm.com/pc/support/site.wss/document.do?sitestyle=lenovo&amp;amp;lndocid=MIGR-75219">Lenovo
+<p>My <a href="http://www-307.ibm.com/pc/support/site.wss/document.do?sitestyle=lenovo&amp;lndocid=MIGR-75219">Lenovo
 T410s</a>
 is 2901-CTO.</p>
-
 <table>
 <thead>
 <tr>
-<th align="left"><em>Hardware Components</em></th>
+<th style="text-align:left"><em>Hardware Components</em></th>
 <th><em>Status under Linux</em></th>
-<th align="left"><em>Notes</em></th>
+<th style="text-align:left"><em>Notes</em></th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
-<td align="left">Intel Core i5 M520 2.4 GHz</td>
+<td style="text-align:left">Intel Core i5 M520 2.4 GHz</td>
 <td>Works</td>
-<td align="left"></td>
+<td style="text-align:left"></td>
 </tr>
-
 <tr>
-<td align="left">14.1 WXGA+ TFT Display, w/ LED Backlight</td>
+<td style="text-align:left">14.1 WXGA+ TFT Display, w/ LED Backlight</td>
 <td>Works</td>
-<td align="left"></td>
+<td style="text-align:left"></td>
 </tr>
-
 <tr>
-<td align="left">Intel HD Graphics (IT 5700MHD, i5-520M AMT)</td>
+<td style="text-align:left">Intel HD Graphics (IT 5700MHD, i5-520M AMT)</td>
 <td>Works</td>
-<td align="left"></td>
+<td style="text-align:left"></td>
 </tr>
-
 <tr>
-<td align="left">4 GB PC3-8500 DDR3 (2 DIMM)</td>
+<td style="text-align:left">4 GB PC3-8500 DDR3 (2 DIMM)</td>
 <td>Works</td>
-<td align="left"></td>
+<td style="text-align:left"></td>
 </tr>
-
 <tr>
-<td align="left">80 GB SSD (INTEL SSDSA1M080G2LE, 2CV102J6, max UDMA/133)</td>
+<td style="text-align:left">80 GB SSD (INTEL SSDSA1M080G2LE, 2CV102J6, max UDMA/133)</td>
 <td>Works</td>
-<td align="left"></td>
+<td style="text-align:left"></td>
 </tr>
-
 <tr>
-<td align="left">Integrated Ethernet Card (Intel 82577LM Gigabit Network Connection (rev 06))</td>
+<td style="text-align:left">Integrated Ethernet Card (Intel 82577LM Gigabit Network Connection (rev 06))</td>
 <td>Works</td>
-<td align="left"></td>
+<td style="text-align:left"></td>
 </tr>
-
 <tr>
-<td align="left">Wireless Network Card (Intel Centrino Ultimate-N 6300 (rev 35))</td>
+<td style="text-align:left">Wireless Network Card (Intel Centrino Ultimate-N 6300 (rev 35))</td>
 <td>Works</td>
-<td align="left">Need to download firmware to <em>/lib/firmware</em>.</td>
+<td style="text-align:left">Need to download firmware to <!-- raw HTML omitted -->/lib/firmware<!-- raw HTML omitted -->.</td>
 </tr>
-
 <tr>
-<td align="left">Matsushita DVD-RAM Drive (UJ892)</td>
+<td style="text-align:left">Matsushita DVD-RAM Drive (UJ892)</td>
 <td>Works</td>
-<td align="left"></td>
+<td style="text-align:left"></td>
 </tr>
-
 <tr>
-<td align="left">6 cell Prismatic Battery</td>
+<td style="text-align:left">6 cell Prismatic Battery</td>
 <td>Works</td>
-<td align="left"></td>
+<td style="text-align:left"></td>
 </tr>
-
 <tr>
-<td align="left">Integrated Sound Card (Intel 3b57 (rev 06))</td></td>
+<td style="text-align:left">Integrated Sound Card (Intel 3b57 (rev 06))<!-- raw HTML omitted --></td>
 <td>Works</td>
-<td align="left"></td>
+<td style="text-align:left"></td>
 </tr>
-
 <tr>
-<td align="left">Integrated Speaker &amp; Microphone</td>
+<td style="text-align:left">Integrated Speaker &amp; Microphone</td>
 <td>Works</td>
-<td align="left"></td>
+<td style="text-align:left"></td>
 </tr>
-
 <tr>
-<td align="left">Integrated Camera</td>
+<td style="text-align:left">Integrated Camera</td>
 <td>Works</td>
-<td align="left">uvcvideo</td>
+<td style="text-align:left">uvcvideo</td>
 </tr>
-
 <tr>
-<td align="left">ThinkLight</td>
+<td style="text-align:left">ThinkLight</td>
 <td>Works</td>
-<td align="left"></td>
+<td style="text-align:left"></td>
 </tr>
-
 <tr>
-<td align="left">Fingerprint Reader</td>
+<td style="text-align:left">Fingerprint Reader</td>
 <td>Not tested</td>
-<td align="left"></td>
+<td style="text-align:left"></td>
 </tr>
-
 <tr>
-<td align="left">TrackPoint &amp; TrackPad</td>
+<td style="text-align:left">TrackPoint &amp; TrackPad</td>
 <td>Works</td>
-<td align="left"></td>
+<td style="text-align:left"></td>
 </tr>
-
 <tr>
-<td align="left">Keyboard</td>
+<td style="text-align:left">Keyboard</td>
 <td>Not fully tested</td>
-<td align="left">Haven’t thoroughly tested special keys</td>
+<td style="text-align:left">Haven’t thoroughly tested special keys</td>
 </tr>
 </tbody>
 </table>
-
 <p>Note: Currently my T410s is operating on kernel version 2.26.36.2 from
 <a href="http://kernel.org/">kernel.org</a> which I <a href="http://nomo17k.wordpress.com/2010/03/21/customizing-installing-linux-kernel-on-debian-squeeze/">customized and
 compiled</a>
 myself. I don’t think is necessary to get the basic things working
 though. On the other hand, I see some problem with kernel
-2.26.36.2. When I do <strong><code>dmesg</code></strong>, I get numerous <code>scsi host1:
-__pm_runtime_resume()!</code> errors, and sometimes T410s locks up for
+2.26.36.2. When I do <strong><code>dmesg</code></strong>, I get numerous <code>scsi host1: __pm_runtime_resume()!</code> errors, and sometimes T410s locks up for
 several seconds. In order to alleviate the problem, I have to boot
 with kernel option <code>pcie_ports=compat</code>.</p>
-
 <h2 id="why-debian-squeeze">Why Debian Squeeze?</h2>
-
 <p>I have always liked the leanness and stability of Debian, but I admit
 that I have recently flirted with the idea of migrating to Ubuntu;
 near the end of Debian release cycle, I have always found myself
@@ -264,12 +249,10 @@ became obsolete.  When I tried, I also liked Ubuntu for its ease of
 use; I didn’t have to do whole a lot of configurations myself to get
 my old laptop (a Dell Latitude) working. However, it slightly felt
 like using Windows on a new computer; a lot of software that I
-don&#8217;t care to install are bundled with Ubuntu. In the end, I
+don’t care to install are bundled with Ubuntu. In the end, I
 decided to stay with Debian for now, but with Squeeze, still a testing
 distribution (Nov. 17, 2010).</p>
-
 <h2 id="installing-debian-squeeze">Installing Debian Squeeze</h2>
-
 <p>First of all, make factory recovery disks in case you need to restore
 factory default. There is little reason to keep Windows 7 around, but
 it’s always a good thing to have a way to restore default setting. In
@@ -281,22 +264,17 @@ recommended to test if they work or not by rebooting off the boot disk
 just created. Mine passed the test and factory reset was completely
 working. I also updated BIOS to its latest version on Windows to avoid
 problems later.</p>
-
 <p>Debian Squeeze will soon become the stable distribution, but till that
 happens I fetched the installer from the testing distribution site,
 and made a install USB stick, following <a href="2010/11/17/creating-an-installation-usb-memory-stick-for-debian-squeeze-amd64">this
 article</a>. For
 this installation note, I use the <a href="http://cdimage.debian.org/cdimage/squeeze_di_beta1/amd64/iso-cd/debian-squeeze-di-beta1-amd64-netinst.iso">Beta1 release of
 Squeeze</a>.</p>
-
 <p>Boot off the USB stick by pressing F12 to start the installation.</p>
-
 <h2 id="installation-customization-options">Installation Customization Options</h2>
-
 <p>Debian installation has gotten easy enough that I don’t feel the need
 for this any more, but just for completeness. Obviously you should
 customize to your liking. I use a graphical installer here.</p>
-
 <ul>
 <li>Language: English</li>
 <li>Country, territory or area: (your choice)</li>
@@ -314,18 +292,17 @@ installation is often easier)</li>
 <li>Select your time zone: (your choice)</li>
 <li>Partitioning method: Manual</li>
 </ul>
-
 <p>I’m not doing dual boot, so my partition scheme is very simple:</p>
-<div class="highlight"><pre class="chroma">Filesystem            Size  Used Avail Use% Mounted on
-/dev/sda5             323M  149M  157M  49% /
-/dev/sda6              46M   27M   17M  62% /boot
-/dev/sda7             4.6G  138M  4.3G   4% /tmp
-/dev/sda8             2.8G  1.8G  841M  69% /var
-/dev/sda9             5.5G  4.4G  914M  83% /usr
-/dev/sda10            6.9G  4.4G  2.2G  67% /usr/local
-/dev/sda11              8G                  Linux Swap
-/dev/sda12             46G   19G   26G  43% /home</pre></div>
-<ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">Filesystem</span>            <span class="n">Size</span>  <span class="n">Used</span> <span class="n">Avail</span> <span class="n">Use</span><span class="o">%</span> <span class="n">Mounted</span> <span class="n">on</span>
+</span></span><span class="line"><span class="cl"><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sda5</span>             <span class="mi">323</span><span class="n">M</span>  <span class="mi">149</span><span class="n">M</span>  <span class="mi">157</span><span class="n">M</span>  <span class="mi">49</span><span class="o">%</span> <span class="o">/</span>
+</span></span><span class="line"><span class="cl"><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sda6</span>              <span class="mi">46</span><span class="n">M</span>   <span class="mi">27</span><span class="n">M</span>   <span class="mi">17</span><span class="n">M</span>  <span class="mi">62</span><span class="o">%</span> <span class="o">/</span><span class="n">boot</span>
+</span></span><span class="line"><span class="cl"><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sda7</span>             <span class="mf">4.6</span><span class="n">G</span>  <span class="mi">138</span><span class="n">M</span>  <span class="mf">4.3</span><span class="n">G</span>   <span class="mi">4</span><span class="o">%</span> <span class="o">/</span><span class="n">tmp</span>
+</span></span><span class="line"><span class="cl"><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sda8</span>             <span class="mf">2.8</span><span class="n">G</span>  <span class="mf">1.8</span><span class="n">G</span>  <span class="mi">841</span><span class="n">M</span>  <span class="mi">69</span><span class="o">%</span> <span class="o">/</span><span class="k">var</span>
+</span></span><span class="line"><span class="cl"><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sda9</span>             <span class="mf">5.5</span><span class="n">G</span>  <span class="mf">4.4</span><span class="n">G</span>  <span class="mi">914</span><span class="n">M</span>  <span class="mi">83</span><span class="o">%</span> <span class="o">/</span><span class="n">usr</span>
+</span></span><span class="line"><span class="cl"><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sda10</span>            <span class="mf">6.9</span><span class="n">G</span>  <span class="mf">4.4</span><span class="n">G</span>  <span class="mf">2.2</span><span class="n">G</span>  <span class="mi">67</span><span class="o">%</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span>
+</span></span><span class="line"><span class="cl"><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sda11</span>              <span class="mi">8</span><span class="n">G</span>                  <span class="n">Linux</span> <span class="n">Swap</span>
+</span></span><span class="line"><span class="cl"><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sda12</span>             <span class="mi">46</span><span class="n">G</span>   <span class="mi">19</span><span class="n">G</span>   <span class="mi">26</span><span class="n">G</span>  <span class="mi">43</span><span class="o">%</span> <span class="o">/</span><span class="n">home</span>
+</span></span></code></pre></div><ul>
 <li>Policy for handling keymaps: Select keymap from arch list -&gt; qwerty
 -&gt; US american -&gt; Standard -&gt; Standard</li>
 <li>Debian archive mirror country: (your choice)</li>
@@ -334,138 +311,113 @@ installation is often easier)</li>
 only check Laptop.)</li>
 <li>Install the GRUB boot loader to the master boot record: yes</li>
 </ul>
-
 <p>Reboot and a very simple Debian box is ready!</p>
-
 <h2 id="post-install-admin-tweaks">Post-Install Admin Tweaks</h2>
-
 <p>Login as root. First I install a few essential packages for system
 administration, etc.:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># aptitude install sudo ssh rsync wget wireless-tools</span></code></pre></div>
-<p>If I need to run 32-bit applications, it is also a good idea to do:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># aptitude install ia32-libs</span></code></pre></div>
-<h3 id="setting-up-sudo">Setting up <code>sudo</code></h3>
-
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># aptitude install sudo ssh rsync wget wireless-tools</span>
+</span></span></code></pre></div><p>If I need to run 32-bit applications, it is also a good idea to do:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># aptitude install ia32-libs</span>
+</span></span></code></pre></div><h3 id="setting-up-sudo">Setting up <code>sudo</code></h3>
 <p>At this point I add myself as an sudoer by adding my regular username
 to <em>/etc/sudoers</em>, just under the entry for root, giving full admin
 privileges (i.e., just copy the line for root).</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># chmod 640 /etc/sudoers</span>
-<span class="c1"># emacs -nw /etc/sudoers</span>
-... add a regular user to the list ...
-<span class="c1"># chmod 440 /etc/sudoers</span></code></pre></div>
-<p>I believe in using <code>sudo</code> rather than becoming root to do admin
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># chmod 640 /etc/sudoers</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># emacs -nw /etc/sudoers</span>
+</span></span><span class="line"><span class="cl">... add a regular user to the list ...
+</span></span><span class="line"><span class="cl"><span class="c1"># chmod 440 /etc/sudoers</span>
+</span></span></code></pre></div><p>I believe in using <code>sudo</code> rather than becoming root to do admin
 tasks.</p>
-
 <h3 id="setting-up-apt-sources">Setting up APT Sources</h3>
-
 <p>It is also a good idea to modify <em>/etc/apt/sources.list</em> now.  Mine
 looks like this:</p>
-<div class="highlight"><pre class="chroma">deb http://ftp.us.debian.org/debian/ squeeze main contrib non-free
-deb-src http://ftp.us.debian.org/debian/ squeeze main contrib non-free
-
-deb http://security.debian.org/ squeeze/updates main contrib non-free
-deb-src http://security.debian.org/ squeeze/updates main contrib non-free
-
-deb http://www.debian-multimedia.org squeeze main non-free</pre></div>
-<p>As I see, the <code>debian-multimedia.org</code> repository is added. Though
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">deb http://ftp.us.debian.org/debian/ squeeze main contrib non-free
+</span></span><span class="line"><span class="cl">deb-src http://ftp.us.debian.org/debian/ squeeze main contrib non-free
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">deb http://security.debian.org/ squeeze/updates main contrib non-free
+</span></span><span class="line"><span class="cl">deb-src http://security.debian.org/ squeeze/updates main contrib non-free
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">deb http://www.debian-multimedia.org squeeze main non-free
+</span></span></code></pre></div><p>As I see, the <code>debian-multimedia.org</code> repository is added. Though
 this isn’t absolutely essential, I may wish to do</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># wget http://www.debian-multimedia.org/pool/main/d/debian-multimedia-keyring/debian-multimedia-keyring_2008.10.16_all.deb</span>
-<span class="c1"># dpkg -i debian-multimedia-keyring_2008.10.16_all.deb</span>
-<span class="c1"># aptitude update</span></code></pre></div>
-<p>in order to avoid GPG error accessing this repository in future.</p>
-
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># wget http://www.debian-multimedia.org/pool/main/d/debian-multimedia-keyring/debian-multimedia-keyring_2008.10.16_all.deb</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># dpkg -i debian-multimedia-keyring_2008.10.16_all.deb</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># aptitude update</span>
+</span></span></code></pre></div><p>in order to avoid GPG error accessing this repository in future.</p>
 <h3 id="setting-up-dhcp-hostname">Setting up DHCP Hostname</h3>
-
 <p>Modify <em>/etc/dhcp/dhclient.conf</em> to have the line:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">send host-name <span class="s2">&#34;yourcomputershostname&#34;</span><span class="p">;</span></code></pre></div>
-<p>This way, identify this computer on a router, for example, will be
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">send host-name <span class="s2">&#34;yourcomputershostname&#34;</span><span class="p">;</span>
+</span></span></code></pre></div><p>This way, identify this computer on a router, for example, will be
 easier.</p>
-
 <h3 id="intel-centrino-ultimate-n-6300">Intel Centrino Ultimate-N 6300</h3>
-
 <p>The built-in kernel for Squeeze (2.6.32) appears to have the driver
 for this WiFi card, but firmware need to be loaded:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo aptitude install firmware-iwlwifi</code></pre></div>
-<p>Or alternatively I can <a href="http://intellinuxwireless.org/?n=Downloads">download
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo aptitude install firmware-iwlwifi
+</span></span></code></pre></div><p>Or alternatively I can <a href="http://intellinuxwireless.org/?n=Downloads">download
 firmware</a>, and manually
 copy the file <em>iwlwifi-6000-4.ucode</em> to <em>/lib/firmware</em>. For example:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ wget http://intellinuxwireless.org/iwlwifi/downloads/iwlwifi-6000-ucode-9.221.4.1.tgz
-$ tar -xvzf iwlwifi*.tgz
-$ sudo cp iwlwifi-6000-ucode-9.221.4.1/iwlwifi-6000-4.ucode /lib/firmware</code></pre></div>
-<p>Either way, WiFi should be working after reboot.</p>
-
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ wget http://intellinuxwireless.org/iwlwifi/downloads/iwlwifi-6000-ucode-9.221.4.1.tgz
+</span></span><span class="line"><span class="cl">$ tar -xvzf iwlwifi*.tgz
+</span></span><span class="line"><span class="cl">$ sudo cp iwlwifi-6000-ucode-9.221.4.1/iwlwifi-6000-4.ucode /lib/firmware
+</span></span></code></pre></div><p>Either way, WiFi should be working after reboot.</p>
 <h3 id="integrated-webcam">Integrated Webcam</h3>
-
 <p>To check if the webcam works, the easiest is to use Kopete on KDE
 (Menu -&gt; Applications -&gt; Internet -&gt; Kopete). Go to Settings -&gt;
 Configure -&gt; Video, and see if the preview works.</p>
-
 <h3 id="kde">KDE</h3>
-
 <p>To install KDE,</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># aptitude update</span>
-<span class="c1"># aptitude install kdebase kdenetwork kmix</span>
-<span class="c1"># reboot</span></code></pre></div>
-<p>Upon reboot, the KDM login screen appears.</p>
-
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># aptitude update</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># aptitude install kdebase kdenetwork kmix</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># reboot</span>
+</span></span></code></pre></div><p>Upon reboot, the KDM login screen appears.</p>
 <h3 id="kde-network-manager">KDE Network Manager</h3>
-
 <p>If I don’t see any network manager on the system tray of the bottom
 bar, click on the system tray (this one is located to the left of the
 clock by default). Right click -&gt; System Tray Settings -&gt; Plasma
 Widgets and check Network Management. Try to add a wireless access
 point.</p>
-
 <h3 id="suspend-and-resume">Suspend and Resume</h3>
-
 <p>I have always been a type who turns off computer when not used, but I
 am now using suspend/resume frequently. Fortunately I have few
 problems using suspend to RAM/disk on T410s so far.</p>
-
 <h3 id="trackpoint-scrolling">TrackPoint Scrolling</h3>
-
 <p>I can use the red TrackPoint for scrolling as well! There are several
 ways to do this, but I’m going to use <code>xinput</code>. If it is not
 installed, do</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo aptitude install xinput</code></pre></div>
-<p>See what ID is associated with TrackPoint:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ xinput list
-⎡ Virtual core pointer                          <span class="nv">id</span><span class="o">=</span><span class="m">2</span>    <span class="o">[</span>master pointer  <span class="o">(</span><span class="m">3</span><span class="o">)]</span>
-⎜   ↳ Virtual core XTEST pointer                <span class="nv">id</span><span class="o">=</span><span class="m">4</span>    <span class="o">[</span>slave  pointer  <span class="o">(</span><span class="m">2</span><span class="o">)]</span>
-⎜   ↳ SynPS/2 Synaptics TouchPad                <span class="nv">id</span><span class="o">=</span><span class="m">11</span>   <span class="o">[</span>slave  pointer  <span class="o">(</span><span class="m">2</span><span class="o">)]</span>
-⎜   ↳ TPPS/2 IBM TrackPoint                     <span class="nv">id</span><span class="o">=</span><span class="m">13</span>   <span class="o">[</span>slave  pointer  <span class="o">(</span><span class="m">2</span><span class="o">)]</span>
-⎣ Virtual core keyboard                         <span class="nv">id</span><span class="o">=</span><span class="m">3</span>    <span class="o">[</span>master keyboard <span class="o">(</span><span class="m">2</span><span class="o">)]</span>
-    ↳ Virtual core XTEST keyboard               <span class="nv">id</span><span class="o">=</span><span class="m">5</span>    <span class="o">[</span>slave  keyboard <span class="o">(</span><span class="m">3</span><span class="o">)]</span>
-    ↳ Power Button                              <span class="nv">id</span><span class="o">=</span><span class="m">6</span>    <span class="o">[</span>slave  keyboard <span class="o">(</span><span class="m">3</span><span class="o">)]</span>
-    ↳ Video Bus                                 <span class="nv">id</span><span class="o">=</span><span class="m">7</span>    <span class="o">[</span>slave  keyboard <span class="o">(</span><span class="m">3</span><span class="o">)]</span>
-    ↳ Sleep Button                              <span class="nv">id</span><span class="o">=</span><span class="m">8</span>    <span class="o">[</span>slave  keyboard <span class="o">(</span><span class="m">3</span><span class="o">)]</span>
-    ↳ Integrated Camera                         <span class="nv">id</span><span class="o">=</span><span class="m">9</span>    <span class="o">[</span>slave  keyboard <span class="o">(</span><span class="m">3</span><span class="o">)]</span>
-    ↳ AT Translated Set <span class="m">2</span> keyboard              <span class="nv">id</span><span class="o">=</span><span class="m">10</span>   <span class="o">[</span>slave  keyboard <span class="o">(</span><span class="m">3</span><span class="o">)]</span>
-    ↳ ThinkPad Extra Buttons                    <span class="nv">id</span><span class="o">=</span><span class="m">12</span>   <span class="o">[</span>slave  keyboard <span class="o">(</span><span class="m">3</span><span class="o">)]</span>
-    ↳ ACPI Virtual Keyboard Device              <span class="nv">id</span><span class="o">=</span><span class="m">14</span>   <span class="o">[</span>slave  keyboard <span class="o">(</span><span class="m">3</span><span class="o">)]</span></code></pre></div>
-<p>The TrackPoint’s ID is 13 in my current configuration. Then add the
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo aptitude install xinput
+</span></span></code></pre></div><p>See what ID is associated with TrackPoint:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ xinput list
+</span></span><span class="line"><span class="cl">⎡ Virtual core pointer                          <span class="nv">id</span><span class="o">=</span>2    <span class="o">[</span>master pointer  <span class="o">(</span>3<span class="o">)]</span>
+</span></span><span class="line"><span class="cl">⎜   ↳ Virtual core XTEST pointer                <span class="nv">id</span><span class="o">=</span>4    <span class="o">[</span>slave  pointer  <span class="o">(</span>2<span class="o">)]</span>
+</span></span><span class="line"><span class="cl">⎜   ↳ SynPS/2 Synaptics TouchPad                <span class="nv">id</span><span class="o">=</span>11   <span class="o">[</span>slave  pointer  <span class="o">(</span>2<span class="o">)]</span>
+</span></span><span class="line"><span class="cl">⎜   ↳ TPPS/2 IBM TrackPoint                     <span class="nv">id</span><span class="o">=</span>13   <span class="o">[</span>slave  pointer  <span class="o">(</span>2<span class="o">)]</span>
+</span></span><span class="line"><span class="cl">⎣ Virtual core keyboard                         <span class="nv">id</span><span class="o">=</span>3    <span class="o">[</span>master keyboard <span class="o">(</span>2<span class="o">)]</span>
+</span></span><span class="line"><span class="cl">    ↳ Virtual core XTEST keyboard               <span class="nv">id</span><span class="o">=</span>5    <span class="o">[</span>slave  keyboard <span class="o">(</span>3<span class="o">)]</span>
+</span></span><span class="line"><span class="cl">    ↳ Power Button                              <span class="nv">id</span><span class="o">=</span>6    <span class="o">[</span>slave  keyboard <span class="o">(</span>3<span class="o">)]</span>
+</span></span><span class="line"><span class="cl">    ↳ Video Bus                                 <span class="nv">id</span><span class="o">=</span>7    <span class="o">[</span>slave  keyboard <span class="o">(</span>3<span class="o">)]</span>
+</span></span><span class="line"><span class="cl">    ↳ Sleep Button                              <span class="nv">id</span><span class="o">=</span>8    <span class="o">[</span>slave  keyboard <span class="o">(</span>3<span class="o">)]</span>
+</span></span><span class="line"><span class="cl">    ↳ Integrated Camera                         <span class="nv">id</span><span class="o">=</span>9    <span class="o">[</span>slave  keyboard <span class="o">(</span>3<span class="o">)]</span>
+</span></span><span class="line"><span class="cl">    ↳ AT Translated Set <span class="m">2</span> keyboard              <span class="nv">id</span><span class="o">=</span>10   <span class="o">[</span>slave  keyboard <span class="o">(</span>3<span class="o">)]</span>
+</span></span><span class="line"><span class="cl">    ↳ ThinkPad Extra Buttons                    <span class="nv">id</span><span class="o">=</span>12   <span class="o">[</span>slave  keyboard <span class="o">(</span>3<span class="o">)]</span>
+</span></span><span class="line"><span class="cl">    ↳ ACPI Virtual Keyboard Device              <span class="nv">id</span><span class="o">=</span>14   <span class="o">[</span>slave  keyboard <span class="o">(</span>3<span class="o">)]</span>
+</span></span></code></pre></div><p>The TrackPoint’s ID is 13 in my current configuration. Then add the
 following lines in <em>~/.xsessionrc</em>:</p>
-<div class="highlight"><pre class="chroma">xinput set-int-prop 13 &#34;Evdev Wheel Emulation&#34; 8 1
-xinput set-int-prop 13 &#34;Evdev Wheel Emulation Button&#34; 8 2
-xinput set-int-prop 13 &#34;Evdev Wheel Emulation Axes&#34; 8 6 7 4 5</pre></div>
-<p>After restarting X, moving TrackPoint while pressing the blue middle
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">xinput set-int-prop 13 &#34;Evdev Wheel Emulation&#34; 8 1
+</span></span><span class="line"><span class="cl">xinput set-int-prop 13 &#34;Evdev Wheel Emulation Button&#34; 8 2
+</span></span><span class="line"><span class="cl">xinput set-int-prop 13 &#34;Evdev Wheel Emulation Axes&#34; 8 6 7 4 5
+</span></span></code></pre></div><p>After restarting X, moving TrackPoint while pressing the blue middle
 button acts as scroll, either vertically or horizontally.</p>
-
 <p>Now that TrackPoint can be used for scrolling, I see little reason to
 enable TrackPad, as I never use it. It may be a good idea to disable
 TrackPad in BIOS to save power consumption as well as to prevent
 accidentally touching it with my hands while typing. Note that after
 disabling TrackPad, ID (see above) may change, so <em>~/.xsessionrc</em> may
 need to be rewritten.</p>
-
 <h3 id="power-consumption-tips">Power Consumption Tips</h3>
-
 <p>I now have a separate article, <a href="2010/12/19/power-management-on-lenovo-t410s"><em>Power Management on
 Lenovo T410s</em></a>, for this
 topic.</p>
-
-<h3 id="snd-pcsp-interrupts"><code>snd_pcsp</code> Interrupts</h3>
-
+<h3 id="snd_pcsp-interrupts"><code>snd_pcsp</code> Interrupts</h3>
 <p>Under certain conditions (which I cannot always reproduce), the system
 becomes sluggish after playing sounds off Flash on Firefox, for
 example, and until KDE restarts, sounds are not working. Looking at
@@ -474,34 +426,26 @@ tends to make frequent interrupts. A solution to this problem is to
 ensure that the <code>snd_pcsp</code> kernel module gets loaded after
 <code>snd_hda_intel</code> gets loaded by feeding <code>index=2</code> option. Make sure
 that the file <em>/etc/modprobe.d/snd-pcsp</em> has a line like this:</p>
-<div class="highlight"><pre class="chroma">options snd-pcsp index=2</pre></div>
-<h2 id="installing-applications">Installing Applications</h2>
-
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">options snd-pcsp index=2
+</span></span></code></pre></div><h2 id="installing-applications">Installing Applications</h2>
 <p>Just a list of applications to install on my machine:</p>
-
 <ul>
 <li><a href="2010/11/22/installing-firefox-4-beta-on-debian-squeeze/">Firefox 4 (beta)</a></li>
 <li><a href="2010/10/31/installing-dropbox-without-gnome-on-debian-squeeze-amd64/">Dropbox</a></li>
 <li><a href="2010/10/22/installing-mendeley-on-debian-squeeze-amd64/">Mendeley</a></li>
 <li><a href="2010/11/20/installing-f-lux-on-debian-squeeze/">F.lux</a></li>
 <li><a href="2010/06/13/installing-keepass-on-debian-squeeze/">KeePass</a></li>
-<li>More to come&#8230;</li>
+<li>More to come…</li>
 </ul>
-
 <h2 id="document-update-history">Document Update History</h2>
-
-<p>June 1, 2010 &#8211; First version.</p>
-
-<p>June 6, 2010 &#8211; Added a note on suspend and resume.</p>
-
-<p>June 9, 2010 &#8211; Added ThinkWiki reference. Added a section on
+<p>June 1, 2010 – First version.</p>
+<p>June 6, 2010 – Added a note on suspend and resume.</p>
+<p>June 9, 2010 – Added ThinkWiki reference. Added a section on
 TrackPoint scrolling. Created Power Consumption Tips. Added the
 preload daemon section.</p>
-
-<p>November 27, 2010 &#8211; Major update after a warranty repair of the
+<p>November 27, 2010 – Major update after a warranty repair of the
 vertical band issue with LCD.</p>
-
-<p>December 19, 2010 &#8211; Moved power consumption tips to another
+<p>December 19, 2010 – Moved power consumption tips to another
 article.</p>
 
 			</div>
@@ -509,8 +453,8 @@ article.</p>
 			
 			<div class="comments">
 				<div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
+<script>
+    window.disqus_config = function () {
     
     
     
@@ -541,6 +485,8 @@ article.</p>
 		<div>
 			<ul>
 				
+				<li><a href="/biboroku/2024/02/snipping-transcripts-with-snipd/">Snipping Transcripts with Snipd</a></li>
+				
 				<li><a href="/biboroku/2020/05/attribute-access-with-dict/">Attribute Access with Dict</a></li>
 				
 				<li><a href="/biboroku/2020/04/on-lazy-logging-evaluation/">On Lazy Logging Evaluation</a></li>
@@ -548,8 +494,6 @@ article.</p>
 				<li><a href="/biboroku/2016/04/installing-debianjessie-on-thinkpad-t460s/">Installing Debian/Jessie on ThinkPad T460s</a></li>
 				
 				<li><a href="/biboroku/2015/03/creating-a-debian-netinst-bootable-usb-stick-with-non-free-firmware/">Creating a Debian Bootable USB Stick with Non-Free Firmware</a></li>
-				
-				<li><a href="/biboroku/2014/11/install-google-chrome-on-debian-jessie/">Install Google Chrome on Debian Jessie</a></li>
 				
 			</ul>
 		</div>
@@ -559,8 +503,8 @@ article.</p>
 
   <footer class="centered">
   <span class="font-uni larger-text">
-	  Copyright &copy; 2007 - 2020
-    <a href="https://okomestudio.net/biboroku">Biboroku</a>
+	  Copyright &copy; 2007 - 2024
+    <a href="https://okomestudio.net/biboroku/">Biboroku</a>
     by <a href="https://okomestudio.net">Okome Studio</a> / Taro Sato.
     All Rights Reserved.
   </span>

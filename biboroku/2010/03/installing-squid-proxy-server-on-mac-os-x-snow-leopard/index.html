@@ -28,6 +28,13 @@
   <meta name="description" content="Biboroku is a blog by Okome Studio">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
   <link rel="icon" href="https://okomestudio.net/favicon.ico">
   <link rel="stylesheet" href="/biboroku/css/normalize.css">
   <link rel="stylesheet" href="/biboroku/css/base.css">
@@ -83,11 +90,11 @@
 
   <div class="container">
   <header>
-  <h1 class="font-uni"><a href="https://okomestudio.net/biboroku">Biboroku</a></h1>
+  <h1 class="font-uni"><a href="https://okomestudio.net/biboroku/">Biboroku</a></h1>
   <nav>
     <ul class="nav navbar-nav font-uni">
       <li><a href="https://okomestudio.net">OkomeStudio.net</a></li>
-      <li><a href="https://okomestudio.net/biboroku/about">About</a></li>
+      <li><a href="https://okomestudio.net/biboroku//about">About</a></li>
     </ul>
   </nav>
 </header>
@@ -95,9 +102,15 @@
   
 	<main>
 		<article class="blog-post">
-			<h1>Installing Squid Proxy Server on Mac OS X Snow Leopard</h1>
+      <h1>Installing Squid Proxy Server on Mac OS X Snow Leopard</h1>
+      
+
       <p class="meta">
-        Written by Taro Sato
+        Written by
+        
+          Taro Sato
+        
+
         on <time>March 22, 2010</time>.
 	      Tagged:
         
@@ -107,89 +120,80 @@
 	      
       </p>
 			<div>
-				
-
-<p>My goal is to set up a very basic proxy server on my Mac box on
+				<p>My goal is to set up a very basic proxy server on my Mac box on
 campus, so that I can have full access to subscription-based academic
 journals via the proxy on my laptop even when I am off campus.  Some
 schools provide such (library) proxies but my school unfortunately
 does not.  I want to set it up such that the proxy requires a password
 authentication in order not to make it wide open to the public.</p>
-
 <h2 id="getting-and-installing-squid">Getting and Installing Squid</h2>
-
 <p><a href="http://www.squid-cache.org/Versions/v2/2.7/">Download a tarball</a> for
 a stable version from the repository. The version that I use here is
 2.7. I assume the file is downloaded to <em>/usr/local/src/squid</em>.</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">cd</span> /usr/local/src/squid
-$ gunzip -c squid-2.7.STABLE9.tar.gz <span class="p">|</span> tar xvf -
-$ <span class="nb">cd</span> squid-2.7.STABLE9
-$ ./configure
-$ make
-$ sudo make install
-$ <span class="nb">cd</span> helpers/basic_auth/NCSA
-$ make
-$ sudo make install
-$ sudo chown -R nobody /usr/local/squid/var
-$ sudo /usr/local/squid/sbin/squid -z</code></pre></div>
-<p>Squid will be installed at <em>/usr/local/squid</em>.  (The last command is
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ <span class="nb">cd</span> /usr/local/src/squid
+</span></span><span class="line"><span class="cl">$ gunzip -c squid-2.7.STABLE9.tar.gz <span class="p">|</span> tar xvf -
+</span></span><span class="line"><span class="cl">$ <span class="nb">cd</span> squid-2.7.STABLE9
+</span></span><span class="line"><span class="cl">$ ./configure
+</span></span><span class="line"><span class="cl">$ make
+</span></span><span class="line"><span class="cl">$ sudo make install
+</span></span><span class="line"><span class="cl">$ <span class="nb">cd</span> helpers/basic_auth/NCSA
+</span></span><span class="line"><span class="cl">$ make
+</span></span><span class="line"><span class="cl">$ sudo make install
+</span></span><span class="line"><span class="cl">$ sudo chown -R nobody /usr/local/squid/var
+</span></span><span class="line"><span class="cl">$ sudo /usr/local/squid/sbin/squid -z
+</span></span></code></pre></div><p>Squid will be installed at <em>/usr/local/squid</em>.  (The last command is
 necessary to run a daemon as user nobody.)</p>
-
 <h2 id="configure-squid">Configure Squid</h2>
-
 <p>First, prepare a NCSA-compliant encrypted password file for a user
 (here with username <em>johndoe</em>):</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">cd</span> /usr/local/squid/etc
-$ sudo touch squid_passwd
-$ sudo chmod o+r squid_passwd
-$ sudo htpasswd squid_passwd johndoe
-New password:
-Re-type new passwod:
-Adding passwod <span class="k">for</span> user johndoe</code></pre></div>
-<p>Now, edit <em>/usr/local/squid/etc/squid.conf</em>. The following lines need
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ <span class="nb">cd</span> /usr/local/squid/etc
+</span></span><span class="line"><span class="cl">$ sudo touch squid_passwd
+</span></span><span class="line"><span class="cl">$ sudo chmod o+r squid_passwd
+</span></span><span class="line"><span class="cl">$ sudo htpasswd squid_passwd johndoe
+</span></span><span class="line"><span class="cl">New password:
+</span></span><span class="line"><span class="cl">Re-type new passwod:
+</span></span><span class="line"><span class="cl">Adding passwod <span class="k">for</span> user johndoe
+</span></span></code></pre></div><p>Now, edit <em>/usr/local/squid/etc/squid.conf</em>. The following lines need
 to be added:</p>
-<div class="highlight"><pre class="chroma"><code class="language-squid.conf" data-lang="squid.conf"><span class="c"># Add this to the auth_param section</span><span class="w">
-</span><span class="w"></span>auth_param<span class="w"> </span>basic<span class="w"> </span>program<span class="w"> </span>/usr/local/squid/libexec/ncsa_auth<span class="w"> </span>/usr/local/squid/etc/squid_passwd<span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="c"># Add this to the bottom of the ACL section</span><span class="w">
-</span><span class="w"></span><span class="k">acl</span><span class="w"> </span>ncsa_users<span class="w"> </span><span class="k">proxy_auth</span><span class="w"> </span>REQUIRED<span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="c"># Add this at the top of the http_access section</span><span class="w">
-</span><span class="w"></span><span class="k">http_access</span><span class="w"> </span><span class="no">allow</span><span class="w"> </span>ncsa_users</code></pre></div>
-<p>Finally, run the server:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo /usr/local/squid/sbin/squid -N -d <span class="m">1</span> -D</code></pre></div>
-<p>Firewall will prompt me to see if I allow incoming connections to
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-squid.conf" data-lang="squid.conf"><span class="line"><span class="cl"><span class="c"># Add this to the auth_param section</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>auth_param<span class="w"> </span>basic<span class="w"> </span>program<span class="w"> </span>/usr/local/squid/libexec/ncsa_auth<span class="w"> </span>/usr/local/squid/etc/squid_passwd<span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># Add this to the bottom of the ACL section</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">acl</span><span class="w"> </span>ncsa_users<span class="w"> </span><span class="k">proxy_auth</span><span class="w"> </span>REQUIRED<span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># Add this at the top of the http_access section</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">http_access</span><span class="w"> </span><span class="no">allow</span><span class="w"> </span>ncsa_users<span class="w">
+</span></span></span></code></pre></div><p>Finally, run the server:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo /usr/local/squid/sbin/squid -N -d <span class="m">1</span> -D
+</span></span></code></pre></div><p>Firewall will prompt me to see if I allow incoming connections to
 squid.  Say “allow.”</p>
-
 <p>The IP address or hostname of your Mac box at the port 3128 will be
 available as a proxy server now.</p>
-
 <h2 id="launch-squid-on-startup-with-launchd">Launch Squid on Startup with launchd</h2>
-
 <p>Under the directory <em>/Library/LaunchDaemons</em>, create a file named
 <em>squid.plist</em> with the following content:</p>
-<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
-<span class="cp">&lt;!DOCTYPE plist PUBLIC &#34;-//Apple//DTD PLIST 1.0//EN&#34; &#34;http://www.apple.com/DTDs/PropertyList-1.0.dtd&#34;&gt;</span>
-<span class="nt">&lt;plist</span> <span class="na">version=</span><span class="s">&#34;1.0&#34;</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;dict&gt;</span>
-    <span class="nt">&lt;key&gt;</span>Label<span class="nt">&lt;/key&gt;</span>
-    <span class="nt">&lt;string&gt;</span>squid<span class="nt">&lt;/string&gt;</span>
-    <span class="nt">&lt;key&gt;</span>OnDemand<span class="nt">&lt;/key&gt;</span>
-    <span class="nt">&lt;false/&gt;</span>
-    <span class="nt">&lt;key&gt;</span>ProgramArguments<span class="nt">&lt;/key&gt;</span>
-    <span class="nt">&lt;array&gt;</span>
-      <span class="nt">&lt;string&gt;</span>/usr/local/squid/sbin/squid<span class="nt">&lt;/string&gt;</span>
-      <span class="nt">&lt;string&gt;</span>-N<span class="nt">&lt;/string&gt;</span>
-      <span class="nt">&lt;string&gt;</span>-d 1<span class="nt">&lt;/string&gt;</span>
-      <span class="nt">&lt;string&gt;</span>-D<span class="nt">&lt;/string&gt;</span>
-    <span class="nt">&lt;/array&gt;</span>
-    <span class="nt">&lt;key&gt;</span>ServiceIPC<span class="nt">&lt;/key&gt;</span>
-    <span class="nt">&lt;false/&gt;</span>
-  <span class="nt">&lt;/dict&gt;</span>
-<span class="nt">&lt;/plist&gt;</span></code></pre></div>
-<p>Then issuing</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo launchctl load -w /Library/LaunchDaemons/squid.plist</code></pre></div>
-<p>will launch squid.  On reboot, the proxy should also be working
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="cp">&lt;!DOCTYPE plist PUBLIC &#34;-//Apple//DTD PLIST 1.0//EN&#34; &#34;http://www.apple.com/DTDs/PropertyList-1.0.dtd&#34;&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;plist</span> <span class="na">version=</span><span class="s">&#34;1.0&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;dict&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;key&gt;</span>Label<span class="nt">&lt;/key&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;string&gt;</span>squid<span class="nt">&lt;/string&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;key&gt;</span>OnDemand<span class="nt">&lt;/key&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;false/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;key&gt;</span>ProgramArguments<span class="nt">&lt;/key&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;array&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;string&gt;</span>/usr/local/squid/sbin/squid<span class="nt">&lt;/string&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;string&gt;</span>-N<span class="nt">&lt;/string&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;string&gt;</span>-d 1<span class="nt">&lt;/string&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;string&gt;</span>-D<span class="nt">&lt;/string&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/array&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;key&gt;</span>ServiceIPC<span class="nt">&lt;/key&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;false/&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;/dict&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/plist&gt;</span>
+</span></span></code></pre></div><p>Then issuing</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo launchctl load -w /Library/LaunchDaemons/squid.plist
+</span></span></code></pre></div><p>will launch squid.  On reboot, the proxy should also be working
 automatically.</p>
 
 			</div>
@@ -197,8 +201,8 @@ automatically.</p>
 			
 			<div class="comments">
 				<div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
+<script>
+    window.disqus_config = function () {
     
     
     
@@ -229,6 +233,8 @@ automatically.</p>
 		<div>
 			<ul>
 				
+				<li><a href="/biboroku/2024/02/snipping-transcripts-with-snipd/">Snipping Transcripts with Snipd</a></li>
+				
 				<li><a href="/biboroku/2020/05/attribute-access-with-dict/">Attribute Access with Dict</a></li>
 				
 				<li><a href="/biboroku/2020/04/on-lazy-logging-evaluation/">On Lazy Logging Evaluation</a></li>
@@ -236,8 +242,6 @@ automatically.</p>
 				<li><a href="/biboroku/2016/04/installing-debianjessie-on-thinkpad-t460s/">Installing Debian/Jessie on ThinkPad T460s</a></li>
 				
 				<li><a href="/biboroku/2015/03/creating-a-debian-netinst-bootable-usb-stick-with-non-free-firmware/">Creating a Debian Bootable USB Stick with Non-Free Firmware</a></li>
-				
-				<li><a href="/biboroku/2014/11/install-google-chrome-on-debian-jessie/">Install Google Chrome on Debian Jessie</a></li>
 				
 			</ul>
 		</div>
@@ -247,8 +251,8 @@ automatically.</p>
 
   <footer class="centered">
   <span class="font-uni larger-text">
-	  Copyright &copy; 2007 - 2020
-    <a href="https://okomestudio.net/biboroku">Biboroku</a>
+	  Copyright &copy; 2007 - 2024
+    <a href="https://okomestudio.net/biboroku/">Biboroku</a>
     by <a href="https://okomestudio.net">Okome Studio</a> / Taro Sato.
     All Rights Reserved.
   </span>

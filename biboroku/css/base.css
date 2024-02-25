@@ -9,7 +9,7 @@
   box-sizing: border-box;
   font-size: 1rem;  /* the browser's default is 16px = 1rem */
   /* font-size: max(min(2vw, 2em), 1rem); */
-  line-height: 1.65;
+  line-height: 1.4;
 }
 
 *,
@@ -18,16 +18,9 @@
   box-sizing: inherit;
 }
 
-@font-face {
-  font-display: swap;
-  font-family: MyUniverse;
-  src: url('https://okomestudio.net/font/univers-lightultracondensed-webfont.woff') format('woff');
-}
-
 body {
   color: #595959;  /* fallback if the browser does not understand var */
   color: var(--dark-text-color);
-  font-family: 'Open Sans', sans-serif;
   width: calc(100vw);
 }
 
@@ -66,15 +59,15 @@ h3 {
 }
 
 h1 {
-  font-size: 2em;
+  font-size: 1.5em;
 }
 
 h2 {
-  font-size: 1.3em;
+  font-size: 1.2em;
 }
 
 h3 {
-  font-size: 1.1em;
+  font-size: 1.0em;
 }
 
 h1 a,
@@ -132,10 +125,6 @@ sup {
 
 .clearfix::after {
   clear: both;
-}
-
-.font-uni {
-  font-family: MyUniverse;
 }
 
 .larger-text {

@@ -28,6 +28,13 @@
   <meta name="description" content="Biboroku is a blog by Okome Studio">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
   <link rel="icon" href="https://okomestudio.net/favicon.ico">
   <link rel="stylesheet" href="/biboroku/css/normalize.css">
   <link rel="stylesheet" href="/biboroku/css/base.css">
@@ -83,11 +90,11 @@
 
   <div class="container">
   <header>
-  <h1 class="font-uni"><a href="https://okomestudio.net/biboroku">Biboroku</a></h1>
+  <h1 class="font-uni"><a href="https://okomestudio.net/biboroku/">Biboroku</a></h1>
   <nav>
     <ul class="nav navbar-nav font-uni">
       <li><a href="https://okomestudio.net">OkomeStudio.net</a></li>
-      <li><a href="https://okomestudio.net/biboroku/about">About</a></li>
+      <li><a href="https://okomestudio.net/biboroku//about">About</a></li>
     </ul>
   </nav>
 </header>
@@ -95,9 +102,15 @@
   
 	<main>
 		<article class="blog-post">
-			<h1>Installing Kindle for PC on Debian Squeeze</h1>
+      <h1>Installing Kindle for PC on Debian Squeeze</h1>
+      
+
       <p class="meta">
-        Written by Taro Sato
+        Written by
+        
+          Taro Sato
+        
+
         on <time>June 11, 2010</time>.
 	      Tagged:
         
@@ -109,34 +122,27 @@
 	      
       </p>
 			<div>
-				
-
-<p>I sometimes want to run Kindle for PC on Wine. Amazon is so lame that
+				<p>I sometimes want to run Kindle for PC on Wine. Amazon is so lame that
 they don’t even bother making a native Linux version of this software!</p>
-
 <p>Here is the procedure. Move to a temporary directory and do:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo aptitude install wine lib32nss-mdns cabextract bzip2
-$ wget http://www.kegel.com/wine/winetricks
-$ sh winetricks corefonts
-$ wget ./wp-content/uploads/2010/06/KindleForPC-installer.exe.bz2
-$ bunzip2 KindleForPC-installer.exe.bz2
-$ wine KindleForPC-installer.exe</code></pre></div>
-<p>After going through the above procedure, I need to run Wine
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo aptitude install wine lib32nss-mdns cabextract bzip2
+</span></span><span class="line"><span class="cl">$ wget http://www.kegel.com/wine/winetricks
+</span></span><span class="line"><span class="cl">$ sh winetricks corefonts
+</span></span><span class="line"><span class="cl">$ wget ./wp-content/uploads/2010/06/KindleForPC-installer.exe.bz2
+</span></span><span class="line"><span class="cl">$ bunzip2 KindleForPC-installer.exe.bz2
+</span></span><span class="line"><span class="cl">$ wine KindleForPC-installer.exe
+</span></span></code></pre></div><p>After going through the above procedure, I need to run Wine
 Configuration to set Kindle for PC executable to run as a Windows 98
 application. I do this under the Applications tab of the Wine
 configuration. It should be self-explanatory.</p>
-
 <p>The program called <strong><code>winetricks</code></strong> is necessary to install necessary
 MS fonts once Kindle for PC launches.</p>
-
 <p>The old version of Kindle for PC installer, which I just keep for
 myself here, is necessary to properly install it on Wine.
 Unfortunately newer versions won’t work. Hopefully Amazon releases a
 new version which runs at least on Wine.</p>
-
 <h2 id="update-history">Update History</h2>
-
-<p>Jan 26, 2011 &#8211; Fixing typos and added a couple packages based on
+<p>Jan 26, 2011 – Fixing typos and added a couple packages based on
 a user comment.</p>
 
 			</div>
@@ -144,8 +150,8 @@ a user comment.</p>
 			
 			<div class="comments">
 				<div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
+<script>
+    window.disqus_config = function () {
     
     
     
@@ -176,6 +182,8 @@ a user comment.</p>
 		<div>
 			<ul>
 				
+				<li><a href="/biboroku/2024/02/snipping-transcripts-with-snipd/">Snipping Transcripts with Snipd</a></li>
+				
 				<li><a href="/biboroku/2020/05/attribute-access-with-dict/">Attribute Access with Dict</a></li>
 				
 				<li><a href="/biboroku/2020/04/on-lazy-logging-evaluation/">On Lazy Logging Evaluation</a></li>
@@ -183,8 +191,6 @@ a user comment.</p>
 				<li><a href="/biboroku/2016/04/installing-debianjessie-on-thinkpad-t460s/">Installing Debian/Jessie on ThinkPad T460s</a></li>
 				
 				<li><a href="/biboroku/2015/03/creating-a-debian-netinst-bootable-usb-stick-with-non-free-firmware/">Creating a Debian Bootable USB Stick with Non-Free Firmware</a></li>
-				
-				<li><a href="/biboroku/2014/11/install-google-chrome-on-debian-jessie/">Install Google Chrome on Debian Jessie</a></li>
 				
 			</ul>
 		</div>
@@ -194,8 +200,8 @@ a user comment.</p>
 
   <footer class="centered">
   <span class="font-uni larger-text">
-	  Copyright &copy; 2007 - 2020
-    <a href="https://okomestudio.net/biboroku">Biboroku</a>
+	  Copyright &copy; 2007 - 2024
+    <a href="https://okomestudio.net/biboroku/">Biboroku</a>
     by <a href="https://okomestudio.net">Okome Studio</a> / Taro Sato.
     All Rights Reserved.
   </span>

@@ -28,6 +28,13 @@
   <meta name="description" content="Biboroku is a blog by Okome Studio">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
   <link rel="icon" href="https://okomestudio.net/favicon.ico">
   <link rel="stylesheet" href="/biboroku/css/normalize.css">
   <link rel="stylesheet" href="/biboroku/css/base.css">
@@ -83,11 +90,11 @@
 
   <div class="container">
   <header>
-  <h1 class="font-uni"><a href="https://okomestudio.net/biboroku">Biboroku</a></h1>
+  <h1 class="font-uni"><a href="https://okomestudio.net/biboroku/">Biboroku</a></h1>
   <nav>
     <ul class="nav navbar-nav font-uni">
       <li><a href="https://okomestudio.net">OkomeStudio.net</a></li>
-      <li><a href="https://okomestudio.net/biboroku/about">About</a></li>
+      <li><a href="https://okomestudio.net/biboroku//about">About</a></li>
     </ul>
   </nav>
 </header>
@@ -95,9 +102,15 @@
   
 	<main>
 		<article class="blog-post">
-			<h1>Formatting a USB Drive with ext4 for Use with Linux</h1>
+      <h1>Formatting a USB Drive with ext4 for Use with Linux</h1>
+      
+
       <p class="meta">
-        Written by Taro Sato
+        Written by
+        
+          Taro Sato
+        
+
         on <time>March 27, 2009</time>.
 	      Tagged:
         
@@ -107,98 +120,90 @@
 	      
       </p>
 			<div>
-				
-
-<p>I wish to use an external USB drive exclusively on a Linux system (in
+				<p>I wish to use an external USB drive exclusively on a Linux system (in
 my case, Debian). I want to use the ext4 filesystem. Note that this
 method wipes out the filesystem on the drive.</p>
-
 <p>Install hotplug-type package such that upon plugging the USB drive in
 the device is attached to somewhere in the system. I use KDE and it
 automatically prepares such an environment. When a USB drive is
 plugged in, I should see a message like this one in the system log:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo tail /var/log/messages
-Dec <span class="m">16</span> <span class="m">02</span>:07:51 kernel: <span class="o">[</span> <span class="m">3000</span>.544361<span class="o">]</span> scsi11 : usb-storage <span class="m">3</span>-2:1.0
-...
-Dec <span class="m">16</span> <span class="m">02</span>:07:56 mochi kernel: <span class="o">[</span> <span class="m">3005</span>.882879<span class="o">]</span>  sdb: sdb1
-...</code></pre></div>
-<p>or I may see something like this instead (I’m using USB 3.0 adapter
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo tail /var/log/messages
+</span></span><span class="line"><span class="cl">Dec <span class="m">16</span> 02:07:51 kernel: <span class="o">[</span> 3000.544361<span class="o">]</span> scsi11 : usb-storage 3-2:1.0
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">Dec <span class="m">16</span> 02:07:56 mochi kernel: <span class="o">[</span> 3005.882879<span class="o">]</span>  sdb: sdb1
+</span></span><span class="line"><span class="cl">...
+</span></span></code></pre></div><p>or I may see something like this instead (I’m using USB 3.0 adapter
 now):</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo tail -n <span class="m">100</span> /var/log/messages <span class="p">|</span> grep sd
-...
-May  <span class="m">3</span> <span class="m">12</span>:38:33 mochi kernel: <span class="o">[</span>   <span class="m">12</span>.773057<span class="o">]</span> sd <span class="m">6</span>:0:0:0: <span class="o">[</span>sdb<span class="o">]</span> Spinning up disk...
-May  <span class="m">3</span> <span class="m">12</span>:38:39 mochi kernel: <span class="o">[</span>   <span class="m">18</span>.782284<span class="o">]</span> sd <span class="m">6</span>:0:0:0: <span class="o">[</span>sdb<span class="o">]</span> <span class="m">3906963456</span> <span class="m">512</span>-byte logical blocks: <span class="o">(</span><span class="m">2</span>.00 TB/1.81 TiB<span class="o">)</span>
-May  <span class="m">3</span> <span class="m">12</span>:38:39 mochi kernel: <span class="o">[</span>   <span class="m">18</span>.783052<span class="o">]</span> sd <span class="m">6</span>:0:0:0: <span class="o">[</span>sdb<span class="o">]</span> Write Protect is off
-May  <span class="m">3</span> <span class="m">12</span>:38:39 mochi kernel: <span class="o">[</span>   <span class="m">18</span>.794337<span class="o">]</span>  sdb: sdb1
-May  <span class="m">3</span> <span class="m">12</span>:38:39 mochi kernel: <span class="o">[</span>   <span class="m">18</span>.795569<span class="o">]</span> sd <span class="m">6</span>:0:0:0: <span class="o">[</span>sdb<span class="o">]</span> Attached SCSI disk</code></pre></div>
-<p>Here, I find the device is at <em>/dev/sdb</em> and there is only one
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo tail -n <span class="m">100</span> /var/log/messages <span class="p">|</span> grep sd
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">May  <span class="m">3</span> 12:38:33 mochi kernel: <span class="o">[</span>   12.773057<span class="o">]</span> sd 6:0:0:0: <span class="o">[</span>sdb<span class="o">]</span> Spinning up disk...
+</span></span><span class="line"><span class="cl">May  <span class="m">3</span> 12:38:39 mochi kernel: <span class="o">[</span>   18.782284<span class="o">]</span> sd 6:0:0:0: <span class="o">[</span>sdb<span class="o">]</span> <span class="m">3906963456</span> 512-byte logical blocks: <span class="o">(</span>2.00 TB/1.81 TiB<span class="o">)</span>
+</span></span><span class="line"><span class="cl">May  <span class="m">3</span> 12:38:39 mochi kernel: <span class="o">[</span>   18.783052<span class="o">]</span> sd 6:0:0:0: <span class="o">[</span>sdb<span class="o">]</span> Write Protect is off
+</span></span><span class="line"><span class="cl">May  <span class="m">3</span> 12:38:39 mochi kernel: <span class="o">[</span>   18.794337<span class="o">]</span>  sdb: sdb1
+</span></span><span class="line"><span class="cl">May  <span class="m">3</span> 12:38:39 mochi kernel: <span class="o">[</span>   18.795569<span class="o">]</span> sd 6:0:0:0: <span class="o">[</span>sdb<span class="o">]</span> Attached SCSI disk
+</span></span></code></pre></div><p>Here, I find the device is at <em>/dev/sdb</em> and there is only one
 partition, <em>/dev/sdb1</em>, for example. I can also see all the disk
 devices as follows:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo fdisk -l
-
-Disk /dev/sda: <span class="m">80</span>.0 GB, <span class="m">80026361856</span> bytes
-<span class="m">240</span> heads, <span class="m">63</span> sectors/track, <span class="m">10337</span> cylinders
-<span class="nv">Units</span> <span class="o">=</span> cylinders of <span class="m">15120</span> * <span class="nv">512</span> <span class="o">=</span> <span class="m">7741440</span> bytes
-Sector size <span class="o">(</span>logical/physical<span class="o">)</span>: <span class="m">512</span> bytes / <span class="m">512</span> bytes
-I/O size <span class="o">(</span>minimum/optimal<span class="o">)</span>: <span class="m">512</span> bytes / <span class="m">512</span> bytes
-Disk identifier: 0xbd3cc0bb
-
-   Device Boot      Start         End      Blocks   Id  System
-/dev/sda1               <span class="m">1</span>       <span class="m">10338</span>    <span class="m">78149633</span>    <span class="m">5</span>  Extended
-/dev/sda5               <span class="m">1</span>          <span class="m">46</span>      <span class="m">340992</span>   <span class="m">83</span>  Linux
-/dev/sda6              <span class="m">46</span>          <span class="m">52</span>       <span class="m">48128</span>   <span class="m">83</span>  Linux
-/dev/sda7              <span class="m">52</span>         <span class="m">698</span>     <span class="m">4881408</span>   <span class="m">83</span>  Linux
-/dev/sda8             <span class="m">698</span>        <span class="m">1086</span>     <span class="m">2928640</span>   <span class="m">83</span>  Linux
-/dev/sda9            <span class="m">1086</span>        <span class="m">1861</span>     <span class="m">5858304</span>   <span class="m">83</span>  Linux
-/dev/sda10           <span class="m">1861</span>        <span class="m">2830</span>     <span class="m">7323648</span>   <span class="m">83</span>  Linux
-/dev/sda11           <span class="m">9305</span>       <span class="m">10338</span>     <span class="m">7812096</span>   <span class="m">82</span>  Linux swap / Solaris
-/dev/sda12           <span class="m">2830</span>        <span class="m">9304</span>    <span class="m">48949248</span>   <span class="m">83</span>  Linux
-
-Partition table entries are not in disk order
-
-Disk /dev/sdb: <span class="m">2000</span>.4 GB, <span class="m">2000365289472</span> bytes
-<span class="m">255</span> heads, <span class="m">63</span> sectors/track, <span class="m">243197</span> cylinders
-<span class="nv">Units</span> <span class="o">=</span> cylinders of <span class="m">16065</span> * <span class="nv">512</span> <span class="o">=</span> <span class="m">8225280</span> bytes
-Sector size <span class="o">(</span>logical/physical<span class="o">)</span>: <span class="m">512</span> bytes / <span class="m">512</span> bytes
-I/O size <span class="o">(</span>minimum/optimal<span class="o">)</span>: <span class="m">512</span> bytes / <span class="m">512</span> bytes
-Disk identifier: 0x0005f107
-
-   Device Boot      Start         End      Blocks   Id  System
-/dev/sdb1               <span class="m">1</span>      <span class="m">243198</span>  <span class="m">1953480704</span>    <span class="m">7</span>  HPFS/NTFS</code></pre></div>
-<p>When the USB drive is new, the partition is most likely formatted in
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo fdisk -l
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Disk /dev/sda: 80.0 GB, <span class="m">80026361856</span> bytes
+</span></span><span class="line"><span class="cl"><span class="m">240</span> heads, <span class="m">63</span> sectors/track, <span class="m">10337</span> cylinders
+</span></span><span class="line"><span class="cl"><span class="nv">Units</span> <span class="o">=</span> cylinders of <span class="m">15120</span> * <span class="nv">512</span> <span class="o">=</span> <span class="m">7741440</span> bytes
+</span></span><span class="line"><span class="cl">Sector size <span class="o">(</span>logical/physical<span class="o">)</span>: <span class="m">512</span> bytes / <span class="m">512</span> bytes
+</span></span><span class="line"><span class="cl">I/O size <span class="o">(</span>minimum/optimal<span class="o">)</span>: <span class="m">512</span> bytes / <span class="m">512</span> bytes
+</span></span><span class="line"><span class="cl">Disk identifier: 0xbd3cc0bb
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   Device Boot      Start         End      Blocks   Id  System
+</span></span><span class="line"><span class="cl">/dev/sda1               <span class="m">1</span>       <span class="m">10338</span>    <span class="m">78149633</span>    <span class="m">5</span>  Extended
+</span></span><span class="line"><span class="cl">/dev/sda5               <span class="m">1</span>          <span class="m">46</span>      <span class="m">340992</span>   <span class="m">83</span>  Linux
+</span></span><span class="line"><span class="cl">/dev/sda6              <span class="m">46</span>          <span class="m">52</span>       <span class="m">48128</span>   <span class="m">83</span>  Linux
+</span></span><span class="line"><span class="cl">/dev/sda7              <span class="m">52</span>         <span class="m">698</span>     <span class="m">4881408</span>   <span class="m">83</span>  Linux
+</span></span><span class="line"><span class="cl">/dev/sda8             <span class="m">698</span>        <span class="m">1086</span>     <span class="m">2928640</span>   <span class="m">83</span>  Linux
+</span></span><span class="line"><span class="cl">/dev/sda9            <span class="m">1086</span>        <span class="m">1861</span>     <span class="m">5858304</span>   <span class="m">83</span>  Linux
+</span></span><span class="line"><span class="cl">/dev/sda10           <span class="m">1861</span>        <span class="m">2830</span>     <span class="m">7323648</span>   <span class="m">83</span>  Linux
+</span></span><span class="line"><span class="cl">/dev/sda11           <span class="m">9305</span>       <span class="m">10338</span>     <span class="m">7812096</span>   <span class="m">82</span>  Linux swap / Solaris
+</span></span><span class="line"><span class="cl">/dev/sda12           <span class="m">2830</span>        <span class="m">9304</span>    <span class="m">48949248</span>   <span class="m">83</span>  Linux
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Partition table entries are not in disk order
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Disk /dev/sdb: 2000.4 GB, <span class="m">2000365289472</span> bytes
+</span></span><span class="line"><span class="cl"><span class="m">255</span> heads, <span class="m">63</span> sectors/track, <span class="m">243197</span> cylinders
+</span></span><span class="line"><span class="cl"><span class="nv">Units</span> <span class="o">=</span> cylinders of <span class="m">16065</span> * <span class="nv">512</span> <span class="o">=</span> <span class="m">8225280</span> bytes
+</span></span><span class="line"><span class="cl">Sector size <span class="o">(</span>logical/physical<span class="o">)</span>: <span class="m">512</span> bytes / <span class="m">512</span> bytes
+</span></span><span class="line"><span class="cl">I/O size <span class="o">(</span>minimum/optimal<span class="o">)</span>: <span class="m">512</span> bytes / <span class="m">512</span> bytes
+</span></span><span class="line"><span class="cl">Disk identifier: 0x0005f107
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   Device Boot      Start         End      Blocks   Id  System
+</span></span><span class="line"><span class="cl">/dev/sdb1               <span class="m">1</span>      <span class="m">243198</span>  <span class="m">1953480704</span>    <span class="m">7</span>  HPFS/NTFS
+</span></span></code></pre></div><p>When the USB drive is new, the partition is most likely formatted in
 FAT or NTFS unless the drive is pre-formatted specifically for OS
 X. Now, prepare the partition for Linux:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo fdisk /dev/sdb</code></pre></div>
-<p>See help for detail by pressing <code>m</code> on the <strong><code>fdisk</code></strong> command
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo fdisk /dev/sdb
+</span></span></code></pre></div><p>See help for detail by pressing <code>m</code> on the <strong><code>fdisk</code></strong> command
 shell. For example, press <code>p</code> to see the list of partitions in the
 disk. To create a new one press <code>n</code> (probably after deleting one or
 more partitions by pressing <code>d</code>). Finally press <code>w</code> to actually make
 changes to the drive. To use ext4 filesystem, do:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo mkfs.ext4 /dev/sdb1</code></pre></div>
-<p>after exiting <strong><code>fdisk</code></strong>.</p>
-
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo mkfs.ext4 /dev/sdb1
+</span></span></code></pre></div><p>after exiting <strong><code>fdisk</code></strong>.</p>
 <p>If I always mount this drive on boot, add a line like this to
 <em>/etc/fstab</em>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">/dev/sdc1 /media/usbdrive ext4 defaults <span class="m">0</span> <span class="m">0</span></code></pre></div>
-<p>assuming <em>/media/usbdrive</em> is the mount point. If I use KDE, adding an
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">/dev/sdc1 /media/usbdrive ext4 defaults <span class="m">0</span> <span class="m">0</span>
+</span></span></code></pre></div><p>assuming <em>/media/usbdrive</em> is the mount point. If I use KDE, adding an
 entry to <em>/etc/fstab</em> is no longer necessary; I can easily manage
 external drives with Device Notifier.</p>
-
 <h2 id="update-history">Update History</h2>
-
-<p>Feb 20, 2014 &#8212; Updated following a comment by Ugly Mug.</p>
-
-<p>May 3, 2012 &#8212; Updated for my current system.</p>
-
-<p>December 17, 2010 &#8212; Modified to use ext4 filesystem.</p>
+<p>Feb 20, 2014 — Updated following a comment by Ugly Mug.</p>
+<p>May 3, 2012 — Updated for my current system.</p>
+<p>December 17, 2010 — Modified to use ext4 filesystem.</p>
 
 			</div>
 
 			
 			<div class="comments">
 				<div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
+<script>
+    window.disqus_config = function () {
     
     
     
@@ -229,6 +234,8 @@ external drives with Device Notifier.</p>
 		<div>
 			<ul>
 				
+				<li><a href="/biboroku/2024/02/snipping-transcripts-with-snipd/">Snipping Transcripts with Snipd</a></li>
+				
 				<li><a href="/biboroku/2020/05/attribute-access-with-dict/">Attribute Access with Dict</a></li>
 				
 				<li><a href="/biboroku/2020/04/on-lazy-logging-evaluation/">On Lazy Logging Evaluation</a></li>
@@ -236,8 +243,6 @@ external drives with Device Notifier.</p>
 				<li><a href="/biboroku/2016/04/installing-debianjessie-on-thinkpad-t460s/">Installing Debian/Jessie on ThinkPad T460s</a></li>
 				
 				<li><a href="/biboroku/2015/03/creating-a-debian-netinst-bootable-usb-stick-with-non-free-firmware/">Creating a Debian Bootable USB Stick with Non-Free Firmware</a></li>
-				
-				<li><a href="/biboroku/2014/11/install-google-chrome-on-debian-jessie/">Install Google Chrome on Debian Jessie</a></li>
 				
 			</ul>
 		</div>
@@ -247,8 +252,8 @@ external drives with Device Notifier.</p>
 
   <footer class="centered">
   <span class="font-uni larger-text">
-	  Copyright &copy; 2007 - 2020
-    <a href="https://okomestudio.net/biboroku">Biboroku</a>
+	  Copyright &copy; 2007 - 2024
+    <a href="https://okomestudio.net/biboroku/">Biboroku</a>
     by <a href="https://okomestudio.net">Okome Studio</a> / Taro Sato.
     All Rights Reserved.
   </span>

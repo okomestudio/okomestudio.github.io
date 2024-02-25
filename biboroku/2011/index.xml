@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>2011s on Biboroku</title>
@@ -7,20 +7,13 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 14 Feb 2011 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://okomestudio.net/biboroku/2011/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <atom:link href="https://okomestudio.net/biboroku/2011/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Half-Light Radii for Various Profiles</title>
       <link>https://okomestudio.net/biboroku/2011/02/half-light-radius-and-disk-scale-length-in-exponential-profile/</link>
       <pubDate>Mon, 14 Feb 2011 00:00:00 +0000</pubDate>
-      
       <guid>https://okomestudio.net/biboroku/2011/02/half-light-radius-and-disk-scale-length-in-exponential-profile/</guid>
-      <description>For a radial profile of $I(r)$, the enclosed flux within the radius $r$ is given by
-\[ F(r) = \int_{0}^{2 \pi} d\phi \int_{0}^{r} dr r I(r, \phi) \ . \]
-I’m only concerned about azimuthal symmetric cases, so $F(r) = 2\pi \int_{0}^{r} dr r I(r)$ .</description>
+      <description>For a radial profile of $I(r)$, the enclosed flux within the radius $r$ is given by&#xA;\[ F(r) = \int_{0}^{2 \pi} d\phi \int_{0}^{r} dr r I(r, \phi) \ . \]&#xA;I’m only concerned about azimuthal symmetric cases, so $F(r) = 2\pi \int_{0}^{r} dr r I(r)$ .</description>
     </item>
-    
   </channel>
 </rss>

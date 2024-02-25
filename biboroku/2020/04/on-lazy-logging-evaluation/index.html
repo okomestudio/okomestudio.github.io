@@ -28,6 +28,13 @@
   <meta name="description" content="Biboroku is a blog by Okome Studio">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
   <link rel="icon" href="https://okomestudio.net/favicon.ico">
   <link rel="stylesheet" href="/biboroku/css/normalize.css">
   <link rel="stylesheet" href="/biboroku/css/base.css">
@@ -83,11 +90,11 @@
 
   <div class="container">
   <header>
-  <h1 class="font-uni"><a href="https://okomestudio.net/biboroku">Biboroku</a></h1>
+  <h1 class="font-uni"><a href="https://okomestudio.net/biboroku/">Biboroku</a></h1>
   <nav>
     <ul class="nav navbar-nav font-uni">
       <li><a href="https://okomestudio.net">OkomeStudio.net</a></li>
-      <li><a href="https://okomestudio.net/biboroku/about">About</a></li>
+      <li><a href="https://okomestudio.net/biboroku//about">About</a></li>
     </ul>
   </nav>
 </header>
@@ -95,9 +102,15 @@
   
 	<main>
 		<article class="blog-post">
-			<h1>On Lazy Logging Evaluation</h1>
+      <h1>On Lazy Logging Evaluation</h1>
+      
+
       <p class="meta">
-        Written by Taro Sato
+        Written by
+        
+          Taro Sato
+        
+
         on <time>April 14, 2020</time>.
 	      Tagged:
         
@@ -105,67 +118,61 @@
 	      
       </p>
 			<div>
-				
-
-<p>The stdlib <code>logging</code> package in Python encourages the C-style message
+				<p>The stdlib <code>logging</code> package in Python encourages the C-style message
 format string and passing variables as arguments to its log
 method. For example,</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&#34;Result x = </span><span class="si">%d</span><span class="s2">, y = </span><span class="si">%d</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>  <span class="c1"># Bad</span>
-<span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&#34;Result x = </span><span class="si">%d</span><span class="s2">, y = </span><span class="si">%d</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>     <span class="c1"># Good</span></code></pre></div>
-<p>or</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&#34;Result x = </span><span class="si">%(x)d</span><span class="s2">, y = </span><span class="si">%(y)d</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="p">{</span><span class="s2">&#34;x&#34;</span><span class="p">:</span> <span class="n">x</span><span class="p">,</span> <span class="s2">&#34;y&#34;</span><span class="p">:</span> <span class="n">y</span><span class="p">})</span>  <span class="c1"># Bad</span>
-<span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&#34;Result x = </span><span class="si">%(x)d</span><span class="s2">, y = </span><span class="si">%(y)d</span><span class="s2">&#34;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&#34;x&#34;</span><span class="p">:</span> <span class="n">x</span><span class="p">,</span> <span class="s2">&#34;y&#34;</span><span class="p">:</span> <span class="n">y</span><span class="p">})</span>   <span class="c1"># Good</span></code></pre></div>
-<p>As the message does not need to be formatted when the logging level is
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&#34;Result x = </span><span class="si">%d</span><span class="s2">, y = </span><span class="si">%d</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>  <span class="c1"># Bad</span>
+</span></span><span class="line"><span class="cl"><span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&#34;Result x = </span><span class="si">%d</span><span class="s2">, y = </span><span class="si">%d</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>     <span class="c1"># Good</span>
+</span></span></code></pre></div><p>or</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&#34;Result x = </span><span class="si">%(x)d</span><span class="s2">, y = </span><span class="si">%(y)d</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="p">{</span><span class="s2">&#34;x&#34;</span><span class="p">:</span> <span class="n">x</span><span class="p">,</span> <span class="s2">&#34;y&#34;</span><span class="p">:</span> <span class="n">y</span><span class="p">})</span>  <span class="c1"># Bad</span>
+</span></span><span class="line"><span class="cl"><span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&#34;Result x = </span><span class="si">%(x)d</span><span class="s2">, y = </span><span class="si">%(y)d</span><span class="s2">&#34;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&#34;x&#34;</span><span class="p">:</span> <span class="n">x</span><span class="p">,</span> <span class="s2">&#34;y&#34;</span><span class="p">:</span> <span class="n">y</span><span class="p">})</span>   <span class="c1"># Good</span>
+</span></span></code></pre></div><p>As the message does not need to be formatted when the logging level is
 set higher than the value set for the logger, we would waste time
 formatting the string in the “bad” cases above, when the message does
 not get logged at all. The “good” cases avoid this by deferring
 formatting until the logger finds it necessary.</p>
-
 <p>Sometimes, though, we may want to log debug message with values that
 are expensive to compute. For example, in the above example, what if
 <code>y</code> depends on <code>x</code>, and the function that does the computation, e.g.,</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">get_y</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="o">...</span> <span class="n">expensive</span> <span class="n">computation</span> <span class="o">...</span>
-    <span class="k">return</span> <span class="n">result</span></code></pre></div>
-<p>is rather expensive? If this is done only for the purpose of the debug
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">get_y</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="o">...</span> <span class="n">expensive</span> <span class="n">computation</span> <span class="o">...</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">result</span>
+</span></span></code></pre></div><p>is rather expensive? If this is done only for the purpose of the debug
 message, that would be a wasteful computation when the logging level
 is higher than the value at which the result is logged at.</p>
-
 <h2 id="lazy-function-evaluation-with-logging">Lazy Function Evaluation with <code>logging</code></h2>
-
 <p>Fortunately, it is easy to add lazy evaluation of function using a
 custom <code>dict</code> and <code>functools.partial</code>.</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">logging</span>
-<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
-
-<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">UserDict</span>
-
-
-<span class="k">class</span> <span class="nc">Args</span><span class="p">(</span><span class="n">UserDict</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
-        <span class="n">value</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__getitem__</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
-        <span class="k">if</span> <span class="nb">callable</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
-            <span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="p">()</span>
-        <span class="k">return</span> <span class="n">value</span>
-
-
-<span class="k">def</span> <span class="nf">get_y</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="o">...</span> <span class="n">expensive</span> <span class="n">computation</span> <span class="o">...</span>
-    <span class="k">return</span> <span class="n">result</span>
-
-
-<span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&#34;Result x = </span><span class="si">%(x)d</span><span class="s2">, y = </span><span class="si">%(y)d</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">Args</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">partial</span><span class="p">(</span><span class="n">get_y</span><span class="p">,</span> <span class="n">x</span><span class="p">)))</span></code></pre></div>
-<p>The idea is to use <code>partial</code> to defer the execution of function,<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">logging</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">UserDict</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Args</span><span class="p">(</span><span class="n">UserDict</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">value</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__getitem__</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">callable</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">value</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">get_y</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="o">...</span> <span class="n">expensive</span> <span class="n">computation</span> <span class="o">...</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">result</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&#34;Result x = </span><span class="si">%(x)d</span><span class="s2">, y = </span><span class="si">%(y)d</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">Args</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">partial</span><span class="p">(</span><span class="n">get_y</span><span class="p">,</span> <span class="n">x</span><span class="p">)))</span>
+</span></span></code></pre></div><p>The idea is to use <code>partial</code> to defer the execution of function,<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>
 and store it in a <code>dict</code>-like object that is aware of the need to call
 the function on access through the key.</p>
-<div class="footnotes">
-
-<hr />
-
+<div class="footnotes" role="doc-endnotes">
+<hr>
 <ol>
-<li id="fn:1"><p>This is not a typical use of <code>partial</code>, but is a perfectly fine
-way of using the function.</p>
- <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
+<li id="fn:1">
+<p>This is not a typical use of <code>partial</code>, but is a perfectly fine
+way of using the function.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
 </ol>
 </div>
 
@@ -174,8 +181,8 @@ way of using the function.</p>
 			
 			<div class="comments">
 				<div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
+<script>
+    window.disqus_config = function () {
     
     
     
@@ -206,6 +213,8 @@ way of using the function.</p>
 		<div>
 			<ul>
 				
+				<li><a href="/biboroku/2024/02/snipping-transcripts-with-snipd/">Snipping Transcripts with Snipd</a></li>
+				
 				<li><a href="/biboroku/2020/05/attribute-access-with-dict/">Attribute Access with Dict</a></li>
 				
 				<li><a href="/biboroku/2020/04/on-lazy-logging-evaluation/">On Lazy Logging Evaluation</a></li>
@@ -213,8 +222,6 @@ way of using the function.</p>
 				<li><a href="/biboroku/2016/04/installing-debianjessie-on-thinkpad-t460s/">Installing Debian/Jessie on ThinkPad T460s</a></li>
 				
 				<li><a href="/biboroku/2015/03/creating-a-debian-netinst-bootable-usb-stick-with-non-free-firmware/">Creating a Debian Bootable USB Stick with Non-Free Firmware</a></li>
-				
-				<li><a href="/biboroku/2014/11/install-google-chrome-on-debian-jessie/">Install Google Chrome on Debian Jessie</a></li>
 				
 			</ul>
 		</div>
@@ -224,8 +231,8 @@ way of using the function.</p>
 
   <footer class="centered">
   <span class="font-uni larger-text">
-	  Copyright &copy; 2007 - 2020
-    <a href="https://okomestudio.net/biboroku">Biboroku</a>
+	  Copyright &copy; 2007 - 2024
+    <a href="https://okomestudio.net/biboroku/">Biboroku</a>
     by <a href="https://okomestudio.net">Okome Studio</a> / Taro Sato.
     All Rights Reserved.
   </span>

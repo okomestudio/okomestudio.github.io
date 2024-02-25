@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>2016s on Biboroku</title>
@@ -7,19 +7,13 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 30 Apr 2016 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://okomestudio.net/biboroku/2016/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <atom:link href="https://okomestudio.net/biboroku/2016/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Installing Debian/Jessie on ThinkPad T460s</title>
       <link>https://okomestudio.net/biboroku/2016/04/installing-debianjessie-on-thinkpad-t460s/</link>
       <pubDate>Sat, 30 Apr 2016 00:00:00 +0000</pubDate>
-      
       <guid>https://okomestudio.net/biboroku/2016/04/installing-debianjessie-on-thinkpad-t460s/</guid>
-      <description>This is a Debian/Jessie installation instruction on ThinkPad T460s (product ID: 20F9CTO1WW).
-First, update BIOS on Windows if necessary, since that kind of task is unfortunately typically much easier on it. Also make sure to create a recovery media for Windows 10.</description>
+      <description>This is a Debian/Jessie installation instruction on ThinkPad T460s (product ID: 20F9CTO1WW).&#xA;First, update BIOS on Windows if necessary, since that kind of task is unfortunately typically much easier on it. Also make sure to create a recovery media for Windows 10.</description>
     </item>
-    
   </channel>
 </rss>

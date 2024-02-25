@@ -28,6 +28,13 @@
   <meta name="description" content="Biboroku is a blog by Okome Studio">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
   <link rel="icon" href="https://okomestudio.net/favicon.ico">
   <link rel="stylesheet" href="/biboroku/css/normalize.css">
   <link rel="stylesheet" href="/biboroku/css/base.css">
@@ -83,11 +90,11 @@
 
   <div class="container">
   <header>
-  <h1 class="font-uni"><a href="https://okomestudio.net/biboroku">Biboroku</a></h1>
+  <h1 class="font-uni"><a href="https://okomestudio.net/biboroku/">Biboroku</a></h1>
   <nav>
     <ul class="nav navbar-nav font-uni">
       <li><a href="https://okomestudio.net">OkomeStudio.net</a></li>
-      <li><a href="https://okomestudio.net/biboroku/about">About</a></li>
+      <li><a href="https://okomestudio.net/biboroku//about">About</a></li>
     </ul>
   </nav>
 </header>
@@ -95,9 +102,15 @@
   
 	<main>
 		<article class="blog-post">
-			<h1>Creating a Debian Bootable USB Stick with Non-Free Firmware</h1>
+      <h1>Creating a Debian Bootable USB Stick with Non-Free Firmware</h1>
+      
+
       <p class="meta">
-        Written by Taro Sato
+        Written by
+        
+          Taro Sato
+        
+
         on <time>March 14, 2015</time>.
 	      Tagged:
         
@@ -107,50 +120,43 @@
 	      
       </p>
 			<div>
-				
-
-<p>Debian installation on new hardware can be a hassle when it depends on non-free
+				<p>Debian installation on new hardware can be a hassle when it depends on non-free
 firmware support. A typical workaround is to use a Debian install image which
 includes non-free drivers, which is available here: <a href="http://cdimage.debian.org/cdimage/unofficial/non-free/cd-including-firmware/">Unofficial non-free images
 including firmware
 packages</a>.
 Choose the right image for the kind of USB media you wish to create.</p>
-
 <p>For this post, I chose (amd64 Jessie 8.4.0 netinst + non-free):</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ wget http://cdimage.debian.org/cdimage/unofficial/non-free/cd-including-firmware/8.4.0/amd64/iso-cd/firmware-8.4.0-amd64-netinst.iso</code></pre></div>
-<p>Find a USB stick (which you do not mind formatting entirely; all existing
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ wget http://cdimage.debian.org/cdimage/unofficial/non-free/cd-including-firmware/8.4.0/amd64/iso-cd/firmware-8.4.0-amd64-netinst.iso
+</span></span></code></pre></div><p>Find a USB stick (which you do not mind formatting entirely; all existing
 contents will be wiped out with this method), connect it to a working Linux box,
 and find the device pointer to the stick:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo fdisk -l
-... <span class="o">(</span>other devices<span class="o">)</span> ...
-
-Disk /dev/sde: <span class="m">14</span>.9 GiB, <span class="m">16008609792</span> bytes, <span class="m">31266816</span> sectors
-Units: sectors of <span class="m">1</span> * <span class="nv">512</span> <span class="o">=</span> <span class="m">512</span> bytes
-Sector size <span class="o">(</span>logical/physical<span class="o">)</span>: <span class="m">512</span> bytes / <span class="m">512</span> bytes
-I/O size <span class="o">(</span>minimum/optimal<span class="o">)</span>: <span class="m">512</span> bytes / <span class="m">512</span> bytes
-Disklabel type: dos
-Disk identifier: 0x156252ec
-
-Device     Boot Start     End Sectors  Size Id Type
-/dev/sde1  *        <span class="m">0</span> <span class="m">7800959</span> <span class="m">7800960</span>  <span class="m">3</span>.7G  <span class="m">0</span> Empty
-/dev/sde2       <span class="m">20368</span>   <span class="m">21199</span>     <span class="m">832</span>  416K ef EFI <span class="o">(</span>FAT-12/16/32<span class="o">)</span>
-
-... <span class="o">(</span>other devices<span class="o">)</span> ...</code></pre></div>
-<p>We see that the USB stick is attached at <em>/dev/sde</em> in this case (IMPORTANT:
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo fdisk -l
+</span></span><span class="line"><span class="cl">... <span class="o">(</span>other devices<span class="o">)</span> ...
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Disk /dev/sde: 14.9 GiB, <span class="m">16008609792</span> bytes, <span class="m">31266816</span> sectors
+</span></span><span class="line"><span class="cl">Units: sectors of <span class="m">1</span> * <span class="nv">512</span> <span class="o">=</span> <span class="m">512</span> bytes
+</span></span><span class="line"><span class="cl">Sector size <span class="o">(</span>logical/physical<span class="o">)</span>: <span class="m">512</span> bytes / <span class="m">512</span> bytes
+</span></span><span class="line"><span class="cl">I/O size <span class="o">(</span>minimum/optimal<span class="o">)</span>: <span class="m">512</span> bytes / <span class="m">512</span> bytes
+</span></span><span class="line"><span class="cl">Disklabel type: dos
+</span></span><span class="line"><span class="cl">Disk identifier: 0x156252ec
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Device     Boot Start     End Sectors  Size Id Type
+</span></span><span class="line"><span class="cl">/dev/sde1  *        <span class="m">0</span> <span class="m">7800959</span> <span class="m">7800960</span>  3.7G  <span class="m">0</span> Empty
+</span></span><span class="line"><span class="cl">/dev/sde2       <span class="m">20368</span>   <span class="m">21199</span>     <span class="m">832</span>  416K ef EFI <span class="o">(</span>FAT-12/16/32<span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">... <span class="o">(</span>other devices<span class="o">)</span> ...
+</span></span></code></pre></div><p>We see that the USB stick is attached at <em>/dev/sde</em> in this case (IMPORTANT:
 this will certainly be different for you; really do make sure the device is the
 USB stick you would not mind being wiped out).</p>
-
 <p>Then create a bootable installation stick:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo dd <span class="k">if</span><span class="o">=</span>firmware-8.4.0-amd64-netinst.iso <span class="nv">of</span><span class="o">=</span>/dev/sde <span class="nv">bs</span><span class="o">=</span>4M
-$ sudo sync</code></pre></div>
-<h2 id="todo">TODO</h2>
-
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo dd <span class="k">if</span><span class="o">=</span>firmware-8.4.0-amd64-netinst.iso <span class="nv">of</span><span class="o">=</span>/dev/sde <span class="nv">bs</span><span class="o">=</span>4M
+</span></span><span class="line"><span class="cl">$ sudo sync
+</span></span></code></pre></div><h2 id="todo">TODO</h2>
 <p>There appears to be issue writing to USB from isohybrid .iso image, from which I
 have not been able to create a proper bootable image. Check on this and update
 the post.</p>
-
 <h2 id="reference">Reference</h2>
-
 <p><a href="http://askubuntu.com/questions/372607/how-to-create-a-bootable-ubuntu-usb-flash-drive-from-terminal">http://askubuntu.com/questions/372607/how-to-create-a-bootable-ubuntu-usb-flash-drive-from-terminal</a></p>
 
 			</div>
@@ -158,8 +164,8 @@ the post.</p>
 			
 			<div class="comments">
 				<div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
+<script>
+    window.disqus_config = function () {
     
     
     
@@ -190,6 +196,8 @@ the post.</p>
 		<div>
 			<ul>
 				
+				<li><a href="/biboroku/2024/02/snipping-transcripts-with-snipd/">Snipping Transcripts with Snipd</a></li>
+				
 				<li><a href="/biboroku/2020/05/attribute-access-with-dict/">Attribute Access with Dict</a></li>
 				
 				<li><a href="/biboroku/2020/04/on-lazy-logging-evaluation/">On Lazy Logging Evaluation</a></li>
@@ -197,8 +205,6 @@ the post.</p>
 				<li><a href="/biboroku/2016/04/installing-debianjessie-on-thinkpad-t460s/">Installing Debian/Jessie on ThinkPad T460s</a></li>
 				
 				<li><a href="/biboroku/2015/03/creating-a-debian-netinst-bootable-usb-stick-with-non-free-firmware/">Creating a Debian Bootable USB Stick with Non-Free Firmware</a></li>
-				
-				<li><a href="/biboroku/2014/11/install-google-chrome-on-debian-jessie/">Install Google Chrome on Debian Jessie</a></li>
 				
 			</ul>
 		</div>
@@ -208,8 +214,8 @@ the post.</p>
 
   <footer class="centered">
   <span class="font-uni larger-text">
-	  Copyright &copy; 2007 - 2020
-    <a href="https://okomestudio.net/biboroku">Biboroku</a>
+	  Copyright &copy; 2007 - 2024
+    <a href="https://okomestudio.net/biboroku/">Biboroku</a>
     by <a href="https://okomestudio.net">Okome Studio</a> / Taro Sato.
     All Rights Reserved.
   </span>

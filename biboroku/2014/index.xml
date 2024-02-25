@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>2014s on Biboroku</title>
@@ -7,87 +7,62 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 27 Nov 2014 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://okomestudio.net/biboroku/2014/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <atom:link href="https://okomestudio.net/biboroku/2014/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Install Google Chrome on Debian Jessie</title>
       <link>https://okomestudio.net/biboroku/2014/11/install-google-chrome-on-debian-jessie/</link>
       <pubDate>Thu, 27 Nov 2014 00:00:00 +0000</pubDate>
-      
       <guid>https://okomestudio.net/biboroku/2014/11/install-google-chrome-on-debian-jessie/</guid>
-      <description>Download a DEB file for the version of Chrome you want from here.
-Then
-$ sudo aptitude install gconf-service libgconf-2-4 libnspr4 libnss3 libpango1.0-0 libappindicator1 libcurl3 $ sudo dpkg -i google-chrome-stable_current_amd64.</description>
+      <description>Download a DEB file for the version of Chrome you want from here.&#xA;Then&#xA;$ sudo aptitude install gconf-service libgconf-2-4 libnspr4 libnss3 libpango1.0-0 libappindicator1 libcurl3 $ sudo dpkg -i google-chrome-stable_current_amd64.deb </description>
     </item>
-    
     <item>
       <title>Installing Adobe Reader on Debian/Jessie</title>
       <link>https://okomestudio.net/biboroku/2014/10/installing-adobe-reader-on-debianjessie/</link>
       <pubDate>Fri, 10 Oct 2014 00:00:00 +0000</pubDate>
-      
       <guid>https://okomestudio.net/biboroku/2014/10/installing-adobe-reader-on-debianjessie/</guid>
       <description>Once in a while you need to deal with fancier PDF files which may allow you to type in using forms, but Linux applications like Okular might not be fully capable of handling Adobe’s proprietary features. In such an unfortunate event, you might need to use Adobe Reader.</description>
     </item>
-    
     <item>
       <title>Interpreting A/B Test using Python</title>
       <link>https://okomestudio.net/biboroku/2014/05/interpreting-ab-test-using-python/</link>
       <pubDate>Mon, 12 May 2014 00:00:00 +0000</pubDate>
-      
       <guid>https://okomestudio.net/biboroku/2014/05/interpreting-ab-test-using-python/</guid>
       <description>Suppose we ran an A/B test with two different versions of a web page, $a$ and $b$, for which we count the number of visitors and whether they convert or not. We can summarize this in a contingency table showing the frequency distribution of the events:</description>
     </item>
-    
     <item>
       <title>Brand Positioning by Correspondence Analysis</title>
       <link>https://okomestudio.net/biboroku/2014/05/brand-positioning-by-correspondence-analysis/</link>
       <pubDate>Wed, 07 May 2014 00:00:00 +0000</pubDate>
-      
       <guid>https://okomestudio.net/biboroku/2014/05/brand-positioning-by-correspondence-analysis/</guid>
-      <description>I was reading an article about visualization techniques using multidimensional scaling (MDS), the correspondence analysis in particular. The example used R, but as usual I want to find ways to do it on Python, so here goes.
-The correspondence analysis is useful when you have a two-way contingency table for which relative values of ratio-scaled data are of interest.</description>
+      <description>I was reading an article about visualization techniques using multidimensional scaling (MDS), the correspondence analysis in particular. The example used R, but as usual I want to find ways to do it on Python, so here goes.&#xA;The correspondence analysis is useful when you have a two-way contingency table for which relative values of ratio-scaled data are of interest.</description>
     </item>
-    
     <item>
       <title>PCA and Biplot using Python</title>
       <link>https://okomestudio.net/biboroku/2014/04/pca-and-biplot-using-python/</link>
       <pubDate>Thu, 24 Apr 2014 00:00:00 +0000</pubDate>
-      
       <guid>https://okomestudio.net/biboroku/2014/04/pca-and-biplot-using-python/</guid>
       <description>There are several ways to run principal component analysis (PCA) using various packages (scikit-learn, statsmodels, etc.) or even just rolling out your own through singular-value decomposition and such. Visualizing the PCA result can be done through biplot. I was looking at an example of using prcomp and biplot in R, but it does not seem like there is a comparable plug-and-play way of generating a biplot on Python.</description>
     </item>
-    
     <item>
       <title>Near-Duplicate Detection using MinHash: Background</title>
       <link>https://okomestudio.net/biboroku/2014/04/near-duplicate-detection-using-minhash-background/</link>
       <pubDate>Sat, 12 Apr 2014 00:00:00 +0000</pubDate>
-      
       <guid>https://okomestudio.net/biboroku/2014/04/near-duplicate-detection-using-minhash-background/</guid>
       <description>There are numerous pieces of duplicate information served by multiple sources on the web. Many news stories that we receive from the media tend to originate from the same source, such as the Associated Press. When such contents are scraped off the web for archiving, a need may arise to categorize documents by their similarity (not in the sense of meaning of the text but the character-level or lexical matching).</description>
     </item>
-    
     <item>
       <title>A Trick for Computing the Sum of Geometric Series</title>
       <link>https://okomestudio.net/biboroku/2014/04/a-trick-for-computing-the-sum-of-geometric-series/</link>
       <pubDate>Fri, 04 Apr 2014 00:00:00 +0000</pubDate>
-      
       <guid>https://okomestudio.net/biboroku/2014/04/a-trick-for-computing-the-sum-of-geometric-series/</guid>
-      <description>Say if I need to compute the sum of a series like this one:
-\begin{equation} y = 1 + 2 x + 3 x^2 + 4 x^3 + \dots \ , \label{eq:a} \end{equation}
-where $|x| &amp;lt; 1$. This series looks like a geometric series in which case the sum can be computed from</description>
+      <description>Say if I need to compute the sum of a series like this one:&#xA;\begin{equation} y = 1 + 2 x + 3 x^2 + 4 x^3 + \dots \ , \label{eq:a} \end{equation}&#xA;where $|x| &amp;lt; 1$. This series looks like a geometric series in which case the sum can be computed from</description>
     </item>
-    
     <item>
       <title>Creating Debian Wheezy Installation USB Stick</title>
       <link>https://okomestudio.net/biboroku/2014/02/installing-debian-wheezy-from-a-usb-stick/</link>
       <pubDate>Thu, 20 Feb 2014 00:00:00 +0000</pubDate>
-      
       <guid>https://okomestudio.net/biboroku/2014/02/installing-debian-wheezy-from-a-usb-stick/</guid>
-      <description>The simplest way to create a bootable USB stick for Debian installation is to use command dd to copy an ISO image to an empty USB stick.
-First, connect an empty USB stick to a working Linux box, and see which device represents the stick:</description>
+      <description>The simplest way to create a bootable USB stick for Debian installation is to use command dd to copy an ISO image to an empty USB stick.&#xA;First, connect an empty USB stick to a working Linux box, and see which device represents the stick:</description>
     </item>
-    
   </channel>
 </rss>

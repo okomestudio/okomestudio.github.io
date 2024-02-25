@@ -28,6 +28,13 @@
   <meta name="description" content="Biboroku is a blog by Okome Studio">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
   <link rel="icon" href="https://okomestudio.net/favicon.ico">
   <link rel="stylesheet" href="/biboroku/css/normalize.css">
   <link rel="stylesheet" href="/biboroku/css/base.css">
@@ -83,11 +90,11 @@
 
   <div class="container">
   <header>
-  <h1 class="font-uni"><a href="https://okomestudio.net/biboroku">Biboroku</a></h1>
+  <h1 class="font-uni"><a href="https://okomestudio.net/biboroku/">Biboroku</a></h1>
   <nav>
     <ul class="nav navbar-nav font-uni">
       <li><a href="https://okomestudio.net">OkomeStudio.net</a></li>
-      <li><a href="https://okomestudio.net/biboroku/about">About</a></li>
+      <li><a href="https://okomestudio.net/biboroku//about">About</a></li>
     </ul>
   </nav>
 </header>
@@ -95,9 +102,15 @@
   
 	<main>
 		<article class="blog-post">
-			<h1>Installing Debian Squeeze from Hard Disk</h1>
+      <h1>Installing Debian Squeeze from Hard Disk</h1>
+      
+
       <p class="meta">
-        Written by Taro Sato
+        Written by
+        
+          Taro Sato
+        
+
         on <time>December 14, 2010</time>.
 	      Tagged:
         
@@ -114,61 +127,55 @@ having the same issue for several months and I have not been able to
 solve it myself, and nobody responds to my bug report; however, this
 hard drive method may work well even if I have a working install USB
 stick/CD media.</p>
-
 <p>I assume that a working Linux installation exists on the system
 already; it will only be used to launch the installer. (In practice, I
 used an existing Lenny installation to go through this procedure, only
 to wipe it over with Squeeze.) For this note I use the Debian
 installer beta 2 for Squeeze (AMD64).</p>
-
 <p>Create a partition large enough to hold a netinst .iso image (~ 170
 MB) plus maybe 20 MB for kernel image and whatnot. For illustration, I
 assume it is at <em>/dev/sda11</em>.  Move to a temporary working directory,
 download some files, mount the partition, and copy files to the
 install partition:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ wget http://ftp.nl.debian.org/debian/dists/testing/main/installer-amd64/current/images/hd-media/initrd.gz
-$ wget http://ftp.nl.debian.org/debian/dists/testing/main/installer-amd64/current/images/hd-media/vmlinuz
-$ wget http://cdimage.debian.org/cdimage/squeeze_di_beta2/amd64/iso-cd/debian-squeeze-di-beta2-amd64-netinst.iso
-$ mkdir mnt
-$ sudo mount /dev/sda11 mnt
-$ sudo cp initrd.gz mnt
-$ sudo cp vmlinuz mnt
-$ sudo cp debian-squeeze-di-beta2-amd64-netinst.iso mnt/netinst.iso
-$ sudo umount /dev/sda11</code></pre></div>
-<p>Now I need to modify the GRUB menu to add an entry for the installer
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ wget http://ftp.nl.debian.org/debian/dists/testing/main/installer-amd64/current/images/hd-media/initrd.gz
+</span></span><span class="line"><span class="cl">$ wget http://ftp.nl.debian.org/debian/dists/testing/main/installer-amd64/current/images/hd-media/vmlinuz
+</span></span><span class="line"><span class="cl">$ wget http://cdimage.debian.org/cdimage/squeeze_di_beta2/amd64/iso-cd/debian-squeeze-di-beta2-amd64-netinst.iso
+</span></span><span class="line"><span class="cl">$ mkdir mnt
+</span></span><span class="line"><span class="cl">$ sudo mount /dev/sda11 mnt
+</span></span><span class="line"><span class="cl">$ sudo cp initrd.gz mnt
+</span></span><span class="line"><span class="cl">$ sudo cp vmlinuz mnt
+</span></span><span class="line"><span class="cl">$ sudo cp debian-squeeze-di-beta2-amd64-netinst.iso mnt/netinst.iso
+</span></span><span class="line"><span class="cl">$ sudo umount /dev/sda11
+</span></span></code></pre></div><p>Now I need to modify the GRUB menu to add an entry for the installer
 that I just made.</p>
-
 <p>For the new GRUB version 2, an entry in <em>/boot/grub/grub.cfg</em> looks a
 bit complicated:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">menuentry <span class="s1">&#39;Squeeze Installer Beta 2&#39;</span> --class debian --class gnu-linux --class os <span class="o">{</span>
-  insmod part_msdos
-  insmod ext2
-  <span class="nb">set</span> <span class="nv">root</span><span class="o">=</span><span class="s1">&#39;&lt;em&gt;(hd0,msdos11)&lt;/em&gt;&#39;</span>
-  search --no-floppy --fs-uuid --set &lt;em&gt;SOMELENGTHYHASH&lt;/em&gt;
-  <span class="nb">echo</span> <span class="s1">&#39;Loading Squeeze installer&#39;</span>
-  linux /vmlinuz <span class="nv">root</span><span class="o">=</span><span class="nv">UUID</span><span class="o">=</span>&lt;em&gt;SOMELENGTHYHASH&lt;/em&gt;
-  <span class="nb">echo</span> <span class="s1">&#39;Loading init ramdisk&#39;</span>
-  initrd /initrd.gz
-<span class="o">}</span></code></pre></div>
-<p>Here, the root in which the install partition is the eleventh
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">menuentry <span class="s1">&#39;Squeeze Installer Beta 2&#39;</span> --class debian --class gnu-linux --class os <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  insmod part_msdos
+</span></span><span class="line"><span class="cl">  insmod ext2
+</span></span><span class="line"><span class="cl">  <span class="nb">set</span> <span class="nv">root</span><span class="o">=</span><span class="s1">&#39;&lt;em&gt;(hd0,msdos11)&lt;/em&gt;&#39;</span>
+</span></span><span class="line"><span class="cl">  search --no-floppy --fs-uuid --set &lt;em&gt;SOMELENGTHYHASH&lt;/em&gt;
+</span></span><span class="line"><span class="cl">  <span class="nb">echo</span> <span class="s1">&#39;Loading Squeeze installer&#39;</span>
+</span></span><span class="line"><span class="cl">  linux /vmlinuz <span class="nv">root</span><span class="o">=</span><span class="nv">UUID</span><span class="o">=</span>&lt;em&gt;SOMELENGTHYHASH&lt;/em&gt;
+</span></span><span class="line"><span class="cl">  <span class="nb">echo</span> <span class="s1">&#39;Loading init ramdisk&#39;</span>
+</span></span><span class="line"><span class="cl">  initrd /initrd.gz
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>Here, the root in which the install partition is the eleventh
 partition of the first hard drive (hence <code>hd0, msdos11</code>). With the
 lengthy UUID hash for the hard drive, I’d just copy one of the GRUB
 entries for working installations.</p>
-
 <p>For an old version of GRUB, an entry in <em>/boot/grub/menu.lst</em> would
 look like this:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">title  Squeeze Installer Beta <span class="m">2</span>
-root   <span class="o">(</span>hd0,10<span class="o">)</span>
-kernel /vmlinuz
-initrd /initrd.gz</code></pre></div>
-<p>This means the install partition is located at the 11th partition of
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">title  Squeeze Installer Beta <span class="m">2</span>
+</span></span><span class="line"><span class="cl">root   <span class="o">(</span>hd0,10<span class="o">)</span>
+</span></span><span class="line"><span class="cl">kernel /vmlinuz
+</span></span><span class="line"><span class="cl">initrd /initrd.gz
+</span></span></code></pre></div><p>This means the install partition is located at the 11th partition of
 the first hard drive, and the paths to the kernel and initrd images
 are located at the topmost level of the partition. This is the sort of
 entry I copy and paste from other entries in <em>/boot/grub/menu.lst</em>.</p>
-
 <p>After reboot, select the menu entry just added and I will be starting
 the installer right away!</p>
-
 <p>IMPORTANT: When I partition the drive during the installation process,
 do not mount the install partition. If I do, the partitioning and the
 subsequent installation will fail.</p>
@@ -178,8 +185,8 @@ subsequent installation will fail.</p>
 			
 			<div class="comments">
 				<div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
+<script>
+    window.disqus_config = function () {
     
     
     
@@ -210,6 +217,8 @@ subsequent installation will fail.</p>
 		<div>
 			<ul>
 				
+				<li><a href="/biboroku/2024/02/snipping-transcripts-with-snipd/">Snipping Transcripts with Snipd</a></li>
+				
 				<li><a href="/biboroku/2020/05/attribute-access-with-dict/">Attribute Access with Dict</a></li>
 				
 				<li><a href="/biboroku/2020/04/on-lazy-logging-evaluation/">On Lazy Logging Evaluation</a></li>
@@ -217,8 +226,6 @@ subsequent installation will fail.</p>
 				<li><a href="/biboroku/2016/04/installing-debianjessie-on-thinkpad-t460s/">Installing Debian/Jessie on ThinkPad T460s</a></li>
 				
 				<li><a href="/biboroku/2015/03/creating-a-debian-netinst-bootable-usb-stick-with-non-free-firmware/">Creating a Debian Bootable USB Stick with Non-Free Firmware</a></li>
-				
-				<li><a href="/biboroku/2014/11/install-google-chrome-on-debian-jessie/">Install Google Chrome on Debian Jessie</a></li>
 				
 			</ul>
 		</div>
@@ -228,8 +235,8 @@ subsequent installation will fail.</p>
 
   <footer class="centered">
   <span class="font-uni larger-text">
-	  Copyright &copy; 2007 - 2020
-    <a href="https://okomestudio.net/biboroku">Biboroku</a>
+	  Copyright &copy; 2007 - 2024
+    <a href="https://okomestudio.net/biboroku/">Biboroku</a>
     by <a href="https://okomestudio.net">Okome Studio</a> / Taro Sato.
     All Rights Reserved.
   </span>

@@ -28,6 +28,13 @@
   <meta name="description" content="Biboroku is a blog by Okome Studio">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
   <link rel="icon" href="https://okomestudio.net/favicon.ico">
   <link rel="stylesheet" href="/biboroku/css/normalize.css">
   <link rel="stylesheet" href="/biboroku/css/base.css">
@@ -83,11 +90,11 @@
 
   <div class="container">
   <header>
-  <h1 class="font-uni"><a href="https://okomestudio.net/biboroku">Biboroku</a></h1>
+  <h1 class="font-uni"><a href="https://okomestudio.net/biboroku/">Biboroku</a></h1>
   <nav>
     <ul class="nav navbar-nav font-uni">
       <li><a href="https://okomestudio.net">OkomeStudio.net</a></li>
-      <li><a href="https://okomestudio.net/biboroku/about">About</a></li>
+      <li><a href="https://okomestudio.net/biboroku//about">About</a></li>
     </ul>
   </nav>
 </header>
@@ -95,9 +102,15 @@
   
 	<main>
 		<article class="blog-post">
-			<h1>Half-Light Radii for Various Profiles</h1>
+      <h1>Half-Light Radii for Various Profiles</h1>
+      
+
       <p class="meta">
-        Written by Taro Sato
+        Written by
+        
+          Taro Sato
+        
+
         on <time>February 14, 2011</time>.
 	      Tagged:
         
@@ -107,67 +120,34 @@
 	      
       </p>
 			<div>
-				
-
-<p>For a radial profile of <code>$I(r)$</code>, the enclosed flux within the radius <code>$r$</code> is
+				<p>For a radial profile of <code>$I(r)$</code>, the enclosed flux within the radius <code>$r$</code> is
 given by</p>
-
 <p><code>\[ F(r) = \int_{0}^{2 \pi} d\phi \int_{0}^{r} dr r I(r, \phi) \ . \]</code></p>
-
-<p>I’m only concerned about azimuthal symmetric cases, so <code>$F(r) = 2\pi
-\int_{0}^{r} dr r I(r)$</code> . The idea is to solve</p>
-
+<p>I’m only concerned about azimuthal symmetric cases, so <code>$F(r) = 2\pi \int_{0}^{r} dr r I(r)$</code> . The idea is to solve</p>
 <p><code>\[ \frac{ F( r_{ 1 / 2 } ) }{ F( \infty ) } = \frac{1}{2} \]</code></p>
-
 <p>for <code>$r_{1/2}$</code>.</p>
-
 <h2 id="gaussian-profile">Gaussian Profile</h2>
-
 <p>Say the Gaussian intensity profile is given by</p>
-
 <p><code>\[ I(r) = I_0 \exp{\left(-\frac{r^2}{2\sigma^2}\right)} \ . \]</code></p>
-
 <p>The enclosed flux within <code>$r$</code> is given by</p>
-
-<p><code>\[
-  F(r) = 2\pi I_0 \int_0^r dr r \exp{\left(-\frac{r^2}{2\sigma^2}\right)} = 2\pi I_0 \sigma^2 \left[1 - \exp{\left(-\frac{r^2}{2\sigma^2}\right)}\right]\ .
-\]</code></p>
-
+<p><code>\[ F(r) = 2\pi I_0 \int_0^r dr r \exp{\left(-\frac{r^2}{2\sigma^2}\right)} = 2\pi I_0 \sigma^2 \left[1 - \exp{\left(-\frac{r^2}{2\sigma^2}\right)}\right]\ . \]</code></p>
 <p>Hence</p>
-
 <p><code>\[ \boxed{ r_{1/2} = \sqrt{-2 \ln{0.5}} \sigma \ . } \]</code></p>
-
 <h2 id="exponential-profile">Exponential Profile</h2>
-
 <p>The radial surface-brightness profile <code>$I(r)$</code> of a disk galaxy is often fitted
 by the exponential profile:</p>
-
 <p><code>\[ I(r) = I_d \exp{\left(-\frac{r}{r_d}\right)} \ , \]</code></p>
-
 <p>where <code>$r_d$</code> is the disk scale length. The flux enclosed within the radius
 <code>$r$</code> is given by</p>
-
 <p><code>\[ F(r) = 2\pi I_d \int_0^r dr r \exp{\left(-\frac{r}{r_d}\right)} \ . \]</code></p>
-
 <p>Solving for the half-light radius <code>$r_{1/2}$</code> leads to the following:</p>
-
-<p><code>\[
-  \left(1 + \frac{r_{1/2}}{r_d}\right) \exp{\left(-\frac{r_{1/2}}{r_d}\right)} = \frac{1}{2} \ .
-\]</code></p>
-
+<p><code>\[ \left(1 + \frac{r_{1/2}}{r_d}\right) \exp{\left(-\frac{r_{1/2}}{r_d}\right)} = \frac{1}{2} \ . \]</code></p>
 <p>A relevant numerical solution is</p>
-
 <p><code>\[ \boxed{r_{1/2} = 1.67835 r_d \ .} \]</code></p>
-
-<h2 id="sersic-de-vaucouleurs-profile">Sersic/de Vaucouleurs Profile</h2>
-
+<h2 id="sersicde-vaucouleurs-profile">Sersic/de Vaucouleurs Profile</h2>
 <p>The radial surface-brightness profile <code>$I(r)$</code> of a spheroidal galaxy is
 often fitted by the Sersic (de Vaucouleurs when <code>$n = 4$</code> profile:</p>
-
-<p><code>\[
-  I(r) = I_{1/2} \exp{\left( -k \left( \left(\frac{r}{r_{1/2}}\right)^{1/n} - 1 \right) \right)} \ .
-\]</code></p>
-
+<p><code>\[ I(r) = I_{1/2} \exp{\left( -k \left( \left(\frac{r}{r_{1/2}}\right)^{1/n} - 1 \right) \right)} \ . \]</code></p>
 <p>where <code>$k = 1.992 n - 0.3271$</code> (Capaccioli 1989). This expression explicitly
 parametrizes the profile in terms of half-light radius.</p>
 
@@ -176,8 +156,8 @@ parametrizes the profile in terms of half-light radius.</p>
 			
 			<div class="comments">
 				<div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
+<script>
+    window.disqus_config = function () {
     
     
     
@@ -208,6 +188,8 @@ parametrizes the profile in terms of half-light radius.</p>
 		<div>
 			<ul>
 				
+				<li><a href="/biboroku/2024/02/snipping-transcripts-with-snipd/">Snipping Transcripts with Snipd</a></li>
+				
 				<li><a href="/biboroku/2020/05/attribute-access-with-dict/">Attribute Access with Dict</a></li>
 				
 				<li><a href="/biboroku/2020/04/on-lazy-logging-evaluation/">On Lazy Logging Evaluation</a></li>
@@ -215,8 +197,6 @@ parametrizes the profile in terms of half-light radius.</p>
 				<li><a href="/biboroku/2016/04/installing-debianjessie-on-thinkpad-t460s/">Installing Debian/Jessie on ThinkPad T460s</a></li>
 				
 				<li><a href="/biboroku/2015/03/creating-a-debian-netinst-bootable-usb-stick-with-non-free-firmware/">Creating a Debian Bootable USB Stick with Non-Free Firmware</a></li>
-				
-				<li><a href="/biboroku/2014/11/install-google-chrome-on-debian-jessie/">Install Google Chrome on Debian Jessie</a></li>
 				
 			</ul>
 		</div>
@@ -226,8 +206,8 @@ parametrizes the profile in terms of half-light radius.</p>
 
   <footer class="centered">
   <span class="font-uni larger-text">
-	  Copyright &copy; 2007 - 2020
-    <a href="https://okomestudio.net/biboroku">Biboroku</a>
+	  Copyright &copy; 2007 - 2024
+    <a href="https://okomestudio.net/biboroku/">Biboroku</a>
     by <a href="https://okomestudio.net">Okome Studio</a> / Taro Sato.
     All Rights Reserved.
   </span>

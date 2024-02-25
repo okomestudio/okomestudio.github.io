@@ -28,6 +28,13 @@
   <meta name="description" content="Biboroku is a blog by Okome Studio">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
   <link rel="icon" href="https://okomestudio.net/favicon.ico">
   <link rel="stylesheet" href="/biboroku/css/normalize.css">
   <link rel="stylesheet" href="/biboroku/css/base.css">
@@ -83,11 +90,11 @@
 
   <div class="container">
   <header>
-  <h1 class="font-uni"><a href="https://okomestudio.net/biboroku">Biboroku</a></h1>
+  <h1 class="font-uni"><a href="https://okomestudio.net/biboroku/">Biboroku</a></h1>
   <nav>
     <ul class="nav navbar-nav font-uni">
       <li><a href="https://okomestudio.net">OkomeStudio.net</a></li>
-      <li><a href="https://okomestudio.net/biboroku/about">About</a></li>
+      <li><a href="https://okomestudio.net/biboroku//about">About</a></li>
     </ul>
   </nav>
 </header>
@@ -95,9 +102,15 @@
   
 	<main>
 		<article class="blog-post">
-			<h1>Installing Ubuntu (12.04 LTS 64-bit) from an ISO Image on Hard Drive</h1>
+      <h1>Installing Ubuntu (12.04 LTS 64-bit) from an ISO Image on Hard Drive</h1>
+      
+
       <p class="meta">
-        Written by Taro Sato
+        Written by
+        
+          Taro Sato
+        
+
         on <time>May 14, 2012</time>.
 	      Tagged:
         
@@ -116,15 +129,12 @@ recognize <em>/dev/sdaX</em> properly at some point, ending up in IO errors
 or kernel panic). In any case, I could solve this by installing Linux
 off a pre-partitioned hard drive.  This time, I install Ubuntu. (I’m
 giving my XPS 630i away before moving back to the States!)</p>
-
 <p>Here goes the procedure. I assume that I am installing Ubuntu from
 scratch and hard drive has been formatted.</p>
-
 <p>First, I need a Linux Live media, whatever from which I can boot the
 computer. I burn a CD for this particular post. Go to the <a href="http://www.ubuntu.com/download/desktop">Ubuntu
 website</a>, download an ISO
 image (here <em>ubuntu-12.04-desktop-amd64.iso</em>), and burn a Live CD.</p>
-
 <p>Boot up the computer off Ubuntu Live (do not install at this point!)
 and prepare the disk partitions, using
 <a href="http://gparted.sourceforge.net/"><em>GParted</em></a>. It would be best to
@@ -136,50 +146,47 @@ so, but I store all my ISO files under <em>/boot/iso</em>, so I will use 3 GB
 for the partition just in case.  (For an Ubuntu ISO image, 700 MB may
 be enough but for Linux Mint, I may need 2 GB, for example; I can also
 store multiple ISO images if I wish.)  Here’s the partition scheme:</p>
-<div class="highlight"><pre class="chroma">Filesystem            Size   Mounted on
-/dev/sda5               3G   /
-/dev/sda6               3G   /boot
-/dev/sda7              10G   /tmp
-/dev/sda8               6G   /var
-/dev/sda9              10G   /usr
-/dev/sda10             20G   /usr/local
-/dev/sda11              8G   Linux Swap
-/dev/sda12            690G   /home</pre></div>
-<p>Then on Terminal I install GRUB 2 on <em>/dev/sda</em>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo mount /dev/sda5 /mnt
-$ sudo mkdir /mnt/boot
-$ sudo mount /dev/sda6 /mnt/boot
-$ sudo grub-install --root-directory<span class="o">=</span>/mnt /dev/sda
-$ sudo mkdir /mnt/boot/boot-isos
-$ sudo cp ~/Downloads/ubuntu-12.04-desktop-amd64.iso /mnt/boot/boot-isos
-$ sudo umount /mnt/boot
-$ sudo umount /mnt</code></pre></div>
-<p>I assumed that the ISO image was already downloaded to <em>~/Downloads</em>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">Filesystem</span>            <span class="n">Size</span>   <span class="n">Mounted</span> <span class="n">on</span>
+</span></span><span class="line"><span class="cl"><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sda5</span>               <span class="mi">3</span><span class="n">G</span>   <span class="o">/</span>
+</span></span><span class="line"><span class="cl"><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sda6</span>               <span class="mi">3</span><span class="n">G</span>   <span class="o">/</span><span class="n">boot</span>
+</span></span><span class="line"><span class="cl"><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sda7</span>              <span class="mi">10</span><span class="n">G</span>   <span class="o">/</span><span class="n">tmp</span>
+</span></span><span class="line"><span class="cl"><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sda8</span>               <span class="mi">6</span><span class="n">G</span>   <span class="o">/</span><span class="k">var</span>
+</span></span><span class="line"><span class="cl"><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sda9</span>              <span class="mi">10</span><span class="n">G</span>   <span class="o">/</span><span class="n">usr</span>
+</span></span><span class="line"><span class="cl"><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sda10</span>             <span class="mi">20</span><span class="n">G</span>   <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span>
+</span></span><span class="line"><span class="cl"><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sda11</span>              <span class="mi">8</span><span class="n">G</span>   <span class="n">Linux</span> <span class="n">Swap</span>
+</span></span><span class="line"><span class="cl"><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sda12</span>            <span class="mi">690</span><span class="n">G</span>   <span class="o">/</span><span class="n">home</span>
+</span></span></code></pre></div><p>Then on Terminal I install GRUB 2 on <em>/dev/sda</em>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo mount /dev/sda5 /mnt
+</span></span><span class="line"><span class="cl">$ sudo mkdir /mnt/boot
+</span></span><span class="line"><span class="cl">$ sudo mount /dev/sda6 /mnt/boot
+</span></span><span class="line"><span class="cl">$ sudo grub-install --root-directory<span class="o">=</span>/mnt /dev/sda
+</span></span><span class="line"><span class="cl">$ sudo mkdir /mnt/boot/boot-isos
+</span></span><span class="line"><span class="cl">$ sudo cp ~/Downloads/ubuntu-12.04-desktop-amd64.iso /mnt/boot/boot-isos
+</span></span><span class="line"><span class="cl">$ sudo umount /mnt/boot
+</span></span><span class="line"><span class="cl">$ sudo umount /mnt
+</span></span></code></pre></div><p>I assumed that the ISO image was already downloaded to <em>~/Downloads</em>
 directory. Now, reboot and on the GRUB prompt, follow this to boot off
 the ISO image:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">set</span> <span class="nv">prefix</span><span class="o">=(</span>hd0,6<span class="o">)</span>/grub
-$ insmod linux
-$ insmod loopback
-$ insmod iso9660
-$ loopback loop <span class="o">(</span>hd0,6<span class="o">)</span>/boot-isos/ubuntu-12.04-desktop-amd64.iso
-$ <span class="nb">set</span> <span class="nv">root</span><span class="o">=(</span>loop<span class="o">)</span>
-$ linux /casper/vmlinuz <span class="nv">boot</span><span class="o">=</span>casper iso-scan/filename<span class="o">=</span>/boot-isos/ubuntu-12.04-desktop-amd64.iso noprompt noeject toram
-$ initrd /casper/initrd.lz
-$ boot</code></pre></div>
-<p>The machine should boot into Ubuntu Live. Once in Ubuntu, I should
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ <span class="nb">set</span> <span class="nv">prefix</span><span class="o">=(</span>hd0,6<span class="o">)</span>/grub
+</span></span><span class="line"><span class="cl">$ insmod linux
+</span></span><span class="line"><span class="cl">$ insmod loopback
+</span></span><span class="line"><span class="cl">$ insmod iso9660
+</span></span><span class="line"><span class="cl">$ loopback loop <span class="o">(</span>hd0,6<span class="o">)</span>/boot-isos/ubuntu-12.04-desktop-amd64.iso
+</span></span><span class="line"><span class="cl">$ <span class="nb">set</span> <span class="nv">root</span><span class="o">=(</span>loop<span class="o">)</span>
+</span></span><span class="line"><span class="cl">$ linux /casper/vmlinuz <span class="nv">boot</span><span class="o">=</span>casper iso-scan/filename<span class="o">=</span>/boot-isos/ubuntu-12.04-desktop-amd64.iso noprompt noeject toram
+</span></span><span class="line"><span class="cl">$ initrd /casper/initrd.lz
+</span></span><span class="line"><span class="cl">$ boot
+</span></span></code></pre></div><p>The machine should boot into Ubuntu Live. Once in Ubuntu, I should
 unmount <em>/isodevice</em>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo umount -l -r -f /isodevice</code></pre></div>
-<p>Then I can simply run the installer on Ubuntu.  In order to prevent
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo umount -l -r -f /isodevice
+</span></span></code></pre></div><p>Then I can simply run the installer on Ubuntu.  In order to prevent
 the installer from stalling (see <a href="https://bugs.launchpad.net/ubuntu/+source/ubiquity/+bug/875343">this bug
 report</a>,
 I had to <code>format</code> all partitions except <em>/boot</em>. But otherwise
 everything should go fine.</p>
-
 <p>** Reference</p>
-
 <p><a href="http://ubuntuforums.org/showthread.php?t=1549847">HOWTO: ISO Booting with Grub
 2</a></p>
-
 <p><a href="http://ubuntuforums.org/showthread.php?t=1599293">HOWTO: Boot &amp; Install Ubuntu from the Grub Rescue
 Prompt</a></p>
 
@@ -188,8 +195,8 @@ Prompt</a></p>
 			
 			<div class="comments">
 				<div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
+<script>
+    window.disqus_config = function () {
     
     
     
@@ -220,6 +227,8 @@ Prompt</a></p>
 		<div>
 			<ul>
 				
+				<li><a href="/biboroku/2024/02/snipping-transcripts-with-snipd/">Snipping Transcripts with Snipd</a></li>
+				
 				<li><a href="/biboroku/2020/05/attribute-access-with-dict/">Attribute Access with Dict</a></li>
 				
 				<li><a href="/biboroku/2020/04/on-lazy-logging-evaluation/">On Lazy Logging Evaluation</a></li>
@@ -227,8 +236,6 @@ Prompt</a></p>
 				<li><a href="/biboroku/2016/04/installing-debianjessie-on-thinkpad-t460s/">Installing Debian/Jessie on ThinkPad T460s</a></li>
 				
 				<li><a href="/biboroku/2015/03/creating-a-debian-netinst-bootable-usb-stick-with-non-free-firmware/">Creating a Debian Bootable USB Stick with Non-Free Firmware</a></li>
-				
-				<li><a href="/biboroku/2014/11/install-google-chrome-on-debian-jessie/">Install Google Chrome on Debian Jessie</a></li>
 				
 			</ul>
 		</div>
@@ -238,8 +245,8 @@ Prompt</a></p>
 
   <footer class="centered">
   <span class="font-uni larger-text">
-	  Copyright &copy; 2007 - 2020
-    <a href="https://okomestudio.net/biboroku">Biboroku</a>
+	  Copyright &copy; 2007 - 2024
+    <a href="https://okomestudio.net/biboroku/">Biboroku</a>
     by <a href="https://okomestudio.net">Okome Studio</a> / Taro Sato.
     All Rights Reserved.
   </span>

@@ -28,6 +28,13 @@
   <meta name="description" content="Biboroku is a blog by Okome Studio">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
   <link rel="icon" href="https://okomestudio.net/favicon.ico">
   <link rel="stylesheet" href="/biboroku/css/normalize.css">
   <link rel="stylesheet" href="/biboroku/css/base.css">
@@ -83,11 +90,11 @@
 
   <div class="container">
   <header>
-  <h1 class="font-uni"><a href="https://okomestudio.net/biboroku">Biboroku</a></h1>
+  <h1 class="font-uni"><a href="https://okomestudio.net/biboroku/">Biboroku</a></h1>
   <nav>
     <ul class="nav navbar-nav font-uni">
       <li><a href="https://okomestudio.net">OkomeStudio.net</a></li>
-      <li><a href="https://okomestudio.net/biboroku/about">About</a></li>
+      <li><a href="https://okomestudio.net/biboroku//about">About</a></li>
     </ul>
   </nav>
 </header>
@@ -95,9 +102,15 @@
   
 	<main>
 		<article class="blog-post">
-			<h1>Customizing &amp; Installing Linux Kernel on Debian Wheezy</h1>
+      <h1>Customizing &amp; Installing Linux Kernel on Debian Wheezy</h1>
+      
+
       <p class="meta">
-        Written by Taro Sato
+        Written by
+        
+          Taro Sato
+        
+
         on <time>September 30, 2012</time>.
 	      Tagged:
         
@@ -107,66 +120,57 @@
 	      
       </p>
 			<div>
-				
-
-<p>Here is a quickie for customizing and install Linux kernel 3.5.x on
+				<p>Here is a quickie for customizing and install Linux kernel 3.5.x on
 Wheezy.</p>
-
 <p>Add yourself (with account username) to sudoer group:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># adduser username sudo</span></code></pre></div>
-<p>You need to logout and login for this change to take effect. You also
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># adduser username sudo</span>
+</span></span></code></pre></div><p>You need to logout and login for this change to take effect. You also
 need to be able to use <code>sudo</code> or <code>su</code> to install the new kernel in
 the end.</p>
-
 <p>Install some packages and kernel source:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo aptitude update
-$ sudo aptitude install kernel-package pkg-config bzip2 g++ libncurses5-dev fakeroot bc
-$ sudo aptitude install libqt4-dev</code></pre></div>
-<p>(<code>libqt4-dev</code> is only necessary if you wish to use <strong><code>make
-xconfig</code></strong> instead of <strong><code>make menuconfig</code></strong> below.)</p>
-
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo aptitude update
+</span></span><span class="line"><span class="cl">$ sudo aptitude install kernel-package pkg-config bzip2 g++ libncurses5-dev fakeroot bc
+</span></span><span class="line"><span class="cl">$ sudo aptitude install libqt4-dev
+</span></span></code></pre></div><p>(<code>libqt4-dev</code> is only necessary if you wish to use <strong><code>make xconfig</code></strong> instead of <strong><code>make menuconfig</code></strong> below.)</p>
 <p>The kernel packaged for Wheezy is at version 3.2.  Source code for a
 more up-to-date kernel version can be obtained from
 <a href="http://www.kernel.org/">kernel.org</a> and saved somewhere.  You just
 need to expanding the compressed source somewhere (even under your
 home directory, which is the case in this post).</p>
-
 <p>Either way, the customization procedure is similar; when you expand
 the source tree (e.g., the <code>tar</code> statement below), you just need to
 specify the source tarball you wish to use.  Here I just follow the
 Debian way:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo aptitude install linux-source-3.2</code></pre></div>
-<p>Extract the source tree:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">cd</span> ~/src
-$ tar -jxf /usr/src/linux-source-3.2.tar.bz2
-... or use tar -Jxf <span class="k">for</span> .tar.xz file ...
-$ ln -s linux-source-3.2 linux
-$ <span class="nb">cd</span> linux</code></pre></div>
-<p>Edit the <code>EXTRAVERSION</code> entry in <em>Makefile</em>, as in:</p>
-<div class="highlight"><pre class="chroma">EXTRAVERSION = .20120929.1</pre></div>
-<p>for example to add <code>.20120929.1</code> to the kernel version number. This
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo aptitude install linux-source-3.2
+</span></span></code></pre></div><p>Extract the source tree:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ <span class="nb">cd</span> ~/src
+</span></span><span class="line"><span class="cl">$ tar -jxf /usr/src/linux-source-3.2.tar.bz2
+</span></span><span class="line"><span class="cl">... or use tar -Jxf <span class="k">for</span> .tar.xz file ...
+</span></span><span class="line"><span class="cl">$ ln -s linux-source-3.2 linux
+</span></span><span class="line"><span class="cl">$ <span class="nb">cd</span> linux
+</span></span></code></pre></div><p>Edit the <code>EXTRAVERSION</code> entry in <em>Makefile</em>, as in:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">EXTRAVERSION = .20120929.1
+</span></span></code></pre></div><p>for example to add <code>.20120929.1</code> to the kernel version number. This
 is convenient for keeping the existing, working kernels around when
 you need to recompile with different options.</p>
-
 <p>Use <code>xconfig</code> or <code>menuconfig</code> to customize the kernel
 options. Before the <code>make-kpkg</code> lines, setting concurrency (most
 likely to the number of cores of my processor) is optinal but having a
 higher number typically reduces the compilation time.</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ make mrproper
-$ make xconfig    <span class="c1"># or make menuconfig</span>
-$ <span class="nb">export</span> <span class="nv">CONCURRENCY_LEVEL</span><span class="o">=</span><span class="m">2</span>    <span class="c1"># for dual-core; this is optional</span>
-$ fakeroot make-kpkg clean
-$ fakeroot make-kpkg --initrd kernel_image
-... fakeroot might fail<span class="p">;</span> when it does, try running make-kpkg commands as root ...
-$ sudo dpkg -i ../linux-image-3.2.20120929.*_amd64.deb</code></pre></div>
-<p>Upon reboot in the GRUB menu you will find the newly installed kernel:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo reboot</code></pre></div>
-<h2 id="purging-old-kernel-image-from-system">Purging Old Kernel Image from System</h2>
-
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ make mrproper
+</span></span><span class="line"><span class="cl">$ make xconfig    <span class="c1"># or make menuconfig</span>
+</span></span><span class="line"><span class="cl">$ <span class="nb">export</span> <span class="nv">CONCURRENCY_LEVEL</span><span class="o">=</span><span class="m">2</span>    <span class="c1"># for dual-core; this is optional</span>
+</span></span><span class="line"><span class="cl">$ fakeroot make-kpkg clean
+</span></span><span class="line"><span class="cl">$ fakeroot make-kpkg --initrd kernel_image
+</span></span><span class="line"><span class="cl">... fakeroot might fail<span class="p">;</span> when it does, try running make-kpkg commands as root ...
+</span></span><span class="line"><span class="cl">$ sudo dpkg -i ../linux-image-3.2.20120929.*_amd64.deb
+</span></span></code></pre></div><p>Upon reboot in the GRUB menu you will find the newly installed kernel:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo reboot
+</span></span></code></pre></div><h2 id="purging-old-kernel-image-from-system">Purging Old Kernel Image from System</h2>
 <p>For example, if the kernel to be uninstalled is of version 2.6.26 and
 the extra version that I used was 20091112.1, do:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo dpkg -P linux-image-2.6.26.20091112.1</code></pre></div>
-<p>That’s it. However it is often a good idea to keep at least one kernel
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo dpkg -P linux-image-2.6.26.20091112.1
+</span></span></code></pre></div><p>That’s it. However it is often a good idea to keep at least one kernel
 image that I know for sure to work so that when a custom kernel fails,
 I have something to fall back on.  On the other hand, it is also a
 good idea to purge very old kernel images to save space in <em>/boot</em>.</p>
@@ -176,8 +180,8 @@ good idea to purge very old kernel images to save space in <em>/boot</em>.</p>
 			
 			<div class="comments">
 				<div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
+<script>
+    window.disqus_config = function () {
     
     
     
@@ -208,6 +212,8 @@ good idea to purge very old kernel images to save space in <em>/boot</em>.</p>
 		<div>
 			<ul>
 				
+				<li><a href="/biboroku/2024/02/snipping-transcripts-with-snipd/">Snipping Transcripts with Snipd</a></li>
+				
 				<li><a href="/biboroku/2020/05/attribute-access-with-dict/">Attribute Access with Dict</a></li>
 				
 				<li><a href="/biboroku/2020/04/on-lazy-logging-evaluation/">On Lazy Logging Evaluation</a></li>
@@ -215,8 +221,6 @@ good idea to purge very old kernel images to save space in <em>/boot</em>.</p>
 				<li><a href="/biboroku/2016/04/installing-debianjessie-on-thinkpad-t460s/">Installing Debian/Jessie on ThinkPad T460s</a></li>
 				
 				<li><a href="/biboroku/2015/03/creating-a-debian-netinst-bootable-usb-stick-with-non-free-firmware/">Creating a Debian Bootable USB Stick with Non-Free Firmware</a></li>
-				
-				<li><a href="/biboroku/2014/11/install-google-chrome-on-debian-jessie/">Install Google Chrome on Debian Jessie</a></li>
 				
 			</ul>
 		</div>
@@ -226,8 +230,8 @@ good idea to purge very old kernel images to save space in <em>/boot</em>.</p>
 
   <footer class="centered">
   <span class="font-uni larger-text">
-	  Copyright &copy; 2007 - 2020
-    <a href="https://okomestudio.net/biboroku">Biboroku</a>
+	  Copyright &copy; 2007 - 2024
+    <a href="https://okomestudio.net/biboroku/">Biboroku</a>
     by <a href="https://okomestudio.net">Okome Studio</a> / Taro Sato.
     All Rights Reserved.
   </span>

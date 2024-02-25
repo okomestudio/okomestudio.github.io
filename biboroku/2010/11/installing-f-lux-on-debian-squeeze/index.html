@@ -28,6 +28,13 @@
   <meta name="description" content="Biboroku is a blog by Okome Studio">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
   <link rel="icon" href="https://okomestudio.net/favicon.ico">
   <link rel="stylesheet" href="/biboroku/css/normalize.css">
   <link rel="stylesheet" href="/biboroku/css/base.css">
@@ -83,11 +90,11 @@
 
   <div class="container">
   <header>
-  <h1 class="font-uni"><a href="https://okomestudio.net/biboroku">Biboroku</a></h1>
+  <h1 class="font-uni"><a href="https://okomestudio.net/biboroku/">Biboroku</a></h1>
   <nav>
     <ul class="nav navbar-nav font-uni">
       <li><a href="https://okomestudio.net">OkomeStudio.net</a></li>
-      <li><a href="https://okomestudio.net/biboroku/about">About</a></li>
+      <li><a href="https://okomestudio.net/biboroku//about">About</a></li>
     </ul>
   </nav>
 </header>
@@ -95,9 +102,15 @@
   
 	<main>
 		<article class="blog-post">
-			<h1>Installing F.lux on Debian Squeeze</h1>
+      <h1>Installing F.lux on Debian Squeeze</h1>
+      
+
       <p class="meta">
-        Written by Taro Sato
+        Written by
+        
+          Taro Sato
+        
+
         on <time>November 20, 2010</time>.
 	      Tagged:
         
@@ -107,60 +120,51 @@
 	      
       </p>
 			<div>
-				
-
-<p>In another feeble attempt to become a “morning person,” I’ve decided
+				<p>In another feeble attempt to become a “morning person,” I’ve decided
 to follow the usual advice that I should not be looking at bright LCD
 screen at night to help myself going into the “sleep mode.”</p>
-
 <p>Hence <a href="http://www.stereopsis.com/flux/">F.lux</a>.</p>
-
 <p>I want it to launch automatically at the start of a KDE session.</p>
-
 <p>First of all, check the geographical coordinates of your location,
 perhaps using a search engine like <a href="http://www.travelmath.com/city/">this
 one</a>. In my case (Halifax, Canada),
 the latitude and longitude is 44.65 and -63.6 (in degrees).</p>
-
 <p>Download the Linux binary (i.e., the command-line version) from
 <a href="http://www.stereopsis.com/flux/linux.html">here</a>. As of now, this is
 just a binary and no source codes. So no compiling is necessary. Do
 as:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ wget http://secure.herf.org/flux/xflux.tgz
-$ tar -xvzf xflux.tgz
-$ sudo cp xflux /usr/local/bin
-$ sudo chmod <span class="m">755</span> /usr/local/bin/xflux</code></pre></div>
-<p>Now the command <strong><code>xflux</code></strong> is available system-wide.</p>
-
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ wget http://secure.herf.org/flux/xflux.tgz
+</span></span><span class="line"><span class="cl">$ tar -xvzf xflux.tgz
+</span></span><span class="line"><span class="cl">$ sudo cp xflux /usr/local/bin
+</span></span><span class="line"><span class="cl">$ sudo chmod <span class="m">755</span> /usr/local/bin/xflux
+</span></span></code></pre></div><p>Now the command <strong><code>xflux</code></strong> is available system-wide.</p>
 <p>To make it run at the KDE starup, create a shell script (called here
 <em>xflux.sh</em>) like this one:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/bin/sh
-</span><span class="cp"></span>xflux -l <span class="m">44</span>.65 -g -63.6</code></pre></div>
-<p>Either place this script manually under <em>~/.kde/Autostart</em>, or go to
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/bin/sh
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>xflux -l 44.65 -g -63.6
+</span></span></code></pre></div><p>Either place this script manually under <em>~/.kde/Autostart</em>, or go to
 KDE menu -&gt; Computer -&gt; System Settings -&gt; Advanced -&gt; Autostart, and
 add the <em>xflux.sh</em> script there.</p>
-
 <p>If for some reason you need to stop this program, do:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">kill</span> -9 <span class="sb">`</span>pgrep xflux<span class="sb">`</span></code></pre></div>
-<h2 id="running-f-lux-on-64-bit-debian-squeeze">Running F.lux on 64-bit Debian Squeeze</h2>
-
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ <span class="nb">kill</span> -9 <span class="sb">`</span>pgrep xflux<span class="sb">`</span>
+</span></span></code></pre></div><h2 id="running-flux-on-64-bit-debian-squeeze">Running F.lux on 64-bit Debian Squeeze</h2>
 <p>I may have problem getting xflux to run at all on a 64-bit machine,
 possibly seeing a <code>xflux: No such file or directory</code> error. The xflux
 binary is built against 32-bit libraries:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ file xflux
-xflux: ELF <span class="m">32</span>-bit LSB executable, Intel <span class="m">80386</span>, version <span class="m">1</span> <span class="o">(</span>SYSV<span class="o">)</span>,
-dynamically linked <span class="o">(</span>uses shared libs<span class="o">)</span>, <span class="k">for</span> GNU/Linux <span class="m">2</span>.6.15, not stripped</code></pre></div>
-<p>so if I haven’t done so, I need to install 32-bit environment:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo aptitude install ia32-libs</code></pre></div>
-<p>After this, I should be able to run xflux without problems.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ file xflux
+</span></span><span class="line"><span class="cl">xflux: ELF 32-bit LSB executable, Intel 80386, version <span class="m">1</span> <span class="o">(</span>SYSV<span class="o">)</span>,
+</span></span><span class="line"><span class="cl">dynamically linked <span class="o">(</span>uses shared libs<span class="o">)</span>, <span class="k">for</span> GNU/Linux 2.6.15, not stripped
+</span></span></code></pre></div><p>so if I haven’t done so, I need to install 32-bit environment:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo aptitude install ia32-libs
+</span></span></code></pre></div><p>After this, I should be able to run xflux without problems.</p>
 
 			</div>
 
 			
 			<div class="comments">
 				<div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
+<script>
+    window.disqus_config = function () {
     
     
     
@@ -191,6 +195,8 @@ dynamically linked <span class="o">(</span>uses shared libs<span class="o">)</sp
 		<div>
 			<ul>
 				
+				<li><a href="/biboroku/2024/02/snipping-transcripts-with-snipd/">Snipping Transcripts with Snipd</a></li>
+				
 				<li><a href="/biboroku/2020/05/attribute-access-with-dict/">Attribute Access with Dict</a></li>
 				
 				<li><a href="/biboroku/2020/04/on-lazy-logging-evaluation/">On Lazy Logging Evaluation</a></li>
@@ -198,8 +204,6 @@ dynamically linked <span class="o">(</span>uses shared libs<span class="o">)</sp
 				<li><a href="/biboroku/2016/04/installing-debianjessie-on-thinkpad-t460s/">Installing Debian/Jessie on ThinkPad T460s</a></li>
 				
 				<li><a href="/biboroku/2015/03/creating-a-debian-netinst-bootable-usb-stick-with-non-free-firmware/">Creating a Debian Bootable USB Stick with Non-Free Firmware</a></li>
-				
-				<li><a href="/biboroku/2014/11/install-google-chrome-on-debian-jessie/">Install Google Chrome on Debian Jessie</a></li>
 				
 			</ul>
 		</div>
@@ -209,8 +213,8 @@ dynamically linked <span class="o">(</span>uses shared libs<span class="o">)</sp
 
   <footer class="centered">
   <span class="font-uni larger-text">
-	  Copyright &copy; 2007 - 2020
-    <a href="https://okomestudio.net/biboroku">Biboroku</a>
+	  Copyright &copy; 2007 - 2024
+    <a href="https://okomestudio.net/biboroku/">Biboroku</a>
     by <a href="https://okomestudio.net">Okome Studio</a> / Taro Sato.
     All Rights Reserved.
   </span>

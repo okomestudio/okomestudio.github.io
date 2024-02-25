@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Python on Biboroku</title>
@@ -7,76 +7,55 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 09 May 2020 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://okomestudio.net/biboroku/tags/python/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <atom:link href="https://okomestudio.net/biboroku/tags/python/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Attribute Access with Dict</title>
       <link>https://okomestudio.net/biboroku/2020/05/attribute-access-with-dict/</link>
       <pubDate>Sat, 09 May 2020 00:00:00 +0000</pubDate>
-      
       <guid>https://okomestudio.net/biboroku/2020/05/attribute-access-with-dict/</guid>
-      <description>Python dict is useful. The access to a nested item can be tedious, however. For example,
-data = { &amp;#34;hosts&amp;#34;: { &amp;#34;name&amp;#34;: &amp;#34;localhost&amp;#34;, &amp;#34;cidr&amp;#34;: &amp;#34;127.0.0.1/8&amp;#34;, } } Here, data[&amp;quot;hosts&amp;quot;][&amp;quot;cidir&amp;quot;] would get you &amp;quot;127.0.0.1/8&amp;quot;, but all those quotes and brackets can be annoying to type and read.</description>
+      <description>Python dict is useful. The access to a nested item can be tedious, however. For example,&#xA;data = { &amp;#34;hosts&amp;#34;: { &amp;#34;name&amp;#34;: &amp;#34;localhost&amp;#34;, &amp;#34;cidr&amp;#34;: &amp;#34;127.0.0.1/8&amp;#34;, } } Here, data[&amp;quot;hosts&amp;quot;][&amp;quot;cidir&amp;quot;] would get you &amp;quot;127.0.0.1/8&amp;quot;, but all those quotes and brackets can be annoying to type and read.</description>
     </item>
-    
     <item>
       <title>On Lazy Logging Evaluation</title>
       <link>https://okomestudio.net/biboroku/2020/04/on-lazy-logging-evaluation/</link>
       <pubDate>Tue, 14 Apr 2020 00:00:00 +0000</pubDate>
-      
       <guid>https://okomestudio.net/biboroku/2020/04/on-lazy-logging-evaluation/</guid>
-      <description>The stdlib logging package in Python encourages the C-style message format string and passing variables as arguments to its log method. For example,
-logging.debug(&amp;#34;Result x = %d, y = %d&amp;#34; % (x, y)) # Bad logging.debug(&amp;#34;Result x = %d, y = %d&amp;#34;, x, y) # Good or</description>
+      <description>The stdlib logging package in Python encourages the C-style message format string and passing variables as arguments to its log method. For example,&#xA;logging.debug(&amp;#34;Result x = %d, y = %d&amp;#34; % (x, y)) # Bad logging.debug(&amp;#34;Result x = %d, y = %d&amp;#34;, x, y) # Good or</description>
     </item>
-    
     <item>
       <title>Interpreting A/B Test using Python</title>
       <link>https://okomestudio.net/biboroku/2014/05/interpreting-ab-test-using-python/</link>
       <pubDate>Mon, 12 May 2014 00:00:00 +0000</pubDate>
-      
       <guid>https://okomestudio.net/biboroku/2014/05/interpreting-ab-test-using-python/</guid>
       <description>Suppose we ran an A/B test with two different versions of a web page, $a$ and $b$, for which we count the number of visitors and whether they convert or not. We can summarize this in a contingency table showing the frequency distribution of the events:</description>
     </item>
-    
     <item>
       <title>Brand Positioning by Correspondence Analysis</title>
       <link>https://okomestudio.net/biboroku/2014/05/brand-positioning-by-correspondence-analysis/</link>
       <pubDate>Wed, 07 May 2014 00:00:00 +0000</pubDate>
-      
       <guid>https://okomestudio.net/biboroku/2014/05/brand-positioning-by-correspondence-analysis/</guid>
-      <description>I was reading an article about visualization techniques using multidimensional scaling (MDS), the correspondence analysis in particular. The example used R, but as usual I want to find ways to do it on Python, so here goes.
-The correspondence analysis is useful when you have a two-way contingency table for which relative values of ratio-scaled data are of interest.</description>
+      <description>I was reading an article about visualization techniques using multidimensional scaling (MDS), the correspondence analysis in particular. The example used R, but as usual I want to find ways to do it on Python, so here goes.&#xA;The correspondence analysis is useful when you have a two-way contingency table for which relative values of ratio-scaled data are of interest.</description>
     </item>
-    
     <item>
       <title>PCA and Biplot using Python</title>
       <link>https://okomestudio.net/biboroku/2014/04/pca-and-biplot-using-python/</link>
       <pubDate>Thu, 24 Apr 2014 00:00:00 +0000</pubDate>
-      
       <guid>https://okomestudio.net/biboroku/2014/04/pca-and-biplot-using-python/</guid>
       <description>There are several ways to run principal component analysis (PCA) using various packages (scikit-learn, statsmodels, etc.) or even just rolling out your own through singular-value decomposition and such. Visualizing the PCA result can be done through biplot. I was looking at an example of using prcomp and biplot in R, but it does not seem like there is a comparable plug-and-play way of generating a biplot on Python.</description>
     </item>
-    
     <item>
       <title>Near-Duplicate Detection using MinHash: Background</title>
       <link>https://okomestudio.net/biboroku/2014/04/near-duplicate-detection-using-minhash-background/</link>
       <pubDate>Sat, 12 Apr 2014 00:00:00 +0000</pubDate>
-      
       <guid>https://okomestudio.net/biboroku/2014/04/near-duplicate-detection-using-minhash-background/</guid>
       <description>There are numerous pieces of duplicate information served by multiple sources on the web. Many news stories that we receive from the media tend to originate from the same source, such as the Associated Press. When such contents are scraped off the web for archiving, a need may arise to categorize documents by their similarity (not in the sense of meaning of the text but the character-level or lexical matching).</description>
     </item>
-    
     <item>
       <title>Testing if a Point is Inside a Polygon in Python</title>
       <link>https://okomestudio.net/biboroku/2010/06/testing-if-a-point-is-inside-a-polygon-in-python/</link>
       <pubDate>Thu, 24 Jun 2010 00:00:00 +0000</pubDate>
-      
       <guid>https://okomestudio.net/biboroku/2010/06/testing-if-a-point-is-inside-a-polygon-in-python/</guid>
-      <description>Finally got around to find this out by Googling. It’s a useful function so I reproduce it here for copy &amp;amp; paste:
-def inside_polygon(x, y, points): &amp;#34;&amp;#34;&amp;#34; Return True if a coordinate (x, y) is inside a polygon defined by the list of verticies [(x1, y1), (x2, y2), .</description>
+      <description>Finally got around to find this out by Googling. It’s a useful function so I reproduce it here for copy &amp;amp; paste:&#xA;def inside_polygon(x, y, points): &amp;#34;&amp;#34;&amp;#34; Return True if a coordinate (x, y) is inside a polygon defined by the list of verticies [(x1, y1), (x2, y2), .</description>
     </item>
-    
   </channel>
 </rss>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pkm on Biboroku</title>
+    <link>https://okomestudio.net/biboroku/tags/pkm/</link>
+    <description>Recent content in Pkm on Biboroku</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 25 Feb 2024 01:24:55 -0800</lastBuildDate>
+    <atom:link href="https://okomestudio.net/biboroku/tags/pkm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Snipping Transcripts with Snipd</title>
+      <link>https://okomestudio.net/biboroku/2024/02/snipping-transcripts-with-snipd/</link>
+      <pubDate>Sat, 24 Feb 2024 00:00:00 +0000</pubDate>
+      <guid>https://okomestudio.net/biboroku/2024/02/snipping-transcripts-with-snipd/</guid>
+      <description>For the past few years, podcasts have served as both a valuable source of learning as well as inspiration for me. I quickly realized that integrating audio into a personal knowledge management (PKM) workflow is not a simple task. However, the emergence of new podcast apps is changing this situation.</description>
+    </item>
+  </channel>
+</rss>

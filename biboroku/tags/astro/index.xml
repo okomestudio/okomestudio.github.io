@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Astro on Biboroku</title>
@@ -7,58 +7,41 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 28 Jun 2012 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://okomestudio.net/biboroku/tags/astro/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <atom:link href="https://okomestudio.net/biboroku/tags/astro/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Searching for Nearest-Neighbors between Two Coordinate Catalogs</title>
       <link>https://okomestudio.net/biboroku/2012/06/searching-for-nearest-neighbors-between-two-coordinate-catalogs/</link>
       <pubDate>Thu, 28 Jun 2012 00:00:00 +0000</pubDate>
-      
       <guid>https://okomestudio.net/biboroku/2012/06/searching-for-nearest-neighbors-between-two-coordinate-catalogs/</guid>
       <description>Say I have two catalogs of points, each in two-dimensional space. For each object in a catalog, I want to find the nearest object(s) in the other catalog. I can do this by computing the distances between every single unique pairs of objects and find the ones within a search radius and possibly doing an additional sort.</description>
     </item>
-    
     <item>
       <title>Half-Light Radii for Various Profiles</title>
       <link>https://okomestudio.net/biboroku/2011/02/half-light-radius-and-disk-scale-length-in-exponential-profile/</link>
       <pubDate>Mon, 14 Feb 2011 00:00:00 +0000</pubDate>
-      
       <guid>https://okomestudio.net/biboroku/2011/02/half-light-radius-and-disk-scale-length-in-exponential-profile/</guid>
-      <description>For a radial profile of $I(r)$, the enclosed flux within the radius $r$ is given by
-\[ F(r) = \int_{0}^{2 \pi} d\phi \int_{0}^{r} dr r I(r, \phi) \ . \]
-I’m only concerned about azimuthal symmetric cases, so $F(r) = 2\pi \int_{0}^{r} dr r I(r)$ .</description>
+      <description>For a radial profile of $I(r)$, the enclosed flux within the radius $r$ is given by&#xA;\[ F(r) = \int_{0}^{2 \pi} d\phi \int_{0}^{r} dr r I(r, \phi) \ . \]&#xA;I’m only concerned about azimuthal symmetric cases, so $F(r) = 2\pi \int_{0}^{r} dr r I(r)$ .</description>
     </item>
-    
     <item>
       <title>Installing Bruzual &amp; Charlot 2003 (GALAXEV) on Debian Squeeze</title>
       <link>https://okomestudio.net/biboroku/2010/10/installing-bruzual-charlot-2003-galaxev-on-debian-squeeze/</link>
       <pubDate>Tue, 19 Oct 2010 00:00:00 +0000</pubDate>
-      
       <guid>https://okomestudio.net/biboroku/2010/10/installing-bruzual-charlot-2003-galaxev-on-debian-squeeze/</guid>
-      <description>The installation procedure is confusing only if you are not using csh (I use Bash) and if g77 is not available. Otherwise you can simply follow the installation procedure outlined in the official documentation file (i.e., bc03/doc/bc03.ps.gz).
-First, you definitely need csh and a FORTRAN compiler:</description>
+      <description>The installation procedure is confusing only if you are not using csh (I use Bash) and if g77 is not available. Otherwise you can simply follow the installation procedure outlined in the official documentation file (i.e., bc03/doc/bc03.ps.gz).&#xA;First, you definitely need csh and a FORTRAN compiler:</description>
     </item>
-    
     <item>
       <title>Installing SExtractor on Mac OS X Snow Leopard</title>
       <link>https://okomestudio.net/biboroku/2010/03/installing-sextractor-on-mac-os-x-snow-leopard/</link>
       <pubDate>Mon, 22 Mar 2010 00:00:00 +0000</pubDate>
-      
       <guid>https://okomestudio.net/biboroku/2010/03/installing-sextractor-on-mac-os-x-snow-leopard/</guid>
       <description>(November 25, 2010) I screwed up SExtractor installation for no reason and in an attempt to fix it, I’ve found a few things. After wasting a few hours again, I think this installation note can work for most people who can actually build software from source&amp;hellip; I think the usefulness of this note will be limited though, as a new release of SExtractor appears imminent.</description>
     </item>
-    
     <item>
       <title>Installing HOTPANTS 5.1.10 on Mac OS X Leopard</title>
       <link>https://okomestudio.net/biboroku/2010/03/installing-hotpants-5-1-10-on-mac-os-x-leopard/</link>
       <pubDate>Wed, 10 Mar 2010 00:00:00 +0000</pubDate>
-      
       <guid>https://okomestudio.net/biboroku/2010/03/installing-hotpants-5-1-10-on-mac-os-x-leopard/</guid>
-      <description>You must love the name, but what the software does is far from sultry; it’s a piece of geekware.
-Anyways, I needed to edit files when I install HOTPANTS, photometric alignment utility by Andrew Becker. Here is my installation note before I forget.</description>
+      <description>You must love the name, but what the software does is far from sultry; it’s a piece of geekware.&#xA;Anyways, I needed to edit files when I install HOTPANTS, photometric alignment utility by Andrew Becker. Here is my installation note before I forget.</description>
     </item>
-    
   </channel>
 </rss>

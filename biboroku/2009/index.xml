@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>2009s on Biboroku</title>
@@ -7,28 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 30 Jul 2009 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://okomestudio.net/biboroku/2009/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <atom:link href="https://okomestudio.net/biboroku/2009/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Setting Up Squid Proxy Server on Mac OS X Leopard</title>
       <link>https://okomestudio.net/biboroku/2009/07/setting-up-squid-proxy-server-on-mac-os-x-leopard/</link>
       <pubDate>Thu, 30 Jul 2009 00:00:00 +0000</pubDate>
-      
       <guid>https://okomestudio.net/biboroku/2009/07/setting-up-squid-proxy-server-on-mac-os-x-leopard/</guid>
-      <description>My goal is to set up a very basic proxy server on my Mac box on campus, so that I can have full access to subscription-based academic journals via the proxy on my laptop even when I am off campus.</description>
+      <description>My goal is to set up a very basic proxy server on my Mac box on campus, so that I can have full access to subscription-based academic journals via the proxy on my laptop even when I am off campus. Some schools provide such (library) proxies but my school unfortunately does not.</description>
     </item>
-    
     <item>
       <title>Formatting a USB Drive with ext4 for Use with Linux</title>
       <link>https://okomestudio.net/biboroku/2009/03/formatting-a-usb-drive-for-use-with-debian/</link>
       <pubDate>Fri, 27 Mar 2009 00:00:00 +0000</pubDate>
-      
       <guid>https://okomestudio.net/biboroku/2009/03/formatting-a-usb-drive-for-use-with-debian/</guid>
-      <description>I wish to use an external USB drive exclusively on a Linux system (in my case, Debian). I want to use the ext4 filesystem. Note that this method wipes out the filesystem on the drive.
-Install hotplug-type package such that upon plugging the USB drive in the device is attached to somewhere in the system.</description>
+      <description>I wish to use an external USB drive exclusively on a Linux system (in my case, Debian). I want to use the ext4 filesystem. Note that this method wipes out the filesystem on the drive.&#xA;Install hotplug-type package such that upon plugging the USB drive in the device is attached to somewhere in the system.</description>
     </item>
-    
   </channel>
 </rss>

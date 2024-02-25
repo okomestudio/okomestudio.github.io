@@ -28,6 +28,13 @@
   <meta name="description" content="Biboroku is a blog by Okome Studio">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
   <link rel="icon" href="https://okomestudio.net/favicon.ico">
   <link rel="stylesheet" href="/biboroku/css/normalize.css">
   <link rel="stylesheet" href="/biboroku/css/base.css">
@@ -83,11 +90,11 @@
 
   <div class="container">
   <header>
-  <h1 class="font-uni"><a href="https://okomestudio.net/biboroku">Biboroku</a></h1>
+  <h1 class="font-uni"><a href="https://okomestudio.net/biboroku/">Biboroku</a></h1>
   <nav>
     <ul class="nav navbar-nav font-uni">
       <li><a href="https://okomestudio.net">OkomeStudio.net</a></li>
-      <li><a href="https://okomestudio.net/biboroku/about">About</a></li>
+      <li><a href="https://okomestudio.net/biboroku//about">About</a></li>
     </ul>
   </nav>
 </header>
@@ -95,9 +102,15 @@
   
 	<main>
 		<article class="blog-post">
-			<h1>Installing ATLAS on Mac OS X Snow Leopard</h1>
+      <h1>Installing ATLAS on Mac OS X Snow Leopard</h1>
+      
+
       <p class="meta">
-        Written by Taro Sato
+        Written by
+        
+          Taro Sato
+        
+
         on <time>March 22, 2010</time>.
 	      Tagged:
         
@@ -107,56 +120,46 @@
 	      
       </p>
 			<div>
-				
-
-<h2 id="installing-from-fink">Installing from Fink</h2>
-
+				<h2 id="installing-from-fink">Installing from Fink</h2>
 <p>Do:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ fink install atlas atlas-shlibs</code></pre></div>
-<p>That’s it. They will be installed under <em>/sw/lib</em>.</p>
-
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ fink install atlas atlas-shlibs
+</span></span></code></pre></div><p>That’s it. They will be installed under <em>/sw/lib</em>.</p>
 <h2 id="installing-from-source-recommended-if-building-other-software-that-depends-on-atlas">Installing from Source (Recommended if Building Other Software That Depends on ATLAS)</h2>
-
 <p>First of all, I need a FORTRAN compiler, so <a href="https://okomestudio.net/biboroku?p=827">install
 it</a>. I recommend using the Mac
 installer from the GCC Wiki site, so that GFortran won’t end up having
 hard-to-track-down dependencies.</p>
-
 <p>I download tarballs for <a href="http://math-atlas.sourceforge.net/">ATLAS</a>
 and <a href="http://www.netlib.org/lapack/">LAPACK</a> from the official
 repositories. Here I use ATLAS 3.9.32 and LAPACK 3.3.0. I assume the
 compiled library and header files will be installed at
 <em>/usr/local/atlas</em>.</p>
-
 <p>Here is the procedure:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ mkdir tmp
-$ <span class="nb">cd</span> tmp
-$ wget http://www.netlib.org/lapack/lapack.tgz
-... download the tarball <span class="k">for</span> ATLAS from sourceforge ...
-$ tar -xvjf atlas3.9.32.tar.bz2
-$ mv ATLAS atlas-3.9.32
-$ ln -s atlas-3.9.32 atlas
-$ <span class="nb">cd</span> atlas
-$ mkdir bld
-$ <span class="nb">cd</span> bld
-$ ../configure -b <span class="m">64</span> --shared --prefix<span class="o">=</span>/usr/local/atlas-3.9.32 <span class="se">\
-</span><span class="se"></span>    --with-netlib-lapack-tarfile<span class="o">=</span>../../lapack.tgz
-$ make build</code></pre></div>
-<p>If I wish to do some checking, do:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ make check
-...
-$ make <span class="nb">time</span>
-...</code></pre></div>
-<p>(I may wish to compare the output with <em>doc/atlas_install.pdf</em>.)</p>
-
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ mkdir tmp
+</span></span><span class="line"><span class="cl">$ <span class="nb">cd</span> tmp
+</span></span><span class="line"><span class="cl">$ wget http://www.netlib.org/lapack/lapack.tgz
+</span></span><span class="line"><span class="cl">... download the tarball <span class="k">for</span> ATLAS from sourceforge ...
+</span></span><span class="line"><span class="cl">$ tar -xvjf atlas3.9.32.tar.bz2
+</span></span><span class="line"><span class="cl">$ mv ATLAS atlas-3.9.32
+</span></span><span class="line"><span class="cl">$ ln -s atlas-3.9.32 atlas
+</span></span><span class="line"><span class="cl">$ <span class="nb">cd</span> atlas
+</span></span><span class="line"><span class="cl">$ mkdir bld
+</span></span><span class="line"><span class="cl">$ <span class="nb">cd</span> bld
+</span></span><span class="line"><span class="cl">$ ../configure -b <span class="m">64</span> --shared --prefix<span class="o">=</span>/usr/local/atlas-3.9.32 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --with-netlib-lapack-tarfile<span class="o">=</span>../../lapack.tgz
+</span></span><span class="line"><span class="cl">$ make build
+</span></span></code></pre></div><p>If I wish to do some checking, do:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ make check
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">$ make <span class="nb">time</span>
+</span></span><span class="line"><span class="cl">...
+</span></span></code></pre></div><p>(I may wish to compare the output with <em>doc/atlas_install.pdf</em>.)</p>
 <p>If I don’t find any problem, do:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo make install
-$ sudo ln -s /usr/local/atlas-3.9.32 /usr/local/atlas</code></pre></div>
-<p>That’s it.</p>
-
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo make install
+</span></span><span class="line"><span class="cl">$ sudo ln -s /usr/local/atlas-3.9.32 /usr/local/atlas
+</span></span></code></pre></div><p>That’s it.</p>
 <h2 id="update-history">Update History</h2>
-
-<p>November 24, 2010 &#8211; Added the Fink section. Using the most
+<p>November 24, 2010 – Added the Fink section. Using the most
 recent versions of ATLAS and LAPACK. Made the install directory more
 explicit to the version installed.</p>
 
@@ -165,8 +168,8 @@ explicit to the version installed.</p>
 			
 			<div class="comments">
 				<div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
+<script>
+    window.disqus_config = function () {
     
     
     
@@ -197,6 +200,8 @@ explicit to the version installed.</p>
 		<div>
 			<ul>
 				
+				<li><a href="/biboroku/2024/02/snipping-transcripts-with-snipd/">Snipping Transcripts with Snipd</a></li>
+				
 				<li><a href="/biboroku/2020/05/attribute-access-with-dict/">Attribute Access with Dict</a></li>
 				
 				<li><a href="/biboroku/2020/04/on-lazy-logging-evaluation/">On Lazy Logging Evaluation</a></li>
@@ -204,8 +209,6 @@ explicit to the version installed.</p>
 				<li><a href="/biboroku/2016/04/installing-debianjessie-on-thinkpad-t460s/">Installing Debian/Jessie on ThinkPad T460s</a></li>
 				
 				<li><a href="/biboroku/2015/03/creating-a-debian-netinst-bootable-usb-stick-with-non-free-firmware/">Creating a Debian Bootable USB Stick with Non-Free Firmware</a></li>
-				
-				<li><a href="/biboroku/2014/11/install-google-chrome-on-debian-jessie/">Install Google Chrome on Debian Jessie</a></li>
 				
 			</ul>
 		</div>
@@ -215,8 +218,8 @@ explicit to the version installed.</p>
 
   <footer class="centered">
   <span class="font-uni larger-text">
-	  Copyright &copy; 2007 - 2020
-    <a href="https://okomestudio.net/biboroku">Biboroku</a>
+	  Copyright &copy; 2007 - 2024
+    <a href="https://okomestudio.net/biboroku/">Biboroku</a>
     by <a href="https://okomestudio.net">Okome Studio</a> / Taro Sato.
     All Rights Reserved.
   </span>

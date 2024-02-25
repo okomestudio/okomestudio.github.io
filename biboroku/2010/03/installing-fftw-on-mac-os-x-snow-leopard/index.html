@@ -28,6 +28,13 @@
   <meta name="description" content="Biboroku is a blog by Okome Studio">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
   <link rel="icon" href="https://okomestudio.net/favicon.ico">
   <link rel="stylesheet" href="/biboroku/css/normalize.css">
   <link rel="stylesheet" href="/biboroku/css/base.css">
@@ -83,11 +90,11 @@
 
   <div class="container">
   <header>
-  <h1 class="font-uni"><a href="https://okomestudio.net/biboroku">Biboroku</a></h1>
+  <h1 class="font-uni"><a href="https://okomestudio.net/biboroku/">Biboroku</a></h1>
   <nav>
     <ul class="nav navbar-nav font-uni">
       <li><a href="https://okomestudio.net">OkomeStudio.net</a></li>
-      <li><a href="https://okomestudio.net/biboroku/about">About</a></li>
+      <li><a href="https://okomestudio.net/biboroku//about">About</a></li>
     </ul>
   </nav>
 </header>
@@ -95,9 +102,15 @@
   
 	<main>
 		<article class="blog-post">
-			<h1>Installing FFTW on Mac OS X Snow Leopard</h1>
+      <h1>Installing FFTW on Mac OS X Snow Leopard</h1>
+      
+
       <p class="meta">
-        Written by Taro Sato
+        Written by
+        
+          Taro Sato
+        
+
         on <time>March 18, 2010</time>.
 	      Tagged:
         
@@ -107,43 +120,35 @@
 	      
       </p>
 			<div>
-				
-
-<p>No FORTRAN compiler appears to be included in Xcode, so I need to
+				<p>No FORTRAN compiler appears to be included in Xcode, so I need to
 install it if I haven’t done so. I <a href="https://okomestudio.net/biboroku/?p=827">installed
 GFortran</a>. In the configure
 statement below, set <code>F77</code> to <code>gfortran</code>.</p>
-
 <h3 id="installing-from-fink">Installing from Fink</h3>
-
 <p>For FFTW version 3.x, do:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ fink install fftw3 fftw3-shlibs</code></pre></div>
-<p>The library will be available under <em>/sw/lib</em>.</p>
-
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ fink install fftw3 fftw3-shlibs
+</span></span></code></pre></div><p>The library will be available under <em>/sw/lib</em>.</p>
 <h3 id="installing-from-source">Installing from Source</h3>
-
 <p>The version of <a href="http://www.fftw.org/">FFTW</a> we use here is
 <a href="http://www.fftw.org/fftw-3.2.2.tar.gz">3.2.2</a>. Follow this:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ mkdir tmp
-$ <span class="nb">cd</span> tmp
-$ wget http://www.fftw.org/fftw-3.2.2.tar.gz
-$ tar -xvzf fftw-3.2.2.tar.gz
-$ <span class="nb">cd</span> fftw-3.2.2
-$ ./configure --prefix<span class="o">=</span>/usr/local/fftw-3.2.2 --enable-threads <span class="se">\
-</span><span class="se"></span>    <span class="nv">CC</span><span class="o">=</span><span class="s2">&#34;gcc -arch i386 -arch x86_64&#34;</span> <span class="nv">CXX</span><span class="o">=</span><span class="s2">&#34;g++ -arch i386 -arch x86_64&#34;</span> <span class="se">\
-</span><span class="se"></span>    <span class="nv">CPP</span><span class="o">=</span><span class="s2">&#34;gcc -E&#34;</span> <span class="nv">CXXCPP</span><span class="o">=</span><span class="s2">&#34;g++ -E&#34;</span> <span class="nv">F77</span><span class="o">=</span>gfortran
-$ make
-$ sudo make install
-$ sudo ln -s /usr/local/fftw-3.2.2 /usr/local/fftw</code></pre></div>
-<p>This will install FFTW under <em>/usr/local/fftw-3.2.2</em>. If a single
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ mkdir tmp
+</span></span><span class="line"><span class="cl">$ <span class="nb">cd</span> tmp
+</span></span><span class="line"><span class="cl">$ wget http://www.fftw.org/fftw-3.2.2.tar.gz
+</span></span><span class="line"><span class="cl">$ tar -xvzf fftw-3.2.2.tar.gz
+</span></span><span class="line"><span class="cl">$ <span class="nb">cd</span> fftw-3.2.2
+</span></span><span class="line"><span class="cl">$ ./configure --prefix<span class="o">=</span>/usr/local/fftw-3.2.2 --enable-threads <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    <span class="nv">CC</span><span class="o">=</span><span class="s2">&#34;gcc -arch i386 -arch x86_64&#34;</span> <span class="nv">CXX</span><span class="o">=</span><span class="s2">&#34;g++ -arch i386 -arch x86_64&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    <span class="nv">CPP</span><span class="o">=</span><span class="s2">&#34;gcc -E&#34;</span> <span class="nv">CXXCPP</span><span class="o">=</span><span class="s2">&#34;g++ -E&#34;</span> <span class="nv">F77</span><span class="o">=</span>gfortran
+</span></span><span class="line"><span class="cl">$ make
+</span></span><span class="line"><span class="cl">$ sudo make install
+</span></span><span class="line"><span class="cl">$ sudo ln -s /usr/local/fftw-3.2.2 /usr/local/fftw
+</span></span></code></pre></div><p>This will install FFTW under <em>/usr/local/fftw-3.2.2</em>. If a single
 precision version also needs to be installed, add <code>--enable-single</code> to
 the configure statement above and do the configure/make/make install
 sequence again (it’s a good idea to run <strong><code>make clean</code></strong> before the
 second time around though).</p>
-
 <h2 id="update-history">Update History</h2>
-
-<p>November 24, 2010 &#8211; Added the Fink version. Changed the
+<p>November 24, 2010 – Added the Fink version. Changed the
 installation directory to <em>/usr/local/fftw</em> to avoid potential
 conflict later.</p>
 
@@ -152,8 +157,8 @@ conflict later.</p>
 			
 			<div class="comments">
 				<div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
+<script>
+    window.disqus_config = function () {
     
     
     
@@ -184,6 +189,8 @@ conflict later.</p>
 		<div>
 			<ul>
 				
+				<li><a href="/biboroku/2024/02/snipping-transcripts-with-snipd/">Snipping Transcripts with Snipd</a></li>
+				
 				<li><a href="/biboroku/2020/05/attribute-access-with-dict/">Attribute Access with Dict</a></li>
 				
 				<li><a href="/biboroku/2020/04/on-lazy-logging-evaluation/">On Lazy Logging Evaluation</a></li>
@@ -191,8 +198,6 @@ conflict later.</p>
 				<li><a href="/biboroku/2016/04/installing-debianjessie-on-thinkpad-t460s/">Installing Debian/Jessie on ThinkPad T460s</a></li>
 				
 				<li><a href="/biboroku/2015/03/creating-a-debian-netinst-bootable-usb-stick-with-non-free-firmware/">Creating a Debian Bootable USB Stick with Non-Free Firmware</a></li>
-				
-				<li><a href="/biboroku/2014/11/install-google-chrome-on-debian-jessie/">Install Google Chrome on Debian Jessie</a></li>
 				
 			</ul>
 		</div>
@@ -202,8 +207,8 @@ conflict later.</p>
 
   <footer class="centered">
   <span class="font-uni larger-text">
-	  Copyright &copy; 2007 - 2020
-    <a href="https://okomestudio.net/biboroku">Biboroku</a>
+	  Copyright &copy; 2007 - 2024
+    <a href="https://okomestudio.net/biboroku/">Biboroku</a>
     by <a href="https://okomestudio.net">Okome Studio</a> / Taro Sato.
     All Rights Reserved.
   </span>

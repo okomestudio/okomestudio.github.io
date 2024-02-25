@@ -28,6 +28,13 @@
   <meta name="description" content="Biboroku is a blog by Okome Studio">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
   <link rel="icon" href="https://okomestudio.net/favicon.ico">
   <link rel="stylesheet" href="/biboroku/css/normalize.css">
   <link rel="stylesheet" href="/biboroku/css/base.css">
@@ -83,11 +90,11 @@
 
   <div class="container">
   <header>
-  <h1 class="font-uni"><a href="https://okomestudio.net/biboroku">Biboroku</a></h1>
+  <h1 class="font-uni"><a href="https://okomestudio.net/biboroku/">Biboroku</a></h1>
   <nav>
     <ul class="nav navbar-nav font-uni">
       <li><a href="https://okomestudio.net">OkomeStudio.net</a></li>
-      <li><a href="https://okomestudio.net/biboroku/about">About</a></li>
+      <li><a href="https://okomestudio.net/biboroku//about">About</a></li>
     </ul>
   </nav>
 </header>
@@ -95,9 +102,15 @@
   
 	<main>
 		<article class="blog-post">
-			<h1>Installing Bruzual &amp; Charlot 2003 (GALAXEV) on Debian Squeeze</h1>
+      <h1>Installing Bruzual &amp; Charlot 2003 (GALAXEV) on Debian Squeeze</h1>
+      
+
       <p class="meta">
-        Written by Taro Sato
+        Written by
+        
+          Taro Sato
+        
+
         on <time>October 19, 2010</time>.
 	      Tagged:
         
@@ -113,62 +126,60 @@
 <code>csh</code> (I use Bash) and if <strong><code>g77</code></strong> is not available. Otherwise you
 can simply follow the installation procedure outlined in the official
 documentation file (i.e., <em>bc03/doc/bc03.ps.gz</em>).</p>
-
 <p>First, you definitely need csh and a FORTRAN compiler:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo apt-get install csh gfortran</code></pre></div>
-<p>Download from the <a href="http://www2.iap.fr/users/charlot/bc2003/galaxev_download.html">B&amp;C 2003
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo apt-get install csh gfortran
+</span></span></code></pre></div><p>Download from the <a href="http://www2.iap.fr/users/charlot/bc2003/galaxev_download.html">B&amp;C 2003
 website</a>
 the following tarballs (assuming here they are saved under
 <em>/usr/local/SED</em>):</p>
-<div class="highlight"><pre class="chroma">bc03.doc.tar.gz
-bc03.models.padova_1994_chabrier_imf.tar.gz
-bc03.models.padova_1994_salpeter_imf.tar.gz
-bc03.src.tar.gz
-bc03.templates.tar.gz</pre></div>
-<p>Uncompress and untar all these at once by</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="k">for</span> i in *.tar.gz<span class="p">;</span> <span class="k">do</span> tar -xvzf <span class="nv">$i</span><span class="p">;</span> <span class="k">done</span></code></pre></div>
-<p>This will create the directory <em>bc03</em> under <em>/usr/local/SED</em> and all
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">bc03.doc.tar.gz
+</span></span><span class="line"><span class="cl">bc03.models.padova_1994_chabrier_imf.tar.gz
+</span></span><span class="line"><span class="cl">bc03.models.padova_1994_salpeter_imf.tar.gz
+</span></span><span class="line"><span class="cl">bc03.src.tar.gz
+</span></span><span class="line"><span class="cl">bc03.templates.tar.gz
+</span></span></code></pre></div><p>Uncompress and untar all these at once by</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="k">for</span> i in *.tar.gz<span class="p">;</span> <span class="k">do</span> tar -xvzf <span class="nv">$i</span><span class="p">;</span> <span class="k">done</span>
+</span></span></code></pre></div><p>This will create the directory <em>bc03</em> under <em>/usr/local/SED</em> and all
 the subdirectories (<em>bc03/doc</em>, <em>bc03/models</em>, <em>bc03/src</em>,
 <em>bc03/templates</em>) should be filled with files.</p>
-
 <p>Unfortunately the setup file only exists for <code>csh</code>
 (<em>bc03/src/.bc_cshrc</em>), so you need to create one for yourself. Save
 the following to a file at <em>bc03/src/.bc_bash</em>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">export</span> <span class="nv">FILTERS</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$bc03</span><span class="s2">/FILTERBIN.RES&#34;</span>
-<span class="nb">export</span> <span class="nv">A0VSED</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$bc03</span><span class="s2">/A0V_KURUCZ_92.SED&#34;</span>
-<span class="nb">export</span> <span class="nv">RF_COLORS_ARRAYS</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$bc03</span><span class="s2">/RF_COLORS.filters&#34;</span>
-<span class="c1">####################################################</span>
-<span class="nb">alias</span>  <span class="nv">add</span><span class="o">=</span><span class="s1">&#39;csh $bc03/add_bursts.sh&#39;</span>
-<span class="nb">alias</span>  <span class="nv">csp</span><span class="o">=</span><span class="s1">&#39;csh $bc03/csp_galaxev.sh&#39;</span>
-<span class="nb">alias</span>  <span class="nv">vdisp</span><span class="o">=</span><span class="s1">&#39;csh $bc03/vel_disp.sh&#39;</span>
-<span class="nb">alias</span>  <span class="nv">cmev</span><span class="o">=</span><span class="s1">&#39;csh $bc03/cm_evolution.sh&#39;</span>
-<span class="nb">alias</span>  <span class="nv">dgr</span><span class="o">=</span><span class="s1">&#39;csh $bc03/downgrade_resolution.sh&#39;</span>
-<span class="nb">alias</span>  <span class="nv">gpl</span><span class="o">=</span><span class="s1">&#39;$bc03/galaxevpl&#39;</span>
-<span class="nb">alias</span>  <span class="nv">zmag</span><span class="o">=</span><span class="s1">&#39;$bc03/zmag&#39;</span></code></pre></div>
-<p>(This file is actually provided by default in C&amp;B 2007, which you
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">FILTERS</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$bc03</span><span class="s2">/FILTERBIN.RES&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">A0VSED</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$bc03</span><span class="s2">/A0V_KURUCZ_92.SED&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">RF_COLORS_ARRAYS</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$bc03</span><span class="s2">/RF_COLORS.filters&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">####################################################</span>
+</span></span><span class="line"><span class="cl"><span class="nb">alias</span>  <span class="nv">add</span><span class="o">=</span><span class="s1">&#39;csh $bc03/add_bursts.sh&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">alias</span>  <span class="nv">csp</span><span class="o">=</span><span class="s1">&#39;csh $bc03/csp_galaxev.sh&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">alias</span>  <span class="nv">vdisp</span><span class="o">=</span><span class="s1">&#39;csh $bc03/vel_disp.sh&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">alias</span>  <span class="nv">cmev</span><span class="o">=</span><span class="s1">&#39;csh $bc03/cm_evolution.sh&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">alias</span>  <span class="nv">dgr</span><span class="o">=</span><span class="s1">&#39;csh $bc03/downgrade_resolution.sh&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">alias</span>  <span class="nv">gpl</span><span class="o">=</span><span class="s1">&#39;$bc03/galaxevpl&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">alias</span>  <span class="nv">zmag</span><span class="o">=</span><span class="s1">&#39;$bc03/zmag&#39;</span>
+</span></span></code></pre></div><p>(This file is actually provided by default in C&amp;B 2007, which you
 should be using instead of the 2003 version.) Furthermore, you need to
 modify a line in <em>bc03/src/Makefile</em> to use gfortran instead of
 <strong><code>g77</code></strong>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1">#FC = g77 -ffixed-line-length-132  # comment out this line and add:</span>
-<span class="nv">FC</span> <span class="o">=</span> gfortran -ffixed-line-length-none</code></pre></div>
-<p>Then compile the programs:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nv">bc03</span><span class="o">=</span>/usr/local/SED/bc03/src
-$ <span class="nb">cd</span> <span class="nv">$bc03</span>
-$ . .bc_bash
-$ make all</code></pre></div>
-<p>Add the following lines to <em>~/.bashrc</em> and all the commands for
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#FC = g77 -ffixed-line-length-132  # comment out this line and add:</span>
+</span></span><span class="line"><span class="cl"><span class="nv">FC</span> <span class="o">=</span> gfortran -ffixed-line-length-none
+</span></span></code></pre></div><p>Then compile the programs:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ <span class="nv">bc03</span><span class="o">=</span>/usr/local/SED/bc03/src
+</span></span><span class="line"><span class="cl">$ <span class="nb">cd</span> <span class="nv">$bc03</span>
+</span></span><span class="line"><span class="cl">$ . .bc_bash
+</span></span><span class="line"><span class="cl">$ make all
+</span></span></code></pre></div><p>Add the following lines to <em>~/.bashrc</em> and all the commands for
 GALAXEV will be available (as aliases):</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">export</span> <span class="nv">bc03</span><span class="o">=</span>/usr/local/SED/bc03/src
-. <span class="nv">$bc03</span>/.bc_bash</code></pre></div>
-<p>That’s it.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">bc03</span><span class="o">=</span>/usr/local/SED/bc03/src
+</span></span><span class="line"><span class="cl">. <span class="nv">$bc03</span>/.bc_bash
+</span></span></code></pre></div><p>That’s it.</p>
 
 			</div>
 
 			
 			<div class="comments">
 				<div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
+<script>
+    window.disqus_config = function () {
     
     
     
@@ -199,6 +210,8 @@ GALAXEV will be available (as aliases):</p>
 		<div>
 			<ul>
 				
+				<li><a href="/biboroku/2024/02/snipping-transcripts-with-snipd/">Snipping Transcripts with Snipd</a></li>
+				
 				<li><a href="/biboroku/2020/05/attribute-access-with-dict/">Attribute Access with Dict</a></li>
 				
 				<li><a href="/biboroku/2020/04/on-lazy-logging-evaluation/">On Lazy Logging Evaluation</a></li>
@@ -206,8 +219,6 @@ GALAXEV will be available (as aliases):</p>
 				<li><a href="/biboroku/2016/04/installing-debianjessie-on-thinkpad-t460s/">Installing Debian/Jessie on ThinkPad T460s</a></li>
 				
 				<li><a href="/biboroku/2015/03/creating-a-debian-netinst-bootable-usb-stick-with-non-free-firmware/">Creating a Debian Bootable USB Stick with Non-Free Firmware</a></li>
-				
-				<li><a href="/biboroku/2014/11/install-google-chrome-on-debian-jessie/">Install Google Chrome on Debian Jessie</a></li>
 				
 			</ul>
 		</div>
@@ -217,8 +228,8 @@ GALAXEV will be available (as aliases):</p>
 
   <footer class="centered">
   <span class="font-uni larger-text">
-	  Copyright &copy; 2007 - 2020
-    <a href="https://okomestudio.net/biboroku">Biboroku</a>
+	  Copyright &copy; 2007 - 2024
+    <a href="https://okomestudio.net/biboroku/">Biboroku</a>
     by <a href="https://okomestudio.net">Okome Studio</a> / Taro Sato.
     All Rights Reserved.
   </span>

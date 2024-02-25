@@ -28,6 +28,13 @@
   <meta name="description" content="Biboroku is a blog by Okome Studio">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
   <link rel="icon" href="https://okomestudio.net/favicon.ico">
   <link rel="stylesheet" href="/biboroku/css/normalize.css">
   <link rel="stylesheet" href="/biboroku/css/base.css">
@@ -83,11 +90,11 @@
 
   <div class="container">
   <header>
-  <h1 class="font-uni"><a href="https://okomestudio.net/biboroku">Biboroku</a></h1>
+  <h1 class="font-uni"><a href="https://okomestudio.net/biboroku/">Biboroku</a></h1>
   <nav>
     <ul class="nav navbar-nav font-uni">
       <li><a href="https://okomestudio.net">OkomeStudio.net</a></li>
-      <li><a href="https://okomestudio.net/biboroku/about">About</a></li>
+      <li><a href="https://okomestudio.net/biboroku//about">About</a></li>
     </ul>
   </nav>
 </header>
@@ -95,9 +102,15 @@
   
 	<main>
 		<article class="blog-post">
-			<h1>Interpreting A/B Test using Python</h1>
+      <h1>Interpreting A/B Test using Python</h1>
+      
+
       <p class="meta">
-        Written by Taro Sato
+        Written by
+        
+          Taro Sato
+        
+
         on <time>May 12, 2014</time>.
 	      Tagged:
         
@@ -109,44 +122,17 @@
 	      
       </p>
 			<div>
-				
-
-<p>Suppose we ran an A/B test with two different versions of a web page,
+				<p>Suppose we ran an A/B test with two different versions of a web page,
 <code>$a$</code> and <code>$b$</code>, for which we count the number of visitors and
 whether they convert or not. We can summarize this in a contingency
 table showing the frequency distribution of the events:</p>
-
-<table>
-  <thead>
-    <tr>
-      <th></th>
-      <th>not converted (\( f \))</th>
-      <th> converted (\( t \))</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>\( a \)</th>
-      <td>4514</td>
-      <td>486</td>
-    </tr>
-    <tr>
-      <th>\( b \)</th>
-      <td>4473</td>
-      <td>527</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>It is trivial to compute the conversion rate of each version, <code>$486
-/ (486 + 4514 ) = 9.72 \%$</code> for <code>$a$</code> and <code>$10.5 \%$</code> for
+<!-- raw HTML omitted -->
+<p>It is trivial to compute the conversion rate of each version, <code>$486 / (486 + 4514 ) = 9.72 \%$</code> for <code>$a$</code> and <code>$10.5 \%$</code> for
 <code>$b$</code>. With such a relatively small difference, however, can we
 convincingly say that the version <code>$b$</code> converts better? To test
 the <em>statistical significance</em> of a result like this, a
 hypothesis testing can be used.</p>
-
 <h2 id="background">Background</h2>
-
 <p>An appropriate hypothesis test here is <em>Pearson&rsquo;s chi-squared
 test</em>. There are two types of the chi-squared test, the goodness of
 fit and the test of independence, but it is the latter which is useful
@@ -154,34 +140,11 @@ for the case in question. The reason as to why a test of
 “independence” is applicable becomes clear by converting the
 contingency table into a probability matrix by dividing each element
 by the grand total of frequencies:</p>
-
-<table>
-  <thead>
-    <tr>
-      <th></th>
-      <th>not converted (\( f \))</th>
-      <th> converted (\( t \))</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>\( a \)</th>
-      <td>\( P(V = a, C = f) = 0.4514 \)</td>
-      <td>\( P(V = a, C = t) = 0.0486 \)</td>
-    </tr>
-    <tr>
-      <th>\( b \)</th>
-      <td>\( P(V = b, C = f) = 0.4473 \)</td>
-      <td>\( P(V = b, C = t) = 0.0527 \)</td>
-    </tr>
-  </tbody>
-</table>
-
+<!-- raw HTML omitted -->
 <p>A table like this is sometimes called <em>correspondence matrix</em>. Here,
 the table consists of joint probabilities where <code>$V$</code> is the
 version of the web page (<code>$a$</code> or <code>$b$</code>) and <code>$C$</code> is the
 conversion result (<code>$f$</code> or <code>$t$</code>).</p>
-
 <p>Now, our interest is whether the conversion <code>$C$</code> depends on the
 page version <code>$V$</code>, and if it does, to learn which version
 converts better. In probability theory, the events <code>$C$</code> and
@@ -190,56 +153,22 @@ computed by <code>$P(V, C) = P(V)P(C)$</code>, where <code>$P(V)$</code> and
 <code>$P(C)$</code> are marginal probabilities of <code>$V$</code> and <code>$C$</code>,
 respectively. It is straightforward to compute the marginal
 probabilities from row and column marginals:</p>
-
-<p><code>\begin{eqnarray}
-P(V=a) &amp;=&amp; \frac{4514 + 486}{10000} \nonumber \\
-P(V=b) &amp;=&amp; \frac{4473 + 527}{10000} \nonumber \\
-P(C=f) &amp;=&amp; \frac{4514 + 4473}{10000} \nonumber \\
-P(C=t) &amp;=&amp; \frac{486 + 527}{10000} \nonumber
-\end{eqnarray}</code></p>
-
+<p><code>\begin{eqnarray} P(V=a) &amp;=&amp; \frac{4514 + 486}{10000} \nonumber \\ P(V=b) &amp;=&amp; \frac{4473 + 527}{10000} \nonumber \\ P(C=f) &amp;=&amp; \frac{4514 + 4473}{10000} \nonumber \\ P(C=t) &amp;=&amp; \frac{486 + 527}{10000} \nonumber \end{eqnarray}</code></p>
 <p>where <code>$10,000$</code> is the grand total of all the elements. The null
 hypothesis (i.e., a neutral hypothesis in which the effect we seek is
 absent) is that <code>$V$</code> and <code>$C$</code> are independent, in which case
 the elements of the matrix are equivalent to</p>
-
-<table>
-  <thead>
-    <tr>
-      <th></th>
-      <th>not converted (\( f \))</th>
-      <th>converted (\( t \))</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>\( a \)</th>
-      <td>\( P(V=a) P(C=f) \)</td>
-      <td>\( P(V=a) P(C=t) \)</td>
-    </tr>
-    <tr>
-      <th>\( b \)</th>
-      <td>\( P(V=b) P(C=f) \)</td>
-      <td>\( P(V=b) P(C=t) \)</td>
-    </tr>
-  </tbody>
-</table>
-
+<!-- raw HTML omitted -->
 <p>The conversion <code>$C$</code> is said to be dependent on the version <code>$V$</code>
 of the web site if this null hypothesis is rejected. Hence
 rejecting the null hypothesis means that one version is better at
 converting than the other. This is the reason why the test is on
 independence.</p>
-
 <p>The <em>chi-squared test</em> compares an observed distribution <code>$O_{ij}$</code>
 to an expected distribution <code>$E_{ij}$</code></p>
-
-<p><code>\[
-  \chi^2 = \sum_{i, j} \frac{(O_{ij} - E_{ij})^2}{E_{ij}} \ ,
-\]</code></p>
-
+<p><code>\[ \chi^2 = \sum_{i, j} \frac{(O_{ij} - E_{ij})^2}{E_{ij}} \ , \]</code></p>
 <p>where <code>$i$</code> and <code>$j$</code> are the row and column indices of the
-matrix.<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup> The values of <code>$E\_{ij}$</code> are computed from <code>$P(V=i)$</code>
+matrix.<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> The values of <code>$E\_{ij}$</code> are computed from <code>$P(V=i)$</code>
 and <code>$P(C=j)$</code>. The <code>$\chi^2$</code> statistic thus obtained is
 now compared to the distribution assumed in the null hypothesis, and
 to do this we need to find the degree of freedom (dof) which is the
@@ -252,49 +181,37 @@ by one because the last entry in the matrix is determined by either
 the row or column sum on that row/column and therefore
 degenerate. Hence the dof for the test of independence comes out to be
 <code>$(r - 1)(c - 1)$</code>.</p>
-
 <h2 id="python-implementation">Python Implementation</h2>
-
 <p>Fortunately it is very straightforward to carry out this hypothesis
 testing using <code>scipy.stats.chi2_contingency</code>. All we need is to supply
 the function with a contingency matrix and it will return the
 <code>$\chi^2$</code> statistic and the corresponding <code>$p$</code>-value:</p>
-
-<script src="https://gist.github.com/okomestudio/878b44714833d7a14768.js"></script>
-
+<!-- raw HTML omitted -->
 <p>The result for the original table (of <code>$n = 10,000$</code>) is
 <code>$\chi^2 = 1.76$</code> and <code>$p = 0.185$</code>. Since the <code>$p$</code>-value is
 greater than the standard threshold <code>$0.05$</code>, we cannot reject the
 null hypothesis that the page version and the conversion is
 independent. Therefore the difference in the conversion rates cited in
 the beginning of this article is not statistically significant.</p>
-
 <p>What if we keep running the same A/B test a bit longer, until we
 accumulate <code>$n = 40,000$</code> visitors? Using example data
-(<em>n40000.csv</em>), we have the conversion rates of <code>$2002 / 20000 = 10.0
-\%$</code> for version <code>$a$</code> and <code>$2258 / 20000 = 11.3 \%$</code> for
+(<em>n40000.csv</em>), we have the conversion rates of <code>$2002 / 20000 = 10.0 \%$</code> for version <code>$a$</code> and <code>$2258 / 20000 = 11.3 \%$</code> for
 version <code>$b$</code>. Running the same test on the new data yields
-<code>$\chi^2 = 17.1$</code> and <code>$p = 3.58 \times 10^{-5}$</code>. Since <code>$p \ll
-0.05$</code>, the difference we see in the conversion rates is
+<code>$\chi^2 = 17.1$</code> and <code>$p = 3.58 \times 10^{-5}$</code>. Since <code>$p \ll 0.05$</code>, the difference we see in the conversion rates is
 statistically significant this time. This is a demonstration of how a
 bigger sample helps to see a tiny difference. (The example data used
 in this article are generated assuming the true conversion rates of <code>$10 \%$</code>
 for <code>$a$</code> and <code>$11 \%$</code> for <code>$b$</code>.)</p>
-<div class="footnotes">
-
-<hr />
-
+<div class="footnotes" role="doc-endnotes">
+<hr>
 <ol>
-<li id="fn:1"><p>For a 2 x 2 contingency table, <em>Yate’s chi-squared test</em> is commonly
+<li id="fn:1">
+<p>For a 2 x 2 contingency table, <em>Yate’s chi-squared test</em> is commonly
 used. This applies a correction of the form</p>
-
-<p><code>\[
-  \chi^2_{\rm Yate's} = \sum_{ij} \frac{(|O_{ij} - E_{ij}| - 0.5)^2}{E_{ij}}
-\]</code></p>
-
+<p><code>\[ \chi^2_{\rm Yate's} = \sum_{ij} \frac{(|O_{ij} - E_{ij}| - 0.5)^2}{E_{ij}} \]</code></p>
 <p>to account for an error between the observed discrete distribution and
-the continuous chi-squared distribution.</p>
- <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
+the continuous chi-squared distribution.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
 </ol>
 </div>
 
@@ -303,8 +220,8 @@ the continuous chi-squared distribution.</p>
 			
 			<div class="comments">
 				<div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
+<script>
+    window.disqus_config = function () {
     
     
     
@@ -335,6 +252,8 @@ the continuous chi-squared distribution.</p>
 		<div>
 			<ul>
 				
+				<li><a href="/biboroku/2024/02/snipping-transcripts-with-snipd/">Snipping Transcripts with Snipd</a></li>
+				
 				<li><a href="/biboroku/2020/05/attribute-access-with-dict/">Attribute Access with Dict</a></li>
 				
 				<li><a href="/biboroku/2020/04/on-lazy-logging-evaluation/">On Lazy Logging Evaluation</a></li>
@@ -342,8 +261,6 @@ the continuous chi-squared distribution.</p>
 				<li><a href="/biboroku/2016/04/installing-debianjessie-on-thinkpad-t460s/">Installing Debian/Jessie on ThinkPad T460s</a></li>
 				
 				<li><a href="/biboroku/2015/03/creating-a-debian-netinst-bootable-usb-stick-with-non-free-firmware/">Creating a Debian Bootable USB Stick with Non-Free Firmware</a></li>
-				
-				<li><a href="/biboroku/2014/11/install-google-chrome-on-debian-jessie/">Install Google Chrome on Debian Jessie</a></li>
 				
 			</ul>
 		</div>
@@ -353,8 +270,8 @@ the continuous chi-squared distribution.</p>
 
   <footer class="centered">
   <span class="font-uni larger-text">
-	  Copyright &copy; 2007 - 2020
-    <a href="https://okomestudio.net/biboroku">Biboroku</a>
+	  Copyright &copy; 2007 - 2024
+    <a href="https://okomestudio.net/biboroku/">Biboroku</a>
     by <a href="https://okomestudio.net">Okome Studio</a> / Taro Sato.
     All Rights Reserved.
   </span>

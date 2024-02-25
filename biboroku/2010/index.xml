@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>2010s on Biboroku</title>
@@ -7,139 +7,97 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 14 Dec 2010 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://okomestudio.net/biboroku/2010/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <atom:link href="https://okomestudio.net/biboroku/2010/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Installing Debian Squeeze from Hard Disk</title>
       <link>https://okomestudio.net/biboroku/2010/12/installing-debian-squeeze-from-hard-disk/</link>
       <pubDate>Tue, 14 Dec 2010 00:00:00 +0000</pubDate>
-      
       <guid>https://okomestudio.net/biboroku/2010/12/installing-debian-squeeze-from-hard-disk/</guid>
       <description>Unfortunately the Debian installer does not work on my Dell desktop box. I still wanted to do a fresh install of Squeeze, and the only sensible option for me was to install off hard disk. I have been having the same issue for several months and I have not been able to solve it myself, and nobody responds to my bug report; however, this hard drive method may work well even if I have a working install USB stick/CD media.</description>
     </item>
-    
     <item>
       <title>Installing F.lux on Debian Squeeze</title>
       <link>https://okomestudio.net/biboroku/2010/11/installing-f-lux-on-debian-squeeze/</link>
       <pubDate>Sat, 20 Nov 2010 00:00:00 +0000</pubDate>
-      
       <guid>https://okomestudio.net/biboroku/2010/11/installing-f-lux-on-debian-squeeze/</guid>
-      <description>In another feeble attempt to become a “morning person,” I’ve decided to follow the usual advice that I should not be looking at bright LCD screen at night to help myself going into the “sleep mode.”
-Hence F.lux.
-I want it to launch automatically at the start of a KDE session.</description>
+      <description>In another feeble attempt to become a “morning person,” I’ve decided to follow the usual advice that I should not be looking at bright LCD screen at night to help myself going into the “sleep mode.”&#xA;Hence F.lux.&#xA;I want it to launch automatically at the start of a KDE session.</description>
     </item>
-    
     <item>
       <title>Installing Bruzual &amp; Charlot 2003 (GALAXEV) on Debian Squeeze</title>
       <link>https://okomestudio.net/biboroku/2010/10/installing-bruzual-charlot-2003-galaxev-on-debian-squeeze/</link>
       <pubDate>Tue, 19 Oct 2010 00:00:00 +0000</pubDate>
-      
       <guid>https://okomestudio.net/biboroku/2010/10/installing-bruzual-charlot-2003-galaxev-on-debian-squeeze/</guid>
-      <description>The installation procedure is confusing only if you are not using csh (I use Bash) and if g77 is not available. Otherwise you can simply follow the installation procedure outlined in the official documentation file (i.e., bc03/doc/bc03.ps.gz).
-First, you definitely need csh and a FORTRAN compiler:</description>
+      <description>The installation procedure is confusing only if you are not using csh (I use Bash) and if g77 is not available. Otherwise you can simply follow the installation procedure outlined in the official documentation file (i.e., bc03/doc/bc03.ps.gz).&#xA;First, you definitely need csh and a FORTRAN compiler:</description>
     </item>
-    
     <item>
       <title>Testing if a Point is Inside a Polygon in Python</title>
       <link>https://okomestudio.net/biboroku/2010/06/testing-if-a-point-is-inside-a-polygon-in-python/</link>
       <pubDate>Thu, 24 Jun 2010 00:00:00 +0000</pubDate>
-      
       <guid>https://okomestudio.net/biboroku/2010/06/testing-if-a-point-is-inside-a-polygon-in-python/</guid>
-      <description>Finally got around to find this out by Googling. It’s a useful function so I reproduce it here for copy &amp;amp; paste:
-def inside_polygon(x, y, points): &amp;#34;&amp;#34;&amp;#34; Return True if a coordinate (x, y) is inside a polygon defined by the list of verticies [(x1, y1), (x2, y2), .</description>
+      <description>Finally got around to find this out by Googling. It’s a useful function so I reproduce it here for copy &amp;amp; paste:&#xA;def inside_polygon(x, y, points): &amp;#34;&amp;#34;&amp;#34; Return True if a coordinate (x, y) is inside a polygon defined by the list of verticies [(x1, y1), (x2, y2), .</description>
     </item>
-    
     <item>
       <title>Installing Kindle for PC on Debian Squeeze</title>
       <link>https://okomestudio.net/biboroku/2010/06/installing-kindle-for-pc-on-debian-squeeze/</link>
       <pubDate>Fri, 11 Jun 2010 00:00:00 +0000</pubDate>
-      
       <guid>https://okomestudio.net/biboroku/2010/06/installing-kindle-for-pc-on-debian-squeeze/</guid>
-      <description>I sometimes want to run Kindle for PC on Wine. Amazon is so lame that they don’t even bother making a native Linux version of this software!
-Here is the procedure. Move to a temporary directory and do:
-$ sudo aptitude install wine lib32nss-mdns cabextract bzip2 $ wget http://www.</description>
+      <description>I sometimes want to run Kindle for PC on Wine. Amazon is so lame that they don’t even bother making a native Linux version of this software!&#xA;Here is the procedure. Move to a temporary directory and do:&#xA;$ sudo aptitude install wine lib32nss-mdns cabextract bzip2 $ wget http://www.</description>
     </item>
-    
     <item>
       <title>Installing Debian Squeeze (AMD64) on Lenovo T410s</title>
       <link>https://okomestudio.net/biboroku/2010/06/installing-debian-squeeze-amd64-on-lenovo-t410s/</link>
       <pubDate>Tue, 01 Jun 2010 00:00:00 +0000</pubDate>
-      
       <guid>https://okomestudio.net/biboroku/2010/06/installing-debian-squeeze-amd64-on-lenovo-t410s/</guid>
-      <description>So far the only thing that I do not like about T410s is its short battery life. I can only get 2 to 3 hours out of “standard” usage. Hopefully this will improve as I tweak things more.
-To Begin With: A Problem Unfortunately I had a major issue with my T410s recently (November 17, 2010).</description>
+      <description>So far the only thing that I do not like about T410s is its short battery life. I can only get 2 to 3 hours out of “standard” usage. Hopefully this will improve as I tweak things more.&#xA;To Begin With: A Problem Unfortunately I had a major issue with my T410s recently (November 17, 2010).</description>
     </item>
-    
     <item>
       <title>Installing ATLAS on Mac OS X Snow Leopard</title>
       <link>https://okomestudio.net/biboroku/2010/03/installing-atlas-on-mac-os-x-snow-leopard/</link>
       <pubDate>Mon, 22 Mar 2010 00:00:00 +0000</pubDate>
-      
       <guid>https://okomestudio.net/biboroku/2010/03/installing-atlas-on-mac-os-x-snow-leopard/</guid>
-      <description>Installing from Fink Do:
-$ fink install atlas atlas-shlibs That’s it. They will be installed under /sw/lib.
-Installing from Source (Recommended if Building Other Software That Depends on ATLAS) First of all, I need a FORTRAN compiler, so install it.</description>
+      <description>Installing from Fink Do:&#xA;$ fink install atlas atlas-shlibs That’s it. They will be installed under /sw/lib.&#xA;Installing from Source (Recommended if Building Other Software That Depends on ATLAS) First of all, I need a FORTRAN compiler, so install it. I recommend using the Mac installer from the GCC Wiki site, so that GFortran won’t end up having hard-to-track-down dependencies.</description>
     </item>
-    
     <item>
       <title>Installing GFortran on Mac OS X Snow Leopard</title>
       <link>https://okomestudio.net/biboroku/2010/03/installing-gfortran-on-mac-os-x-snow-leopard/</link>
       <pubDate>Mon, 22 Mar 2010 00:00:00 +0000</pubDate>
-      
       <guid>https://okomestudio.net/biboroku/2010/03/installing-gfortran-on-mac-os-x-snow-leopard/</guid>
       <description>Installing from GFortran Wiki (My Current Preferred Way) GCC Wiki has a link to Mac OS X installer. As the command gfortran will be installed at /usr/local/gfortran and causes less interference with other libraries and software, this is my preferred way.</description>
     </item>
-    
     <item>
       <title>Installing SExtractor on Mac OS X Snow Leopard</title>
       <link>https://okomestudio.net/biboroku/2010/03/installing-sextractor-on-mac-os-x-snow-leopard/</link>
       <pubDate>Mon, 22 Mar 2010 00:00:00 +0000</pubDate>
-      
       <guid>https://okomestudio.net/biboroku/2010/03/installing-sextractor-on-mac-os-x-snow-leopard/</guid>
       <description>(November 25, 2010) I screwed up SExtractor installation for no reason and in an attempt to fix it, I’ve found a few things. After wasting a few hours again, I think this installation note can work for most people who can actually build software from source&amp;hellip; I think the usefulness of this note will be limited though, as a new release of SExtractor appears imminent.</description>
     </item>
-    
     <item>
       <title>Installing Squid Proxy Server on Mac OS X Snow Leopard</title>
       <link>https://okomestudio.net/biboroku/2010/03/installing-squid-proxy-server-on-mac-os-x-snow-leopard/</link>
       <pubDate>Mon, 22 Mar 2010 00:00:00 +0000</pubDate>
-      
       <guid>https://okomestudio.net/biboroku/2010/03/installing-squid-proxy-server-on-mac-os-x-snow-leopard/</guid>
-      <description>My goal is to set up a very basic proxy server on my Mac box on campus, so that I can have full access to subscription-based academic journals via the proxy on my laptop even when I am off campus.</description>
+      <description>My goal is to set up a very basic proxy server on my Mac box on campus, so that I can have full access to subscription-based academic journals via the proxy on my laptop even when I am off campus. Some schools provide such (library) proxies but my school unfortunately does not.</description>
     </item>
-    
     <item>
       <title>Customizing &amp; Installing Linux Kernel on Debian Squeeze</title>
       <link>https://okomestudio.net/biboroku/2010/03/customizing-installing-linux-kernel-on-debian-squeeze/</link>
       <pubDate>Sun, 21 Mar 2010 00:00:00 +0000</pubDate>
-      
       <guid>https://okomestudio.net/biboroku/2010/03/customizing-installing-linux-kernel-on-debian-squeeze/</guid>
-      <description>Here is a quickie for customizing and install Linux kernel 2.6.x on Squeeze.
-Install some packages and kernel source:
-$ sudo aptitude update $ sudo aptitude install kernel-package bzip2 g++ libqt3-mt-dev libncurses5-dev sudo fakeroot If you do not belong to group &amp;#8220;src&amp;#8221;, add yourself to the group as we work under /usr/src:</description>
+      <description>Here is a quickie for customizing and install Linux kernel 2.6.x on Squeeze.&#xA;Install some packages and kernel source:&#xA;$ sudo aptitude update $ sudo aptitude install kernel-package bzip2 g++ libqt3-mt-dev libncurses5-dev sudo fakeroot If you do not belong to group “src”, add yourself to the group as we work under /usr/src:</description>
     </item>
-    
     <item>
       <title>Installing FFTW on Mac OS X Snow Leopard</title>
       <link>https://okomestudio.net/biboroku/2010/03/installing-fftw-on-mac-os-x-snow-leopard/</link>
       <pubDate>Thu, 18 Mar 2010 00:00:00 +0000</pubDate>
-      
       <guid>https://okomestudio.net/biboroku/2010/03/installing-fftw-on-mac-os-x-snow-leopard/</guid>
-      <description>No FORTRAN compiler appears to be included in Xcode, so I need to install it if I haven’t done so. I installed GFortran. In the configure statement below, set F77 to gfortran.
-Installing from Fink For FFTW version 3.x, do:</description>
+      <description>No FORTRAN compiler appears to be included in Xcode, so I need to install it if I haven’t done so. I installed GFortran. In the configure statement below, set F77 to gfortran.&#xA;Installing from Fink For FFTW version 3.x, do:</description>
     </item>
-    
     <item>
       <title>Installing HOTPANTS 5.1.10 on Mac OS X Leopard</title>
       <link>https://okomestudio.net/biboroku/2010/03/installing-hotpants-5-1-10-on-mac-os-x-leopard/</link>
       <pubDate>Wed, 10 Mar 2010 00:00:00 +0000</pubDate>
-      
       <guid>https://okomestudio.net/biboroku/2010/03/installing-hotpants-5-1-10-on-mac-os-x-leopard/</guid>
-      <description>You must love the name, but what the software does is far from sultry; it’s a piece of geekware.
-Anyways, I needed to edit files when I install HOTPANTS, photometric alignment utility by Andrew Becker. Here is my installation note before I forget.</description>
+      <description>You must love the name, but what the software does is far from sultry; it’s a piece of geekware.&#xA;Anyways, I needed to edit files when I install HOTPANTS, photometric alignment utility by Andrew Becker. Here is my installation note before I forget.</description>
     </item>
-    
   </channel>
 </rss>
