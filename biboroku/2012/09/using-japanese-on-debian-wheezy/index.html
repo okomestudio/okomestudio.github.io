@@ -108,51 +108,43 @@
       <p class="meta">
         Written by
         
-          Taro Sato
+          
+            Taro Sato,
+          
         
 
         on <time>September 21, 2012</time>.
 	      Tagged:
         
-	      <a href="/biboroku/tags/sysadmin">sysadmin</a>
+	      <a href="/biboroku/tags/linux">linux</a>
 	      
-	      <a href="/biboroku/tags/linux">Linux</a>
+	      <a href="/biboroku/tags/sysadmin">sysadmin</a>
 	      
       </p>
 			<div>
-				<p>The goal is to make the system capable for Japanese input, while
-letting the base system remain English.  For the Japanese input
-method, I had been using <a href="http://anthy.sourceforge.jp/">Anthy</a>, but I
-will be using <a href="http://code.google.com/p/mozc/">mozc</a>, which is now
-better supported and presumably much better (it is).</p>
-<p>First, set up locales and install <strong><code>im-config</code></strong>. In addition to
-my base English locale (<em>en_US.UTF-8</em>), install Japnese locales
-<em>ja_JP.EUC-JP</em> and <em>ja_JP.UTF-8</em>:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo aptitude install locales im-config
+				<p>The goal is to make the system capable for Japanese input, while letting the base system remain English. For the Japanese input method, I had been using <a href="http://anthy.sourceforge.jp/">Anthy</a>, but I will be using <a href="http://code.google.com/p/mozc/">mozc</a>, which is now better supported and presumably much better (it is).</p>
+<p>First, set up locales and install <strong><code>im-config</code></strong>. In addition to my base English locale (<em>en_US.UTF-8</em>), install Japnese locales <em>ja_JP.EUC-JP</em> and <em>ja_JP.UTF-8</em>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ sudo aptitude install locales im-config
 </span></span><span class="line"><span class="cl">$ sudo dpkg-reconfigure locales
 </span></span></code></pre></div><p>Set the default locale for the system to <em>en_US.UTF-8</em>.</p>
 <p>Install some Japanese fonts:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo aptitude install ttf-kochi-mincho ttf-kochi-gothic ttf-sazanami-mincho
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ sudo aptitude install ttf-kochi-mincho ttf-kochi-gothic ttf-sazanami-mincho
 </span></span></code></pre></div><h2 id="ibus">IBus</h2>
 <p>Install <a href="http://code.google.com/p/ibus/">IBus</a>-related packages and configure for KDE:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo aptitude install ibus ibus-mozc ibus-qt4 ibus-gtk ibus-gtk3 ibus-clutter
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ sudo aptitude install ibus ibus-mozc ibus-qt4 ibus-gtk ibus-gtk3 ibus-clutter
 </span></span><span class="line"><span class="cl">$ im-config
 </span></span><span class="line"><span class="cl">... choose IBus ...
 </span></span></code></pre></div><p>Run the IBus setup program:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ ibus-setup
-</span></span></code></pre></div><p>If asked, start ibus-daemon. Logout the KDE sesssion, restart X
-session, and login again. Under the Input Method tab, add “Japanese
-– Mozc”.  Configure IBus to my liking, such as making <strong><code>Ctrl + Space</code></strong> (as opposed to <strong><code>Shift + Space</code></strong>) trigger the Japanese
-input mode. The IBus icon also shows up in the system tray, from which
-various settings can be changed.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ ibus-setup
+</span></span></code></pre></div><p>If asked, start <strong><code>ibus-daemon</code></strong>. Log out of the KDE session, restart the X session, and log in again. Under the Input Method tab, add &ldquo;Japanese &ndash; Mozc&rdquo;. Configure IBus to my liking, such as making <strong><code>Ctrl + Space</code></strong> (as opposed to <strong><code>Shift + Space</code></strong>) trigger the Japanese input mode. The IBus icon also shows up in the system tray, from which various settings can be changed.</p>
 <h2 id="mozc">Mozc</h2>
 <p>Run</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo aptitude install ibus-mozc mozc-utils-gui
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ sudo aptitude install ibus-mozc mozc-utils-gui
 </span></span><span class="line"><span class="cl">$ /usr/lib/mozc/mozc_tool --mode<span class="o">=</span>config_dialog
 </span></span></code></pre></div><p>to configure Mozc to my liking.</p>
 <h2 id="using-japanese-in-emacs">Using Japanese in Emacs</h2>
 <p>Install <em>ibus-el</em>:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo aptitude install ibus-el
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ sudo aptitude install ibus-el
 </span></span></code></pre></div><p>Within emacs, <strong><code>M-x ibus-mode</code></strong> will toggle IBus on and off. Very easy!</p>
 
 			</div>
@@ -200,7 +192,7 @@ various settings can be changed.</p>
 				
 				<li><a href="/biboroku/2016/04/installing-debianjessie-on-thinkpad-t460s/">Installing Debian/Jessie on ThinkPad T460s</a></li>
 				
-				<li><a href="/biboroku/2015/03/creating-a-debian-netinst-bootable-usb-stick-with-non-free-firmware/">Creating a Debian Bootable USB Stick with Non-Free Firmware</a></li>
+				<li><a href="/biboroku/2015/03/creating-a-debian-bootable-usb-stick-with-non-free-firmware/">Creating a Debian Bootable USB Stick with Non-Free Firmware</a></li>
 				
 			</ul>
 		</div>

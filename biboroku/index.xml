@@ -6,7 +6,7 @@
     <description>Recent content on Biboroku</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 25 Feb 2024 01:24:55 -0800</lastBuildDate>
+    <lastBuildDate>Tue, 27 Feb 2024 23:24:03 -0800</lastBuildDate>
     <atom:link href="https://okomestudio.net/biboroku/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Snipping Transcripts with Snipd</title>
@@ -45,10 +45,10 @@
     </item>
     <item>
       <title>Creating a Debian Bootable USB Stick with Non-Free Firmware</title>
-      <link>https://okomestudio.net/biboroku/2015/03/creating-a-debian-netinst-bootable-usb-stick-with-non-free-firmware/</link>
+      <link>https://okomestudio.net/biboroku/2015/03/creating-a-debian-bootable-usb-stick-with-non-free-firmware/</link>
       <pubDate>Sat, 14 Mar 2015 00:00:00 +0000</pubDate>
-      <guid>https://okomestudio.net/biboroku/2015/03/creating-a-debian-netinst-bootable-usb-stick-with-non-free-firmware/</guid>
-      <description>Debian installation on new hardware can be a hassle when it depends on non-free firmware support. A typical workaround is to use a Debian install image which includes non-free drivers, which is available here: Unofficial non-free images including firmware packages. Choose the right image for the kind of USB media you wish to create.</description>
+      <guid>https://okomestudio.net/biboroku/2015/03/creating-a-debian-bootable-usb-stick-with-non-free-firmware/</guid>
+      <description>Debian installation on new hardware can be a hassle when it depends on non-free firmware support. A typical workaround is to use a Debian install image that includes non-free drivers, which is available here: Unofficial non-free images including firmware packages. Choose the right image for the kind of USB media you wish to create.</description>
     </item>
     <item>
       <title>Install Google Chrome on Debian Jessie</title>
@@ -69,28 +69,28 @@
       <link>https://okomestudio.net/biboroku/2014/05/interpreting-ab-test-using-python/</link>
       <pubDate>Mon, 12 May 2014 00:00:00 +0000</pubDate>
       <guid>https://okomestudio.net/biboroku/2014/05/interpreting-ab-test-using-python/</guid>
-      <description>Suppose we ran an A/B test with two different versions of a web page, $a$ and $b$, for which we count the number of visitors and whether they convert or not. We can summarize this in a contingency table showing the frequency distribution of the events:</description>
+      <description>Suppose we ran an A/B test with two different versions of a web page, \(a\) and \(b\), for which we count the number of visitors and whether they convert or not. We can summarize this in a contingency table showing the frequency distribution of the events:</description>
     </item>
     <item>
       <title>Brand Positioning by Correspondence Analysis</title>
       <link>https://okomestudio.net/biboroku/2014/05/brand-positioning-by-correspondence-analysis/</link>
       <pubDate>Wed, 07 May 2014 00:00:00 +0000</pubDate>
       <guid>https://okomestudio.net/biboroku/2014/05/brand-positioning-by-correspondence-analysis/</guid>
-      <description>I was reading an article about visualization techniques using multidimensional scaling (MDS), the correspondence analysis in particular. The example used R, but as usual I want to find ways to do it on Python, so here goes.&#xA;The correspondence analysis is useful when you have a two-way contingency table for which relative values of ratio-scaled data are of interest.</description>
+      <description>I was reading an article about visualization techniques using multidimensional scaling (MDS), the correspondence analysis in particular. The example used R, but as usual, I want to find ways to do it with Python, so here goes.&#xA;The correspondence analysis is useful when you have a two-way contingency table for which relative values of ratio-scaled data are of interest.</description>
     </item>
     <item>
       <title>PCA and Biplot using Python</title>
       <link>https://okomestudio.net/biboroku/2014/04/pca-and-biplot-using-python/</link>
       <pubDate>Thu, 24 Apr 2014 00:00:00 +0000</pubDate>
       <guid>https://okomestudio.net/biboroku/2014/04/pca-and-biplot-using-python/</guid>
-      <description>There are several ways to run principal component analysis (PCA) using various packages (scikit-learn, statsmodels, etc.) or even just rolling out your own through singular-value decomposition and such. Visualizing the PCA result can be done through biplot. I was looking at an example of using prcomp and biplot in R, but it does not seem like there is a comparable plug-and-play way of generating a biplot on Python.</description>
+      <description>There are several ways to run principal component analysis (PCA) using various packages (scikit-learn, statsmodels, etc.) or even just rolling out your own through singular-value decomposition and such. Visualizing the PCA result can be done through a biplot. I was looking at an example of using prcomp and biplot in R, but it does not seem like there is a comparable plug-and-play way of generating a biplot with Python.</description>
     </item>
     <item>
       <title>Near-Duplicate Detection using MinHash: Background</title>
       <link>https://okomestudio.net/biboroku/2014/04/near-duplicate-detection-using-minhash-background/</link>
       <pubDate>Sat, 12 Apr 2014 00:00:00 +0000</pubDate>
       <guid>https://okomestudio.net/biboroku/2014/04/near-duplicate-detection-using-minhash-background/</guid>
-      <description>There are numerous pieces of duplicate information served by multiple sources on the web. Many news stories that we receive from the media tend to originate from the same source, such as the Associated Press. When such contents are scraped off the web for archiving, a need may arise to categorize documents by their similarity (not in the sense of meaning of the text but the character-level or lexical matching).</description>
+      <description>There are numerous pieces of duplicate information served by multiple sources on the web. Many news stories that we receive from the media tend to originate from the same source, such as the Associated Press. When such contents are scraped off the web for archiving, a need may arise to categorize documents by their similarity (not in the sense of the meaning of the text but the character-level or lexical matching).</description>
     </item>
     <item>
       <title>A Trick for Computing the Sum of Geometric Series</title>
@@ -139,7 +139,7 @@
       <link>https://okomestudio.net/biboroku/2012/06/searching-for-nearest-neighbors-between-two-coordinate-catalogs/</link>
       <pubDate>Thu, 28 Jun 2012 00:00:00 +0000</pubDate>
       <guid>https://okomestudio.net/biboroku/2012/06/searching-for-nearest-neighbors-between-two-coordinate-catalogs/</guid>
-      <description>Say I have two catalogs of points, each in two-dimensional space. For each object in a catalog, I want to find the nearest object(s) in the other catalog. I can do this by computing the distances between every single unique pairs of objects and find the ones within a search radius and possibly doing an additional sort.</description>
+      <description>Say I have two catalogs of points, each in two-dimensional space. For each object in a catalog, I want to find the nearest object(s) in the other catalog. I can do this by computing the distances between every single unique pair of objects and finding the ones within a search radius and possibly doing an additional sort.</description>
     </item>
     <item>
       <title>Installing Ubuntu (12.04 LTS 64-bit) from an ISO Image on Hard Drive</title>
@@ -153,7 +153,7 @@
       <link>https://okomestudio.net/biboroku/2011/02/half-light-radius-and-disk-scale-length-in-exponential-profile/</link>
       <pubDate>Mon, 14 Feb 2011 00:00:00 +0000</pubDate>
       <guid>https://okomestudio.net/biboroku/2011/02/half-light-radius-and-disk-scale-length-in-exponential-profile/</guid>
-      <description>For a radial profile of $I(r)$, the enclosed flux within the radius $r$ is given by&#xA;\[ F(r) = \int_{0}^{2 \pi} d\phi \int_{0}^{r} dr r I(r, \phi) \ . \]&#xA;I’m only concerned about azimuthal symmetric cases, so $F(r) = 2\pi \int_{0}^{r} dr r I(r)$ .</description>
+      <description>For a radial profile of \(I( r)\), the enclosed flux within the radius \(r\) is given by&#xA;\begin{equation*} F( r) = \int_{0}^{2 \pi} d\phi \int_{0}^{r} dr r I(r, \phi) \ . \end{equation*}&#xA;I&amp;rsquo;m only concerned about azimuthal symmetric cases, so \(F( r) = 2\pi \int_{0}^{r} dr r I( r)\) .</description>
     </item>
     <item>
       <title>Installing Debian Squeeze from Hard Disk</title>
@@ -181,7 +181,7 @@
       <link>https://okomestudio.net/biboroku/2010/06/testing-if-a-point-is-inside-a-polygon-in-python/</link>
       <pubDate>Thu, 24 Jun 2010 00:00:00 +0000</pubDate>
       <guid>https://okomestudio.net/biboroku/2010/06/testing-if-a-point-is-inside-a-polygon-in-python/</guid>
-      <description>Finally got around to find this out by Googling. It’s a useful function so I reproduce it here for copy &amp;amp; paste:&#xA;def inside_polygon(x, y, points): &amp;#34;&amp;#34;&amp;#34; Return True if a coordinate (x, y) is inside a polygon defined by the list of verticies [(x1, y1), (x2, y2), .</description>
+      <description>Finally got around to finding this out by Googling. It’s a useful function so I reproduce it here for copy &amp;amp; paste:&#xA;def inside_polygon(x, y, points): &amp;#34;&amp;#34;&amp;#34; Return True if a coordinate (x, y) is inside a polygon defined by the list of verticies [(x1, y1), (x2, y2), .</description>
     </item>
     <item>
       <title>Installing Kindle for PC on Debian Squeeze</title>

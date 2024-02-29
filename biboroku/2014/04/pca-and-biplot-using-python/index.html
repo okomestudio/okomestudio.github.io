@@ -108,7 +108,9 @@
       <p class="meta">
         Written by
         
-          Taro Sato
+          
+            Taro Sato,
+          
         
 
         on <time>April 24, 2014</time>.
@@ -122,22 +124,127 @@
 	      
       </p>
 			<div>
-				<p>There are several ways to run <em>principal component analysis</em> (PCA)
-using various packages (<code>scikit-learn</code>, <code>statsmodels</code>, etc.) or even
-just rolling out your own through singular-value decomposition and
-such. Visualizing the PCA result can be done through biplot. I was
-looking at an example of using <code>prcomp</code> and <code>biplot</code> in R, but it does
-not seem like there is a comparable plug-and-play way of generating a
-biplot on Python.</p>
-<p>As it turns out, generating a biplot from the result of PCA by
-<code>pcasvd</code> of StatsModels is fairly straightforward from the rotation
-matrix supplied by the function. Here is a code snippet:</p>
-<!-- raw HTML omitted -->
-<p>In addition to PCA, <code>$k$</code>-means clustering (three clusters) was
-run on the data to color the observations by how they cluster. The
-resulting biplot for <code>states.x77</code> (which I exported and borrowed from
-R) looks like this:</p>
-<p><a href="biplot1.png"><img src="biplot1.png" alt="Biplot"></a></p>
+				<p>There are several ways to run <strong>principal component analysis</strong> (PCA) using various packages (<code>scikit-learn</code>, <code>statsmodels</code>, etc.) or even just rolling out your own through singular-value decomposition and such. Visualizing the PCA result can be done through a biplot. I was looking at an example of using <code>prcomp</code> and <code>biplot</code> in R, but it does not seem like there is a comparable plug-and-play way of generating a biplot with Python.</p>
+<p>As it turns out, generating a biplot from the result of PCA by <code>pcasvd</code> of StatsModels is fairly straightforward from the rotation matrix supplied by the function. Here is a code snippet (which is also <a href="https://gist.github.com/okomestudio/11265464">available in Gist</a>):</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env python2.7</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -*- coding: utf-8 -*-</span>
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;Biplot example using pcasvd from statsmodels and matplotlib.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">This is an example of how a biplot (like that in R) can be produced
+</span></span></span><span class="line"><span class="cl"><span class="s2">using pcasvd and matplotlib. Additionally, this example does k-means
+</span></span></span><span class="line"><span class="cl"><span class="s2">clustering and color observations by which cluster they belong to.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">scipy.cluster.vq</span> <span class="kn">import</span> <span class="n">kmeans</span><span class="p">,</span> <span class="n">vq</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">statsmodels.sandbox.tools.tools_pca</span> <span class="kn">import</span> <span class="n">pcasvd</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">biplot</span><span class="p">(</span><span class="n">plt</span><span class="p">,</span> <span class="n">pca</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">           <span class="n">xpc</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ypc</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Generate biplot from the result of pcasvd of statsmodels.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Parameters
+</span></span></span><span class="line"><span class="cl"><span class="s2">    ----------
+</span></span></span><span class="line"><span class="cl"><span class="s2">    plt : object
+</span></span></span><span class="line"><span class="cl"><span class="s2">        An existing pyplot module reference.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    pca : tuple
+</span></span></span><span class="line"><span class="cl"><span class="s2">        The result from statsmodels.sandbox.tools.tools_pca.pcasvd.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    labels : array_like, optional
+</span></span></span><span class="line"><span class="cl"><span class="s2">        Labels for each observation.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    colors : array_like, optional
+</span></span></span><span class="line"><span class="cl"><span class="s2">        Colors for each observation.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    xpc, ypc : int, optional
+</span></span></span><span class="line"><span class="cl"><span class="s2">        The principal component number for x- and y-axis. Defaults to
+</span></span></span><span class="line"><span class="cl"><span class="s2">        (xpc, ypc) = (1, 2).
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    scale : float
+</span></span></span><span class="line"><span class="cl"><span class="s2">        The variables are scaled by lambda ** scale, where lambda =
+</span></span></span><span class="line"><span class="cl"><span class="s2">        singular value = sqrt(eigenvalue), and the observations are
+</span></span></span><span class="line"><span class="cl"><span class="s2">        scaled by lambda ** (1 - scale). Must be in [0, 1].
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Returns
+</span></span></span><span class="line"><span class="cl"><span class="s2">    -------
+</span></span></span><span class="line"><span class="cl"><span class="s2">    None.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">xpc</span><span class="p">,</span> <span class="n">ypc</span> <span class="o">=</span> <span class="p">(</span><span class="n">xpc</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">ypc</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">xreduced</span><span class="p">,</span> <span class="n">factors</span><span class="p">,</span> <span class="n">evals</span><span class="p">,</span> <span class="n">evecs</span> <span class="o">=</span> <span class="n">pca</span>
+</span></span><span class="line"><span class="cl">    <span class="n">singvals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">evals</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># data</span>
+</span></span><span class="line"><span class="cl">    <span class="n">xs</span> <span class="o">=</span> <span class="n">factors</span><span class="p">[:,</span> <span class="n">xpc</span><span class="p">]</span> <span class="o">*</span> <span class="n">singvals</span><span class="p">[</span><span class="n">xpc</span><span class="p">]</span><span class="o">**</span><span class="p">(</span><span class="mf">1.</span> <span class="o">-</span> <span class="n">scale</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ys</span> <span class="o">=</span> <span class="n">factors</span><span class="p">[:,</span> <span class="n">ypc</span><span class="p">]</span> <span class="o">*</span> <span class="n">singvals</span><span class="p">[</span><span class="n">ypc</span><span class="p">]</span><span class="o">**</span><span class="p">(</span><span class="mf">1.</span> <span class="o">-</span> <span class="n">scale</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">labels</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">            <span class="n">c</span> <span class="o">=</span> <span class="s1">&#39;k&#39;</span> <span class="k">if</span> <span class="n">colors</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span> <span class="o">=</span> <span class="n">xs</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">xs</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">=</span> <span class="n">ys</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">ys</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="n">xpad</span> <span class="o">=</span> <span class="p">(</span><span class="n">xmax</span> <span class="o">-</span> <span class="n">xmin</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.1</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ypad</span> <span class="o">=</span> <span class="p">(</span><span class="n">ymax</span> <span class="o">-</span> <span class="n">ymin</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.1</span>
+</span></span><span class="line"><span class="cl">        <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">xmin</span> <span class="o">-</span> <span class="n">xpad</span><span class="p">,</span> <span class="n">xmax</span> <span class="o">+</span> <span class="n">xpad</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">ymin</span> <span class="o">-</span> <span class="n">ypad</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">+</span> <span class="n">ypad</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">colors</span> <span class="o">=</span> <span class="s1">&#39;k&#39;</span> <span class="k">if</span> <span class="n">colors</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">colors</span>
+</span></span><span class="line"><span class="cl">        <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">colors</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># variables</span>
+</span></span><span class="line"><span class="cl">    <span class="n">tvars</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">factors</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">factors</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
+</span></span><span class="line"><span class="cl">                   <span class="n">evecs</span><span class="p">)</span> <span class="o">*</span> <span class="n">singvals</span><span class="o">**</span><span class="n">scale</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">xreduced</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">tvars</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">xpc</span><span class="p">],</span> <span class="n">tvars</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">ypc</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">plt</span><span class="o">.</span><span class="n">arrow</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                  <span class="n">width</span><span class="o">=</span><span class="mf">0.002</span><span class="p">,</span> <span class="n">head_width</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">x</span><span class="o">*</span> <span class="mf">1.4</span><span class="p">,</span> <span class="n">y</span> <span class="o">*</span> <span class="mf">1.4</span><span class="p">,</span> <span class="n">col</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;PC</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">xpc</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;PC</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ypc</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Run a PCA on state.x77 from R and generate its biplot. Color
+</span></span></span><span class="line"><span class="cl"><span class="s2">    observations by k-means clustering.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">parsers</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/state.x77&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Population&#39;</span><span class="p">,</span> <span class="s1">&#39;Income&#39;</span><span class="p">,</span> <span class="s1">&#39;Illiteracy&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">               <span class="s1">&#39;Life Exp&#39;</span><span class="p">,</span> <span class="s1">&#39;Murder&#39;</span><span class="p">,</span> <span class="s1">&#39;HS Grad&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">columns</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">data</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span> <span class="o">-</span> <span class="n">data</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span> <span class="o">/</span> <span class="n">data</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pca</span> <span class="o">=</span> <span class="n">pcasvd</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">keepdim</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">demean</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">values</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">values</span>
+</span></span><span class="line"><span class="cl">    <span class="n">centroids</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">kmeans</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">idx</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">vq</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">centroids</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;gby&#39;</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">idx</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">biplot</span><span class="p">(</span><span class="n">plt</span><span class="p">,</span> <span class="n">pca</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="n">colors</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">           <span class="n">xpc</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ypc</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">main</span><span class="p">()</span>
+</span></span></code></pre></div><p>In addition to PCA, $k$-means clustering (three clusters) was run on the data to color the observations by how they cluster. The resulting biplot for <code>states.x77</code> (which I exported and borrowed from R) looks like this:</p>
+<figure><img src="biplot1.png"
+         alt="Figure 1: Biplot"/><figcaption>
+            <p><!-- raw HTML omitted -->Figure 1: <!-- raw HTML omitted -->Biplot</p>
+        </figcaption>
+</figure>
+
 
 			</div>
 
@@ -184,7 +291,7 @@ R) looks like this:</p>
 				
 				<li><a href="/biboroku/2016/04/installing-debianjessie-on-thinkpad-t460s/">Installing Debian/Jessie on ThinkPad T460s</a></li>
 				
-				<li><a href="/biboroku/2015/03/creating-a-debian-netinst-bootable-usb-stick-with-non-free-firmware/">Creating a Debian Bootable USB Stick with Non-Free Firmware</a></li>
+				<li><a href="/biboroku/2015/03/creating-a-debian-bootable-usb-stick-with-non-free-firmware/">Creating a Debian Bootable USB Stick with Non-Free Firmware</a></li>
 				
 			</ul>
 		</div>

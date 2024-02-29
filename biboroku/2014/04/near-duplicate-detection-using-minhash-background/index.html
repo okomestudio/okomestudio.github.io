@@ -108,199 +108,427 @@
       <p class="meta">
         Written by
         
-          Taro Sato
+          
+            Taro Sato,
+          
         
 
         on <time>April 12, 2014</time>.
 	      Tagged:
         
-	      <a href="/biboroku/tags/math">math</a>
+	      <a href="/biboroku/tags/stats">stats</a>
 	      
 	      <a href="/biboroku/tags/python">Python</a>
 	      
-	      <a href="/biboroku/tags/stats">stats</a>
+	      <a href="/biboroku/tags/math">math</a>
 	      
       </p>
 			<div>
-				<p>There are numerous pieces of duplicate information served by multiple
-sources on the web. Many news stories that we receive from the media
-tend to originate from the same source, such as the Associated
-Press. When such contents are scraped off the web for archiving, a
-need may arise to categorize documents by their similarity (not in the
-sense of meaning of the text but the character-level or lexical
-matching).</p>
-<p>Here, we build a prototype for near-duplicate document detection
-system. This article presents the background material on an algorithm
-called MinHash and a method for probabilistic dimension reduction
-through the locality-sensitive hashing. A future article presents
-their implementation on Python and CouchDB.</p>
-<p>(Note that all the numbers generated for the tables in this article
-are totally made up for illustration purposes; they may not be
-mathematically consistent with any hashing algorithm.)</p>
+				<p>There are numerous pieces of duplicate information served by multiple sources on the web. Many news stories that we receive from the media tend to originate from the same source, such as the Associated Press. When such contents are scraped off the web for archiving, a need may arise to categorize documents by their similarity (not in the sense of the meaning of the text but the character-level or lexical matching).</p>
+<p>Here, we build a prototype for a near-duplicate document detection system. This article presents the background material on an algorithm called MinHash and a method for probabilistic dimension reduction through locality-sensitive hashing. A future article presents their implementation with Python and CouchDB.</p>
+<p>(Note that all the numbers generated for the tables in this article are made up for illustration purposes; they may not be mathematically consistent with any hashing algorithm.)</p>
 <h2 id="jaccard-similarity-index">Jaccard Similarity Index</h2>
 <p>A similarity is represented by the Jaccard index:</p>
-<p><code>\[ J(D_i, D_j) = \frac{|D_i \cap D_j|}{|D_i \cup D_j|} \]</code></p>
-<p>where <code>$D_i$</code> and <code>$D_j$</code> are sets representing the two documents in our
-context.</p>
+<p>\begin{equation*}
+J(D_i, D_j) = \frac{|D_i \cap D_j|}{|D_i \cup D_j|}
+\end{equation*}</p>
+<p>where \(D_i\) and \(D_j\) are sets representing the two documents in our context.</p>
 <h2 id="shingling">Shingling</h2>
-<p>A useful way to construct a set representing a document is by shingling. To
-construct a set of <code>$k$</code>-singles from a text, a sliding window of <code>$k$</code>
-characters is applied over the text. For example, if the text is “abcdabd,” the
-resulting set of 2-shingles is {ab, bc, cd, da, bd} (note that “ab” appears only
-once and not repeated in the set).</p>
-<p>The value of <code>$k$</code> is arbitrary, but it should be large enough
-that the probability of any given shingle appearing in any random
-document is low. That is, if the available number of characters is
-<code>$c$</code> and the character length of typical documents is <code>$l$</code>, we
-should at least ensure <code>$c^k \gg l-k+1$</code>. Since each character has
-a different frequency of appearance in a typical text, a suitable
-value for <code>$k$</code> depends on the nature of documents and should be
-tuned accordingly. A good rule of thumb for an order of magnitude
-estimate is to assume <code>$c = 20$</code> for English texts.</p>
-<p>Instead of using individual characters, shingles can also be
-constructed from words. For example, in a math text book we may often
-see a sentence beginning with a terse expression “it is trivial to
-show,” whose 3-shingle set is {“it is trivial”, “is trivial to”,
-“trivial to show”}. This has advantage in that shingles built this way
-are more sensitive to the styles of writing. The style sensitivity may
-aid in identifying similarities between domain-specific texts buried
-in other types of documents.</p>
+<p>A useful way to construct a set representing a document is by shingling. To construct a set of $k$-singles from a text, a sliding window of \(k\) characters is applied over the text. For example, if the text is “abcdabd,” the resulting set of 2-shingles is {ab, bc, cd, da, bd} (note that “ab” appears only once and is not repeated in the set).</p>
+<p>The value of \(k\) is arbitrary, but it should be large enough that the probability of any given shingle appearing in any random document is low. That is, if the available number of characters is \(c\) and the character length of typical documents is \(l\), we should at least ensure \(c^k \gg l-k+1\). Since each character has a different frequency of appearance in a typical text, a suitable value for \(k\) depends on the nature of documents and should be tuned accordingly. A good rule of thumb for an order of magnitude estimate is to assume \(c = 20\) for English texts.</p>
+<p>Instead of using individual characters, shingles can also be constructed from words. For example, in a math textbook we may often see a sentence beginning with a terse expression “it is trivial to show,” whose 3-shingle set is {“it is trivial”, “is trivial to”, “trivial to show”}. This has an advantage in that shingles built this way are more sensitive to the styles of writing. The style sensitivity may aid in identifying similarities between domain-specific texts buried in other types of documents.</p>
 <h2 id="hashing-shingles">Hashing Shingles</h2>
-<p>Typically, shingles are all hashed and grouped into buckets
-represented by integer. The use of integer is a huge advantage in
-terms of data compression. For example, a 4-shingle (of characters)
-typically uses 4 bytes, each byte used for a character, and this is
-good for representing <code>$160,000$</code> 4-shingles (i.e., <code>$20^4$</code>).
-With a 4-byte, however, about 4 million (<code>$2^{32}$</code>)
-integers and therefore shingles could be represented, which is good
-enough size for <code>$k = 7$</code> (i.e., <code>$20^7$</code>). If a tiny
-probability for collision into the same bucket can be tolerated,
-<code>$k$</code> can be chosen even larger. From here on, we assume a random hash
-function does not produce any collision between any pair of randomly
-chosen shingles, i.e., the mapping <code>$s_i \rightarrow h(s_i)$</code>
-yields a unique integer.</p>
+<p>Typically, shingles are all hashed and grouped into buckets represented by an integer. The use of an integer is a huge advantage in terms of data compression. For example, a 4-shingle (of characters) typically uses 4 bytes, each byte used for a character, and this is good for representing \(160,000\) 4-shingles (i.e., \(20^4\)). With a 4-byte, however, about 4 million (\(2^{32}\)) integers and therefore shingles could be represented, which is a good enough size for \(k = 7\) (i.e., \(20^7\)). If a tiny probability of collision into the same bucket can be tolerated, \(k\) can be chosen even larger. From here on, we assume a random hash function does not produce any collision between any pair of randomly chosen shingles, i.e., the mapping \(s_i \rightarrow h(s_i)\) yields a unique integer.</p>
 <h2 id="characteristic-matrix">Characteristic Matrix</h2>
-<p>Suppose we have a random hash function <code>$h(s)$</code> and all possible
-singles <code>$s_1$</code>, <code>$s_2$</code>, <code>$\dots$</code>, <code>$s_m$</code> from
-<code>$D_1$</code>, <code>$D_2$</code>, <code>$\dots$</code>, <code>$D_l$</code> for a total of <code>$l$</code>
-documents. We can summarize this in a characteristic matrix:</p>
-<!-- raw HTML omitted -->
-<p>where the entry of 1 indicates that the document <code>$D_j$</code> contains
-a shingle <code>$s_i$</code> for which a hash value <code>$h(s_i)$</code>
-exists. (The entry of 0 means the shingle itself does not appear in
-that document.) It is trivial to compute Jaccard indices using any
-pair of documents from this matrix. In practice, however, the
-requirement for comparing all the hash values for a large number of
-documents makes the process prohibitive.</p>
+<p>Suppose we have a random hash function \(h(s)\) and all possible singles \(s_1\), \(s_2\), \(\dots\), \(s_m\) from \(D_1\), \(D_2\), \(\dots\), \(D_l\) for a total of \(l\) documents. We can summarize this in a characteristic matrix:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>\(D_1\)</th>
+<th>\(D_2\)</th>
+<th>\(\dots\)</th>
+<th>\(D_l\)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\(h(s_1)\)</td>
+<td>\(1\)</td>
+<td>\(0\)</td>
+<td>\(\dots\)</td>
+<td>\(1\)</td>
+</tr>
+<tr>
+<td>\(h(s_2)\)</td>
+<td>\(1\)</td>
+<td>\(1\)</td>
+<td>\(\dots\)</td>
+<td>\(0\)</td>
+</tr>
+<tr>
+<td>\(\vdots\)</td>
+<td>\(\dots\)</td>
+<td>\(\dots\)</td>
+<td>\(\dots\)</td>
+<td>\(\dots\)</td>
+</tr>
+<tr>
+<td>\(h(s_m)\)</td>
+<td>\(1\)</td>
+<td>\(1\)</td>
+<td>\(\dots\)</td>
+<td>\(0\)</td>
+</tr>
+</tbody>
+</table>
+<p>where the entry of 1 indicates that the document \(D_j\) contains a shingle \(s_i\) for which a hash value \(h(s_i)\) exists. (The entry of 0 means the shingle itself does not appear in that document.) It is trivial to compute Jaccard indices using any pair of documents from this matrix. In practice, however, the requirement for comparing all the hash values for a large number of documents makes the process prohibitive.</p>
 <h2 id="minhash-as-a-jaccard-index-estimator">MinHash as a Jaccard Index Estimator</h2>
-<p>Let us focus on a pair of documents, <code>$D_1$</code> and <code>$D_2$</code>, for
-which the shingles <code>$s_1$</code>, <code>$s_2$</code>, <code>$\dots$</code>, <code>$s_7$</code>
-have been hashed by a function <code>$h$</code>. The relevant entries from the
-characteristic matrix look as follows:</p>
-<!-- raw HTML omitted -->
-<p>There are three types of rows: (a) both columns have 1, (b) one of the
-columns has 1, and (c) both columns have 0. We let <code>$X$</code>, <code>$Y$</code>,
-and <code>$Z$</code> denote the numbers of rows categorized this way,
-respectively. For <code>$D_1 = \left\{h(s_2), h(s_3), h(s_5), h(s_7)\right\}$</code>
-and <code>$D_2 = \left\{ h(s_3), h(s_4), h(s_7)\right\}$</code>,
-<code>$X$</code> is the cardinality of their joint set
-and <code>$Y$</code> is that for their union. Hence the Jaccard index is
-<code>$X / (X + Y) = 2/5 = 0.4$</code>.</p>
-<p>Now, consider an experiment in which the rows in the matrix are
-randomly permutated. Remove the rows of type (c), since they do not
-contribute at all to the union of two sets. We look at the first row
-of the matrix thus constructed and note its type defined above, either
-(a) or (b). Repeat the process n times. What is the chance that the
-first row found this way to be of type (a) above? The probability is
-given by <code>$X / (X + Y)$</code>, which is similar to the way Jaccard
-index is computed. This is the property that we use as a Jaccard index
-estimator.</p>
-<p>In practice, randomly permuting a huge number of rows is very
-inefficient. Instead, we prepare a set of random hash functions
-<code>$h_i(s)$</code> (for <code>$i = \left\{1, 2, \dots, n\right\}$</code> for a
-set of <code>$n$</code> measurements) that effectively permute the row order given
-the same set of shingles and sort rows in ascending order by hash
-values. (In order for this to be true, the hash functions need to be
-well-chosen and produce few collisions.) The row of the minimum hash
-value corresponds to picking the first row in the example above.</p>
-<p>What we have shown is that, for estimating Jaccard indices, we only
-need to keep the minimum hash values generated from <code>$n$</code> different hash
-functions. Therefore the very sparse characteristic matrix can be
-condensed into a signature matrix of minimum hash values with entries
-given by</p>
-<p><code>\[ h_i \equiv \min \left\{h_i(s_1), h_i(s_2), \dots, h_i(s_m)\right\} \ , \]</code></p>
+<p>Let us focus on a pair of documents, \(D_1\) and \(D_2\), for which the shingles \(s_1\), \(s_2\), \(\dots\), \(s_7\) have been hashed by a function \(h\). The relevant entries from the characteristic matrix look as follows:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>\(D_1\)</th>
+<th>\(D_2\)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\(h(s_1)\)</td>
+<td>\(0\)</td>
+<td>\(0\)</td>
+</tr>
+<tr>
+<td>\(h(s_2)\)</td>
+<td>\(1\)</td>
+<td>\(0\)</td>
+</tr>
+<tr>
+<td>\(h(s_3)\)</td>
+<td>\(1\)</td>
+<td>\(1\)</td>
+</tr>
+<tr>
+<td>\(h(s_4)\)</td>
+<td>\(0\)</td>
+<td>\(1\)</td>
+</tr>
+<tr>
+<td>\(h(s_5)\)</td>
+<td>\(1\)</td>
+<td>\(0\)</td>
+</tr>
+<tr>
+<td>\(h(s_6)\)</td>
+<td>\(0\)</td>
+<td>\(0\)</td>
+</tr>
+<tr>
+<td>\(h(s_7)\)</td>
+<td>\(1\)</td>
+<td>\(1\)</td>
+</tr>
+</tbody>
+</table>
+<p>There are three types of rows: (a) both columns have 1, (b) one of the columns has 1, and (c\) both columns have 0. We let \(X\), \(Y\), and \(Z\) denote the numbers of rows categorized this way, respectively. For \(D_1 = \left\{h(s_2), h(s_3), h(s_5), h(s_7)\right\}\) and \(D_2 = \left\{ h(s_3), h(s_4), h(s_7)\right\}\), \(X\) is the cardinality of their joint set and \(Y\) is that for their union. Hence the Jaccard index is \(X / (X + Y) = 2/5 = 0.4\).</p>
+<p>Now, consider an experiment in which the rows in the matrix are randomly permutated. Remove the rows of type (c\), since they do not contribute at all to the union of two sets. We look at the first row of the matrix thus constructed and note its type defined above, either (a) or (b). Repeat the process n times. What is the chance that the first row found this way to be of type (a) above? The probability is given by \(X / (X + Y)\), which is similar to the way Jaccard index is computed. This is the property that we use as a Jaccard index estimator.</p>
+<p>In practice, randomly permuting a huge number of rows is very inefficient. Instead, we prepare a set of random hash functions \(h_i(s)\) (for \(i = \left\{1, 2, \dots, n\right\}\) for a set of \(n\) measurements) that effectively permute the row order given the same set of shingles and sort rows in ascending order by hash values. (For this to be true, the hash functions need to be well-chosen and produce few collisions.) The row of the minimum hash value corresponds to picking the first row in the example above.</p>
+<p>What we have shown is that, for estimating Jaccard indices, we only need to keep the minimum hash values generated from \(n\) different hash functions. Therefore the very sparse characteristic matrix can be condensed into a signature matrix of minimum hash values with entries given by</p>
+<p>\begin{equation*}
+h_i \equiv \min \left\{h_i(s_1), h_i(s_2), \dots, h_i(s_m)\right\} \ ,
+\end{equation*}</p>
 <p>where</p>
-<p><code>\[ D_j = \left\{ s_1, s_2, \dots, s_m \right\} \]</code></p>
-<p>is the set of shingles from the document <code>$D_j$</code>.</p>
-<!-- raw HTML omitted -->
-<p>For supposedly near-duplicate documents such as <code>$D\_j$</code> and
-<code>$D_{j+1}$</code> in the table, most MinHash values are similar, and the
-fraction of values that are similar is an estimate of the Jaccard
-index. This is the gist of the MinHash algorithm. In other words, the
-probability <code>$p$</code> that a pair of MinHash values from two documents
-<code>$D_i$</code> and <code>$D_j$</code> match is equivalent to their Jaccard
-index:</p>
-<p><code>\begin{equation} p = J(D_i, D_j) \ . \label{eq:equality} \end{equation}</code></p>
+<p>\begin{equation*}
+D_j = \left\{ s_1, s_2, \dots, s_m \right\}
+\end{equation*}</p>
+<p>is the set of shingles from the document \(D_j\).</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>\(D_1\)</th>
+<th>\(\dots\)</th>
+<th>\(D_j\)</th>
+<th>\(D_{j+1}\)</th>
+<th>\(\dots\)</th>
+<th>\(D_l\)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\(h_1\)</td>
+<td>\(98,273\)</td>
+<td>\(\dots\)</td>
+<td>\(23\)</td>
+<td>\(23\)</td>
+<td>\(\dots\)</td>
+<td>\(63,483\)</td>
+</tr>
+<tr>
+<td>\(h_2\)</td>
+<td>\(2,763\)</td>
+<td>\(\dots\)</td>
+<td>\(524\)</td>
+<td>\(524\)</td>
+<td>\(\dots\)</td>
+<td>\(2,345\)</td>
+</tr>
+<tr>
+<td>\(\vdots\)</td>
+<td>\(\vdots\)</td>
+<td>\(\dots\)</td>
+<td>\(\vdots\)</td>
+<td>\(\vdots\)</td>
+<td>\(\dots\)</td>
+<td>\(\vdots\)</td>
+</tr>
+<tr>
+<td>\(h_{n-1}\)</td>
+<td>\(325\)</td>
+<td>\(\dots\)</td>
+<td>\(567,849\)</td>
+<td>\(567,849\)</td>
+<td>\(\dots\)</td>
+<td>\(987\)</td>
+</tr>
+<tr>
+<td>\(h_n\)</td>
+<td>\(876\)</td>
+<td>\(\dots\)</td>
+<td>\(7,849\)</td>
+<td>\(32\)</td>
+<td>\(\dots\)</td>
+<td>\(897,347\)</td>
+</tr>
+</tbody>
+</table>
+<p>For supposedly near-duplicate documents such as \(D\_j\) and \(D_{j+1}\) in the table, most MinHash values are similar, and the fraction of similar values is an estimate of the Jaccard index. This is the gist of the MinHash algorithm. In other words, the probability \(p\) that a pair of MinHash values from two documents \(D_i\) and \(D_j\) match is equivalent to their Jaccard index:</p>
+<p>\begin{equation}
+p = J(D_i, D_j) \ .
+\label{eq:equality}
+\end{equation}</p>
 <h2 id="locality-sensitive-hashing">Locality-Sensitive Hashing</h2>
-<p>While the information necessary to compute document similarity have
-been compressed quite nicely into a signature matrix, examining all
-documents would take <code>$l(l-1)/2$</code> pairs, each involving <code>$n$</code>
-comparisons from signature entries. The vast majority of documents may
-not be near-duplicate, however, and in such a case we do not need
-every pair to be compared. Locality-sensitive hashing (LSH) offers a
-method of reducing the number of dimensions in high-dimensional
-MinHash signatures.</p>
-<p>The idea is to partition a MinHash signature matrix into b bands, each
-with <code>$r$</code> rows (such that <code>$n = b r$</code> is the total number of
-rows), and hashing MinHash integer sequences grouped by band. For
-example, if we have <code>$n = 12$</code> MinHash values, we could partition
-them into <code>$b = 3$</code> bands of <code>$r = 4$</code> rows:</p>
-<!-- raw HTML omitted -->
-<p>Then we use some good hash function <code>$H$</code> which takes <code>$r$</code>
-MinHash values and summarizes into integers, <code>$H(h_1, h_2, h_3, h_4) \equiv H_1$</code> for band 1, <code>$H(h_5, h_6, h_7, h_8) \equiv H_2$</code>
-for band 2, and so on. This reduces the <code>$n \times l$</code> signature
-matrix into <code>$b \times l$</code> matrix:</p>
-<!-- raw HTML omitted -->
-<p>Near-duplicate documents will be hashed into the same bucket within
-each band. In this example, <code>$D\_j$</code> and <code>$D\_{j+1}$</code> are in
-the same bucket for bands 1 and 2. (Note that <code>$D\_1$</code> in band 3
-has the same hash value as <code>$D\_j$</code> and <code>$D_{j+1}$</code> in band 2,
-but they are not considered to be in the same bucket since the bands
-are different.) The documents that share a bucket within a band is
-considered candidates for further examination. The advantage is that,
-since <code>$b \ll n$</code> in general, the number of required comparisons
-is much smaller. The LSH thus provides a way to select out candidates
-for near-duplicate detection, before full signature comparisons are
-carried out.</p>
-<p>The assumption is that a pair of documents, if near-duplicate, has a
-total of b chances to be hashed into a common bucket in at least one
-of the available bands. Recall from Eq. <code>$\eqref{eq:equality}$</code> that the probability that
-a pair of MinHash values from two documents match is equivalent to
-their Jaccard index. The probability that a pair of documents share a
-bucket in a band of <code>$r$</code> rows is given by <code>$p^r$</code>. Its
-complement, <code>$1 - p^r$</code>, is the probability that a document pair
-does not get hashed into the same bucket for a band. Then the
-probability that two documents become candidates in at least one band
-is given by <code>$1 - (1 - p^r)^b$</code>. Plotting for varying <code>$b$</code>
-and <code>$r$</code>, the function forms a series of S-curves:</p>
-<p><img src="prob-vs-jaccard.png" alt="Probability of Being Chosen as Candidates vs. Jaccard
-Index"></p>
-<p>The figure provides an intuition as to how the value of <code>$b$</code> and
-<code>$r$</code> should be chosen for a target Jaccard similarity threshold
-<code>$t$</code> (above which two documents are considered
-near-duplicate). Let <code>$f(p) = 1 - (1-p^r)^b$</code>. The value of <code>$p$</code>
-for the steepest slope is obtained from the second derivative,
-<code>$d^2f/dp^2 |_{p=p_t} = 0$</code>, which is</p>
-<p><code>\[ p_t = \left(\frac{r-1}{br-1}\right)^{1/r}    \approx \left(\frac{1}{b}\right)^{1/r} \]</code></p>
-<p>for <code>$b$</code>, <code>$r \gg 1$</code>. As a rule of thumb, we want <code>$p_t \approx t$</code>, but the exact value of <code>$p_t$</code> can be adjusted
-based on rejection criteria. Choosing <code>$p_t &gt; t$</code> reduces false
-positives, whereas <code>$p_t &lt; t$</code> reduces false negatives at the
-candidate selection step.</p>
-<h2 id="references">References</h2>
+<p>While the information necessary to compute document similarity has been compressed quite nicely into a signature matrix, examining all documents would take \(l(l-1)/2\) pairs, each involving \(n\) comparisons from signature entries. The vast majority of documents may not be near-duplicate, however, and in such a case we do not need every pair to be compared. Locality-sensitive hashing (LSH) offers a method of reducing the number of dimensions in high-dimensional MinHash signatures.</p>
+<p>The idea is to partition a MinHash signature matrix into \(b\) bands, each with \(r\) rows (such that \(n = b r\) is the total number of rows), and hashing MinHash integer sequences grouped by band. For example, if we have \(n = 12\) MinHash values, we could partition them into \(b = 3\) bands of \(r = 4\) rows:</p>
+<table>
+<thead>
+<tr>
+<th>Band</th>
+<th></th>
+<th>\(D_1\)</th>
+<th>\(\dots\)</th>
+<th>\(D_j\)</th>
+<th>\(D_{j + 1}\)</th>
+<th>\(\dots\)</th>
+<th>\(D_l\)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\(1\)</td>
+<td>\(h_1\)</td>
+<td>\(98,273\)</td>
+<td>\(\dots\)</td>
+<td>\(23\)</td>
+<td>\(23\)</td>
+<td>\(\dots\)</td>
+<td>\(63,483\)</td>
+</tr>
+<tr>
+<td>\(1\)</td>
+<td>\(h_2\)</td>
+<td>\(2,763\)</td>
+<td>\(\dots\)</td>
+<td>\(524\)</td>
+<td>\(524\)</td>
+<td>\(\dots\)</td>
+<td>\(2,345\)</td>
+</tr>
+<tr>
+<td>\(1\)</td>
+<td>\(h_3\)</td>
+<td>\(49,368\)</td>
+<td>\(\dots\)</td>
+<td>\(7,207\)</td>
+<td>\(7,207\)</td>
+<td>\(\dots\)</td>
+<td>\(59,542\)</td>
+</tr>
+<tr>
+<td>\(1\)</td>
+<td>\(h_4\)</td>
+<td>\(9,559\)</td>
+<td>\(\dots\)</td>
+<td>\(34,784\)</td>
+<td>\(34,784\)</td>
+<td>\(\dots\)</td>
+<td>\(6,095\)</td>
+</tr>
+<tr>
+<td>\(2\)</td>
+<td>\(h_5\)</td>
+<td>\(37,153\)</td>
+<td>\(\dots\)</td>
+<td>\(14,927\)</td>
+<td>\(14,927\)</td>
+<td>\(\dots\)</td>
+<td>\(581\)</td>
+</tr>
+<tr>
+<td>\(2\)</td>
+<td>\(h_6\)</td>
+<td>\(8,671\)</td>
+<td>\(\dots\)</td>
+<td>\(17,492\)</td>
+<td>\(17,492\)</td>
+<td>\(\dots\)</td>
+<td>\(6,664\)</td>
+</tr>
+<tr>
+<td>\(2\)</td>
+<td>\(h_7\)</td>
+<td>\(2,763\)</td>
+<td>\(\dots\)</td>
+<td>\(43,306\)</td>
+<td>\(43,306\)</td>
+<td>\(\dots\)</td>
+<td>\(10,916\)</td>
+</tr>
+<tr>
+<td>\(2\)</td>
+<td>\(h_8\)</td>
+<td>\(2,600\)</td>
+<td>\(\dots\)</td>
+<td>\(38,712\)</td>
+<td>\(38,712\)</td>
+<td>\(\dots\)</td>
+<td>\(45,472\)</td>
+</tr>
+<tr>
+<td>\(3\)</td>
+<td>\(h_9\)</td>
+<td>\(14,352\)</td>
+<td>\(\dots\)</td>
+<td>\(25,862\)</td>
+<td>\(25,862\)</td>
+<td>\(\dots\)</td>
+<td>\(14,812\)</td>
+</tr>
+<tr>
+<td>\(3\)</td>
+<td>\(h_{10}\)</td>
+<td>\(263\)</td>
+<td>\(\dots\)</td>
+<td>\(52\)</td>
+<td>\(52\)</td>
+<td>\(\dots\)</td>
+<td>\(11,973\)</td>
+</tr>
+<tr>
+<td>\(3\)</td>
+<td>\(h_{11}\)</td>
+<td>\(325\)</td>
+<td>\(\dots\)</td>
+<td>\(567,849\)</td>
+<td>\(567,849\)</td>
+<td>\(\dots\)</td>
+<td>\(987\)</td>
+</tr>
+<tr>
+<td>\(3\)</td>
+<td>\(h_{12}\)</td>
+<td>\(876\)</td>
+<td>\(\dots\)</td>
+<td>\(7,849\)</td>
+<td>\(32\)</td>
+<td>\(\dots\)</td>
+<td>\(897,347\)</td>
+</tr>
+</tbody>
+</table>
+<p>Then we use some good hash function \(H\) which takes \(r\) MinHash values and summarizes into integers, \(H(h_1, h_2, h_3, h_4) \equiv H_1\) for band 1, \(H(h_5, h_6, h_7, h_8) \equiv H_2\) for band 2, and so on. This reduces the \(n \times l\) signature matrix into \(b \times l\) matrix:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>\(D_1\)</th>
+<th>\(\dots\)</th>
+<th>\(D_j\)</th>
+<th>\(D_{j+1}\)</th>
+<th>\(\dots\)</th>
+<th>\(D_l\)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\(H_1\)</td>
+<td>\(390\)</td>
+<td>\(\dots\)</td>
+<td>\(57,232\)</td>
+<td>\(57,232\)</td>
+<td>\(\dots\)</td>
+<td>\(33,719\)</td>
+</tr>
+<tr>
+<td>\(H_2\)</td>
+<td>\(62,509\)</td>
+<td>\(\dots\)</td>
+<td>\(453\)</td>
+<td>\(453\)</td>
+<td>\(\dots\)</td>
+<td>\(51,954\)</td>
+</tr>
+<tr>
+<td>\(H_3\)</td>
+<td>\(453\)</td>
+<td>\(\dots\)</td>
+<td>\(13,009\)</td>
+<td>\(23,905\)</td>
+<td>\(\dots\)</td>
+<td>\(12,174\)</td>
+</tr>
+</tbody>
+</table>
+<p>Near-duplicate documents will be hashed into the same bucket within each band. In this example, \(D\_j\) and \(D\_{j+1}\) are in the same bucket for bands 1 and 2. (Note that \(D\_1\) in band 3 has the same hash value as \(D\_j\) and \(D_{j+1}\) in band 2, but they are not considered to be in the same bucket since the bands are different.) The documents that share a bucket within a band are considered candidates for further examination. The advantage is that, since \(b \ll n\) in general, the number of required comparisons is much smaller. The LSH thus provides a way to select candidates for near-duplicate detection, before full signature comparisons are carried out.</p>
+<p>The assumption is that a pair of documents, if near-duplicate, has a total of \(b\) chances of being hashed into a common bucket in at least one of the available bands. Recall from Eq. \(\eqref{eq:equality}\) that the probability that a pair of MinHash values from two documents match is equivalent to their Jaccard index. The probability that a pair of documents share a bucket in a band of \(r\) rows is given by \(p^r\). Its complement, \(1 - p^r\), is the probability that a document pair does not get hashed into the same bucket for a band. Then the probability that two documents become candidates in at least one band is given by \(1 - (1 - p^r)^b\). Plotting for varying \(b\) and \(r\), the function forms a series of S-curves<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>:</p>
+<figure><img src="prob-vs-jaccard.png"
+         alt="Figure 1: Probability of Being Chosen as Candidates vs. Jaccard Index"/><figcaption>
+            <p><!-- raw HTML omitted -->Figure 1: <!-- raw HTML omitted -->Probability of Being Chosen as Candidates vs. Jaccard Index</p>
+        </figcaption>
+</figure>
+
+<p>The figure provides an intuition as to how the values of \(b\) and \(r\) should be chosen for a target Jaccard similarity threshold \(t\) (above which two documents are considered near-duplicate). Let \(f(p) = 1 - (1-p^r)^b\). The value of \(p\) for the steepest slope is obtained from the second derivative, \(d^2f/dp^2 |_{p=p_t} = 0\), which is</p>
+<p>\begin{equation*}
+p_t = \left(\frac{r-1}{br-1}\right)^{1/r}    \approx \left(\frac{1}{b}\right)^{1/r}
+\end{equation*}</p>
+<p>for \(b\), \(r \gg 1\). As a rule of thumb, we want \(p_t \approx t\), but the exact value of \(p_t\) can be adjusted based on rejection criteria. Choosing \(p_t &gt; t\) reduces false positives, whereas \(p_t &lt; t\) reduces false negatives at the candidate selection step.</p>
+<h2 id="reference">Reference</h2>
 <ul>
-<li>Anand Rajaraman and Jeffrey David Ullman (2011). <em>Mining of Massive
-Datasets</em>. Cambridge University Press. ISBN 978-1-107-01535-7</li>
+<li>Anand Rajaraman and Jeffrey David Ullman (2011). <em>Mining of Massive Datasets</em>. Cambridge University Press. ISBN 978-1-107-01535-7</li>
 </ul>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>The figure is generated by the following Python script:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">ps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ys</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">ps</span><span class="o">**</span><span class="n">r</span><span class="p">)</span> <span class="o">**</span> <span class="n">b</span>
+</span></span><span class="line"><span class="cl">        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ps</span><span class="p">,</span> <span class="n">ys</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&#34;r=</span><span class="si">{</span><span class="n">r</span><span class="si">}</span><span class="s2">, b=</span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&#34;Jaccard index&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&#34;Probability of being chosen as candidates&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&#34;upper left&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span></code></pre></div>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></li>
+</ol>
+</div>
 
 			</div>
 
@@ -347,7 +575,7 @@ Datasets</em>. Cambridge University Press. ISBN 978-1-107-01535-7</li>
 				
 				<li><a href="/biboroku/2016/04/installing-debianjessie-on-thinkpad-t460s/">Installing Debian/Jessie on ThinkPad T460s</a></li>
 				
-				<li><a href="/biboroku/2015/03/creating-a-debian-netinst-bootable-usb-stick-with-non-free-firmware/">Creating a Debian Bootable USB Stick with Non-Free Firmware</a></li>
+				<li><a href="/biboroku/2015/03/creating-a-debian-bootable-usb-stick-with-non-free-firmware/">Creating a Debian Bootable USB Stick with Non-Free Firmware</a></li>
 				
 			</ul>
 		</div>

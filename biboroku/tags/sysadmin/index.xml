@@ -6,7 +6,7 @@
     <description>Recent content in Sysadmin on Biboroku</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 30 Apr 2016 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 27 Feb 2024 22:41:04 -0800</lastBuildDate>
     <atom:link href="https://okomestudio.net/biboroku/tags/sysadmin/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Installing Debian/Jessie on ThinkPad T460s</title>
@@ -17,10 +17,10 @@
     </item>
     <item>
       <title>Creating a Debian Bootable USB Stick with Non-Free Firmware</title>
-      <link>https://okomestudio.net/biboroku/2015/03/creating-a-debian-netinst-bootable-usb-stick-with-non-free-firmware/</link>
+      <link>https://okomestudio.net/biboroku/2015/03/creating-a-debian-bootable-usb-stick-with-non-free-firmware/</link>
       <pubDate>Sat, 14 Mar 2015 00:00:00 +0000</pubDate>
-      <guid>https://okomestudio.net/biboroku/2015/03/creating-a-debian-netinst-bootable-usb-stick-with-non-free-firmware/</guid>
-      <description>Debian installation on new hardware can be a hassle when it depends on non-free firmware support. A typical workaround is to use a Debian install image which includes non-free drivers, which is available here: Unofficial non-free images including firmware packages. Choose the right image for the kind of USB media you wish to create.</description>
+      <guid>https://okomestudio.net/biboroku/2015/03/creating-a-debian-bootable-usb-stick-with-non-free-firmware/</guid>
+      <description>Debian installation on new hardware can be a hassle when it depends on non-free firmware support. A typical workaround is to use a Debian install image that includes non-free drivers, which is available here: Unofficial non-free images including firmware packages. Choose the right image for the kind of USB media you wish to create.</description>
     </item>
     <item>
       <title>Install Google Chrome on Debian Jessie</title>

@@ -6,28 +6,28 @@
     <description>Recent content in Visualization on Biboroku</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 12 May 2014 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 27 Feb 2024 22:00:56 -0800</lastBuildDate>
     <atom:link href="https://okomestudio.net/biboroku/tags/visualization/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Interpreting A/B Test using Python</title>
       <link>https://okomestudio.net/biboroku/2014/05/interpreting-ab-test-using-python/</link>
       <pubDate>Mon, 12 May 2014 00:00:00 +0000</pubDate>
       <guid>https://okomestudio.net/biboroku/2014/05/interpreting-ab-test-using-python/</guid>
-      <description>Suppose we ran an A/B test with two different versions of a web page, $a$ and $b$, for which we count the number of visitors and whether they convert or not. We can summarize this in a contingency table showing the frequency distribution of the events:</description>
+      <description>Suppose we ran an A/B test with two different versions of a web page, \(a\) and \(b\), for which we count the number of visitors and whether they convert or not. We can summarize this in a contingency table showing the frequency distribution of the events:</description>
     </item>
     <item>
       <title>Brand Positioning by Correspondence Analysis</title>
       <link>https://okomestudio.net/biboroku/2014/05/brand-positioning-by-correspondence-analysis/</link>
       <pubDate>Wed, 07 May 2014 00:00:00 +0000</pubDate>
       <guid>https://okomestudio.net/biboroku/2014/05/brand-positioning-by-correspondence-analysis/</guid>
-      <description>I was reading an article about visualization techniques using multidimensional scaling (MDS), the correspondence analysis in particular. The example used R, but as usual I want to find ways to do it on Python, so here goes.&#xA;The correspondence analysis is useful when you have a two-way contingency table for which relative values of ratio-scaled data are of interest.</description>
+      <description>I was reading an article about visualization techniques using multidimensional scaling (MDS), the correspondence analysis in particular. The example used R, but as usual, I want to find ways to do it with Python, so here goes.&#xA;The correspondence analysis is useful when you have a two-way contingency table for which relative values of ratio-scaled data are of interest.</description>
     </item>
     <item>
       <title>PCA and Biplot using Python</title>
       <link>https://okomestudio.net/biboroku/2014/04/pca-and-biplot-using-python/</link>
       <pubDate>Thu, 24 Apr 2014 00:00:00 +0000</pubDate>
       <guid>https://okomestudio.net/biboroku/2014/04/pca-and-biplot-using-python/</guid>
-      <description>There are several ways to run principal component analysis (PCA) using various packages (scikit-learn, statsmodels, etc.) or even just rolling out your own through singular-value decomposition and such. Visualizing the PCA result can be done through biplot. I was looking at an example of using prcomp and biplot in R, but it does not seem like there is a comparable plug-and-play way of generating a biplot on Python.</description>
+      <description>There are several ways to run principal component analysis (PCA) using various packages (scikit-learn, statsmodels, etc.) or even just rolling out your own through singular-value decomposition and such. Visualizing the PCA result can be done through a biplot. I was looking at an example of using prcomp and biplot in R, but it does not seem like there is a comparable plug-and-play way of generating a biplot with Python.</description>
     </item>
   </channel>
 </rss>

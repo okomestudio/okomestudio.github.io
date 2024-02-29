@@ -108,7 +108,9 @@
       <p class="meta">
         Written by
         
-          Taro Sato
+          
+            Taro Sato,
+          
         
 
         on <time>February 14, 2011</time>.
@@ -120,36 +122,51 @@
 	      
       </p>
 			<div>
-				<p>For a radial profile of <code>$I(r)$</code>, the enclosed flux within the radius <code>$r$</code> is
-given by</p>
-<p><code>\[ F(r) = \int_{0}^{2 \pi} d\phi \int_{0}^{r} dr r I(r, \phi) \ . \]</code></p>
-<p>I’m only concerned about azimuthal symmetric cases, so <code>$F(r) = 2\pi \int_{0}^{r} dr r I(r)$</code> . The idea is to solve</p>
-<p><code>\[ \frac{ F( r_{ 1 / 2 } ) }{ F( \infty ) } = \frac{1}{2} \]</code></p>
-<p>for <code>$r_{1/2}$</code>.</p>
+				<p>For a radial profile of \(I( r)\), the enclosed flux within the radius \(r\) is given by</p>
+<p>\begin{equation*}
+F( r) = \int_{0}^{2 \pi} d\phi \int_{0}^{r} dr r I(r, \phi) \ .
+\end{equation*}</p>
+<p>I&rsquo;m only concerned about azimuthal symmetric cases, so \(F( r) = 2\pi \int_{0}^{r} dr r I( r)\) . The idea is to solve</p>
+<p>\begin{equation*}
+\frac{ F( r_{ 1 / 2 } ) }{ F( \infty ) } = \frac{1}{2}
+\end{equation*}</p>
+<p>for \(r_{1/2}\).</p>
 <h2 id="gaussian-profile">Gaussian Profile</h2>
 <p>Say the Gaussian intensity profile is given by</p>
-<p><code>\[ I(r) = I_0 \exp{\left(-\frac{r^2}{2\sigma^2}\right)} \ . \]</code></p>
-<p>The enclosed flux within <code>$r$</code> is given by</p>
-<p><code>\[ F(r) = 2\pi I_0 \int_0^r dr r \exp{\left(-\frac{r^2}{2\sigma^2}\right)} = 2\pi I_0 \sigma^2 \left[1 - \exp{\left(-\frac{r^2}{2\sigma^2}\right)}\right]\ . \]</code></p>
+<p>\begin{equation*}
+I( r) = I_0 \exp{\left(-\frac{r^2}{2\sigma^2}\right)} \ .
+\end{equation*}</p>
+<p>The enclosed flux within \(r\) is given by</p>
+<p>\begin{equation*}
+F( r) = 2\pi I_0 \int_0^r dr r \exp{\left(-\frac{r^2}{2\sigma^2}\right)} = 2\pi I_0 \sigma^2 \left[1 - \exp{\left(-\frac{r^2}{2\sigma^2}\right)}\right]\ .
+\end{equation*}</p>
 <p>Hence</p>
-<p><code>\[ \boxed{ r_{1/2} = \sqrt{-2 \ln{0.5}} \sigma \ . } \]</code></p>
+<p>\begin{equation*}
+\boxed{ r_{1/2} = \sqrt{-2 \ln{0.5}} \sigma \ . }
+\end{equation*}</p>
 <h2 id="exponential-profile">Exponential Profile</h2>
-<p>The radial surface-brightness profile <code>$I(r)$</code> of a disk galaxy is often fitted
-by the exponential profile:</p>
-<p><code>\[ I(r) = I_d \exp{\left(-\frac{r}{r_d}\right)} \ , \]</code></p>
-<p>where <code>$r_d$</code> is the disk scale length. The flux enclosed within the radius
-<code>$r$</code> is given by</p>
-<p><code>\[ F(r) = 2\pi I_d \int_0^r dr r \exp{\left(-\frac{r}{r_d}\right)} \ . \]</code></p>
-<p>Solving for the half-light radius <code>$r_{1/2}$</code> leads to the following:</p>
-<p><code>\[ \left(1 + \frac{r_{1/2}}{r_d}\right) \exp{\left(-\frac{r_{1/2}}{r_d}\right)} = \frac{1}{2} \ . \]</code></p>
+<p>The radial surface-brightness profile \(I( r)\) of a disk galaxy is often fitted by the exponential profile:</p>
+<p>\begin{equation*}
+I( r) = I_d \exp{\left(-\frac{r}{r_d}\right)} \ ,
+\end{equation*}</p>
+<p>where \(r_d\) is the disk scale length. The flux enclosed within the radius \(r\) is given by</p>
+<p>\begin{equation*}
+F( r) = 2\pi I_d \int_0^r dr r \exp{\left(-\frac{r}{r_d}\right)} \ .
+\end{equation*}</p>
+<p>Solving for the half-light radius \(r_{1/2}\) leads to the following:</p>
+<p>\begin{equation*}
+\left(1 + \frac{r_{1/2}}{r_d}\right) \exp{\left(-\frac{r_{1/2}}{r_d}\right)} = \frac{1}{2} \ .
+\end{equation*}</p>
 <p>A relevant numerical solution is</p>
-<p><code>\[ \boxed{r_{1/2} = 1.67835 r_d \ .} \]</code></p>
-<h2 id="sersicde-vaucouleurs-profile">Sersic/de Vaucouleurs Profile</h2>
-<p>The radial surface-brightness profile <code>$I(r)$</code> of a spheroidal galaxy is
-often fitted by the Sersic (de Vaucouleurs when <code>$n = 4$</code> profile:</p>
-<p><code>\[ I(r) = I_{1/2} \exp{\left( -k \left( \left(\frac{r}{r_{1/2}}\right)^{1/n} - 1 \right) \right)} \ . \]</code></p>
-<p>where <code>$k = 1.992 n - 0.3271$</code> (Capaccioli 1989). This expression explicitly
-parametrizes the profile in terms of half-light radius.</p>
+<p>\begin{equation*}
+\boxed{r_{1/2} = 1.67835 r_d \ .}
+\end{equation*}</p>
+<h2 id="sersic-de-vaucouleurs-profile">Sersic/de Vaucouleurs Profile</h2>
+<p>The radial surface-brightness profile \(I( r)\) of a spheroidal galaxy is often fitted by the Sersic (de Vaucouleurs when \(n = 4\) profile):</p>
+<p>\begin{equation*}
+I( r) = I_{1/2} \exp{\left( -k \left( \left(\frac{r}{r_{1/2}}\right)^{1/n} - 1 \right) \right)} \ .
+\end{equation*}</p>
+<p>where \(k = 1.992 n - 0.3271\) (Capaccioli 1989). This expression explicitly parametrizes the profile in terms of half-light radius.</p>
 
 			</div>
 
@@ -196,7 +213,7 @@ parametrizes the profile in terms of half-light radius.</p>
 				
 				<li><a href="/biboroku/2016/04/installing-debianjessie-on-thinkpad-t460s/">Installing Debian/Jessie on ThinkPad T460s</a></li>
 				
-				<li><a href="/biboroku/2015/03/creating-a-debian-netinst-bootable-usb-stick-with-non-free-firmware/">Creating a Debian Bootable USB Stick with Non-Free Firmware</a></li>
+				<li><a href="/biboroku/2015/03/creating-a-debian-bootable-usb-stick-with-non-free-firmware/">Creating a Debian Bootable USB Stick with Non-Free Firmware</a></li>
 				
 			</ul>
 		</div>

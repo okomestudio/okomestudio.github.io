@@ -108,26 +108,22 @@
       <p class="meta">
         Written by
         
-          Taro Sato
+          
+            Taro Sato,
+          
         
 
         on <time>June 28, 2012</time>.
 	      Tagged:
         
-	      <a href="/biboroku/tags/astro">astro</a>
-	      
 	      <a href="/biboroku/tags/stats">stats</a>
+	      
+	      <a href="/biboroku/tags/astro">astro</a>
 	      
       </p>
 			<div>
-				<p>Say I have two catalogs of points, each in two-dimensional space. For each
-object in a catalog, I want to find the nearest object(s) in the other catalog.
-I can do this by computing the distances between every single unique pairs of
-objects and find the ones within a search radius and possibly doing an
-additional sort. However, there is a much more efficient way using <a href="http://en.wikipedia.org/wiki/K-d_tree">k-d
-tree</a>, and Scipy has the class for doing
-this sort of thing fairly easily.</p>
-<p>Here is an example Python code:</p>
+				<p>Say I have two catalogs of points, each in two-dimensional space. For each object in a catalog, I want to find the nearest object(s) in the other catalog. I can do this by computing the distances between every single unique pair of objects and finding the ones within a search radius and possibly doing an additional sort. However, there is a much more efficient way using <a href="http://en.wikipedia.org/wiki/K-d_tree">k-d tree</a>, and Scipy has the class for doing this sort of thing fairly easily.</p>
+<p>Here is a Python code example:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env python2.6</span>
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">cProfile</span> <span class="kn">import</span> <span class="n">Profile</span>
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -183,93 +179,88 @@ this sort of thing fairly easily.</p>
 </span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">    <span class="n">main</span><span class="p">()</span>
 </span></span></code></pre></div><p>When I run this script, I get the following output:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">         706932 function calls (692470 primitive calls) in 1.663 CPU seconds
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">       706932 function calls (692470 primitive calls) in 1.663 CPU seconds
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">   Ordered by: standard name
+</span></span><span class="line"><span class="cl"> Ordered by: standard name
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
-</span></span><span class="line"><span class="cl">     1720    0.001    0.000    0.004    0.000 fromnumeric.py:1067(nonzero)
-</span></span><span class="line"><span class="cl">        2    0.000    0.000    0.000    0.000 fromnumeric.py:1147(shape)
-</span></span><span class="line"><span class="cl">    42293    0.046    0.000    0.224    0.000 fromnumeric.py:1314(sum)
-</span></span><span class="line"><span class="cl">        2    0.000    0.000    0.000    0.000 fromnumeric.py:1708(amax)
-</span></span><span class="line"><span class="cl">        2    0.000    0.000    0.000    0.000 fromnumeric.py:1769(amin)
-</span></span><span class="line"><span class="cl">      860    0.001    0.000    0.002    0.000 fromnumeric.py:664(argmax)
-</span></span><span class="line"><span class="cl">    14462    0.008    0.000    0.025    0.000 function_base.py:776(copy)
-</span></span><span class="line"><span class="cl">        2    0.000    0.000    0.045    0.022 kdtree.py:113(__init__)
-</span></span><span class="line"><span class="cl">      862    0.001    0.000    0.001    0.000 kdtree.py:139(__init__)
-</span></span><span class="line"><span class="cl">      860    0.001    0.000    0.001    0.000 kdtree.py:143(__init__)
-</span></span><span class="line"><span class="cl">   1722/2    0.033    0.000    0.045    0.022 kdtree.py:150(__build)
-</span></span><span class="line"><span class="cl">    42293    0.183    0.000    0.992    0.000 kdtree.py:22(minkowski_distance)
-</span></span><span class="line"><span class="cl">    12744    0.085    0.000    0.104    0.000 kdtree.py:36(__init__)
-</span></span><span class="line"><span class="cl">        1    0.002    0.002    1.618    1.618 kdtree.py:437(query_ball_tree)
-</span></span><span class="line"><span class="cl">  12743/1    0.270    0.000    1.616    1.616 kdtree.py:462(traverse_checking)
-</span></span><span class="line"><span class="cl">     6371    0.031    0.000    0.157    0.000 kdtree.py:49(split)
-</span></span><span class="line"><span class="cl">    42293    0.372    0.000    0.682    0.000 kdtree.py:7(minkowski_distance_p)
-</span></span><span class="line"><span class="cl">    12743    0.133    0.000    0.430    0.000 kdtree.py:72(min_distance_rectangle)
-</span></span><span class="line"><span class="cl">     7385    0.052    0.000    0.219    0.000 kdtree.py:76(max_distance_rectangle)
-</span></span><span class="line"><span class="cl">   169174    0.095    0.000    0.213    0.000 numeric.py:201(asarray)
-</span></span><span class="line"><span class="cl">        1    0.000    0.000    1.663    1.663 xmatch.py:8(getnnidx)
-</span></span><span class="line"><span class="cl">    57063    0.036    0.000    0.036    0.000 {isinstance}
-</span></span><span class="line"><span class="cl">     5164    0.001    0.000    0.001    0.000 {len}
-</span></span><span class="line"><span class="cl">      860    0.001    0.000    0.001    0.000 {method &#39;argmax&#39; of &#39;numpy.ndarray&#39; objects}
-</span></span><span class="line"><span class="cl">    25488    0.019    0.000    0.019    0.000 {method &#39;astype&#39; of &#39;numpy.ndarray&#39; objects}
-</span></span><span class="line"><span class="cl">        1    0.000    0.000    0.000    0.000 {method &#39;disable&#39; of &#39;_lsprof.Profiler&#39; objects}
-</span></span><span class="line"><span class="cl">        2    0.000    0.000    0.000    0.000 {method &#39;max&#39; of &#39;numpy.ndarray&#39; objects}
-</span></span><span class="line"><span class="cl">        2    0.000    0.000    0.000    0.000 {method &#39;min&#39; of &#39;numpy.ndarray&#39; objects}
-</span></span><span class="line"><span class="cl">     1720    0.003    0.000    0.003    0.000 {method &#39;nonzero&#39; of &#39;numpy.ndarray&#39; objects}
-</span></span><span class="line"><span class="cl">    42293    0.146    0.000    0.146    0.000 {method &#39;sum&#39; of &#39;numpy.ndarray&#39; objects}
-</span></span><span class="line"><span class="cl">    22165    0.008    0.000    0.008    0.000 {method &#39;tolist&#39; of &#39;numpy.ndarray&#39; objects}
-</span></span><span class="line"><span class="cl">        2    0.000    0.000    0.000    0.000 {numpy.core.multiarray.arange}
-</span></span><span class="line"><span class="cl">   183636    0.135    0.000    0.135    0.000 {numpy.core.multiarray.array}
-</span></span><span class="line"><span class="cl">        1    0.000    0.000    0.000    0.000 {range}
+</span></span><span class="line"><span class="cl"> ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+</span></span><span class="line"><span class="cl">   1720    0.001    0.000    0.004    0.000 fromnumeric.py:1067(nonzero)
+</span></span><span class="line"><span class="cl">      2    0.000    0.000    0.000    0.000 fromnumeric.py:1147(shape)
+</span></span><span class="line"><span class="cl">  42293    0.046    0.000    0.224    0.000 fromnumeric.py:1314(sum)
+</span></span><span class="line"><span class="cl">      2    0.000    0.000    0.000    0.000 fromnumeric.py:1708(amax)
+</span></span><span class="line"><span class="cl">      2    0.000    0.000    0.000    0.000 fromnumeric.py:1769(amin)
+</span></span><span class="line"><span class="cl">    860    0.001    0.000    0.002    0.000 fromnumeric.py:664(argmax)
+</span></span><span class="line"><span class="cl">  14462    0.008    0.000    0.025    0.000 function_base.py:776(copy)
+</span></span><span class="line"><span class="cl">      2    0.000    0.000    0.045    0.022 kdtree.py:113(__init__)
+</span></span><span class="line"><span class="cl">    862    0.001    0.000    0.001    0.000 kdtree.py:139(__init__)
+</span></span><span class="line"><span class="cl">    860    0.001    0.000    0.001    0.000 kdtree.py:143(__init__)
+</span></span><span class="line"><span class="cl"> 1722/2    0.033    0.000    0.045    0.022 kdtree.py:150(__build)
+</span></span><span class="line"><span class="cl">  42293    0.183    0.000    0.992    0.000 kdtree.py:22(minkowski_distance)
+</span></span><span class="line"><span class="cl">  12744    0.085    0.000    0.104    0.000 kdtree.py:36(__init__)
+</span></span><span class="line"><span class="cl">      1    0.002    0.002    1.618    1.618 kdtree.py:437(query_ball_tree)
+</span></span><span class="line"><span class="cl">12743/1    0.270    0.000    1.616    1.616 kdtree.py:462(traverse_checking)
+</span></span><span class="line"><span class="cl">   6371    0.031    0.000    0.157    0.000 kdtree.py:49(split)
+</span></span><span class="line"><span class="cl">  42293    0.372    0.000    0.682    0.000 kdtree.py:7(minkowski_distance_p)
+</span></span><span class="line"><span class="cl">  12743    0.133    0.000    0.430    0.000 kdtree.py:72(min_distance_rectangle)
+</span></span><span class="line"><span class="cl">   7385    0.052    0.000    0.219    0.000 kdtree.py:76(max_distance_rectangle)
+</span></span><span class="line"><span class="cl"> 169174    0.095    0.000    0.213    0.000 numeric.py:201(asarray)
+</span></span><span class="line"><span class="cl">      1    0.000    0.000    1.663    1.663 xmatch.py:8(getnnidx)
+</span></span><span class="line"><span class="cl">  57063    0.036    0.000    0.036    0.000 {isinstance}
+</span></span><span class="line"><span class="cl">   5164    0.001    0.000    0.001    0.000 {len}
+</span></span><span class="line"><span class="cl">    860    0.001    0.000    0.001    0.000 {method &#39;argmax&#39; of &#39;numpy.ndarray&#39; objects}
+</span></span><span class="line"><span class="cl">  25488    0.019    0.000    0.019    0.000 {method &#39;astype&#39; of &#39;numpy.ndarray&#39; objects}
+</span></span><span class="line"><span class="cl">      1    0.000    0.000    0.000    0.000 {method &#39;disable&#39; of &#39;_lsprof.Profiler&#39; objects}
+</span></span><span class="line"><span class="cl">      2    0.000    0.000    0.000    0.000 {method &#39;max&#39; of &#39;numpy.ndarray&#39; objects}
+</span></span><span class="line"><span class="cl">      2    0.000    0.000    0.000    0.000 {method &#39;min&#39; of &#39;numpy.ndarray&#39; objects}
+</span></span><span class="line"><span class="cl">   1720    0.003    0.000    0.003    0.000 {method &#39;nonzero&#39; of &#39;numpy.ndarray&#39; objects}
+</span></span><span class="line"><span class="cl">  42293    0.146    0.000    0.146    0.000 {method &#39;sum&#39; of &#39;numpy.ndarray&#39; objects}
+</span></span><span class="line"><span class="cl">  22165    0.008    0.000    0.008    0.000 {method &#39;tolist&#39; of &#39;numpy.ndarray&#39; objects}
+</span></span><span class="line"><span class="cl">      2    0.000    0.000    0.000    0.000 {numpy.core.multiarray.arange}
+</span></span><span class="line"><span class="cl"> 183636    0.135    0.000    0.135    0.000 {numpy.core.multiarray.array}
+</span></span><span class="line"><span class="cl">      1    0.000    0.000    0.000    0.000 {range}
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">         32 function calls in 0.008 CPU seconds
+</span></span><span class="line"><span class="cl">       32 function calls in 0.008 CPU seconds
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">   Ordered by: standard name
+</span></span><span class="line"><span class="cl"> Ordered by: standard name
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
-</span></span><span class="line"><span class="cl">        3    0.000    0.000    0.000    0.000 fromnumeric.py:107(reshape)
-</span></span><span class="line"><span class="cl">        3    0.000    0.000    0.000    0.000 fromnumeric.py:1147(shape)
-</span></span><span class="line"><span class="cl">        1    0.000    0.000    0.000    0.000 fromnumeric.py:1708(amax)
-</span></span><span class="line"><span class="cl">        1    0.000    0.000    0.000    0.000 fromnumeric.py:1769(amin)
-</span></span><span class="line"><span class="cl">        1    0.000    0.000    0.000    0.000 fromnumeric.py:1865(prod)
-</span></span><span class="line"><span class="cl">        1    0.000    0.000    0.000    0.000 fromnumeric.py:32(_wrapit)
-</span></span><span class="line"><span class="cl">        2    0.000    0.000    0.000    0.000 numeric.py:201(asarray)
-</span></span><span class="line"><span class="cl">        4    0.000    0.000    0.000    0.000 numeric.py:314(ascontiguousarray)
-</span></span><span class="line"><span class="cl">        1    0.000    0.000    0.008    0.008 xmatch.py:15(cgetnnidx)
-</span></span><span class="line"><span class="cl">        1    0.000    0.000    0.000    0.000 {getattr}
-</span></span><span class="line"><span class="cl">        1    0.000    0.000    0.000    0.000 {method &#39;disable&#39; of &#39;_lsprof.Profiler&#39; objects}
-</span></span><span class="line"><span class="cl">        1    0.000    0.000    0.000    0.000 {method &#39;max&#39; of &#39;numpy.ndarray&#39; objects}
-</span></span><span class="line"><span class="cl">        1    0.000    0.000    0.000    0.000 {method &#39;min&#39; of &#39;numpy.ndarray&#39; objects}
-</span></span><span class="line"><span class="cl">        1    0.000    0.000    0.000    0.000 {method &#39;prod&#39; of &#39;numpy.ndarray&#39; objects}
-</span></span><span class="line"><span class="cl">        1    0.007    0.007    0.007    0.007 {method &#39;query&#39; of &#39;scipy.spatial.ckdtree.cKDTree&#39; objects}
-</span></span><span class="line"><span class="cl">        3    0.000    0.000    0.000    0.000 {method &#39;reshape&#39; of &#39;numpy.ndarray&#39; objects}
-</span></span><span class="line"><span class="cl">        6    0.000    0.000    0.000    0.000 {numpy.core.multiarray.array}
-</span></span></code></pre></div><p>from which it is clear that <code>cKDTree</code> is much faster (1.663 vs. 0.008 seconds!).
-Not surprising given <code>cKDTree</code> is a C implementation of basically the same thing.</p>
-<p>These classes are not exactly equivalent and therefore the outputs are
-different. <code>KDTree.query_ball_tree</code> returns:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[[],
+</span></span><span class="line"><span class="cl"> ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+</span></span><span class="line"><span class="cl">      3    0.000    0.000    0.000    0.000 fromnumeric.py:107(reshape)
+</span></span><span class="line"><span class="cl">      3    0.000    0.000    0.000    0.000 fromnumeric.py:1147(shape)
+</span></span><span class="line"><span class="cl">      1    0.000    0.000    0.000    0.000 fromnumeric.py:1708(amax)
+</span></span><span class="line"><span class="cl">      1    0.000    0.000    0.000    0.000 fromnumeric.py:1769(amin)
+</span></span><span class="line"><span class="cl">      1    0.000    0.000    0.000    0.000 fromnumeric.py:1865(prod)
+</span></span><span class="line"><span class="cl">      1    0.000    0.000    0.000    0.000 fromnumeric.py:32(_wrapit)
+</span></span><span class="line"><span class="cl">      2    0.000    0.000    0.000    0.000 numeric.py:201(asarray)
+</span></span><span class="line"><span class="cl">      4    0.000    0.000    0.000    0.000 numeric.py:314(ascontiguousarray)
+</span></span><span class="line"><span class="cl">      1    0.000    0.000    0.008    0.008 xmatch.py:15(cgetnnidx)
+</span></span><span class="line"><span class="cl">      1    0.000    0.000    0.000    0.000 {getattr}
+</span></span><span class="line"><span class="cl">      1    0.000    0.000    0.000    0.000 {method &#39;disable&#39; of &#39;_lsprof.Profiler&#39; objects}
+</span></span><span class="line"><span class="cl">      1    0.000    0.000    0.000    0.000 {method &#39;max&#39; of &#39;numpy.ndarray&#39; objects}
+</span></span><span class="line"><span class="cl">      1    0.000    0.000    0.000    0.000 {method &#39;min&#39; of &#39;numpy.ndarray&#39; objects}
+</span></span><span class="line"><span class="cl">      1    0.000    0.000    0.000    0.000 {method &#39;prod&#39; of &#39;numpy.ndarray&#39; objects}
+</span></span><span class="line"><span class="cl">      1    0.007    0.007    0.007    0.007 {method &#39;query&#39; of &#39;scipy.spatial.ckdtree.cKDTree&#39; objects}
+</span></span><span class="line"><span class="cl">      3    0.000    0.000    0.000    0.000 {method &#39;reshape&#39; of &#39;numpy.ndarray&#39; objects}
+</span></span><span class="line"><span class="cl">      6    0.000    0.000    0.000    0.000 {numpy.core.multiarray.array}
+</span></span></code></pre></div><p>from which it is clear that <code>cKDTree</code> is much faster (1.663 vs. 0.008 seconds!). Not surprising given <code>cKDTree</code> is a C implementation of basically the same thing.</p>
+<p>These classes are not exactly equivalent and therefore the outputs are different. <code>KDTree.query_ball_tree</code> returns:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">[[],
 </span></span><span class="line"><span class="cl"> [216, 1767],
 </span></span><span class="line"><span class="cl"> [317],
 </span></span><span class="line"><span class="cl"> ...,
 </span></span><span class="line"><span class="cl"> [],
 </span></span><span class="line"><span class="cl"> [367],
 </span></span><span class="line"><span class="cl"> [1465, 1899]]
-</span></span></code></pre></div><p>which is an array of indices of nearest neighbors. If an object is not found
-within the search radius, it simply returns an array of zero element.</p>
+</span></span></code></pre></div><p>which is an array of indices of nearest neighbors. If an object is not found within the search radius, it simply returns an array of zero elements.</p>
 <p><code>cKDTree.query</code>, on the other hand, returns something like</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[[2000 2000 2000 2000 2000]
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">[[2000 2000 2000 2000 2000]
 </span></span><span class="line"><span class="cl"> [ 216 1767 2000 2000 2000]
 </span></span><span class="line"><span class="cl"> [ 317 2000 2000 2000 2000]
 </span></span><span class="line"><span class="cl"> ...,
 </span></span><span class="line"><span class="cl"> [2000 2000 2000 2000 2000]
 </span></span><span class="line"><span class="cl"> [ 367 2000 2000 2000 2000]
 </span></span><span class="line"><span class="cl"> [1465 1899 2000 2000 2000]]
-</span></span></code></pre></div><p>which is an array of indices of five nearest neighbors.  When not found within a
-search radius, it uses the number of elements as a place holder.  The number of
-nearest neighbors to retain can be specified by the input argument (<code>k</code>).</p>
+</span></span></code></pre></div><p>which is an array of indices of five nearest neighbors. When not found within a search radius, it uses the number of elements as a place holder. The number of nearest neighbors to retain can be specified by the input argument (<code>k</code>).</p>
 
 			</div>
 
@@ -316,7 +307,7 @@ nearest neighbors to retain can be specified by the input argument (<code>k</cod
 				
 				<li><a href="/biboroku/2016/04/installing-debianjessie-on-thinkpad-t460s/">Installing Debian/Jessie on ThinkPad T460s</a></li>
 				
-				<li><a href="/biboroku/2015/03/creating-a-debian-netinst-bootable-usb-stick-with-non-free-firmware/">Creating a Debian Bootable USB Stick with Non-Free Firmware</a></li>
+				<li><a href="/biboroku/2015/03/creating-a-debian-bootable-usb-stick-with-non-free-firmware/">Creating a Debian Bootable USB Stick with Non-Free Firmware</a></li>
 				
 			</ul>
 		</div>

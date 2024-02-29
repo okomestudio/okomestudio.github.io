@@ -108,7 +108,9 @@
       <p class="meta">
         Written by
         
-          Taro Sato
+          
+            Taro Sato,
+          
         
 
         on <time>March 14, 2015</time>.
@@ -120,18 +122,11 @@
 	      
       </p>
 			<div>
-				<p>Debian installation on new hardware can be a hassle when it depends on non-free
-firmware support. A typical workaround is to use a Debian install image which
-includes non-free drivers, which is available here: <a href="http://cdimage.debian.org/cdimage/unofficial/non-free/cd-including-firmware/">Unofficial non-free images
-including firmware
-packages</a>.
-Choose the right image for the kind of USB media you wish to create.</p>
+				<p>Debian installation on new hardware can be a hassle when it depends on non-free firmware support. A typical workaround is to use a Debian install image that includes non-free drivers, which is available here: <a href="http://cdimage.debian.org/cdimage/unofficial/non-free/cd-including-firmware/">Unofficial non-free images including firmware packages</a>. Choose the right image for the kind of USB media you wish to create.</p>
 <p>For this post, I chose (amd64 Jessie 8.4.0 netinst + non-free):</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ wget http://cdimage.debian.org/cdimage/unofficial/non-free/cd-including-firmware/8.4.0/amd64/iso-cd/firmware-8.4.0-amd64-netinst.iso
-</span></span></code></pre></div><p>Find a USB stick (which you do not mind formatting entirely; all existing
-contents will be wiped out with this method), connect it to a working Linux box,
-and find the device pointer to the stick:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo fdisk -l
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ wget http://cdimage.debian.org/cdimage/unofficial/non-free/cd-including-firmware/8.4.0/amd64/iso-cd/firmware-8.4.0-amd64-netinst.iso
+</span></span></code></pre></div><p>Find a USB stick (which you do not mind formatting entirely; all existing contents will be wiped out with this method), connect it to a working Linux box, and find the device pointer to the stick:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ sudo fdisk -l
 </span></span><span class="line"><span class="cl">... <span class="o">(</span>other devices<span class="o">)</span> ...
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">Disk /dev/sde: 14.9 GiB, <span class="m">16008609792</span> bytes, <span class="m">31266816</span> sectors
@@ -146,16 +141,12 @@ and find the device pointer to the stick:</p>
 </span></span><span class="line"><span class="cl">/dev/sde2       <span class="m">20368</span>   <span class="m">21199</span>     <span class="m">832</span>  416K ef EFI <span class="o">(</span>FAT-12/16/32<span class="o">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">... <span class="o">(</span>other devices<span class="o">)</span> ...
-</span></span></code></pre></div><p>We see that the USB stick is attached at <em>/dev/sde</em> in this case (IMPORTANT:
-this will certainly be different for you; really do make sure the device is the
-USB stick you would not mind being wiped out).</p>
+</span></span></code></pre></div><p>We see that the USB stick is attached at <em>/dev/sde</em> in this case (IMPORTANT: this will certainly be different for you; do make sure the device is the USB stick you would not mind being wiped out).</p>
 <p>Then create a bootable installation stick:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo dd <span class="k">if</span><span class="o">=</span>firmware-8.4.0-amd64-netinst.iso <span class="nv">of</span><span class="o">=</span>/dev/sde <span class="nv">bs</span><span class="o">=</span>4M
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ sudo dd <span class="k">if</span><span class="o">=</span>firmware-8.4.0-amd64-netinst.iso <span class="nv">of</span><span class="o">=</span>/dev/sde <span class="nv">bs</span><span class="o">=</span>4M
 </span></span><span class="line"><span class="cl">$ sudo sync
-</span></span></code></pre></div><h2 id="todo">TODO</h2>
-<p>There appears to be issue writing to USB from isohybrid .iso image, from which I
-have not been able to create a proper bootable image. Check on this and update
-the post.</p>
+</span></span></code></pre></div><h2 id="d41d8c"><!-- raw HTML omitted -->TODO<!-- raw HTML omitted --> </h2>
+<p>There appears to be an issue writing to USB from isohybrid .iso image, from which I have not been able to create a proper bootable image. Check on this and update the post.</p>
 <h2 id="reference">Reference</h2>
 <p><a href="http://askubuntu.com/questions/372607/how-to-create-a-bootable-ubuntu-usb-flash-drive-from-terminal">http://askubuntu.com/questions/372607/how-to-create-a-bootable-ubuntu-usb-flash-drive-from-terminal</a></p>
 
@@ -204,7 +195,7 @@ the post.</p>
 				
 				<li><a href="/biboroku/2016/04/installing-debianjessie-on-thinkpad-t460s/">Installing Debian/Jessie on ThinkPad T460s</a></li>
 				
-				<li><a href="/biboroku/2015/03/creating-a-debian-netinst-bootable-usb-stick-with-non-free-firmware/">Creating a Debian Bootable USB Stick with Non-Free Firmware</a></li>
+				<li><a href="/biboroku/2015/03/creating-a-debian-bootable-usb-stick-with-non-free-firmware/">Creating a Debian Bootable USB Stick with Non-Free Firmware</a></li>
 				
 			</ul>
 		</div>

@@ -108,7 +108,9 @@
       <p class="meta">
         Written by
         
-          Taro Sato
+          
+            Taro Sato,
+          
         
 
         on <time>May 9, 2020</time>.
@@ -118,22 +120,15 @@
 	      
       </p>
 			<div>
-				<p>Python <code>dict</code> is useful. The access to a nested item can be tedious,
-however. For example,</p>
+				<p>Python <code>dict</code> is useful. The access to a nested item can be tedious, however. For example,</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="s2">&#34;hosts&#34;</span><span class="p">:</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;localhost&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;cidr&#34;</span><span class="p">:</span> <span class="s2">&#34;127.0.0.1/8&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>Here, <code>data[&quot;hosts&quot;][&quot;cidir&quot;]</code> would get you <code>&quot;127.0.0.1/8&quot;</code>, but
-all those quotes and brackets can be annoying to type and read. A
-singly nested <code>dict</code> like the case above is not bad, but this can
-quickly become tedium as the nesting deepens. It would be so much more
-succinct to be able to access an item at a key through attributes, as
-in <code>data.hosts.cidir</code>.</p>
-<p>Such attribute access is actually fairly simple to implement using the
-<code>__dict__</code> magic attribute Python uses to define object attributes:</p>
+</span></span></code></pre></div><p>Here, <code>data[&quot;hosts&quot;][&quot;cidir&quot;]</code> would get you <code>&quot;127.0.0.1/8&quot;</code>, but all those quotes and brackets can be annoying to type and read. A singly nested <code>dict</code> like the case above is not bad, but this can quickly become tedium as the nesting deepens. It would be so much more succinct to be able to access an item at a key through attributes, as in <code>data.hosts.cidir</code>.</p>
+<p>Such attribute access is fairly simple to implement using the <code>__dict__</code> magic attribute Python uses to define object attributes:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">UserDict</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">AttrDict</span><span class="p">(</span><span class="n">UserDict</span><span class="p">):</span>
@@ -152,17 +147,8 @@ in <code>data.hosts.cidir</code>.</p>
 </span></span><span class="line"><span class="cl">    <span class="n">obj</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="n">obj</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">addattrs</span><span class="p">(</span><span class="n">d</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">obj</span>
-</span></span></code></pre></div><p>There are caveats. If a key in the input <code>dict</code> contains invalid
-characters for attribute name (e.g., space), the item for the key will
-not be accessible as an attribute (though it remains accessible
-through index). Keys also need to be <code>str</code>, whereas <code>dict</code> keys in
-general can be any hashable Python object. More importantly, if any
-key in the input <code>dict</code> conflicts with the method or attribute names
-of the <code>dict</code> interface, the object may not function properly as
-<code>dict</code> any more.</p>
-<p>So long as the limitations are understood, a solution like this can be
-good enough in some cases, simple JSON objects with well-defined
-structure, for example.</p>
+</span></span></code></pre></div><p>There are caveats. If a key in the input <code>dict</code> contains invalid characters for an attribute name (e.g., space), the item for the key will not be accessible as an attribute (though it remains accessible through an index). Keys also need to be <code>str</code>, whereas <code>dict</code> keys in general can be any hashable Python object. More importantly, if any key in the input <code>dict</code> conflicts with the method or attribute names of the <code>dict</code> interface, the object may not function properly as <code>dict</code> anymore.</p>
+<p>So long as the limitations are understood, a solution like this can be good enough in some cases, simple JSON objects with well-defined structure, for example.</p>
 
 			</div>
 
@@ -209,7 +195,7 @@ structure, for example.</p>
 				
 				<li><a href="/biboroku/2016/04/installing-debianjessie-on-thinkpad-t460s/">Installing Debian/Jessie on ThinkPad T460s</a></li>
 				
-				<li><a href="/biboroku/2015/03/creating-a-debian-netinst-bootable-usb-stick-with-non-free-firmware/">Creating a Debian Bootable USB Stick with Non-Free Firmware</a></li>
+				<li><a href="/biboroku/2015/03/creating-a-debian-bootable-usb-stick-with-non-free-firmware/">Creating a Debian Bootable USB Stick with Non-Free Firmware</a></li>
 				
 			</ul>
 		</div>
