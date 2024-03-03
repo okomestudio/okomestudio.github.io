@@ -108,28 +108,25 @@
       <p class="meta">
         Written by
         
-          Taro Sato
+          
+            Taro Sato,
+          
         
 
         on <time>April 30, 2016</time>.
 	      Tagged:
         
-	      <a href="/biboroku/tags/linux">Linux</a>
+	      <a href="/biboroku/tags/linux">linux</a>
 	      
 	      <a href="/biboroku/tags/sysadmin">sysadmin</a>
 	      
       </p>
 			<div>
-				<p>This is a Debian/Jessie installation instruction on ThinkPad T460s
-(product ID: 20F9CTO1WW).</p>
-<p>First, update BIOS on Windows if necessary, since that kind of task is
-unfortunately typically much easier on it. Also make sure to create a
-recovery media for Windows 10.</p>
+				<p>This is a Debian/Jessie installation instruction on ThinkPad T460s (product ID: 20F9CTO1WW).</p>
+<p>First, update BIOS on Windows if necessary, since that kind of task is unfortunately typically much easier on it. Also make sure to create a recovery media for Windows 10.</p>
 <p>Disable Secure Boot in BIOS.</p>
-<p>Boot from the netinst (with firmware) install media. Use wired network
-while installing. Wireless does not work out of the box.</p>
-<p>Boot from the install USB media. Follow the standard Debian installer
-instruction:</p>
+<p>Boot from the “netinst” (with firmware) install media. Use wired network while installing. Wireless does not work out of the box.</p>
+<p>Boot from the USB install media. Follow the standard Debian installer instruction:</p>
 <ul>
 <li>Language: English</li>
 <li>Country: United States</li>
@@ -147,7 +144,7 @@ instruction:</p>
 <li>Partitioning method: Manual</li>
 </ul>
 <p>Here is my partitioning scheme:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1 /boot/efi  300 MB EFI System Partition (bootable, EFI System partition)
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">1 /boot/efi  300 MB EFI System Partition (bootable, EFI System partition)
 </span></span><span class="line"><span class="cl">2 /boot      250 MB ext4
 </span></span><span class="line"><span class="cl">3 /          100 GB ext4
 </span></span><span class="line"><span class="cl">4 /usr/local  50 GB ext4
@@ -159,21 +156,16 @@ instruction:</p>
 <li>Debian archive mirror: (your choice)</li>
 <li>HTTP proxy information: (your choice)</li>
 <li>Participate in the package usage survey: (your choice)</li>
-<li>Choose software to install: (your choice; recommended to install
-Windows manager with Wifi support)</li>
+<li>Choose software to install: (your choice; Windows manager with WiFi support is recommended)</li>
 </ul>
-<p>If asked during installation, force UEFI installation: Yes (on the
-SSD, not USB device from which the installer is running).</p>
+<p>If asked during installation, force UEFI installation: Yes (on the SSD, not USB device from which the installer is running).</p>
 <p>After the first reboot, log in as root and do the following:</p>
-<p>It would be convenient to add your regular user account to <code>sudo</code>
-group:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># apt-get install sudo</span>
+<p>It would be convenient to add your regular user account to <code>sudo</code> group:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># apt-get install sudo</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># adduser &lt;username&gt; sudo</span>
 </span></span></code></pre></div><h2 id="intel-wireless-8260">Intel Wireless 8260</h2>
-<p>Wireless does not work out of box. Upgrade kernel and install
-firmware. Add contrib and non-free, as well as backports to
-<em>/etc/apt/sources.list</em>, which should have lines similar to this:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">deb http://ftp.us.debian.org/debian/ jessie main contrib non-free
+<p>Wireless does not work out of box. Upgrade kernel and install firmware. Add <code>contrib</code> and <code>non-free</code>, as well as backports to <em>/etc/apt/sources.list</em>, which should have lines similar to this:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">deb http://ftp.us.debian.org/debian/ jessie main contrib non-free
 </span></span><span class="line"><span class="cl">deb-src http://ftp.us.debian.org/debian/ jessie main contrib non-free
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">deb http://security.debian.org/ jessie/updates main contrib non-free
@@ -181,7 +173,7 @@ firmware. Add contrib and non-free, as well as backports to
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">deb http://ftp.debian.org/debian jessie-backports main contrib non-free
 </span></span></code></pre></div><p>Then upgrade the kernel and video driver and install updated firmware:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># apt-get update</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># apt-get update</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># apt-get install -t jessie-backports linux-image-4.5.0-0.bpo.1-amd64</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># apt-get install -t jessie-backports firmware-linux-nonfree</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># apt-get install -t jessie-backports firmware-iwlwifi</span>
@@ -189,9 +181,9 @@ firmware. Add contrib and non-free, as well as backports to
 </span></span></code></pre></div><p>Reboot and wireless should be working.</p>
 <h3 id="trackpoint-scrolling-and-disabling-trackpad">TrackPoint scrolling and disabling TrackPad</h3>
 <p>Install <code>xinput</code>:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo apt-get install xinput
-</span></span></code></pre></div><p>Create <em>~/.xsessionrc</em> file with the following content:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ sudo apt-get install xinput
+</span></span></code></pre></div><p>Create <em>~</em>.xsessionrc/ file with the following content:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
 </span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="c1">#</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># ThinkPad T460s TrackPad/TrackPoint configuration</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#</span>
@@ -226,7 +218,7 @@ firmware. Add contrib and non-free, as well as backports to
 </span></span><span class="line"><span class="cl"><span class="c1"># disable TrackPad if desired</span>
 </span></span><span class="line"><span class="cl">xinput --set-prop --type<span class="o">=</span>int <span class="s2">&#34;</span><span class="nv">$dev_id</span><span class="s2">&#34;</span> <span class="s2">&#34;Device Enabled&#34;</span> <span class="m">0</span>
 </span></span></code></pre></div><p>Source this file explicitly</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ . ~/.xsessionrc
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ . ~/.xsessionrc
 </span></span></code></pre></div><p>or upon the next boot, TrackPoint should be fully working.</p>
 
 			</div>
@@ -286,8 +278,19 @@ firmware. Add contrib and non-free, as well as backports to
   <span class="font-uni larger-text">
 	  Copyright &copy; 2007 - 2024
     <a href="https://okomestudio.net/biboroku/">Biboroku</a>
-    by <a href="https://okomestudio.net">Okome Studio</a> / Taro Sato.
-    All Rights Reserved.
+    by <a href="https://okomestudio.net">Okome Studio</a>
+    / Taro Sato. All Rights Reserved.
+    / <a href="/biboroku/index.xml" target="_blank" title="RSS">
+      <svg xmlns="http://www.w3.org/2000/svg"
+           width="16" height="16" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor"
+           stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+           class="feather feather-rss">
+        <path d="M4 11a9 9 0 0 1 9 9"></path>
+        <path d="M4 4a16 16 0 0 1 16 16"></path>
+        <circle cx="5" cy="19" r="1"></circle>
+      </svg>
+    </a>
   </span>
 </footer>
 
