@@ -492,10 +492,10 @@ p = J(D_i, D_j) \ .
 </table>
 <p>Near-duplicate documents will be hashed into the same bucket within each band. In this example, \(D\_j\) and \(D\_{j+1}\) are in the same bucket for bands 1 and 2. (Note that \(D\_1\) in band 3 has the same hash value as \(D\_j\) and \(D_{j+1}\) in band 2, but they are not considered to be in the same bucket since the bands are different.) The documents that share a bucket within a band are considered candidates for further examination. The advantage is that, since \(b \ll n\) in general, the number of required comparisons is much smaller. The LSH thus provides a way to select candidates for near-duplicate detection, before full signature comparisons are carried out.</p>
 <p>The assumption is that a pair of documents, if near-duplicate, has a total of \(b\) chances of being hashed into a common bucket in at least one of the available bands. Recall from Eq. \(\eqref{eq:equality}\) that the probability that a pair of MinHash values from two documents match is equivalent to their Jaccard index. The probability that a pair of documents share a bucket in a band of \(r\) rows is given by \(p^r\). Its complement, \(1 - p^r\), is the probability that a document pair does not get hashed into the same bucket for a band. Then the probability that two documents become candidates in at least one band is given by \(1 - (1 - p^r)^b\). Plotting for varying \(b\) and \(r\), the function forms a series of S-curves<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>:</p>
-<figure><img src="prob-vs-jaccard.png"
-         alt="Figure 1: Probability of Being Chosen as Candidates vs. Jaccard Index"/><figcaption>
-            <p><!-- raw HTML omitted -->Figure 1: <!-- raw HTML omitted -->Probability of Being Chosen as Candidates vs. Jaccard Index</p>
-        </figcaption>
+<figure><img src="/biboroku/2014/04/near-duplicate-detection-using-minhash-background/prob-vs-jaccard.png"
+    alt="Figure 1: Probability of Being Chosen as Candidates vs. Jaccard Index"><figcaption>
+      <p><!-- raw HTML omitted -->Figure 1: <!-- raw HTML omitted -->Probability of Being Chosen as Candidates vs. Jaccard Index</p>
+    </figcaption>
 </figure>
 
 <p>The figure provides an intuition as to how the values of \(b\) and \(r\) should be chosen for a target Jaccard similarity threshold \(t\) (above which two documents are considered near-duplicate). Let \(f(p) = 1 - (1-p^r)^b\). The value of \(p\) for the steepest slope is obtained from the second derivative, \(d^2f/dp^2 |_{p=p_t} = 0\), which is</p>
@@ -567,6 +567,8 @@ p_t = \left(\frac{r-1}{br-1}\right)^{1/r}    \approx \left(\frac{1}{b}\right)^{1
 		<div>
 			<ul>
 				
+				<li><a href="/biboroku/2024/07/creating-a-debian-boot-partition-on-a-usb-flash-drive/">Creating a Debian Boot Partition on a USB Flash Drive</a></li>
+				
 				<li><a href="/biboroku/2024/02/snipping-transcripts-with-snipd/">Snipping Transcripts with Snipd</a></li>
 				
 				<li><a href="/biboroku/2020/05/attribute-access-with-dict/">Attribute Access with Dict</a></li>
@@ -574,8 +576,6 @@ p_t = \left(\frac{r-1}{br-1}\right)^{1/r}    \approx \left(\frac{1}{b}\right)^{1
 				<li><a href="/biboroku/2020/04/on-lazy-logging-evaluation/">On Lazy Logging Evaluation</a></li>
 				
 				<li><a href="/biboroku/2016/04/installing-debianjessie-on-thinkpad-t460s/">Installing Debian/Jessie on ThinkPad T460s</a></li>
-				
-				<li><a href="/biboroku/2015/03/creating-a-debian-bootable-usb-stick-with-non-free-firmware/">Creating a Debian Bootable USB Stick with Non-Free Firmware</a></li>
 				
 			</ul>
 		</div>

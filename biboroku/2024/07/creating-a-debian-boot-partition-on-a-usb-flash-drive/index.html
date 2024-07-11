@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-158896843-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-158896843-1');
+  </script>
+  
+  <script>(function(w,d,s,l,i){
+      w[l]=w[l]||[];w[l].push(
+        {'gtm.start':
+         new Date().getTime(),event:'gtm.js'}
+      );var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NXBHQLG');
+  </script>
+  
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="Biboroku is a blog by Okome Studio">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+  <link rel="icon" href="https://okomestudio.net/favicon.ico">
+  <link rel="stylesheet" href="/biboroku/css/normalize.css">
+  <link rel="stylesheet" href="/biboroku/css/base.css">
+  <link rel="stylesheet" href="/biboroku/css/style.css">
+  <link rel="stylesheet" href="/biboroku/css/codesyntax.css">
+  <link rel="stylesheet" href="/biboroku/css/gist.css">
+  <title>Creating a Debian Boot Partition on a USB Flash Drive</title>
+
+  <script type="text/javascript">
+    MathJax = {
+      chtml: {
+        scale: 0.8,
+      },
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$','$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true,
+        tags: 'ams',
+      },
+      svg: {
+        fontCache: 'global',
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+
+    window.addEventListener('load', (event) => {
+      document.querySelectorAll("mjx-container").forEach(
+        function(x){
+          x.parentElement.classList += 'has-jax'
+      })
+    });
+  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script type="text/javascript" id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <script type="text/javascript" src="/biboroku/static/js/pjump.js"></script>
+
+  
+</head>
+<body>
+
+  
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NXBHQLG"
+            height="0" width="0" style="display:none;visibility:hidden">
+    </iframe>
+  </noscript>
+  
+
+  <div class="container">
+  <header>
+  <h1 class="font-uni"><a href="https://okomestudio.net/biboroku/">Biboroku</a></h1>
+  <nav>
+    <ul class="nav navbar-nav font-uni">
+      <li><a href="https://okomestudio.net">OkomeStudio.net</a></li>
+      <li><a href="https://okomestudio.net/biboroku//about">About</a></li>
+    </ul>
+  </nav>
+</header>
+
+  
+	<main>
+		<article class="blog-post">
+      <h1>Creating a Debian Boot Partition on a USB Flash Drive</h1>
+      
+
+      <p class="meta">
+        Written by
+        
+          
+            Taro Sato,
+          
+        
+
+        on <time>July 8, 2024</time>.
+	      Tagged:
+        
+	      <a href="/biboroku/tags/linux">linux</a>
+	      
+      </p>
+			<div>
+				<figure><img src="/biboroku/2024/07/creating-a-debian-boot-partition-on-a-usb-flash-drive/usb-key.jpg">
+</figure>
+
+<p>Having a boot partition on a USB flash drive provides two major benefits. One is to have the USB flash drive work as a “security key” without which the computer cannot boot into an OS; effectively, the boot USB flash drive becomes a house key. Another is to provide the consolidated storage for an encryption key to encrypt the main SSD drive.</p>
+<p>Bootstrapping a Debian system to boot in this particular way is done at an installation time. This document outlines that process. We will provide the detailed steps only for partitioning storage devices (i.e., the main SSD drive and the USB flash drive), but not for the entire Debian installation. This is to keep the document succinct, but also because they are the only part that is different from the standard Debian installation steps.</p>
+<h2 id="what-you-need">What You Need</h2>
+<ul>
+<li>A Debian install medium (likely a USB flash drive)</li>
+<li>A computer on which Debian is being installed</li>
+<li>One unused USB flash drive on which to put the <code>/boot</code> partition</li>
+</ul>
+<p>The unused USB flash drive must be different from the one with the Debian install media.</p>
+<p>Here is a note about the <code>/boot</code> partition size: I would recommend that the USB flash drive to have at least 500 MB of storage space. The ideal size depends on usage, but the very minimal size should be determined by how many kernel-related files you would want to keep in the boot partition at a time. The very minimum number of kernel versions to keep is two, one for the main use and another for fallback or backup. As of writing, each kernel would need about 80 MB (for <code>config</code>, <code>initrd.img</code>, and <code>vmlinuz</code> files), which might be larger or smaller depending on how much you customize the kernel. The idea is to have enough space to keep all the kernel versions that you need available on boot. In reality, it is increasingly rare to be found in retail USB flash drives with less than 8 GB of storage, and there is no harm in using that much space for your boot partition.</p>
+<p>I now assume that you are in the process of Debian installation, and right before the step for partitioning the hard drive(s).</p>
+<h2 id="creating-a-boot-partition-on-a-usb-flash-drive">Creating a Boot Partition on a USB Flash Drive</h2>
+<p>Before getting to the “Detect disks” step of the Debian installer, make sure that the unused USB flash drive is already plugged into the computer.</p>
+<p>When you get to the “Partition disks” step, choose “Manual” as “Partitioning method.”</p>
+<p>Identify the device name for the unused USB flash drive, e.g., “SCSI (0,0,0) (sdb).”</p>
+<p>Select that entire device to create a new empty partition table on it.</p>
+<p>Create a new EFI System partition on its free space:</p>
+<ul>
+<li>Partition size: 128 MB</li>
+<li>Location for the new partition: Beginning</li>
+<li>Partition settings:
+<ul>
+<li>Use as: EFI System Partition</li>
+<li>Bootable flag: on</li>
+</ul>
+</li>
+</ul>
+<p>Create a new boot partition on its remaining free space:</p>
+<ul>
+<li>Partition size: (use all the remaining free space)</li>
+<li>Partition settings:
+<ul>
+<li>Use as: Ext2 file system</li>
+<li>Mount point: /boot</li>
+<li>Mount options: defaults</li>
+<li>Label: none</li>
+<li>Reserved blocks: 5%</li>
+<li>Typical usage: standard</li>
+<li>Bootable flag: off</li>
+</ul>
+</li>
+</ul>
+<p>The newly partitioned USB flash drive is now set up to be and hold the entire <code>/boot</code> partition.</p>
+<h2 id="creating-an-encrypted-partition-on-an-ssd-drive">Creating an Encrypted Partition on an SSD Drive</h2>
+<p>You will use the entirety of the SSD drive as an encrypted volume. Inside, the logical volumes for the <code>/</code> (root) partition and the SWAP partition will be created.</p>
+<p>Throughout the current process, you may be asked a question “Write changes to disk and configure (something).” Be ready to answer “Yes” to this question. All the actions going forward are destructive, and all data on the SSD drive will be cleared.</p>
+<h3 id="creating-the-encrypted-volume">Creating the Encrypted Volume</h3>
+<p>Select that entire SSD drive to create a new empty partition table on it.</p>
+<p>Create a new partition on its free space with the following configuration:</p>
+<ul>
+<li>Partition size: (use all the remaining free space)</li>
+<li>Partition settings:
+<ul>
+<li>Use as: physical volume for encryption</li>
+<li>Encryption method: Device-mapper (dm-crypt)</li>
+<li>Encryption: aes</li>
+<li>Key size: 256</li>
+<li>IV algorithm: xts-plain64</li>
+<li>Encryption key: Passphrase</li>
+<li>Erase data: yes</li>
+<li>Bootable flag: off</li>
+</ul>
+</li>
+</ul>
+<p>Choose “Configure encrypted volumes”:</p>
+<ul>
+<li>Encryption configuration actions: Finish</li>
+<li>Really erase the data on …: Yes</li>
+<li>Type encryption passphrase: (choose wisely)</li>
+</ul>
+<h3 id="configuring-the-logical-volume-manager">Configuring the Logical Volume Manager</h3>
+<p>Choose “Configure the Logical Volume Manager.”</p>
+<h4 id="creating-a-volume-group">Creating a volume group</h4>
+<p>Under “LVM configuration action,” choose “Create volume group”:</p>
+<ol>
+<li>Volume group name: vg</li>
+<li>Devices for the new volume group: /dev/mapper/* (choose encrypted device)</li>
+</ol>
+<h4 id="creating-logical-volumes">Creating logical volumes</h4>
+<p>Under “LVM configuration action,” choose “Create logical volume” for the swap space:</p>
+<ol>
+<li>Volume group: vg</li>
+<li>Logical volume name: swap</li>
+<li>Logical volume size: (roughly the same as RAM)</li>
+</ol>
+<p>Under “LVM configuration action,” choose “create logical volume” for the root partition:</p>
+<ol>
+<li>Volume group: vg</li>
+<li>Logical volume name: root</li>
+<li>Logical volume size: (the remaining free space)</li>
+</ol>
+<p>Under “LVM configuration action,” choose “Finish.”</p>
+<h2 id="creating-the-root-and-swap-partitions-in-logical-volumes">Creating the Root and SWAP Partitions in Logical Volumes</h2>
+<p>Select the logical volume named “root” and configure the partition:</p>
+<ul>
+<li>Partition settings:
+<ul>
+<li>Use as: Ext4 journaling file system</li>
+<li>Mount point: /</li>
+<li>Mount options: defaults</li>
+<li>Label: none</li>
+<li>Reserved blocks: 5%</li>
+<li>Typical usage: standard</li>
+</ul>
+</li>
+</ul>
+<p>Select the logical volume named “swap” and configure the partition:</p>
+<ul>
+<li>Partition settings:
+<ul>
+<li>Use as: swap area</li>
+</ul>
+</li>
+</ul>
+<p>Finally, choose “Finish partitioning and write changes to disk.”</p>
+<ul>
+<li>Write changes to disks: Yes</li>
+</ul>
+<p>Follow and complete the rest of the Debian installation. Before the very first reboot, keep the boot USB flash drive plugged in, but remove the USB flash drive with the Debian install media.</p>
+<p>Upon reboot, make sure that you can boot into the Debian login screen using the encryption passphrase that you set up earlier.</p>
+<p>Move on to the next section once you confirm that you may log in on the newly bootstrapped machine as root. The shortcut Alt + Ctrl + F2 may be useful for console login as root.</p>
+<h2 id="storing-ssd-drive-encryption-key-file-in-the-boot-usb-flash-drive">Storing SSD Drive Encryption Key File in the Boot USB Flash Drive</h2>
+<p>In this section, we replace the encryption passphrase with a key file and store it in the boot USB stick. The key file will be encrypted with a (possibly different) passphrase using GnuPG.</p>
+<p>Boot off the boot USB flash drive, and use Alt + Ctrl + F2 to log in as root via console. All the shell commands below are meant to be executed as root.</p>
+<p>Generate a random key file:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">dd <span class="k">if</span><span class="o">=</span>/dev/urandom <span class="nv">of</span><span class="o">=</span>/keyfile <span class="nv">bs</span><span class="o">=</span><span class="m">512</span> <span class="nv">count</span><span class="o">=</span><span class="m">16</span>
+</span></span></code></pre></div><p>Look in <code>/etc/crypttab</code> for a line that looks like this:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">nvme0n1p1_crypt UUID=&lt;uuid&gt; none luks,discard
+</span></span></code></pre></div><p>where <code>&lt;uuid&gt;</code> depends on your hardware. Take note of the device name here (<code>nvme0n1p1</code>), as it may be different for your machine. It should refer to the encrypted volume of the SSD. Change that line to:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">nvme0n1p1_crypt UUID=&lt;uuid&gt; /boot/keyfile.gpg luks,keyscript=/lib/cryptsetup/scripts/decrypt_gnupg
+</span></span></code></pre></div><p>Add the key file to the LUKS keyring:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">/sbin/cryptsetup luksAddKey /dev/nvme0n1p1 /keyfile
+</span></span></code></pre></div><p>When asked, type in the existing passphrase created for the encrypted volume during the Debian installation process.</p>
+<p>Encrypt the key file with <code>gpg</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">gpg -c --cipher-algo AES256 /keyfile
+</span></span></code></pre></div><p>When asked, enter a (new) passphrase. Keep in mind that it is for encrypting the key file, not the volume this time. Thus, it can be the same as the one for the encrypted volume used earlier, as eventually, we will only keep the passphrase created in the current step.</p>
+<p>Move the GPG file just created to the boot USB flash drive at <code>/boot/keyfile.gpg</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">mv /keyfile.gpg /boot/keyfile.gpg
+</span></span></code></pre></div><p>Update the initramfs:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">/sbin/update-initramfs -u
+</span></span></code></pre></div><p>Reboot.</p>
+<p>Once the reboot is successful, notice that you will get prompted for a passphrase of the encrypted key file, not the encrypted volume this time. Log in as root again, and remove the raw encryption key file created for temporary use:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">cryptsetup luksKillSlot /dev/nvme0n1p1 <span class="m">0</span> --key-file /keyfile
+</span></span><span class="line"><span class="cl">shred -n <span class="m">30</span> -uvz /keyfile
+</span></span></code></pre></div><p>At this point, the boot USB flash drive becomes the “key” and will be the only way to boot this machine.</p>
+<p>Once the computer boots, you may unmount the boot partition</p>
+<h2 id="removing-the-boot-usb-flash-drive">Removing the Boot USB Flash Drive</h2>
+<p>After the successful boot, you may want to remove the boot USB flash drive. (You don’t want your key left inserted!)</p>
+<p>Unmount the boot partition as follows:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo umount /boot/efi
+</span></span><span class="line"><span class="cl">sudo umount /boot
+</span></span></code></pre></div><p>Then, physically remove the boot USB flash drive.</p>
+<h2 id="waking-up-from-hibernation">Waking up from Hibernation</h2>
+<p>When hibernation is active, you will need the boot USB flash drive to wake up the computer to boot back into the hibernated session.</p>
+<p>With regular sleep (suspend-to-RAM), you will not need the boot USB flash drive.</p>
+<p>Don’t forget to bring along your boot USB flash drive when traveling with a computer in hibernation.</p>
+<h2 id="creating-spare-usb-flash-drives">Creating Spare USB Flash Drives</h2>
+<p>Like any other (physical) keys, you might want to keep a spare in case you lose it. It is easy to create one as follows.</p>
+<p>First, obtain the device paths pointing to the master USB flash drive and the spare USB flash drive:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">fdisk -l
+</span></span></code></pre></div><p>Say, you have the master at <code>/dev/sda</code> and the spare at <code>/dev/sdb</code>. Then use <code>dd</code> to create an image dump of the master, and use it to create a spare:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">dd <span class="k">if</span><span class="o">=</span>/dev/sda <span class="nv">of</span><span class="o">=</span>/tmp/boot-key.img <span class="nv">bs</span><span class="o">=</span>16M  <span class="c1"># generate an image of the master</span>
+</span></span><span class="line"><span class="cl">dd <span class="k">if</span><span class="o">=</span>/tmp/boot-key.img <span class="nv">of</span><span class="o">=</span>/dev/sdb <span class="nv">bs</span><span class="o">=</span>16M  <span class="c1"># create the spare from the image</span>
+</span></span></code></pre></div><p>Of course, both USB flash drives need not be present at the same time. Just be very, very careful with the device paths when you insert/remove the USB devices, as it is easy to misremember the device reference and destroy important data.</p>
+<h2 id="handling-kernel-updates">Handling Kernel Updates</h2>
+<p>A maintenance release of Debian sometimes includes a kernel upgrade. Since Linux kernel-related files are stored in the <code>/boot</code> directory, such an update must be done while the boot USB flash drive is mounted on the computer.</p>
+<p>Check if a pending Debian update includes a kernel update:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo apt update
+</span></span><span class="line"><span class="cl">sudo apt list --upgradable
+</span></span></code></pre></div><p>If the list includes packages named like <code>linux-image-*</code>, that kernel will be installed upon the next APT upgrade, and the relevant kernel files will be created under <code>/boot</code>. For each kernel version, the following files would exist:</p>
+<ul>
+<li><code>System.map-&lt;x.x.x-x&gt;-amd64</code></li>
+<li><code>config-&lt;x.x.x-x&gt;-amd64</code></li>
+<li><code>initrd.img-&lt;x.x.x-x&gt;-amd64</code></li>
+<li><code>vmlinuz-&lt;x.x.x-x&gt;-amd64</code></li>
+</ul>
+<p>where <code>&lt;x.x.x-x&gt;</code> is the kernel version and its revision number.</p>
+<p>Insert the boot USB flash drive, and mount the boot partition if not done so already:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo mount /boot
+</span></span><span class="line"><span class="cl">sudo mount /boot/efi
+</span></span></code></pre></div><p>Then, perform APT upgrade:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo apt upgrade
+</span></span></code></pre></div><p>Especially if you manage more than one boot USB flash drive, a nice thing to remember is how to reinstall a package. With a kernel image, the command would look like this:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo apt install --reinstall linux-image-&lt;x.x.x-x&gt;-amd64
+</span></span></code></pre></div><p>The kernel reinstall would become necessary when you have more than one boot USB flash drive to keep in sync with each other. Essentially, you need to repeat the kernel upgrade process for each boot USB flash drive, and the <code>apt install --reinstall</code> command above is all that is necessary.</p>
+<p>Finally, purging the kernel package will remove the kernel-related files from the <code>/boot</code> directory:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">dpkg -l <span class="p">|</span> grep linux-image-*  <span class="c1"># list installed kernel versions</span>
+</span></span><span class="line"><span class="cl">sudo dpkg -P linux-image-&lt;x.x.x-x&gt;-amd64  <span class="c1"># perge specific kernel version</span>
+</span></span></code></pre></div><p>You may need to perform this cleanup occasionally if your boot partition is small.</p>
+
+			</div>
+
+			
+			<div class="comments">
+				<div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "biboroku" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+			</div>
+			
+
+	  </article>
+	</main>
+<aside>
+	<div>
+		<div>
+			<h2 class="font-uni">LATEST POSTS</h2>
+		</div>
+		<div>
+			<ul>
+				
+				<li><a href="/biboroku/2024/07/creating-a-debian-boot-partition-on-a-usb-flash-drive/">Creating a Debian Boot Partition on a USB Flash Drive</a></li>
+				
+				<li><a href="/biboroku/2024/02/snipping-transcripts-with-snipd/">Snipping Transcripts with Snipd</a></li>
+				
+				<li><a href="/biboroku/2020/05/attribute-access-with-dict/">Attribute Access with Dict</a></li>
+				
+				<li><a href="/biboroku/2020/04/on-lazy-logging-evaluation/">On Lazy Logging Evaluation</a></li>
+				
+				<li><a href="/biboroku/2016/04/installing-debianjessie-on-thinkpad-t460s/">Installing Debian/Jessie on ThinkPad T460s</a></li>
+				
+			</ul>
+		</div>
+	</div>
+</aside>
+
+
+  <footer class="centered">
+  <span class="font-uni larger-text">
+	  Copyright &copy; 2007 - 2024
+    <a href="https://okomestudio.net/biboroku/">Biboroku</a>
+    by <a href="https://okomestudio.net">Okome Studio</a>
+    / Taro Sato. All Rights Reserved.
+    / <a href="/biboroku/index.xml" target="_blank" title="RSS">
+      <svg xmlns="http://www.w3.org/2000/svg"
+           width="16" height="16" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor"
+           stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+           class="feather feather-rss">
+        <path d="M4 11a9 9 0 0 1 9 9"></path>
+        <path d="M4 4a16 16 0 0 1 16 16"></path>
+        <circle cx="5" cy="19" r="1"></circle>
+      </svg>
+    </a>
+  </span>
+</footer>
+
+  </div>
+</body>
+</html>

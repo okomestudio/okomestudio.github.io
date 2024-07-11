@@ -108,23 +108,22 @@
       <p class="meta">
         Written by
         
-          Taro Sato
+          
+            Taro Sato,
+          
         
 
         on <time>February 20, 2014</time>.
 	      Tagged:
         
-	      <a href="/biboroku/tags/sysadmin">sysadmin</a>
+	      <a href="/biboroku/tags/linux">linux</a>
 	      
-	      <a href="/biboroku/tags/linux">Linux</a>
+	      <a href="/biboroku/tags/sysadmin">sysadmin</a>
 	      
       </p>
 			<div>
-				<p>The simplest way to create a bootable USB stick for Debian
-installation is to use command <strong><code>dd</code></strong> to copy an ISO image to an
-empty USB stick.</p>
-<p>First, connect an empty USB stick to a working Linux box, and see
-which device represents the stick:</p>
+				<p>The simplest way to create a bootable USB stick for Debian installation is to use command <code>dd</code> to copy an ISO image to an empty USB stick.</p>
+<p>First, connect an empty USB stick to a working Linux box, and see which device represents the stick:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo fdisk -l
 </span></span><span class="line"><span class="cl">...
 </span></span><span class="line"><span class="cl">Disk /dev/sdb: 16.0 GB, <span class="m">16008609792</span> bytes
@@ -136,16 +135,8 @@ which device represents the stick:</p>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">   Device Boot      Start         End      Blocks   Id  System
 </span></span><span class="line"><span class="cl">/dev/sdb1              <span class="m">32</span>    <span class="m">31266815</span>    <span class="m">15633392</span>    c  W95 FAT32 <span class="o">(</span>LBA<span class="o">)</span>
-</span></span></code></pre></div><p>So, on my computer, <em>/dev/sdb</em> is the USB stick. Whatever is on it will
-be deleted and overwritten in this procedure, so make sure that I use
-a stick with large enough disk capacity specifically for this purpose.</p>
-<p>When I use netinst installer, about 300 MB would be enough.  When the
-access to the network is not guaranteed during the installation (e.g.,
-the network adapter is not properly recognized by the Debian
-Installer), it is desired to at least use the full CD/DVD media, which
-would take about 4 GB (just the first medium should be enough for bare
-minimal installation, after which more full configuration can be
-resumed).</p>
+</span></span></code></pre></div><p>So, on my computer, <code>/dev/sdb</code> is the USB stick. Whatever is on it will be deleted and overwritten in this procedure, so make sure that I use a stick with large enough disk capacity specifically for this purpose.</p>
+<p>For the netinst installer, about 300 MB would be enough. When the access to the network is not guaranteed during the installation (e.g., the network adapter is not properly recognized by the Debian Installer), it is desired to at least use the full CD/DVD media, which would take about 4 GB (just the first medium should be enough for bare minimal installation, after which more full configuration can be resumed afterward).</p>
 <p>Download an ISO image for the Debian installer:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ wget http://cdimage.debian.org/debian-cd/7.4.0/amd64/iso-cd/debian-7.4.0-amd64-netinst.iso
 </span></span></code></pre></div><p>Then copy the ISO image to the USB stick:</p>
@@ -189,6 +180,8 @@ resumed).</p>
 		<div>
 			<ul>
 				
+				<li><a href="/biboroku/2024/07/creating-a-debian-boot-partition-on-a-usb-flash-drive/">Creating a Debian Boot Partition on a USB Flash Drive</a></li>
+				
 				<li><a href="/biboroku/2024/02/snipping-transcripts-with-snipd/">Snipping Transcripts with Snipd</a></li>
 				
 				<li><a href="/biboroku/2020/05/attribute-access-with-dict/">Attribute Access with Dict</a></li>
@@ -196,8 +189,6 @@ resumed).</p>
 				<li><a href="/biboroku/2020/04/on-lazy-logging-evaluation/">On Lazy Logging Evaluation</a></li>
 				
 				<li><a href="/biboroku/2016/04/installing-debianjessie-on-thinkpad-t460s/">Installing Debian/Jessie on ThinkPad T460s</a></li>
-				
-				<li><a href="/biboroku/2015/03/creating-a-debian-bootable-usb-stick-with-non-free-firmware/">Creating a Debian Bootable USB Stick with Non-Free Firmware</a></li>
 				
 			</ul>
 		</div>

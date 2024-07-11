@@ -108,44 +108,36 @@
       <p class="meta">
         Written by
         
-          Taro Sato
+          
+            Taro Sato,
+          
         
 
         on <time>September 30, 2012</time>.
 	      Tagged:
         
-	      <a href="/biboroku/tags/linux">Linux</a>
+	      <a href="/biboroku/tags/linux">linux</a>
 	      
 	      <a href="/biboroku/tags/sysadmin">sysadmin</a>
 	      
-	      <a href="/biboroku/tags/thinkpad">ThinkPad</a>
+	      <a href="/biboroku/tags/thinkpad">thinkpad</a>
 	      
       </p>
 			<div>
-				<p>Since <code>tp_smapi</code> <a href="https://github.com/evgeni/tp_smapi/issues/14">does not work
-properly</a> on T430s, I am using
-<a href="http://linrunner.de/en/tlp/tlp.html">TLP</a> this time. I still want some
-traditional tools</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo aptitude install powertop
+				<p>Since <code>tp_smapi</code> <a href="https://github.com/evgeni/tp_smapi/issues/14">does not work properly</a> on T430s, I am using <a href="http://linrunner.de/en/tlp/tlp.html">TLP</a> this time. I still want some traditional tools</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ sudo aptitude install powertop
 </span></span></code></pre></div><p>but not others:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo aptitude remove --purge laptop-mode-tools
-</span></span></code></pre></div><p>To install, <a href="http://linrunner.de/en/tlp/docs/tlp-linux-advanced-power-management.html#installation">follow the
-instruction</a>.
-In short, first update the APT source list by adding the following line to
-<em>/etc/apt/sources.list</em>:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">deb http://ppa.launchpad.net/linrunner/tlp/ubuntu lucid main
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ sudo aptitude remove --purge laptop-mode-tools
+</span></span></code></pre></div><p>To install, <a href="http://linrunner.de/en/tlp/docs/tlp-linux-advanced-power-management.html#installation">follow the instruction</a>. In short, first update the APT source list by adding the following line to <code>/etc/apt/sources.list</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">deb http://ppa.launchpad.net/linrunner/tlp/ubuntu lucid main
 </span></span></code></pre></div><p>and run</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 02D65EFF
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 02D65EFF
 </span></span><span class="line"><span class="cl">$ sudo aptitude update
 </span></span><span class="line"><span class="cl">$ sudo aptitude install tlp tlp-rdw tp-smapi-dkms smartmontools ethtool acpi-call-tools&lt;/pre&gt;
 </span></span></code></pre></div><p>Upon reboot, TLP starts running.</p>
-<p>I am impressed by the ease of installation and how effective TLP is on
-configuring T430s to star saving from the get go. According to <code>powertop</code>,
-T430s is already using just 7 - 8 W on battery. That&rsquo;s several watts below I had
-been using on other ThankPads!!</p>
-<p>Controlling the behavior of TPL is done by modifying <em>/etc/default/tlp</em>. I
-mostly use the default except the following changes:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">...
+<p>I am impressed by the ease of installation and how effective TLP is on configuring T430s to start power saving from the get go. According to <code>powertop</code>, T430s is already using just 7 - 8 W on battery. That&rsquo;s several watts below I had been using on other ThankPads!!</p>
+<p>Controlling the behavior of TPL is done by modifying <code>/etc/default/tlp</code>. I mostly use the default except the following changes:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">...
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"># Main battery (values in %)
 </span></span><span class="line"><span class="cl">START_CHARGE_THRESH_BAT0=75
@@ -165,36 +157,25 @@ mostly use the default except the following changes:</p>
 </span></span><span class="line"><span class="cl">DEVICES_TO_ENABLE_ON_LAN_DISCONNECT=&amp;quot;wifi&amp;quot;
 </span></span><span class="line"><span class="cl">DEVICES_TO_ENABLE_ON_WIFI_DISCONNECT=&amp;quot;&amp;quot;
 </span></span><span class="line"><span class="cl">DEVICES_TO_ENABLE_ON_WWAN_DISCONNECT=&amp;quot;&amp;quot;
-</span></span></code></pre></div><p>Note that in this configuration the battery charge thresholds are intentionally
-set lower than the factory default to prolong the health of batteries. When I
-wish to fully charge them, do:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo tlp fullcharge <span class="o">[</span> BAT0 <span class="p">|</span> BAT1 <span class="o">]</span>
-</span></span></code></pre></div><p>and the thresholds will be set back to the factory default. The setting reverts
-to the custom configuration upon next reboot.</p>
-<h3 id="enables-rc6-power-saving">Enables RC6 Power Saving</h3>
-<p>Edit <em>/etc/default/grub</em> and add the option <em>i915.i915_enable_rc6=1</em> to GRUB:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">GRUB_CMDLINE_LINUX_DEFAULT=&amp;quot;quiet i915.i915_enable_rc6=1&amp;quot;
+</span></span></code></pre></div><p>Note that in this configuration the battery charge thresholds are intentionally set lower than the factory default to prolong the health of batteries. When I wish to fully charge them, do:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ sudo tlp fullcharge <span class="o">[</span> BAT0 <span class="p">|</span> BAT1 <span class="o">]</span>
+</span></span></code></pre></div><p>and the thresholds will be set back to the factory default. The settings revert to the custom configuration upon next reboot.</p>
+<h2 id="enables-rc6-power-saving">Enables RC6 Power Saving</h2>
+<p>Edit <code>/etc/default/grub</code> and add the option <code>i915.i915_enable_rc6=1</code> to GRUB:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">GRUB_CMDLINE_LINUX_DEFAULT=&amp;quot;quiet i915.i915_enable_rc6=1&amp;quot;
 </span></span></code></pre></div><p>After editing, update Grub:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo update-grub
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ sudo update-grub
 </span></span></code></pre></div><p>This can save about 0.5 W of power!</p>
 <h3 id="fan-control">Fan Control</h3>
-<p>I have not fine tuned this, but the fan can be controlled manually via
-<a href="http://thinkfan.sourceforge.net/"><code>thinkfan</code></a>:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo aptitude install thinkfan
-</span></span></code></pre></div><p>Create (or edit) <em>/etc/modprobe.d/thinkpad_acpi.conf</em> and add the line:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">options thinkpad_acpi fan_control=1
-</span></span></code></pre></div><p>Reboot. The fan can be controlled manually following <a href="http://www.thinkwiki.org/wiki/How_to_control_fan_speed">this Wiki
-article</a>.</p>
-<h3 id="configuring-system-on-switch-between-ac-038-battery">Configuring System on Switch between AC &amp; Battery</h3>
-<p>For regular daemons (like <code>ssh</code>), TLP provides a way to start/stop based on AC
-status.</p>
-<p>For other personal processes, KDE power management can also do some work by
-running a script upon dis/connecting with AC. In particular, the sound for the
-KDE system notifications should be disabled entirely, because they cause quite a
-number of unwanted interruptions according to <code>powertop</code>. Also, I wish to
-start/stop programs like flux and Dropbox when on battery just to squeeze more
-juice. I create a script like this:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/usr/bin/env bash
+<p>I have not fine tuned this, but the fan can be controlled manually via <a href="http://thinkfan.sourceforge.net/"><code>thinkfan</code></a>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ sudo aptitude install thinkfan
+</span></span></code></pre></div><p>Create (or edit) <code>/etc/modprobe.d/thinkpad_acpi.conf</code> and add the line:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">options thinkpad_acpi fan_control=1
+</span></span></code></pre></div><p>Reboot. The fan can be controlled manually following <a href="http://www.thinkwiki.org/wiki/How_to_control_fan_speed">this Wiki article</a>.</p>
+<h3 id="configuring-system-on-switch-between-ac-and-battery">Configuring System on Switch between AC &amp; Battery</h3>
+<p>For regular daemons (like <code>ssh</code>), TLP provides a way to start/stop based on AC status.</p>
+<p>For other personal processes, KDE power management can also do some work by running a script upon dis/connecting with AC. In particular, the sound for the KDE system notifications should be disabled entirely, because they cause quite a number of unwanted interruptions according to <code>powertop</code>. Also, I wish to start/stop programs like flux and Dropbox when on battery just to squeeze more juice. I create a script like this:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="cp">#!/usr/bin/env bash
 </span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="c1">##############################################################################</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># This is a script to run when AC/battery switches.  Ideally used</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># within the power management configuration setting on KDE.  Requires</span>
@@ -241,23 +222,16 @@ juice. I create a script like this:</p>
 </span></span><span class="line"><span class="cl">    logger -t <span class="nv">$tag</span> <span class="p">&amp;</span>quot<span class="p">;</span>disable system notification<span class="p">&amp;</span>quot<span class="p">;</span>
 </span></span><span class="line"><span class="cl">    kwriteconfig --file<span class="o">=</span><span class="p">&amp;</span>quot<span class="p">;</span>/home/<span class="nv">$USERNAME</span>/.kde/share/config/knotifyrc<span class="p">&amp;</span>quot<span class="p">;</span> --group<span class="o">=</span>Sounds --key<span class="o">=</span><span class="p">&amp;</span>quot<span class="p">;</span>No sound<span class="p">&amp;</span>quot<span class="p">;</span> <span class="nb">true</span>
 </span></span><span class="line"><span class="cl"><span class="k">fi</span>
-</span></span></code></pre></div><p>Save this to <em>~/bin/pmpersonal.sh</em>. Go to System Settings -&gt; Power Management -&gt;
-Energy Saving Settings. There, for each of “On AC,” “On Battery,” and “On Low
-Battery,” I can set different configurations. I can also specify “Run Script”
-option for each profile to enable/disable a few desktop related applications and
-settings. The script should be run on profile load.</p>
+</span></span></code></pre></div><p>Save this to a path like <code>/bin/pmpersonal.sh</code>. Go to System Settings -&gt; Power Management -&gt; Energy Saving Settings. There, for each of &ldquo;On AC,&rdquo; &ldquo;On Battery,&rdquo; and &ldquo;On Low Battery,&rdquo; I can set different configurations. I can also specify &ldquo;Run Script&rdquo; option for each profile to enable/disable a few desktop related applications and settings. The script should be run on profile load.</p>
 <h3 id="preload-daemon">Preload Daemon</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo aptitude install preload
-</span></span></code></pre></div><p>In <em>/etc/default/preload</em>, uncomment the line reading</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">OPTIONS=&amp;quot;-l /dev/null&amp;quot;
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ sudo aptitude install preload
+</span></span></code></pre></div><p>In <code>/etc/default/preload</code>, uncomment the line reading</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">OPTIONS=&amp;quot;-l /dev/null&amp;quot;
 </span></span></code></pre></div><p>This should reduce disk activity.</p>
 <h3 id="disabling-nepomuk-strigi-and-akonadi-on-kde">Disabling Nepomuk, Strigi and Akonadi on KDE</h3>
-<p>I am not fond of these daemon. Disable them by going to System Settings -&gt;
-Desktop Search and unchecking “Enable Nepomuk Semantic Desktop.” In
-<em>~/.config/akonadi/akonadiserverrc</em>, set:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">StartServer=false
-</span></span></code></pre></div><p>so that it doesn’t start at all. On <code>powertop</code>, this shows up as a service
-running <code>mysqld</code> constantly.</p>
+<p>I am not fond of these daemons. Disable them by going to System Settings -&gt; Desktop Search and unchecking &ldquo;Enable Nepomuk Semantic Desktop.&rdquo; In <code>~/.config/akonadi/akonadiserverrc</code>, set:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">StartServer=false
+</span></span></code></pre></div><p>so that it doesn&rsquo;t start at all. On <code>powertop</code>, this shows up as a service running <code>mysqld</code> constantly.</p>
 
 			</div>
 
@@ -296,6 +270,8 @@ running <code>mysqld</code> constantly.</p>
 		<div>
 			<ul>
 				
+				<li><a href="/biboroku/2024/07/creating-a-debian-boot-partition-on-a-usb-flash-drive/">Creating a Debian Boot Partition on a USB Flash Drive</a></li>
+				
 				<li><a href="/biboroku/2024/02/snipping-transcripts-with-snipd/">Snipping Transcripts with Snipd</a></li>
 				
 				<li><a href="/biboroku/2020/05/attribute-access-with-dict/">Attribute Access with Dict</a></li>
@@ -303,8 +279,6 @@ running <code>mysqld</code> constantly.</p>
 				<li><a href="/biboroku/2020/04/on-lazy-logging-evaluation/">On Lazy Logging Evaluation</a></li>
 				
 				<li><a href="/biboroku/2016/04/installing-debianjessie-on-thinkpad-t460s/">Installing Debian/Jessie on ThinkPad T460s</a></li>
-				
-				<li><a href="/biboroku/2015/03/creating-a-debian-bootable-usb-stick-with-non-free-firmware/">Creating a Debian Bootable USB Stick with Non-Free Firmware</a></li>
 				
 			</ul>
 		</div>
