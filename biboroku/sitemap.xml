@@ -3,18 +3,24 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://okomestudio.net/biboroku/2024/</loc>
-    <lastmod>2024-07-10T17:16:37-07:00</lastmod>
+    <lastmod>2024-08-31T09:30:14-07:00</lastmod>
   </url><url>
     <loc>https://okomestudio.net/biboroku/</loc>
-    <lastmod>2024-07-10T17:16:37-07:00</lastmod>
+    <lastmod>2024-08-31T09:30:14-07:00</lastmod>
+  </url><url>
+    <loc>https://okomestudio.net/biboroku/2024/08/polymorphism-with-single-dispatch-in-python/</loc>
+    <lastmod>2024-08-31T09:30:14-07:00</lastmod>
+  </url><url>
+    <loc>https://okomestudio.net/biboroku/tags/python/</loc>
+    <lastmod>2024-08-31T09:30:14-07:00</lastmod>
+  </url><url>
+    <loc>https://okomestudio.net/biboroku/tags/</loc>
+    <lastmod>2024-08-31T09:30:14-07:00</lastmod>
   </url><url>
     <loc>https://okomestudio.net/biboroku/2024/07/creating-a-debian-boot-partition-on-a-usb-flash-drive/</loc>
     <lastmod>2024-07-10T17:16:37-07:00</lastmod>
   </url><url>
     <loc>https://okomestudio.net/biboroku/tags/linux/</loc>
-    <lastmod>2024-07-10T17:16:37-07:00</lastmod>
-  </url><url>
-    <loc>https://okomestudio.net/biboroku/tags/</loc>
     <lastmod>2024-07-10T17:16:37-07:00</lastmod>
   </url><url>
     <loc>https://okomestudio.net/biboroku/tags/pkm/</loc>
@@ -34,9 +40,6 @@
   </url><url>
     <loc>https://okomestudio.net/biboroku/2020/05/attribute-access-with-dict/</loc>
     <lastmod>2024-02-26T17:40:26-08:00</lastmod>
-  </url><url>
-    <loc>https://okomestudio.net/biboroku/tags/python/</loc>
-    <lastmod>2024-02-27T23:24:03-08:00</lastmod>
   </url><url>
     <loc>https://okomestudio.net/biboroku/about/</loc>
     <lastmod>2020-04-20T10:55:26-07:00</lastmod>

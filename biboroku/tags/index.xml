@@ -6,8 +6,15 @@
     <description>Recent content in Tags on Biboroku</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 10 Jul 2024 17:16:37 -0700</lastBuildDate>
+    <lastBuildDate>Sat, 31 Aug 2024 09:30:14 -0700</lastBuildDate>
     <atom:link href="https://okomestudio.net/biboroku/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Python</title>
+      <link>https://okomestudio.net/biboroku/tags/python/</link>
+      <pubDate>Sat, 31 Aug 2024 00:00:00 +0000</pubDate>
+      <guid>https://okomestudio.net/biboroku/tags/python/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Linux</title>
       <link>https://okomestudio.net/biboroku/tags/linux/</link>
@@ -34,13 +41,6 @@
       <link>https://okomestudio.net/biboroku/tags/snipd/</link>
       <pubDate>Sat, 24 Feb 2024 00:00:00 +0000</pubDate>
       <guid>https://okomestudio.net/biboroku/tags/snipd/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Python</title>
-      <link>https://okomestudio.net/biboroku/tags/python/</link>
-      <pubDate>Sat, 09 May 2020 00:00:00 +0000</pubDate>
-      <guid>https://okomestudio.net/biboroku/tags/python/</guid>
       <description></description>
     </item>
     <item>
